@@ -2,11 +2,9 @@
 
 import 'package:alibtisam_flutter/features/commons/events/controller/event_navigation.dart';
 import 'package:alibtisam_flutter/features/commons/events/model/events_model.dart';
-import 'package:alibtisam_flutter/features/commons/events/model/media_model.dart';
 import 'package:alibtisam_flutter/features/commons/events/presentation/events.dart';
 import 'package:alibtisam_flutter/helper/utils/date_formatter.dart';
 import 'package:alibtisam_flutter/helper/common/widgets/custom_pod_player.dart';
-import 'package:alibtisam_flutter/network/api_urls.dart';
 import 'package:carousel_slider/carousel_slider.dart';
 import 'package:cupertino_will_pop_scope/cupertino_will_pop_scope.dart';
 import 'package:flutter/material.dart';

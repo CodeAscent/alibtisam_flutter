@@ -1,3 +1,4 @@
+import 'package:alibtisam_flutter/features/commons/home/presentation/settings/controller/theme_controller.dart';
 import 'package:alibtisam_flutter/helper/common/constants/confirm_exit.dart';
 import 'package:alibtisam_flutter/helper/utils/custom_snackbar.dart';
 import 'package:double_back_to_close_app/double_back_to_close_app.dart';
@@ -8,6 +9,7 @@ import 'package:alibtisam_flutter/features/commons/home/presentation/userDashboa
 import 'package:alibtisam_flutter/features/commons/home/presentation/settings/settings.dart';
 import 'package:cupertino_will_pop_scope/cupertino_will_pop_scope.dart';
 import 'package:alibtisam_flutter/helper/theme/app_colors.dart';
+import 'package:get/get.dart';
 
 class CustomBottomNav extends StatefulWidget {
   const CustomBottomNav({super.key});
@@ -30,6 +32,7 @@ class _CustomBottomNavState extends State<CustomBottomNav> {
 
   bool isHomeSelected = true;
   bool isSettingsSelected = false;
+
   @override
   Widget build(BuildContext context) {
     return ConditionalWillPopScope(
@@ -62,50 +65,51 @@ class _CustomBottomNavState extends State<CustomBottomNav> {
             itemBuilder: (context, index) => pages[index],
           ),
           Align(
-            alignment: Alignment.bottomCenter,
-            child: Container(
-              margin: EdgeInsets.symmetric(vertical: 40),
-              height: 50,
-              width: 200,
-              decoration: BoxDecoration(
-                color: kgreyColor(),
-                borderRadius: BorderRadius.circular(160),
-              ),
-              child: Row(
-                mainAxisAlignment: MainAxisAlignment.center,
-                children: [
-                  GestureDetector(
-                    onTap: () {
-                      setState(() {
-                        isHomeSelected = true;
-                        isSettingsSelected = false;
-                        currentIndex = 0;
-                      });
-                      pageController.animateToPage(currentIndex,
-                          duration: Duration(milliseconds: 400),
-                          curve: Curves.easeIn);
-                    },
-                    child: kRepeatedBottomNavItem(
-                        "Home", CupertinoIcons.home, isHomeSelected),
+              alignment: Alignment.bottomCenter,
+              child: Obx(
+                () => Container(
+                  margin: EdgeInsets.symmetric(vertical: 40),
+                  height: 50,
+                  width: 200,
+                  decoration: BoxDecoration(
+                    color: kAppGreyColor(),
+                    borderRadius: BorderRadius.circular(160),
                   ),
-                  SizedBox(width: 50),
-                  GestureDetector(
-                      onTap: () {
-                        setState(() {
-                          isSettingsSelected = true;
-                          isHomeSelected = false;
-                          currentIndex = 1;
-                        });
-                        pageController.animateToPage(currentIndex,
-                            duration: Duration(milliseconds: 400),
-                            curve: Curves.easeIn);
-                      },
-                      child: kRepeatedBottomNavItem("Settings",
-                          CupertinoIcons.settings, isSettingsSelected)),
-                ],
-              ),
-            ),
-          ),
+                  child: Row(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    children: [
+                      GestureDetector(
+                        onTap: () {
+                          setState(() {
+                            isHomeSelected = true;
+                            isSettingsSelected = false;
+                            currentIndex = 0;
+                          });
+                          pageController.animateToPage(currentIndex,
+                              duration: Duration(milliseconds: 400),
+                              curve: Curves.easeIn);
+                        },
+                        child: kRepeatedBottomNavItem(
+                            "Home", CupertinoIcons.home, isHomeSelected),
+                      ),
+                      SizedBox(width: 50),
+                      GestureDetector(
+                          onTap: () {
+                            setState(() {
+                              isSettingsSelected = true;
+                              isHomeSelected = false;
+                              currentIndex = 1;
+                            });
+                            pageController.animateToPage(currentIndex,
+                                duration: Duration(milliseconds: 400),
+                                curve: Curves.easeIn);
+                          },
+                          child: kRepeatedBottomNavItem("Settings",
+                              CupertinoIcons.settings, isSettingsSelected)),
+                    ],
+                  ),
+                ),
+              )),
         ],
       )),
     );

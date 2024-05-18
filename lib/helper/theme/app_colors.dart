@@ -1,7 +1,13 @@
+import 'package:alibtisam_flutter/features/commons/home/presentation/settings/controller/theme_controller.dart';
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 
 Color primaryColor() => kStatistics();
-Color kgreyColor() => Colors.grey.shade200;
+Color kAppGreyColor() {
+  final themeController = Get.find<ThemeController>();
+  return themeController.liveGreyColor.value;
+}
+
 Color kAboutColor() => Color.fromARGB(210, 246, 139, 189);
 
 Color kCollectionColor() => Color.fromARGB(210, 139, 246, 157);
