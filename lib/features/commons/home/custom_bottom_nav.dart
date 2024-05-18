@@ -1,7 +1,4 @@
-import 'package:alibtisam_flutter/features/commons/home/presentation/settings/controller/theme_controller.dart';
 import 'package:alibtisam_flutter/helper/common/constants/confirm_exit.dart';
-import 'package:alibtisam_flutter/helper/utils/custom_snackbar.dart';
-import 'package:double_back_to_close_app/double_back_to_close_app.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 

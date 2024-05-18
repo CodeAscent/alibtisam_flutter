@@ -1,7 +1,5 @@
-import 'package:alibtisam_flutter/features/commons/home/presentation/settings/controller/theme_controller.dart';
 import 'package:alibtisam_flutter/helper/theme/app_colors.dart';
 import 'package:flutter/material.dart';
-import 'package:get/get.dart';
 
 ThemeData kAppThemeLight() {
   return ThemeData(

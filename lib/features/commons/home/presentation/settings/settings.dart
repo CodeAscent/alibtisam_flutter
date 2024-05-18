@@ -4,12 +4,9 @@ import 'package:alibtisam_flutter/features/commons/home/presentation/settings/pr
 import 'package:alibtisam_flutter/features/commons/home/presentation/settings/widgets/custom_settings_card.dart';
 import 'package:alibtisam_flutter/helper/common/constants/logout_user.dart';
 import 'package:alibtisam_flutter/helper/common/widgets/custom_loading.dart';
-import 'package:alibtisam_flutter/helper/theme/app_colors.dart';
 import 'package:alibtisam_flutter/helper/utils/loading_manager.dart';
 import 'package:alibtisam_flutter/network/api_requests.dart';
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/widgets.dart';
 import 'package:get/get.dart';
 
 class SettingScreen extends StatefulWidget {
@@ -104,7 +101,8 @@ class _SettingScreenState extends State<SettingScreen> {
                                                                 .selectedTheme
                                                                 .value ==
                                                             'light'
-                                                        ?themeController.liveGreyColor.value
+                                                        ? themeController
+                                                            .liveGreyColor.value
                                                         : null,
                                                   ),
                                                   child: Text("Light"),

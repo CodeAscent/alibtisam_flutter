@@ -1,6 +1,8 @@
+import 'package:alibtisam_flutter/helper/theme/app_colors.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:get/get.dart';
+
 class CustomTextField extends StatelessWidget {
   final String label;
   final double? width;
@@ -15,22 +17,21 @@ class CustomTextField extends StatelessWidget {
   final void Function(String)? onChanged;
   final TextEditingController? controller;
   final String? initial;
-  const CustomTextField({
-    super.key,
-    required this.label,
-    this.width,
-    this.controller,
-    this.readOnly,
-    this.suffix,
-    this.height,
-    this.onChanged,
-    this.digitsOnly,
-    this.keyboardType,
-    this.maxLines,
-    this.shouldValidate,
-    this.maxLength,
-    this.initial
-  });
+  const CustomTextField(
+      {super.key,
+      required this.label,
+      this.width,
+      this.controller,
+      this.readOnly,
+      this.suffix,
+      this.height,
+      this.onChanged,
+      this.digitsOnly,
+      this.keyboardType,
+      this.maxLines,
+      this.shouldValidate,
+      this.maxLength,
+      this.initial});
 
   @override
   Widget build(BuildContext context) {
@@ -38,7 +39,7 @@ class CustomTextField extends StatelessWidget {
       width: width,
       height: height,
       child: TextFormField(
-        initialValue: initial ,
+        initialValue: initial,
         keyboardType: keyboardType,
         onChanged: onChanged,
         readOnly: readOnly ?? false,
@@ -61,7 +62,7 @@ class CustomTextField extends StatelessWidget {
             contentPadding: EdgeInsets.all(10),
             isDense: true,
             errorMaxLines: 1,
-            labelStyle: TextStyle(color: Colors.grey.shade700),
+            labelStyle: TextStyle(color: kAppGreyColor()),
             errorStyle: TextStyle(color: Colors.red, height: 1),
             disabledBorder:
                 OutlineInputBorder(borderRadius: BorderRadius.circular(5)),
