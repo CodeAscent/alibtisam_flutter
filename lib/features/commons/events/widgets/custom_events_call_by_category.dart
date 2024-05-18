@@ -41,6 +41,7 @@ class CustomEventsCallByCategory extends StatelessWidget {
                       ));
                 },
                 child: Container(
+                  height: 370,
                   width: 180,
                   child: Card(
                     elevation: 0.2,
@@ -62,12 +63,14 @@ class CustomEventsCallByCategory extends StatelessWidget {
                               fit: BoxFit.cover,
                             ),
                           if (event.media[0].type == "video") ...[
-                            CustomPodPlayer(url: event.media[0].url)
+                            Container(
+                                height: 250,
+                                child: CustomPodPlayer(url: event.media[0].url))
                           ],
                           SizedBox(height: 10),
                           Text(
                             event.description,
-                            maxLines: 3,
+                            maxLines: 2,
                             overflow: TextOverflow.ellipsis,
                           )
                         ],
@@ -79,7 +82,8 @@ class CustomEventsCallByCategory extends StatelessWidget {
             })
           ],
         ),
-      )
+      ),
+      Divider(),
     ]);
   }
 }

@@ -1,8 +1,10 @@
+import 'package:alibtisam_flutter/features/commons/home/presentation/settings/controller/theme_controller.dart';
 import 'package:alibtisam_flutter/features/commons/home/presentation/settings/models/user.dart';
 import 'package:alibtisam_flutter/features/commons/home/presentation/settings/presentation/profile.dart';
 import 'package:alibtisam_flutter/features/commons/home/presentation/settings/widgets/custom_settings_card.dart';
 import 'package:alibtisam_flutter/helper/common/constants/logout_user.dart';
 import 'package:alibtisam_flutter/helper/common/widgets/custom_loading.dart';
+import 'package:alibtisam_flutter/helper/theme/app_colors.dart';
 import 'package:alibtisam_flutter/helper/utils/loading_manager.dart';
 import 'package:alibtisam_flutter/network/api_requests.dart';
 import 'package:flutter/cupertino.dart';
@@ -66,7 +68,98 @@ class _SettingScreenState extends State<SettingScreen> {
                                     ));
                               },
                               child: CustomSettingsCard(label: "Profile")),
-                          CustomSettingsCard(label: "Theme"),
+                          GestureDetector(
+                              onTap: () {
+                                final themeController =
+                                    Get.find<ThemeController>();
+                                themeController.updateSelectedTheme(
+                                    themeController.selectedTheme.value);
+                                print(themeController.liveTheme.value);
+                                showDialog(
+                                  context: context,
+                                  builder: (context) {
+                                    return Obx(() {
+                                      return AlertDialog(
+                                        title: Text("Theme"),
+                                        content: Container(
+                                          height: 100,
+                                          child: Column(
+                                            children: [
+                                              GestureDetector(
+                                                onTap: () {
+                                                  themeController
+                                                      .updateSelectedTheme(
+                                                          'light');
+                                                },
+                                                child: Container(
+                                                  width: double.infinity,
+                                                  margin: EdgeInsets.symmetric(
+                                                      vertical: 5),
+                                                  padding: EdgeInsets.all(10),
+                                                  decoration: BoxDecoration(
+                                                    borderRadius:
+                                                        BorderRadius.circular(
+                                                            10),
+                                                    color: themeController
+                                                                .selectedTheme
+                                                                .value ==
+                                                            'light'
+                                                        ?themeController.liveGreyColor.value
+                                                        : null,
+                                                  ),
+                                                  child: Text("Light"),
+                                                ),
+                                              ),
+                                              GestureDetector(
+                                                onTap: () {
+                                                  themeController
+                                                      .updateSelectedTheme(
+                                                          'dark');
+                                                },
+                                                child: Container(
+                                                  width: double.infinity,
+                                                  margin: EdgeInsets.symmetric(
+                                                      vertical: 5),
+                                                  padding: EdgeInsets.all(10),
+                                                  decoration: BoxDecoration(
+                                                    borderRadius:
+                                                        BorderRadius.circular(
+                                                            10),
+                                                    color: themeController
+                                                                .selectedTheme
+                                                                .value ==
+                                                            'dark'
+                                                        ? themeController
+                                                            .liveGreyColor.value
+                                                        : null,
+                                                  ),
+                                                  child: Text("Dark"),
+                                                ),
+                                              ),
+                                            ],
+                                          ),
+                                        ),
+                                        actions: [
+                                          TextButton(
+                                              onPressed: () {
+                                                Get.back();
+                                              },
+                                              child: Text("Cancel")),
+                                          TextButton(
+                                              onPressed: () {
+                                                themeController.switchTheme(
+                                                    themeController
+                                                        .selectedTheme.value);
+                                                Get.back();
+                                              },
+                                              child: Text("Confirm"))
+                                        ],
+                                      );
+                                    });
+                                  },
+                                );
+                              },
+                              child: CustomSettingsCard(label: "Theme")),
                           CustomSettingsCard(label: "About"),
                         ],
                       );

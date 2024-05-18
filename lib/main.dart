@@ -1,5 +1,7 @@
 import 'package:alibtisam_flutter/features/commons/home/custom_bottom_nav.dart';
 import 'package:alibtisam_flutter/features/commons/dummySplash/dummy_splash.dart';
+import 'package:alibtisam_flutter/features/commons/home/presentation/settings/controller/theme_controller.dart';
+import 'package:alibtisam_flutter/helper/localStorage/theme.dart';
 import 'package:alibtisam_flutter/helper/theme/app_theme.dart';
 import 'package:alibtisam_flutter/init/init_controllers.dart';
 import 'package:flutter/material.dart';
@@ -20,9 +22,14 @@ class MyApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return GetMaterialApp(
-      theme: kAppThemeLight(),
-      home: DummySplash(),
+    return GetBuilder(
+      init: ThemeController(),
+      builder: (controller) {
+        return GetMaterialApp(
+          theme: controller.appTheme(),
+          home: DummySplash(),
+        );
+      },
     );
   }
 }

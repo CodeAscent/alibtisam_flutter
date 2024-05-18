@@ -1,5 +1,7 @@
+import 'package:alibtisam_flutter/features/commons/home/presentation/settings/controller/theme_controller.dart';
 import 'package:alibtisam_flutter/helper/theme/app_colors.dart';
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 
 class CustomSettingsCard extends StatelessWidget {
   const CustomSettingsCard({
@@ -14,7 +16,7 @@ class CustomSettingsCard extends StatelessWidget {
       width: double.infinity,
       padding: EdgeInsets.all(20),
       decoration: BoxDecoration(
-          color: kgreyColor(), borderRadius: BorderRadius.circular(20)),
+          color: kAppGreyColor(), borderRadius: BorderRadius.circular(20)),
       child: Text(
         label,
         style: TextStyle(

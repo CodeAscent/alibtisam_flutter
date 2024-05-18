@@ -1,10 +1,12 @@
+import 'package:alibtisam_flutter/features/commons/home/presentation/settings/controller/theme_controller.dart';
+import 'package:alibtisam_flutter/helper/theme/app_colors.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
 customSnackbar({required String message}) {
   if (!Get.isSnackbarOpen)
     Get.snackbar("Message", message,
-        backgroundColor: Colors.white,
+        backgroundColor: kAppGreyColor(),
         duration: Duration(seconds: 2),
         snackPosition: SnackPosition.BOTTOM,
         titleText: Row(
