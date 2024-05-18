@@ -1,4 +1,3 @@
-import 'package:alibtisam_flutter/helper/theme/app_colors.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:get/get.dart';
@@ -62,7 +61,7 @@ class CustomTextField extends StatelessWidget {
             contentPadding: EdgeInsets.all(10),
             isDense: true,
             errorMaxLines: 1,
-            labelStyle: TextStyle(color: kAppGreyColor()),
+            labelStyle: TextStyle(color: Colors.grey.shade700),
             errorStyle: TextStyle(color: Colors.red, height: 1),
             disabledBorder:
                 OutlineInputBorder(borderRadius: BorderRadius.circular(5)),

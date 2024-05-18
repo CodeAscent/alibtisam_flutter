@@ -2,8 +2,6 @@ import 'package:alibtisam_flutter/helper/common/widgets/custom_text_field.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
-import '../../../../../../../helper/common/widgets/commont_appbar.dart';
-
 class NewEnrollmentScreen extends StatefulWidget {
   const NewEnrollmentScreen({super.key});
 
@@ -39,11 +37,7 @@ class _NewEnrollmentScreenState extends State<NewEnrollmentScreen> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        automaticallyImplyLeading: false,
-        toolbarHeight: 80,
-        backgroundColor: Colors.white,
-        surfaceTintColor: Colors.white,
-        flexibleSpace: RepeatedAppBar(label: "addmisionForm".tr),
+        title: Text("addmisionForm".tr),
       ),
       body: SingleChildScrollView(
         child: Padding(
