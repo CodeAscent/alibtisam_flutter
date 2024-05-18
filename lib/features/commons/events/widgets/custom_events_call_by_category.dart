@@ -1,0 +1,85 @@
+import 'package:alibtisam_flutter/features/commons/events/controller/active_player.dart';
+import 'package:alibtisam_flutter/features/commons/events/model/events_model.dart';
+import 'package:alibtisam_flutter/features/commons/events/presentation/event_desciption.dart';
+import 'package:alibtisam_flutter/helper/common/widgets/custom_pod_player.dart';
+import 'package:flutter/material.dart';
+import 'package:get/get.dart';
+
+class CustomEventsCallByCategory extends StatelessWidget {
+  final String label;
+  final List<Events> snapshot;
+
+  const CustomEventsCallByCategory({
+    super.key,
+    required this.label,
+    required this.snapshot,
+  });
+
+  @override
+  Widget build(BuildContext context) {
+    final activePlayerController = Get.find<ActivePlayerController>();
+
+    return Column(children: [
+      SizedBox(height: 20),
+      Text(
+        label,
+        style: TextStyle(
+            fontSize: 18, fontWeight: FontWeight.w600, letterSpacing: 2),
+      ),
+      SingleChildScrollView(
+        scrollDirection: Axis.horizontal,
+        child: Row(
+          children: [
+            ...List.generate(snapshot.length, (index) {
+              Events event = snapshot[index];
+
+              return GestureDetector(
+                onTap: () {
+                  activePlayerController.pauseActive();
+                  Get.to(() => EventDescription(
+                        event: event,
+                      ));
+                },
+                child: Container(
+                  width: 180,
+                  child: Card(
+                    elevation: 0.2,
+                    child: Padding(
+                      padding: const EdgeInsets.all(8.0),
+                      child: Column(
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        children: [
+                          Text(
+                            event.name,
+                            style: TextStyle(
+                                fontSize: 16, fontWeight: FontWeight.w500),
+                          ),
+                          SizedBox(height: 10),
+                          if (event.media[0].type == "image")
+                            Image.network(
+                              event.media[0].url,
+                              height: 250,
+                              fit: BoxFit.cover,
+                            ),
+                          if (event.media[0].type == "video") ...[
+                            CustomPodPlayer(url: event.media[0].url)
+                          ],
+                          SizedBox(height: 10),
+                          Text(
+                            event.description,
+                            maxLines: 3,
+                            overflow: TextOverflow.ellipsis,
+                          )
+                        ],
+                      ),
+                    ),
+                  ),
+                ),
+              );
+            })
+          ],
+        ),
+      )
+    ]);
+  }
+}
