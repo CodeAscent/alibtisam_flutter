@@ -1,5 +1,6 @@
 import 'package:alibtisam_flutter/features/commons/events/controller/event_navigation.dart';
 import 'package:alibtisam_flutter/features/commons/events/presentation/events.dart';
+import 'package:alibtisam_flutter/features/commons/home/presentation/userDashboard/presentation/enrollment/new_enrollment.dart';
 import 'package:alibtisam_flutter/helper/common/widgets/custom_dashboard_card.dart';
 import 'package:alibtisam_flutter/helper/theme/app_colors.dart';
 import 'package:flutter/material.dart';
@@ -43,11 +44,11 @@ class _UserDashboardState extends State<UserDashboard> {
                 ),
               ),
 
-              CustomDashboardCard(
-                label: 'Sports',
-                color: kStatistics(),
-                icon: 'assets/lottie/sports.json',
-              ),
+              // CustomDashboardCard(
+              //   label: 'Sports',
+              //   color: kStatistics(),
+              //   icon: 'assets/lottie/sports.json',
+              // ),
 
               //TEAM STATS , MONITERING, REPORTS
               // CustomDashboardCard(
@@ -80,10 +81,15 @@ class _UserDashboardState extends State<UserDashboard> {
               //   color: kStatistics(),
               //   icon: 'assets/lottie/loan.json',
               // ),
-              CustomDashboardCard(
-                label: 'New \nEnrollment',
-                color: kStatistics(),
-                icon: 'assets/lottie/enroll.json',
+              GestureDetector(
+                onTap: () {
+                  Get.to(() => NewEnrollmentScreen());
+                },
+                child: CustomDashboardCard(
+                  label: 'New \nEnrollment',
+                  color: kStatistics(),
+                  icon: 'assets/lottie/enroll.json',
+                ),
               ),
               CustomDashboardCard(
                 label: 'Collection',
