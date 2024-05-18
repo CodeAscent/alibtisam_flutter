@@ -9,7 +9,7 @@ import 'package:get/route_manager.dart';
 
 void main() async {
 
-  // WidgetsBinding widgetsBinding = WidgetsFlutterBinding.ensureInitialized();
+   WidgetsBinding widgetsBinding = WidgetsFlutterBinding.ensureInitialized();
   initControllers();
   // FlutterNativeSplash.preserve(widgetsBinding: widgetsBinding);
   runApp(const MyApp());
