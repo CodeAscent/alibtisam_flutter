@@ -1,5 +1,3 @@
-import 'package:alibtisam_flutter/features/bottomNav/controller/user.dart';
-import 'package:alibtisam_flutter/features/bottomNav/presentation/settings/models/user.dart';
 import 'package:alibtisam_flutter/features/bottomNav/presentation/userDashboard/presentation/events/controller/event_navigation.dart';
 import 'package:alibtisam_flutter/helper/common/widgets/custom_dashboard_card.dart';
 import 'package:alibtisam_flutter/helper/common/widgets/custom_loading.dart';

@@ -1,5 +1,4 @@
 import 'package:alibtisam_flutter/helper/common/constants/switch_theme_dialog.dart';
-import 'package:alibtisam_flutter/helper/theme/controller/theme_controller.dart';
 import 'package:alibtisam_flutter/features/bottomNav/presentation/settings/models/user.dart';
 import 'package:alibtisam_flutter/features/bottomNav/presentation/settings/presentation/profile.dart';
 import 'package:alibtisam_flutter/features/bottomNav/presentation/settings/widgets/custom_settings_card.dart';

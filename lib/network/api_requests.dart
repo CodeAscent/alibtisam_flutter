@@ -12,7 +12,6 @@ import 'package:alibtisam_flutter/network/api_urls.dart';
 import 'package:alibtisam_flutter/network/http_wrapper.dart';
 import 'package:get/get.dart';
 import 'package:image_picker/image_picker.dart';
-import 'package:http/http.dart' as http;
 
 class ApiRequests {
   Future<List<Events>> allEvents(String filter) async {
@@ -133,6 +132,5 @@ class ApiRequests {
     required String institutionalTypes,
   }) async {
     String url = create_player;
-    var request = http.MultipartRequest('POST', Uri.parse(url));
   }
 }
