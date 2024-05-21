@@ -24,12 +24,12 @@ class _UserDashboardState extends State<UserDashboard> {
       "route": "/allEvents",
       // VISIBILITY: EXTERNAL, INTERNAL AND COACH
     },
-    {
-      "name": "Sports",
-      "icon": 'assets/lottie/sports.json',
-      "route": "/sports",
-      // VISIBILITY: EXTERNAL, INTERNAL AND COACH
-    },
+    // {
+    //   "name": "Sports",
+    //   "icon": 'assets/lottie/sports.json',
+    //   "route": "/sports",
+    //   // VISIBILITY: EXTERNAL, INTERNAL AND COACH
+    // },
     //TEAM STATS , MONITERING, REPORTS
     {
       "name": "Statistics",
