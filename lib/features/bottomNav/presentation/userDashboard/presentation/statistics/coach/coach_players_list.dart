@@ -1,5 +1,4 @@
-import 'package:alibtisam_flutter/features/bottomNav/presentation/userDashboard/presentation/statistics/coach/caoch_statistics.dart';
-import 'package:alibtisam_flutter/features/bottomNav/presentation/userDashboard/presentation/statistics/coach/presentation/monitoring/coach_player_monitoring.dart';
+import 'package:alibtisam_flutter/features/bottomNav/presentation/userDashboard/presentation/statistics/player_statistics.dart';
 import 'package:alibtisam_flutter/helper/common/widgets/custom_loading.dart';
 import 'package:alibtisam_flutter/helper/theme/app_colors.dart';
 import 'package:flutter/material.dart';
@@ -39,7 +38,7 @@ class _CoachPlayersListState extends State<CoachPlayersList> {
                     itemBuilder: (context, index) {
                       return GestureDetector(
                         onTap: () {
-                          Get.to(() => CoachStatistics());
+                          Get.to(() => PlayerStatistics());
                         },
                         child: Container(
                           decoration: BoxDecoration(

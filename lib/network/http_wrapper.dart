@@ -4,7 +4,6 @@ import 'dart:io';
 import 'package:alibtisam_flutter/helper/error/server_exception.dart';
 import 'package:alibtisam_flutter/helper/localStorage/token_id.dart';
 import 'package:alibtisam_flutter/helper/utils/loading_manager.dart';
-import 'package:alibtisam_flutter/network/api_urls.dart';
 import 'package:http/http.dart' as http;
 
 class HttpWrapper {
