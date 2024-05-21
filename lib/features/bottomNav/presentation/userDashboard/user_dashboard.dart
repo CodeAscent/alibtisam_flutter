@@ -43,56 +43,55 @@ class _UserDashboardState extends State<UserDashboard> {
       "route": "/measurementRequest",
       // VISIBILITY: COACH
     },
-    {
-      "name": "Tournament \nRequest",
-      "icon": 'assets/lottie/tournament.json',
-      "route": "/tournamentRequest",
-      // VISIBILITY: COACH
-    },
+    // {
+    //   "name": "Tournament \nRequest",
+    //   "icon": 'assets/lottie/tournament.json',
+    //   "route": "/tournamentRequest",
+    //   // VISIBILITY: COACH
+    // },
     {
       "name": "Attendance",
       "icon": 'assets/lottie/attendance.json',
       "route": "/attendance",
       // VISIBILITY: COACH AND INTERNAL
     },
-    {
-      "name": "Practice",
-      "icon": 'assets/lottie/practice.json',
-      "route": "/practice",
-      // VISIBILITY: INTERNAL
-    },
-    {
-      "name": "Store",
-      "icon": 'assets/lottie/store.json',
-      "route": "/store",
-      // VISIBILITY: COACH , INTERNAL AND EXTERNAL
-    },
+    // {
+    //   "name": "Practice",
+    //   "icon": 'assets/lottie/practice.json',
+    //   "route": "/practice",
+    //   // VISIBILITY: INTERNAL
+    // },
+    // {
+    //   "name": "Store",
+    //   "icon": 'assets/lottie/store.json',
+    //   "route": "/store",
+    //   // VISIBILITY: COACH , INTERNAL AND EXTERNAL
+    // },
     // Leave req & Certificate req
-    {
-      "name": "Request \nPortal",
-      "icon": 'assets/lottie/makerequest.json',
-      "route": "/requestPortal",
-      // VISIBILITY: COACH , INTERNAL
-    },
-    {
-      "name": "Player \nPolarization",
-      "icon": 'assets/lottie/polarization.json',
-      "route": "/playerPolarization",
-      // VISIBILITY: COACH
-    },
-    {
-      "name": "Session \nAppointment",
-      "icon": 'assets/lottie/appointment.json',
-      "route": "/sessionAppointment",
-      // VISIBILITY: INTERNAL
-    },
-
-    {
-      "name": "Loan \napplication",
-      "icon": 'assets/lottie/loan.json',
-      "route": "/loan",
-      // VISIBILITY: INTERNAL
-    },
+    // {
+    //   "name": "Request \nPortal",
+    //   "icon": 'assets/lottie/makerequest.json',
+    //   "route": "/requestPortal",
+    //   // VISIBILITY: COACH , INTERNAL
+    // },
+    // {
+    //   "name": "Player \nPolarization",
+    //   "icon": 'assets/lottie/polarization.json',
+    //   "route": "/playerPolarization",
+    //   // VISIBILITY: COACH
+    // },
+    // {
+    //   "name": "Session \nAppointment",
+    //   "icon": 'assets/lottie/appointment.json',
+    //   "route": "/sessionAppointment",
+    //   // VISIBILITY: INTERNAL
+    // },
+    // {
+    //   "name": "Loan \napplication",
+    //   "icon": 'assets/lottie/loan.json',
+    //   "route": "/loan",
+    //   // VISIBILITY: INTERNAL
+    // },
     {
       "name": "Enrollment",
       "icon": 'assets/lottie/enroll.json',
