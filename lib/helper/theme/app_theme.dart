@@ -1,14 +1,32 @@
+import 'package:alibtisam_flutter/helper/theme/controller/theme_controller.dart';
 import 'package:alibtisam_flutter/helper/theme/app_colors.dart';
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
+
+isAppThemeDark() {
+  final themeController = Get.find<ThemeController>();
+  return themeController.isDarkTheme();
+}
 
 ThemeData kAppThemeLight() {
   return ThemeData(
+    textButtonTheme: TextButtonThemeData(
+        style: ElevatedButton.styleFrom(
+            textStyle:
+                TextStyle(color: primaryColor(), fontWeight: FontWeight.w800))),
+    brightness: Brightness.light,
     appBarTheme: AppBarTheme(
       centerTitle: true,
       backgroundColor: Colors.white,
       surfaceTintColor: Colors.white,
     ),
+    datePickerTheme: DatePickerThemeData(
+      shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(10)),
+      backgroundColor: Colors.white,
+      surfaceTintColor: Colors.white,
+    ),
     dialogTheme: DialogTheme(
+        // titleTextStyle: TextStyle(color: primaryColor()),
         surfaceTintColor: Colors.white,
         backgroundColor: Colors.white,
         shape: RoundedRectangleBorder(
@@ -62,6 +80,16 @@ ThemeData kAppThemeLight() {
 
 ThemeData kAppThemeDark() {
   return ThemeData.dark().copyWith(
+    dropdownMenuTheme: DropdownMenuThemeData(
+        menuStyle:
+            MenuStyle(backgroundColor: WidgetStatePropertyAll(Colors.black)),
+        textStyle: TextStyle(
+          color: Colors.white,
+        )),
+    textButtonTheme: TextButtonThemeData(
+        style: ElevatedButton.styleFrom(
+            textStyle:
+                TextStyle(color: primaryColor(), fontWeight: FontWeight.w800))),
     brightness: Brightness.light,
     tabBarTheme: TabBarTheme(labelColor: Colors.white),
     appBarTheme: AppBarTheme(
@@ -70,6 +98,11 @@ ThemeData kAppThemeDark() {
       titleTextStyle:
           TextStyle(color: Colors.white, fontSize: 18, letterSpacing: 2),
       actionsIconTheme: IconThemeData(color: Colors.white),
+      backgroundColor: Colors.black,
+      surfaceTintColor: Colors.black,
+    ),
+    datePickerTheme: DatePickerThemeData(
+      shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(10)),
       backgroundColor: Colors.black,
       surfaceTintColor: Colors.black,
     ),

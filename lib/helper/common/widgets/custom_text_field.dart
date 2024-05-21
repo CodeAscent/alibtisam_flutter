@@ -35,6 +35,7 @@ class CustomTextField extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
+      margin: EdgeInsets.symmetric(vertical: 5),
       width: width,
       height: height,
       child: TextFormField(

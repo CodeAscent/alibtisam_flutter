@@ -1,5 +1,5 @@
 
-import 'package:alibtisam_flutter/features/commons/events/controller/active_player.dart';
+import 'package:alibtisam_flutter/features/bottomNav/presentation/userDashboard/presentation/events/controller/active_player.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:pod_player/pod_player.dart';

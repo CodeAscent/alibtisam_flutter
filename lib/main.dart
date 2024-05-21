@@ -1,6 +1,7 @@
-import 'package:alibtisam_flutter/features/commons/dummySplash/dummy_splash.dart';
-import 'package:alibtisam_flutter/features/commons/home/presentation/settings/controller/theme_controller.dart';
+import 'package:alibtisam_flutter/features/dummySplash/dummy_splash.dart';
+import 'package:alibtisam_flutter/helper/theme/controller/theme_controller.dart';
 import 'package:alibtisam_flutter/init/init_controllers.dart';
+import 'package:alibtisam_flutter/routes/app_routes.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
@@ -20,6 +21,7 @@ class MyApp extends StatelessWidget {
       init: ThemeController(),
       builder: (controller) {
         return GetMaterialApp(
+          getPages: pages,
           theme: controller.appTheme(),
           home: DummySplash(),
         );
