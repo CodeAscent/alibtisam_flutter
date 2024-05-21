@@ -40,7 +40,7 @@ class _UserDashboardState extends State<UserDashboard> {
     {
       "name": "Measurement \nRequests",
       "icon": 'assets/lottie/measurement.json',
-      "route": "/measurementRequest",
+      "route": "/tabBarPage",
       // VISIBILITY: COACH
     },
     // {

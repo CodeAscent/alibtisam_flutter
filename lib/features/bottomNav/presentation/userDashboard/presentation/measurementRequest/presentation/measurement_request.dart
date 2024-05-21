@@ -11,6 +11,8 @@ class MeasurementRequest extends StatefulWidget {
 class _MeasurementRequestState extends State<MeasurementRequest> {
   @override
   Widget build(BuildContext context) {
-    return Scaffold();
+    return Scaffold(
+      body: Center(child: Text("Request Page"),),
+    );
   }
 }

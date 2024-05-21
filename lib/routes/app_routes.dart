@@ -4,7 +4,8 @@ import 'package:alibtisam_flutter/features/bottomNav/presentation/userDashboard/
 import 'package:alibtisam_flutter/features/bottomNav/presentation/userDashboard/presentation/collection/collection.dart';
 import 'package:alibtisam_flutter/features/bottomNav/presentation/userDashboard/presentation/enrollment/external/new_enrollment.dart';
 import 'package:alibtisam_flutter/features/bottomNav/presentation/userDashboard/presentation/loanApplication/loan_application.dart';
-import 'package:alibtisam_flutter/features/bottomNav/presentation/userDashboard/presentation/measurementRequest/measurement_request.dart';
+import 'package:alibtisam_flutter/features/bottomNav/presentation/userDashboard/presentation/measurementRequest/presentation/measurement_request.dart';
+import 'package:alibtisam_flutter/features/bottomNav/presentation/userDashboard/presentation/measurementRequest/measurement_tab_bar.dart';
 import 'package:alibtisam_flutter/features/bottomNav/presentation/userDashboard/presentation/playerPolarization/player_polarization.dart';
 import 'package:alibtisam_flutter/features/bottomNav/presentation/userDashboard/presentation/practice/practice.dart';
 import 'package:alibtisam_flutter/features/bottomNav/presentation/userDashboard/presentation/requestPortal/request_portal_navigation.dart';
@@ -30,4 +31,5 @@ List<GetPage<dynamic>>? pages = [
   GetPage(name: '/measurementRequest', page: () => MeasurementRequest()),
   GetPage(name: '/playerPolarization', page: () => PlayerPolarization()),
   GetPage(name: '/tournamentRequest', page: () => TournamentRequest()),
+  GetPage(name: '/tabBarPage', page: () => MeasurementTabBar()),
 ];
