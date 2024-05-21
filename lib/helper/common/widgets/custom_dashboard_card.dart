@@ -35,9 +35,7 @@ class CustomDashboardCard extends StatelessWidget {
           Text(
             label,
             style: TextStyle(
-              fontWeight: FontWeight.w800,
-              fontSize: 22,
-            ),
+                fontWeight: FontWeight.w800, fontSize: 22, color: Colors.white),
           ),
           Spacer(),
           LottieBuilder.asset(

@@ -26,17 +26,17 @@ dynamic kGradientColor() => LinearGradient(
 
 // Color kLoanApplicationColor() => Color.fromARGB(210, 170, 117, 165);
 
-// Color kSessionAppointmentColor() => Color.fromARGB(210, 246, 139, 198);
+Color kOverviewColor() => Color.fromARGB(210, 243, 49, 156);
 
 // Color kMakeRequestColor() => Color.fromARGB(210, 139, 246, 212);
 
 // Color kPracticeColor() => Color.fromARGB(210, 246, 139, 166);
 
-// Color kAttendanceColor() => Color.fromARGB(210, 139, 246, 157);
+Color kTrainingLoadColor() => Color.fromARGB(210, 51, 237, 82);
 
 // Color kStatistics() => Color.fromARGB(210, 246, 139, 166);
-// // Color kStatistics() => Color.fromARGB(210, 187, 139, 246);
+Color kReadiness() => Color.fromARGB(210, 143, 62, 243);
 
 // Color kSportsColor() => Color.fromARGB(210, 239, 246, 139);
 
-// Color kEventsColor() => Color.fromARGB(212, 139, 198, 246);
+Color kTestResults() => Color.fromARGB(211, 44, 152, 240);

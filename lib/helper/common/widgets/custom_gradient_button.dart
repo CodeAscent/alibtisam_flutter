@@ -1,8 +1,8 @@
 import 'package:alibtisam_flutter/helper/theme/app_colors.dart';
 import 'package:flutter/material.dart';
 
-class CustomContainerButton extends StatelessWidget {
-  const CustomContainerButton({
+class CustomGradientButton extends StatelessWidget {
+  const CustomGradientButton({
     super.key,
     required this.label,
     this.onTap,
@@ -15,10 +15,10 @@ class CustomContainerButton extends StatelessWidget {
       child: GestureDetector(
         onTap: onTap,
         child: Container(
-          margin: EdgeInsets.all(16),
           height: 50,
           decoration: BoxDecoration(
-              color: primaryColor(), borderRadius: BorderRadius.circular(20)),
+              gradient: kGradientColor(),
+              borderRadius: BorderRadius.circular(20)),
           padding: EdgeInsets.all(16),
           child: Center(
             child: Text(
