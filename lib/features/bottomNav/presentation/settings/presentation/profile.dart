@@ -1,7 +1,12 @@
 import 'package:alibtisam_flutter/features/bottomNav/presentation/settings/models/user.dart';
+import 'package:alibtisam_flutter/features/bottomNav/presentation/settings/widgets/crop_image.dart';
+import 'package:alibtisam_flutter/features/bottomNav/presentation/userDashboard/presentation/enrollment/external/new_enrollment.dart';
 import 'package:alibtisam_flutter/helper/common/widgets/custom_loading.dart';
 import 'package:alibtisam_flutter/helper/common/widgets/custom_text_field.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
+import 'package:get/get.dart';
+import 'package:image_picker/image_picker.dart';
 
 class ProfileScreen extends StatelessWidget {
   final UserModel user;
@@ -23,9 +28,26 @@ class ProfileScreen extends StatelessWidget {
             pinned: true,
             snap: true,
             flexibleSpace: FlexibleSpaceBar(
-              background: Image.network(
-                user.pic,
-                fit: BoxFit.cover,
+              background: Stack(
+                children: [
+                  Image.network(
+                    user.pic,
+                    fit: BoxFit.cover,
+                    height: 400,
+                    width: double.infinity,
+                  ),
+                  Positioned(
+                      right: 0,
+                      child: ElevatedButton(
+                          onPressed: () async {
+                            XFile? profile = await pickImageFromGalary();
+                            if (profile != null) {
+                              Uint8List image = await profile.readAsBytes();
+                              Get.to(() => CustomCropImage(imageData: image));
+                            }
+                          },
+                          child: Text("Edit")))
+                ],
               ),
             ),
           ),
@@ -34,6 +56,14 @@ class ProfileScreen extends StatelessWidget {
               padding: const EdgeInsets.all(16.0),
               child: Column(
                 children: [
+                  SizedBox(height: 20),
+                  CustomTextField(
+                    suffix: Icon(Icons.edit),
+                    initial: user.name,
+                    controller: null,
+                    label: "Name",
+                    readOnly: true,
+                  ),
                   SizedBox(height: 20),
                   CustomTextField(
                     suffix: Icon(Icons.edit),

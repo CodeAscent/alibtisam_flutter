@@ -17,5 +17,8 @@ String login_user = base_url + api_version + user + "login";
 // GET USER
 String get_user = base_url + api_version + user + "get";
 
+// UPDATE USER
+String update_user = base_url + api_version + user + "update/";
+
 // CREATE PLAYER
 String create_player = base_url + api_version + player + "add";

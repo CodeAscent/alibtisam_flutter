@@ -8,6 +8,7 @@ import 'package:alibtisam_flutter/helper/utils/loading_manager.dart';
 import 'package:alibtisam_flutter/network/api_requests.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:image_picker/image_picker.dart';
 
 class SettingScreen extends StatefulWidget {
   const SettingScreen({super.key});
@@ -17,6 +18,10 @@ class SettingScreen extends StatefulWidget {
 }
 
 class _SettingScreenState extends State<SettingScreen> {
+  Future<XFile?> pickImageFromGalary() async {
+    XFile? image = await ImagePicker().pickImage(source: ImageSource.gallery);
+    return image;
+  }
   @override
   Widget build(BuildContext context) {
     return CustomLoader(
