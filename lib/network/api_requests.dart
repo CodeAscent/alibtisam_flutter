@@ -1,11 +1,12 @@
 import 'dart:convert';
+import 'dart:io';
 
 import 'package:alibtisam_flutter/features/bottomNav/controller/user.dart';
 import 'package:alibtisam_flutter/features/bottomNav/presentation/userDashboard/presentation/events/model/events_model.dart';
 import 'package:alibtisam_flutter/features/bottomNav/custom_bottom_nav.dart';
 import 'package:alibtisam_flutter/features/bottomNav/presentation/settings/models/user.dart';
 import 'package:alibtisam_flutter/helper/error/server_exception.dart';
-import 'package:alibtisam_flutter/helper/localStorage/token.dart';
+import 'package:alibtisam_flutter/helper/localStorage/token_id.dart';
 import 'package:alibtisam_flutter/helper/utils/custom_snackbar.dart';
 import 'package:alibtisam_flutter/helper/utils/loading_manager.dart';
 import 'package:alibtisam_flutter/network/api_urls.dart';
@@ -71,7 +72,7 @@ class ApiRequests {
       final res = await HttpWrapper.postRequest(login_user, body);
       final data = jsonDecode(res.body);
       if (res.statusCode == 200) {
-        saveToken(data['token']);
+        saveToken(data['token'], data['user']['_id']);
         Get.to(() => CustomBottomNav());
       } else {
         customSnackbar(message: data["message"]);
@@ -103,6 +104,18 @@ class ApiRequests {
       customSnackbar(message: e.message);
     }
     return null;
+  }
+
+  Future<void> updateUser(File? file) async {
+    try {
+      String uid = await getUid() ?? '';
+      String url = update_user + uid;
+      final res = await HttpWrapper.multipartRequest(url, file);
+      print(res.body);
+    } on ServerException catch (e) {
+      await LoadingManager.endLoading();
+      customSnackbar(message: e.message);
+    }
   }
 
   Future createPlayerForm({

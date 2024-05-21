@@ -7,6 +7,7 @@ class UserModel {
   final String pic;
   final String role;
   final String mobile;
+  final String name;
 
   UserModel(
     this.userName,
@@ -14,6 +15,7 @@ class UserModel {
     this.pic,
     this.role,
     this.mobile,
+    this.name,
   );
 
   UserModel copyWith({
@@ -22,6 +24,7 @@ class UserModel {
     String? pic,
     String? role,
     String? mobile,
+    String? name,
   }) {
     return UserModel(
       userName ?? this.userName,
@@ -29,6 +32,7 @@ class UserModel {
       pic ?? this.pic,
       role ?? this.role,
       mobile ?? this.mobile,
+      name ?? this.name,
     );
   }
 
@@ -39,6 +43,7 @@ class UserModel {
       'pic': pic,
       'role': role,
       'mobile': mobile,
+      'name': name,
     };
   }
 
@@ -49,6 +54,7 @@ class UserModel {
       map['pic'] as String,
       map['role'] as String,
       map['mobile'] as String,
+      map['name'] as String,
     );
   }
 
@@ -59,7 +65,7 @@ class UserModel {
 
   @override
   String toString() {
-    return 'UserModel(userName: $userName, email: $email, pic: $pic, role: $role, mobile: $mobile)';
+    return 'UserModel(userName: $userName, email: $email, pic: $pic, role: $role, mobile: $mobile, name: $name)';
   }
 
   @override
@@ -70,7 +76,8 @@ class UserModel {
         other.email == email &&
         other.pic == pic &&
         other.role == role &&
-        other.mobile == mobile;
+        other.mobile == mobile &&
+        other.name == name;
   }
 
   @override
@@ -79,6 +86,7 @@ class UserModel {
         email.hashCode ^
         pic.hashCode ^
         role.hashCode ^
-        mobile.hashCode;
+        mobile.hashCode ^
+        name.hashCode;
   }
 }

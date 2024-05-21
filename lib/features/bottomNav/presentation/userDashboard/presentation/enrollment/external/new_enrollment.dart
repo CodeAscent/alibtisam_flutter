@@ -403,7 +403,7 @@ class _NewEnrollmentScreenState extends State<NewEnrollmentScreen> {
   }
 }
 
-pickImageFromGalary() async {
+Future<XFile?> pickImageFromGalary() async {
   XFile? image = await ImagePicker().pickImage(source: ImageSource.gallery);
   return image;
 }
