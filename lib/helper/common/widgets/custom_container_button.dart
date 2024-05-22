@@ -11,20 +11,23 @@ class CustomContainerButton extends StatelessWidget {
   final void Function()? onTap;
   @override
   Widget build(BuildContext context) {
-    return GestureDetector(
-      onTap: onTap,
-      child: Container(
-        height: 50,
-        decoration: BoxDecoration(
-            color: primaryColor(), borderRadius: BorderRadius.circular(20)),
-        padding: EdgeInsets.all(16),
-        child: Center(
-          child: Text(
-            label,
-            style: TextStyle(
-                color: Colors.white,
-                fontWeight: FontWeight.w800,
-                letterSpacing: 2),
+    return SafeArea(
+      child: GestureDetector(
+        onTap: onTap,
+        child: Container(
+          margin: EdgeInsets.all(16),
+          height: 50,
+          decoration: BoxDecoration(
+              color: primaryColor(), borderRadius: BorderRadius.circular(20)),
+          padding: EdgeInsets.all(16),
+          child: Center(
+            child: Text(
+              label,
+              style: TextStyle(
+                  color: Colors.white,
+                  fontWeight: FontWeight.w800,
+                  letterSpacing: 2),
+            ),
           ),
         ),
       ),

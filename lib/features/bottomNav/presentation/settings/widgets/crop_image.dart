@@ -1,5 +1,4 @@
 import 'package:alibtisam_flutter/helper/common/widgets/custom_container_button.dart';
-import 'package:alibtisam_flutter/helper/theme/app_colors.dart';
 import 'package:crop_your_image/crop_your_image.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';

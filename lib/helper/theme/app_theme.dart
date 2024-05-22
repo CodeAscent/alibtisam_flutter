@@ -148,6 +148,7 @@ ThemeData kAppThemeDark() {
       color: kAppGreyColor(),
       surfaceTintColor: Colors.black,
     ),
+    listTileTheme: ListTileThemeData(textColor: Colors.white),
     elevatedButtonTheme: ElevatedButtonThemeData(
         style: ElevatedButton.styleFrom(
             backgroundColor: kAppGreyColor(),

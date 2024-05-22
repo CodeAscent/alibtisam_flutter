@@ -3,7 +3,6 @@ import 'package:alibtisam_flutter/features/bottomNav/presentation/userDashboard/
 import 'package:alibtisam_flutter/features/bottomNav/presentation/userDashboard/presentation/attendance/attendance_navigation.dart';
 import 'package:alibtisam_flutter/features/bottomNav/presentation/userDashboard/presentation/collection/collection.dart';
 import 'package:alibtisam_flutter/features/bottomNav/presentation/userDashboard/presentation/loanApplication/loan_application.dart';
-import 'package:alibtisam_flutter/features/bottomNav/presentation/userDashboard/presentation/measurementRequest/presentation/request/measurement_form.dart';
 import 'package:alibtisam_flutter/features/bottomNav/presentation/userDashboard/presentation/measurementRequest/measurement_tab_bar.dart';
 import 'package:alibtisam_flutter/features/bottomNav/presentation/userDashboard/presentation/measurementRequest/presentation/request/measurement_request.dart';
 import 'package:alibtisam_flutter/features/bottomNav/presentation/userDashboard/presentation/playerPolarization/player_polarization.dart';
@@ -11,7 +10,7 @@ import 'package:alibtisam_flutter/features/bottomNav/presentation/userDashboard/
 import 'package:alibtisam_flutter/features/bottomNav/presentation/userDashboard/presentation/requestPortal/request_portal_navigation.dart';
 import 'package:alibtisam_flutter/features/bottomNav/presentation/userDashboard/presentation/sessionAppointment/session_appointment.dart';
 import 'package:alibtisam_flutter/features/bottomNav/presentation/userDashboard/presentation/sports/sports_navigation.dart';
-import 'package:alibtisam_flutter/features/bottomNav/presentation/userDashboard/presentation/statistics/coach/presentation/monitoring/monitoring/coach_monitoring.dart';
+import 'package:alibtisam_flutter/features/bottomNav/presentation/userDashboard/presentation/statistics/coach/presentation/monitoring/coach_player_monitoring.dart';
 import 'package:alibtisam_flutter/features/bottomNav/presentation/userDashboard/presentation/statistics/statistics_navigation.dart';
 import 'package:alibtisam_flutter/features/bottomNav/presentation/userDashboard/presentation/store/store_navigation.dart';
 import 'package:alibtisam_flutter/features/bottomNav/presentation/userDashboard/presentation/tournamentRequest/tournament_request.dart';
@@ -33,5 +32,5 @@ List<GetPage<dynamic>>? pages = [
   GetPage(name: '/playerPolarization', page: () => PlayerPolarization()),
   GetPage(name: '/tournamentRequest', page: () => TournamentRequest()),
   GetPage(name: '/tabBarPage', page: () => MeasurementTabBar()),
-  GetPage(name: '/coachMonitering', page: () => CoachMonitering()),
+  GetPage(name: '/coachMonitering', page: () => CoachPlayerMonitering()),
 ];
