@@ -35,16 +35,17 @@ class _CoachPlayerMoniteringState extends State<CoachPlayerMonitering> {
       child: Card(
         child: Container(
             decoration: BoxDecoration(
-                color: color, borderRadius: BorderRadius.circular(20)),
+                color: kAppGreyColor(),
+                borderRadius: BorderRadius.circular(20)),
             height: 60,
             width: double.infinity,
             child: Center(
               child: Text(
                 label,
                 style: TextStyle(
-                    fontSize: 18,
-                    fontWeight: FontWeight.w800,
-                    color: Colors.white),
+                  fontSize: 18,
+                  fontWeight: FontWeight.w800,
+                ),
               ),
             )),
       ),

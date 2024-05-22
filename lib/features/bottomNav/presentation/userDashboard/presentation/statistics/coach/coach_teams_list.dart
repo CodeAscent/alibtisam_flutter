@@ -30,14 +30,12 @@ class _CoachTeamsListState extends State<CoachTeamsList> {
             child: Column(
               children: [
                 ...List.generate(5, (int index) {
-                  return GestureDetector(
-                      onTap: () {},
-                      child: CustomGradientButton(
-                        onTap: () {
-                          Get.to(() => CoachPlayersList());
-                        },
-                        label: "Team $index",
-                      ));
+                  return CustomGradientButton(
+                    onTap: () {
+                      Get.to(() => CoachPlayersList());
+                    },
+                    label: "Team $index",
+                  );
                 })
               ],
             ),
