@@ -1,10 +1,10 @@
+import 'dart:async';
 import 'dart:convert';
-import 'dart:io';
 
 import 'package:alibtisam_flutter/features/bottomNav/controller/user.dart';
+import 'package:alibtisam_flutter/features/bottomNav/model/user.dart';
 import 'package:alibtisam_flutter/features/bottomNav/presentation/userDashboard/presentation/events/model/events_model.dart';
-import 'package:alibtisam_flutter/features/bottomNav/custom_bottom_nav.dart';
-import 'package:alibtisam_flutter/features/bottomNav/presentation/settings/models/user.dart';
+import 'package:alibtisam_flutter/features/bottomNav/bottom_nav.dart';
 import 'package:alibtisam_flutter/helper/error/server_exception.dart';
 import 'package:alibtisam_flutter/helper/localStorage/token_id.dart';
 import 'package:alibtisam_flutter/helper/utils/custom_snackbar.dart';
@@ -13,6 +13,7 @@ import 'package:alibtisam_flutter/network/api_urls.dart';
 import 'package:alibtisam_flutter/network/http_wrapper.dart';
 import 'package:get/get.dart';
 import 'package:image_picker/image_picker.dart';
+import 'package:http/http.dart' as http;
 
 class ApiRequests {
   Future<List<Events>> allEvents(String filter) async {
@@ -73,7 +74,7 @@ class ApiRequests {
       final data = jsonDecode(res.body);
       if (res.statusCode == 200) {
         saveToken(data['token'], data['user']['_id']);
-        Get.to(() => CustomBottomNav());
+        Get.to(() => BottomNav());
       } else {
         customSnackbar(message: data["message"]);
       }
@@ -92,9 +93,11 @@ class ApiRequests {
 
       final data = jsonDecode(res.body);
       if (res.statusCode == 200) {
+        print(data);
         final user = UserModel.fromMap(data["user"]);
         final userController = Get.find<UserController>();
         userController.setUserData(user);
+        saveToken(data["token"], user.id);
         return user;
       } else {
         customSnackbar(message: data['message']);
@@ -106,17 +109,54 @@ class ApiRequests {
     return null;
   }
 
-  Future<void> updateUser(File? file) async {
+  Future<void> getTokenById(String id) async {
     try {
-      String uid = await getUid() ?? '';
-      String url = update_user + uid;
-      final res = await HttpWrapper.multipartRequest(url, file);
-      print(res.body);
+      final res = await HttpWrapper.getRequest(get_token_by_id + id);
+      final data = jsonDecode(res.body);
+      saveToken(data['token'], id);
     } on ServerException catch (e) {
       await LoadingManager.endLoading();
       customSnackbar(message: e.message);
     }
   }
+
+  Future<List<UserModel>> getUsersByGuardian() async {
+    try {
+      LoadingManager.startLoading();
+
+      String? guardianId = await getUid();
+      final userController = Get.find<UserController>();
+      if (userController.user.guardianId != '') {
+        guardianId = userController.user.guardianId;
+      }
+
+      final res =
+          await HttpWrapper.getRequest(get_player_by_guardian + "$guardianId");
+      final data = jsonDecode(res.body);
+      List<UserModel> players = [];
+      for (var item in data['players']) {
+        players.add(UserModel.fromMap(item));
+      }
+      return players;
+    } on ServerException catch (e) {
+      await LoadingManager.endLoading();
+      customSnackbar(message: e.message);
+    }
+    return [];
+  }
+  // Future<void> updateUser(File? file) async {
+  //   try {
+  //     String uid = await getUid() ?? '';
+  //     String url = update_user + uid;
+  //     List<File> files = [];
+  //     files.add(file!);
+  //     // final res = await HttpWrapper.multipartRequest(url, files);
+  //     // print(res.body);
+  //   } on ServerException catch (e) {
+  //     await LoadingManager.endLoading();
+  //     customSnackbar(message: e.message);
+  //   }
+  // }
 
   Future createPlayerForm({
     required String name,
@@ -138,12 +178,56 @@ class ApiRequests {
     required String relationWithApplicant,
     required XFile? idProofFrontPath,
     required XFile? idProofBackPath,
-    required XFile? photoPath,
+    required XFile? pic,
     required XFile? certificate,
     required String batch,
     required String gameId,
     required String institutionalTypes,
   }) async {
-    String url = create_player;
+    try {
+      LoadingManager.startLoading();
+
+      String url = create_player;
+      Map<String, String>? fields = {
+        "name": name,
+        "fatherName": fatherName,
+        "motherName": motherName,
+        "gender": gender,
+        "dateOfBirth": dateOfBirth,
+        "bloodGroup": bloodGroup,
+        "height": height,
+        "weight": weight,
+        "mobile": phoneNumber,
+        "email": email,
+        "address": address,
+        "correspondenceAddress": correspondenceAddress,
+        "postalCode": postalCode,
+        "city": city,
+        "state": state,
+        "country": country,
+        "relation": relationWithApplicant,
+        "batch": batch,
+        "gameId": "663b6e7e84b08ed875f84d91",
+        "institutionalTypes": institutionalTypes,
+      };
+      List<http.MultipartFile> files = [];
+      files.addAll([
+        await http.MultipartFile.fromPath("pic", pic!.path),
+        await http.MultipartFile.fromPath(
+            "idFrontImage", idProofFrontPath!.path),
+        await http.MultipartFile.fromPath("idBackImage", idProofBackPath!.path),
+      ]);
+      if (certificate != null) {
+        files.add(await http.MultipartFile.fromPath(
+            "certificateLink", certificate.path));
+      }
+      final res =
+          await HttpWrapper.multipartRequest(url, files, fields: fields);
+      final data = await res.stream.bytesToString();
+      return jsonDecode(data);
+    } on ServerException catch (e) {
+      await LoadingManager.endLoading();
+      customSnackbar(message: e.message);
+    }
   }
 }

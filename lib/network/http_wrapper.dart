@@ -75,22 +75,19 @@ class HttpWrapper {
     }
   }
 
-  static Future multipartRequest(String url, File? file,
+  static Future multipartRequest(String url, List<http.MultipartFile> files,
       {Map<String, String>? fields}) async {
     try {
       final request = await http.MultipartRequest('POST', Uri.parse(url));
       if (fields != null) {
         request.fields.addAll(fields);
       }
-      if (file != null) {
-        var fileStream = http.ByteStream(file.openRead());
-        var length = await file.length();
-        var multipartFile = http.MultipartFile('file', fileStream, length,
-            filename: file.path.split('/').last);
-        request.files.add(multipartFile);
+      if (files.length != 0) {
+        request.files.addAll(files);
       }
       request.headers.addAll(await header());
       var res = await request.send();
+     
       return res;
     } catch (e) {
       throw ServerException(e.toString());

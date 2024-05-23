@@ -1,6 +1,6 @@
 import 'dart:async';
 
-import 'package:alibtisam_flutter/features/bottomNav/custom_bottom_nav.dart';
+import 'package:alibtisam_flutter/features/bottomNav/bottom_nav.dart';
 import 'package:alibtisam_flutter/features/signup&login/widgets/logo_&_arabic_text.dart';
 import 'package:alibtisam_flutter/features/signup&login/presentation/login/login.dart';
 import 'package:alibtisam_flutter/helper/localStorage/token_id.dart';
@@ -26,9 +26,7 @@ class _CheckLoginState extends State<CheckLogin> {
     String? token = await getToken();
     String? uid = await getUid();
 
-    token == null
-        ? Get.to(() => LoginScreen())
-        : Get.to(() => CustomBottomNav());
+    token == null ? Get.to(() => LoginScreen()) : Get.to(() => BottomNav());
     print(uid);
   }
 

@@ -29,6 +29,7 @@ Future<dynamic> kLogoutUser(BuildContext context) {
                 onPressed: () {
                   LoadingManager.dummyLoading();
                   remove('token');
+                  remove('uid');
                   Get.to(() => LoginScreen());
                 },
                 child: Text(

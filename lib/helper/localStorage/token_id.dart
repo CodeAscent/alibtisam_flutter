@@ -7,6 +7,10 @@ saveToken(String token, String id) async {
   pref.setString("token", token);
   pref.setString("uid", id);
 }
+saveId( String id) async {
+  final pref = await SharedPreferences.getInstance();
+  pref.setString("uid", id);
+}
 
 remove(String key) async {
   final pref = await SharedPreferences.getInstance();

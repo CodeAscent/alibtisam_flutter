@@ -1,5 +1,6 @@
 import 'package:alibtisam_flutter/features/bottomNav/controller/user.dart';
 import 'package:alibtisam_flutter/features/bottomNav/presentation/userDashboard/presentation/enrollment/external/external_enrollment_form.dart';
+import 'package:alibtisam_flutter/features/bottomNav/presentation/userDashboard/presentation/enrollment/guardian/guardian_all_forms.dart';
 import 'package:alibtisam_flutter/features/bottomNav/presentation/userDashboard/presentation/enrollment/internal/internal_enrollment_form.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:get/get.dart';
@@ -16,8 +17,11 @@ class _EnrollmentNavigationState extends State<EnrollmentNavigation> {
 
   @override
   Widget build(BuildContext context) {
-    return userController.user.role == "EXTERNAL USER"
+    return userController.user.role == "EXTERNAL USER" &&
+            userController.user.guardianId == ''
         ? ExternalEnrollmentForm()
-        : InternalEnrollmentForm();
+        : userController.user.role == "INTERNAL USER"
+            ? InternalEnrollmentForm()
+            : GuardianAllForms();
   }
 }

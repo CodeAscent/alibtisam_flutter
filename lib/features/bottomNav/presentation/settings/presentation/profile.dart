@@ -1,6 +1,6 @@
-import 'package:alibtisam_flutter/features/bottomNav/presentation/settings/models/user.dart';
+import 'package:alibtisam_flutter/features/bottomNav/model/user.dart';
 import 'package:alibtisam_flutter/features/bottomNav/presentation/settings/widgets/crop_image.dart';
-import 'package:alibtisam_flutter/features/bottomNav/presentation/userDashboard/presentation/enrollment/external/new_enrollment.dart';
+import 'package:alibtisam_flutter/features/bottomNav/presentation/userDashboard/presentation/enrollment/external/external_enrollment_form.dart';
 import 'package:alibtisam_flutter/helper/common/widgets/custom_loading.dart';
 import 'package:alibtisam_flutter/helper/common/widgets/custom_text_field.dart';
 import 'package:flutter/material.dart';

@@ -8,14 +8,14 @@ import 'package:cupertino_will_pop_scope/cupertino_will_pop_scope.dart';
 import 'package:alibtisam_flutter/helper/theme/app_colors.dart';
 import 'package:get/get.dart';
 
-class CustomBottomNav extends StatefulWidget {
-  const CustomBottomNav({super.key});
+class BottomNav extends StatefulWidget {
+  const BottomNav({super.key});
 
   @override
-  State<CustomBottomNav> createState() => _CustomBottomNavState();
+  State<BottomNav> createState() => _BottomNavState();
 }
 
-class _CustomBottomNavState extends State<CustomBottomNav> {
+class _BottomNavState extends State<BottomNav> {
   List<Widget> pages = [UserDashboard(), SettingScreen()];
 
   late PageController pageController;

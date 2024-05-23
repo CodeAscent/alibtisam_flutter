@@ -1,5 +1,7 @@
+import 'package:alibtisam_flutter/features/bottomNav/controller/user.dart';
+import 'package:alibtisam_flutter/features/bottomNav/model/user.dart';
+import 'package:alibtisam_flutter/features/bottomNav/presentation/settings/presentation/switch_user.dart';
 import 'package:alibtisam_flutter/helper/common/constants/switch_theme_dialog.dart';
-import 'package:alibtisam_flutter/features/bottomNav/presentation/settings/models/user.dart';
 import 'package:alibtisam_flutter/features/bottomNav/presentation/settings/presentation/profile.dart';
 import 'package:alibtisam_flutter/features/bottomNav/presentation/settings/widgets/custom_settings_card.dart';
 import 'package:alibtisam_flutter/helper/common/constants/logout_user.dart';
@@ -18,12 +20,16 @@ class SettingScreen extends StatefulWidget {
 }
 
 class _SettingScreenState extends State<SettingScreen> {
-  Future<XFile?> pickImageFromGalary() async {
-    XFile? image = await ImagePicker().pickImage(source: ImageSource.gallery);
-    return image;
+  @override
+  void initState() {
+    super.initState();
+    ApiRequests().getUser();
   }
+
+  final userController = Get.find<UserController>()..user;
   @override
   Widget build(BuildContext context) {
+    final user = userController.user;
     return CustomLoader(
       child: Scaffold(
         appBar: AppBar(
@@ -35,55 +41,52 @@ class _SettingScreenState extends State<SettingScreen> {
             padding: const EdgeInsets.all(16.0),
             child: Column(
               children: [
-                FutureBuilder<UserModel?>(
-                  future: ApiRequests().getUser(),
-                  builder: (context, snapshot) {
-                    if (snapshot.hasData) {
-                      final user = snapshot.data!;
-                      return Column(
-                        children: [
-                          Row(
-                            children: [
-                              ClipRRect(
-                                borderRadius: BorderRadius.circular(160),
-                                child: Image.network(
-                                  user.pic,
-                                  height: 100,
-                                  width: 100,
-                                  fit: BoxFit.cover,
-                                ),
-                              ),
-                              SizedBox(width: 20),
-                              Column(
-                                children: [
-                                  Text(user.userName.capitalize!),
-                                ],
-                              )
-                            ],
+                Column(
+                  children: [
+                    Row(
+                      children: [
+                        ClipRRect(
+                          borderRadius: BorderRadius.circular(160),
+                          child: Image.network(
+                            user.pic,
+                            height: 100,
+                            width: 100,
+                            fit: BoxFit.cover,
                           ),
-                          SizedBox(height: 30),
-                          GestureDetector(
-                              onTap: () {
-                                LoadingManager.dummyLoading();
-                                Get.to(() => ProfileScreen(
-                                      user: user,
-                                    ));
-                              },
-                              child: CustomSettingsCard(label: "Profile")),
-                          GestureDetector(
-                              onTap: () {
-                                kSwitchThemeDialog(context);
-                              },
-                              child: CustomSettingsCard(label: "Theme")),
-                          CustomSettingsCard(label: "Language"),
-                          CustomSettingsCard(label: "About"),
-                        ],
-                      );
-                    }
-                    return SizedBox(
-                      height: 400,
-                    );
-                  },
+                        ),
+                        SizedBox(width: 20),
+                        Column(
+                          children: [
+                            Text(user.userName.capitalize!),
+                          ],
+                        )
+                      ],
+                    ),
+                    SizedBox(height: 30),
+                    GestureDetector(
+                        onTap: () {
+                          LoadingManager.dummyLoading();
+                          Get.to(() => ProfileScreen(
+                                user: user,
+                              ));
+                        },
+                        child: CustomSettingsCard(label: "Profile")),
+                    Visibility(
+                      visible: user.role == "GUARDIAN" || user.guardianId != '',
+                      child: GestureDetector(
+                          onTap: () {
+                            Get.to(() => SwitchUser());
+                          },
+                          child: CustomSettingsCard(label: "Switch User")),
+                    ),
+                    GestureDetector(
+                        onTap: () {
+                          kSwitchThemeDialog(context);
+                        },
+                        child: CustomSettingsCard(label: "Theme")),
+                    CustomSettingsCard(label: "Language"),
+                    CustomSettingsCard(label: "About"),
+                  ],
                 ),
                 SizedBox(height: 80),
                 GestureDetector(

@@ -5,5 +5,5 @@ customDateTimeFormat(String date) {
 }
 
 customDateFormat(String date) {
-  return DateFormat('dd MMM yyyy').format(DateTime.parse(date));
+  return DateFormat('yyyy-MM-dd').format(DateTime.parse(date));
 }
