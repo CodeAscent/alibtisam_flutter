@@ -2,6 +2,7 @@ import 'dart:async';
 import 'dart:convert';
 
 import 'package:alibtisam_flutter/features/bottomNav/controller/user.dart';
+import 'package:alibtisam_flutter/features/bottomNav/model/dashboard.dart';
 import 'package:alibtisam_flutter/features/bottomNav/model/user.dart';
 import 'package:alibtisam_flutter/features/bottomNav/presentation/userDashboard/presentation/events/model/events_model.dart';
 import 'package:alibtisam_flutter/features/bottomNav/bottom_nav.dart';
@@ -41,6 +42,7 @@ class ApiRequests {
   Future<void> register(
       {required String email,
       required String password,
+      required String clubId,
       required String mobile,
       required String name}) async {
     try {
@@ -48,6 +50,7 @@ class ApiRequests {
       var body = {
         "role": "EXTERNAL USER",
         "email": email,
+        "organizationId": clubId,
         "password": password,
         "mobile": num.parse(mobile),
         "name": name
@@ -93,10 +96,7 @@ class ApiRequests {
 
       final data = jsonDecode(res.body);
       if (res.statusCode == 200) {
-        print(data);
         final user = UserModel.fromMap(data["user"]);
-        final userController = Get.find<UserController>();
-        userController.setUserData(user);
         saveToken(data["token"], user.id);
         return user;
       } else {
@@ -120,14 +120,31 @@ class ApiRequests {
     }
   }
 
+  Future<List<DashboardModel>> getDashboardItems() async {
+    try {
+      List<DashboardModel> dashboardItems = [];
+      LoadingManager.startLoading();
+      final res = await HttpWrapper.getRequest(get_dashboard_services);
+      final data = jsonDecode(res.body);
+      for (var item in data['services']) {
+        dashboardItems.add(DashboardModel.fromMap(item));
+      }
+      return dashboardItems;
+    } on ServerException catch (e) {
+      await LoadingManager.endLoading();
+      customSnackbar(message: e.message);
+    }
+    return [];
+  }
+
   Future<List<UserModel>> getUsersByGuardian() async {
     try {
       LoadingManager.startLoading();
 
       String? guardianId = await getUid();
       final userController = Get.find<UserController>();
-      if (userController.user.guardianId != '') {
-        guardianId = userController.user.guardianId;
+      if (userController.user!.guardianId != '') {
+        guardianId = userController.user!.guardianId;
       }
 
       final res =
@@ -143,6 +160,22 @@ class ApiRequests {
       customSnackbar(message: e.message);
     }
     return [];
+  }
+
+  Future getClubs() async {
+    try {
+      LoadingManager.startLoading();
+      final res = await HttpWrapper.getRequest(get_organization);
+      final data = jsonDecode(res.body);
+      if (res.statusCode == 200) {
+        return data['dropdown'];
+      } else {
+        customSnackbar(message: data['message']);
+      }
+    } on ServerException catch (e) {
+      await LoadingManager.endLoading();
+      customSnackbar(message: e.message);
+    }
   }
   // Future<void> updateUser(File? file) async {
   //   try {

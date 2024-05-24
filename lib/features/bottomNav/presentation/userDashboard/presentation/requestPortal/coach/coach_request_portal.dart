@@ -10,6 +10,6 @@ class CoachRequestPortal extends StatefulWidget {
 class _CoachRequestPortalState extends State<CoachRequestPortal> {
   @override
   Widget build(BuildContext context) {
-    return const Placeholder();
+    return Scaffold();
   }
 }

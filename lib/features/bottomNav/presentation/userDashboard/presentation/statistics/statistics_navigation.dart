@@ -17,7 +17,7 @@ class _StatisticsNavigationState extends State<StatisticsNavigation> {
 
   @override
   Widget build(BuildContext context) {
-    return userController.user.role == "INTERNAL USER"
+    return userController.user!.role == "INTERNAL USER"
         ? PlayerStatistics()
         : CoachTeamsList();
   }

@@ -17,9 +17,9 @@ class _StoreNavigationState extends State<StoreNavigation> {
 
   @override
   Widget build(BuildContext context) {
-    return userController.user.role == "EXTERNAL USER"
+    return userController.user!.role == "EXTERNAL USER"
         ? ExternalStore()
-        : userController.user.role == "INTERNAL USER"
+        : userController.user!.role == "INTERNAL USER"
             ? InternalStore()
             : CoachStore();
   }

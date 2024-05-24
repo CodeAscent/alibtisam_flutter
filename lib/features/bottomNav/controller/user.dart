@@ -1,25 +1,17 @@
 import 'package:alibtisam_flutter/features/bottomNav/model/user.dart';
 import 'package:alibtisam_flutter/helper/utils/custom_snackbar.dart';
+import 'package:alibtisam_flutter/network/api_requests.dart';
 import 'package:get/get.dart';
 
 class UserController extends GetxController {
-  late UserModel user;
+  late UserModel? user;
 
-  void setUserData(UserModel data) {
+  Future fetchUser() async {
     try {
-      user = data;
+      user = await ApiRequests().getUser();
       update();
     } catch (e) {
       customSnackbar(message: e.toString());
     }
-  }
-
-  UserModel? getUserData() {
-    try {
-      return user;
-    } catch (e) {
-      customSnackbar(message: e.toString());
-    }
-    return null;
   }
 }

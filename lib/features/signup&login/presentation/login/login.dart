@@ -43,7 +43,7 @@ class _LoginScreenState extends State<LoginScreen> {
                       SizedBox(height: 50),
                       CustomTextField(
                         controller: usernameController,
-                        label: "Username",
+                        label: "Username or Email",
                       ),
                       SizedBox(height: 20),
                       CustomTextField(

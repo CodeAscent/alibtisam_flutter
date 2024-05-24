@@ -16,7 +16,7 @@ class _AttendanceNavigationState extends State<AttendanceNavigation> {
 
   @override
   Widget build(BuildContext context) {
-    return userController.user.role == "INTERNAL USER"
+    return userController.user!.role == "INTERNAL USER"
         ? InternalAttendance()
         : CoachAttendance();
   }

@@ -40,7 +40,7 @@ class _SwitchUserState extends State<SwitchUser> {
                           final player = snapshot.data![index];
                           return GestureDetector(
                             onTap: () async {
-                              if (userController.user.id == player.id) {
+                              if (userController.user!.id == player.id) {
                                 Get.back();
                               } else {
                                 print(player.id);

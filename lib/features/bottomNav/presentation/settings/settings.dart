@@ -23,7 +23,7 @@ class _SettingScreenState extends State<SettingScreen> {
   @override
   void initState() {
     super.initState();
-    ApiRequests().getUser();
+    userController.fetchUser();
   }
 
   final userController = Get.find<UserController>()..user;
@@ -48,7 +48,7 @@ class _SettingScreenState extends State<SettingScreen> {
                         ClipRRect(
                           borderRadius: BorderRadius.circular(160),
                           child: Image.network(
-                            user.pic,
+                            user!.pic,
                             height: 100,
                             width: 100,
                             fit: BoxFit.cover,

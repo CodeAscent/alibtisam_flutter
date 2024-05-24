@@ -17,7 +17,7 @@ class _RequestPortalNavigationState extends State<RequestPortalNavigation> {
 
   @override
   Widget build(BuildContext context) {
-    return userController.user.role == "INTERNAL USER"
+    return userController.user!.role == "INTERNAL USER"
         ? InternalRequestPortal()
         : CoachRequestPortal();
   }

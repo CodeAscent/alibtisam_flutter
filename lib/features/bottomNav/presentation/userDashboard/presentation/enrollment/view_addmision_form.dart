@@ -19,10 +19,16 @@ class ViewAddmisionForm extends StatelessWidget {
             collapsedHeight: 150,
             stretch: true,
             pinned: true,
-            flexibleSpace: Image.network(
-              player.pic,
-              fit: BoxFit.cover,
-              height: 400,
+            flexibleSpace: ClipRRect(
+              borderRadius: BorderRadius.only(
+                bottomLeft: Radius.circular(20),
+                bottomRight: Radius.circular(20),
+              ),
+              child: Image.network(
+                player.pic,
+                fit: BoxFit.cover,
+                height: 400,
+              ),
             ),
           ),
           SliverToBoxAdapter(
@@ -33,8 +39,11 @@ class ViewAddmisionForm extends StatelessWidget {
                   mainAxisAlignment: MainAxisAlignment.start,
                   children: [
                     kCustomListTile(key: "Name", value: player.name),
-                    kCustomListTile(
-                        key: "Status", value: player.requests["status"]),
+                    Visibility(
+                      visible: player.requests != {},
+                      child: kCustomListTile(
+                          key: "Status", value: player.requests["status"]),
+                    ),
                     kCustomListTile(key: "Game", value: player.name),
                     kCustomListTile(key: "E-mail", value: player.email),
                     kCustomListTile(key: "Mobile", value: player.mobile),

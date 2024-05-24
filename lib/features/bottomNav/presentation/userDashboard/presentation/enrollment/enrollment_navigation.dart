@@ -2,6 +2,7 @@ import 'package:alibtisam_flutter/features/bottomNav/controller/user.dart';
 import 'package:alibtisam_flutter/features/bottomNav/presentation/userDashboard/presentation/enrollment/external/external_enrollment_form.dart';
 import 'package:alibtisam_flutter/features/bottomNav/presentation/userDashboard/presentation/enrollment/guardian/guardian_all_forms.dart';
 import 'package:alibtisam_flutter/features/bottomNav/presentation/userDashboard/presentation/enrollment/internal/internal_enrollment_form.dart';
+import 'package:alibtisam_flutter/features/bottomNav/presentation/userDashboard/presentation/enrollment/view_addmision_form.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:get/get.dart';
 
@@ -17,11 +18,16 @@ class _EnrollmentNavigationState extends State<EnrollmentNavigation> {
 
   @override
   Widget build(BuildContext context) {
-    return userController.user.role == "EXTERNAL USER" &&
-            userController.user.guardianId == ''
-        ? ExternalEnrollmentForm()
-        : userController.user.role == "INTERNAL USER"
-            ? InternalEnrollmentForm()
-            : GuardianAllForms();
+    return userController.user!.role == "EXTERNAL USER" &&
+            userController.user!.guardianId != ''
+        ? ViewAddmisionForm(player: userController.user!)
+        : userController.user!.role == "EXTERNAL USER" &&
+                userController.user!.guardianId == ''
+            ? ExternalEnrollmentForm()
+            : userController.user!.role == "EXTERNAL USER" &&
+                    userController.user!.guardianId == '' &&
+                    userController.user!.requests != {}
+                ? ViewAddmisionForm(player: userController.user!)
+                : GuardianAllForms();
   }
 }

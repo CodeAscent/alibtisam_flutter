@@ -84,7 +84,7 @@ class _ExternalEnrollmentFormState extends State<ExternalEnrollmentForm> {
 
   bool showRelationShipField = true;
   setRelationshipIfGuardian() {
-    if (userController.user.role == "GUARDIAN") {
+    if (userController.user!.role == "GUARDIAN") {
       showRelationShipField = false;
       relationWithApplicantController.text = "GUARDIAN";
     } else {
@@ -374,12 +374,12 @@ class _ExternalEnrollmentFormState extends State<ExternalEnrollmentForm> {
                                   player: user!,
                                 ));
                           } else {
-                            if (userController.user.role != "GUARDIAN") {
+                            if (userController.user!.role != "GUARDIAN") {
                               UserModel? user = await ApiRequests().getUser();
                               if (user!.role == "GUARDIAN") {
                                 Get.off(() => GuardianAllForms());
                               }
-                            } else if (userController.user.role == "GUARDIAN") {
+                            } else if (userController.user!.role == "GUARDIAN") {
                               Get.off(() => GuardianAllForms());
                             }
                           }

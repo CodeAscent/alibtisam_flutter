@@ -14,10 +14,28 @@ class SignUpScreen extends StatefulWidget {
 
 class _SignUpScreenState extends State<SignUpScreen> {
   final nameController = TextEditingController();
+  final clubController = TextEditingController();
+  final clubIdController = TextEditingController();
   final passwordController = TextEditingController();
   final emailController = TextEditingController();
   final phoneController = TextEditingController();
   final formKey = GlobalKey<FormState>();
+  List<dynamic> clubs = [];
+
+  @override
+  void initState() {
+    super.initState();
+    fetchClubs();
+  }
+
+  fetchClubs() async {
+    final res = await ApiRequests().getClubs();
+    for (var club in res) {
+      clubs.add(club);
+    }
+    setState(() {});
+  }
+
   @override
   Widget build(BuildContext context) {
     return CustomLoader(
@@ -33,7 +51,30 @@ class _SignUpScreenState extends State<SignUpScreen> {
                     Center(
                       child: LogoAndArabicText(),
                     ),
-                    SizedBox(height: 30),
+                    SizedBox(height: 20),
+                    CustomTextField(
+                      controller: clubController,
+                      maxLines: 1,
+                      label: "Sports Club",
+                      height: 60,
+                      readOnly: true,
+                      suffix: DropdownButton(
+                        items: clubs
+                            .map((club) => DropdownMenuItem(
+                                value: club, child: Text(club['name'])))
+                            .toList(),
+                        onChanged: (dynamic val) {
+                          setState(() {
+                            print(val);
+                            clubController.text = val['name'];
+                            clubIdController.text = val['_id'];
+                          });
+                        },
+                        iconSize: 40,
+                        isDense: true,
+                      ),
+                    ),
+                    SizedBox(height: 20),
                     CustomTextField(
                       controller: nameController,
                       label: "Name",
@@ -58,6 +99,7 @@ class _SignUpScreenState extends State<SignUpScreen> {
                         onPressed: () {
                           if (formKey.currentState!.validate()) {
                             ApiRequests().register(
+                                clubId: clubIdController.text.trim(),
                                 email: emailController.text.trim(),
                                 mobile: phoneController.text.trim(),
                                 password: passwordController.text.trim(),

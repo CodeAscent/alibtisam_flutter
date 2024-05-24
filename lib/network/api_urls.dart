@@ -1,9 +1,11 @@
 //String base_url = "http://192.168.4.162:8000/";
-String base_url = "http://192.168.29.162:8000/";
+String base_url = "http://192.168.1.5:8000/";
 String api_version = "api/v1/";
 String event = "event/";
 String user = "user/";
 String player = "player/";
+String organization = "organization/";
+String org_application_service = "org-application-service/";
 
 //
 String all_events = base_url + api_version + event + "all";
@@ -28,3 +30,10 @@ String get_player_by_guardian = base_url + api_version + player + "guardian/";
 
 // GET TOKEN BY ID
 String get_token_by_id = base_url + api_version + player + "token/";
+
+// GET TOKEN BY ID
+String get_organization = base_url + api_version + organization + "get";
+
+// GET DASHBOARD SERVICES
+String get_dashboard_services =
+    base_url + api_version + org_application_service + "my-services";

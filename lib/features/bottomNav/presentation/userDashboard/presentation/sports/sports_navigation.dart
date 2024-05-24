@@ -18,9 +18,9 @@ class _SportsNavigationState extends State<SportsNavigation> {
 
   @override
   Widget build(BuildContext context) {
-    return userController.user.role == "EXTERNAL USER"
+    return userController.user!.role == "EXTERNAL USER"
         ? ExternalSports()
-        : userController.user.role == "INTERNAL USER"
+        : userController.user!.role == "INTERNAL USER"
             ? InternalSports()
             : CoachSports();
   }
