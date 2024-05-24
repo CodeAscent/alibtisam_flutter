@@ -35,7 +35,7 @@ class UserModel {
   final num waistSize;
   final String address;
   final bool isActive;
-  final Map<String, dynamic> requests;
+  final Map<String, dynamic> request;
 
   UserModel(
       this.id,
@@ -71,7 +71,7 @@ class UserModel {
       this.waistSize,
       this.address,
       this.isActive,
-      this.requests);
+      this.request);
 
   Map<String, dynamic> toMap() {
     return <String, dynamic>{
@@ -108,7 +108,7 @@ class UserModel {
       'waistSize': waistSize,
       'address': address,
       'isActive': isActive,
-      'requests': requests,
+      'request': request,
     };
   }
 
@@ -147,7 +147,7 @@ class UserModel {
       map['waistSize'] ?? 0,
       map['address'] ?? '',
       map['isActive'] as bool,
-      Map<String, dynamic>.from(map['requests'] ?? {}),
+      Map<String, dynamic>.from(map['request'] ?? {}),
     );
   }
 

@@ -10,7 +10,6 @@ class ViewAddmisionForm extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    print(player.requests);
     return Scaffold(
       body: SafeArea(
           child: CustomScrollView(
@@ -40,9 +39,9 @@ class ViewAddmisionForm extends StatelessWidget {
                   mainAxisAlignment: MainAxisAlignment.start,
                   children: [
                     kCustomListTile(key: "Name", value: player.name),
-                    if (player.requests["status"] != null)
+                    if (player.request["status"] != null)
                       kCustomListTile(
-                          key: "Status", value: player.requests["status"]),
+                          key: "Status", value: player.request["status"]),
                     kCustomListTile(key: "Game", value: player.name),
                     kCustomListTile(key: "E-mail", value: player.email),
                     kCustomListTile(key: "Mobile", value: player.mobile),

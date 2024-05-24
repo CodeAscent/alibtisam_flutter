@@ -18,8 +18,8 @@ class _EnrollmentNavigationState extends State<EnrollmentNavigation> {
   Widget navigate() {
     if (userController.user!.role == "EXTERNAL USER" &&
         userController.user!.guardianId == '') {
-      if (userController.user!.requests.isNotEmpty) {
-        print(userController.user!.requests);
+      if (userController.user!.request.isNotEmpty) {
+        print(userController.user!.request);
         return ViewAddmisionForm(player: userController.user!);
       } else {
         return ExternalEnrollmentForm();

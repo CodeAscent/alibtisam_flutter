@@ -182,6 +182,7 @@ class ApiRequests {
       final res =
           await HttpWrapper.getRequest(get_player_by_guardian + "$guardianId");
       final data = jsonDecode(res.body);
+      print(data);
       List<UserModel> players = [];
       print(data);
       for (var item in data['players']) {

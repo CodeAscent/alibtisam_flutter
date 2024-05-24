@@ -98,11 +98,11 @@ class _GuardianAllFormsState extends State<GuardianAllForms> {
                                                   padding: EdgeInsets.symmetric(
                                                       horizontal: 5),
                                                   decoration: BoxDecoration(
-                                                      color: player.requests[
+                                                      color: player.request[
                                                                   'status'] ==
                                                               'PENDING'
                                                           ? Colors.orange
-                                                          : player.requests[
+                                                          : player.request[
                                                                       'status'] ==
                                                                   'COMPLETED'
                                                               ? Colors.blue
@@ -111,7 +111,7 @@ class _GuardianAllFormsState extends State<GuardianAllForms> {
                                                           BorderRadius.circular(
                                                               10)),
                                                   child: Text(
-                                                    player.requests['status'],
+                                                    player.request['status'],
                                                     style: TextStyle(
                                                         letterSpacing: 2,
                                                         color: Colors.white,
