@@ -7,3 +7,7 @@ customDateTimeFormat(String date) {
 customDateFormat(String date) {
   return DateFormat('yyyy-MM-dd').format(DateTime.parse(date));
 }
+
+customChatTimeFormat(String date) {
+  return DateFormat('HH:mm a').format(DateTime.parse(date));
+}

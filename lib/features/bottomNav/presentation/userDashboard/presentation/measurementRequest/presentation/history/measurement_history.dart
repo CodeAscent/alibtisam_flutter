@@ -1,5 +1,7 @@
-import 'package:alibtisam_flutter/features/bottomNav/presentation/userDashboard/presentation/measurementRequest/presentation/history/measurement_player_data.dart';
+import 'package:alibtisam_flutter/features/bottomNav/model/user.dart';
+import 'package:alibtisam_flutter/features/bottomNav/presentation/userDashboard/presentation/enrollment/view_addmision_form.dart';
 import 'package:alibtisam_flutter/helper/theme/app_colors.dart';
+import 'package:alibtisam_flutter/network/api_requests.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
@@ -10,26 +12,40 @@ class MeasurementHistory extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       body: SingleChildScrollView(
-        child: Column(
-          children: [
-            Container(
-              margin: EdgeInsets.all(12),
-              decoration: BoxDecoration(
-                  color: kAppGreyColor(),
-                  borderRadius: BorderRadius.circular(10)),
-              child: ListTile(
-                onTap: () {
-                  Get.to(() {
-                    return MeasurementPlayerData();
-                  });
-                },
-                title: Text("ABCD"),
-                subtitle: Text("123456"),
-              ),
-            ),
-          ],
-        ),
-      ),
+          child: FutureBuilder(
+        future: ApiRequests().getMesurementHistory(),
+        builder: (context, snapshot) {
+          if (snapshot.hasData) {
+            return Column(
+              children: [
+                ListView.builder(
+                  shrinkWrap: true,
+                  physics: NeverScrollableScrollPhysics(),
+                  itemCount: snapshot.data.length,
+                  itemBuilder: (context, index) {
+                    UserModel user =
+                        UserModel.fromMap(snapshot.data[index]['playerId']);
+                    return Container(
+                      margin: EdgeInsets.all(12),
+                      decoration: BoxDecoration(
+                          color: kAppGreyColor(),
+                          borderRadius: BorderRadius.circular(10)),
+                      child: ListTile(
+                        onTap: () {
+                          Get.to(() => ViewAddmisionForm(player: user));
+                        },
+                        title: Text(user.name.capitalize!),
+                        subtitle: Text(user.email),
+                      ),
+                    );
+                  },
+                ),
+              ],
+            );
+          }
+          return Center();
+        },
+      )),
     );
   }
 }

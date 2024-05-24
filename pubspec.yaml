@@ -57,6 +57,8 @@ dependencies:
   fl_chart: ^0.68.0
   crop_your_image: ^1.0.2
   get_storage: ^2.1.1
+  logger: ^2.3.0
+  chat_bubbles: ^1.6.0
 
 dev_dependencies:
   flutter_test:

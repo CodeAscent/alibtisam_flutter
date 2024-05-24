@@ -24,6 +24,7 @@ class _CustomLoaderState extends State<CustomLoader> {
   @override
   Widget build(BuildContext context) {
     return GetBuilder<CustomLoadingController>(
+      initState: (state) {},
       init: loadingController,
       builder: (controller) {
         return BlurryModalProgressHUD(

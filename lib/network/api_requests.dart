@@ -1,11 +1,10 @@
-import 'dart:async';
 import 'dart:convert';
 
+import 'package:alibtisam_flutter/features/bottomNav/bottom_nav.dart';
 import 'package:alibtisam_flutter/features/bottomNav/controller/user.dart';
 import 'package:alibtisam_flutter/features/bottomNav/model/dashboard.dart';
 import 'package:alibtisam_flutter/features/bottomNav/model/user.dart';
 import 'package:alibtisam_flutter/features/bottomNav/presentation/userDashboard/presentation/events/model/events_model.dart';
-import 'package:alibtisam_flutter/features/bottomNav/bottom_nav.dart';
 import 'package:alibtisam_flutter/helper/error/server_exception.dart';
 import 'package:alibtisam_flutter/helper/localStorage/token_id.dart';
 import 'package:alibtisam_flutter/helper/utils/custom_snackbar.dart';
@@ -13,8 +12,8 @@ import 'package:alibtisam_flutter/helper/utils/loading_manager.dart';
 import 'package:alibtisam_flutter/network/api_urls.dart';
 import 'package:alibtisam_flutter/network/http_wrapper.dart';
 import 'package:get/get.dart';
-import 'package:image_picker/image_picker.dart';
 import 'package:http/http.dart' as http;
+import 'package:image_picker/image_picker.dart';
 
 class ApiRequests {
   Future<List<Events>> allEvents(String filter) async {
@@ -120,6 +119,40 @@ class ApiRequests {
     }
   }
 
+  Future getMesurementRequests() async {
+    try {
+      LoadingManager.startLoading();
+      final res = await HttpWrapper.getRequest(
+          get_measurement_requests + "?status=REQUESTED");
+      final data = jsonDecode(res.body);
+      if (res.statusCode == 200) {
+        return data['requests'];
+      } else {
+        customSnackbar(message: data['message']);
+      }
+    } on ServerException catch (e) {
+      await LoadingManager.endLoading();
+      customSnackbar(message: e.message);
+    }
+  }
+
+  Future getMesurementHistory() async {
+    try {
+      LoadingManager.startLoading();
+      final res = await HttpWrapper.getRequest(
+          get_measurement_requests + "?status=COMPLETED");
+      final data = jsonDecode(res.body);
+      if (res.statusCode == 200) {
+        return data['requests'];
+      } else {
+        customSnackbar(message: data['message']);
+      }
+    } on ServerException catch (e) {
+      await LoadingManager.endLoading();
+      customSnackbar(message: e.message);
+    }
+  }
+
   Future<List<DashboardModel>> getDashboardItems() async {
     try {
       List<DashboardModel> dashboardItems = [];
@@ -146,11 +179,11 @@ class ApiRequests {
       if (userController.user!.guardianId != '') {
         guardianId = userController.user!.guardianId;
       }
-
       final res =
           await HttpWrapper.getRequest(get_player_by_guardian + "$guardianId");
       final data = jsonDecode(res.body);
       List<UserModel> players = [];
+      print(data);
       for (var item in data['players']) {
         players.add(UserModel.fromMap(item));
       }
@@ -258,6 +291,48 @@ class ApiRequests {
           await HttpWrapper.multipartRequest(url, files, fields: fields);
       final data = await res.stream.bytesToString();
       return jsonDecode(data);
+    } on ServerException catch (e) {
+      await LoadingManager.endLoading();
+      customSnackbar(message: e.message);
+    }
+  }
+
+  Future submitMeasurementRequest({
+    required String height,
+    required String weight,
+    required String chestSize,
+    required String normalChestSize,
+    required String highJump,
+    required String lowJump,
+    required String heartBeatingRate,
+    required String pulseRate,
+    required String tshirtSize,
+    required String waistSize,
+    required String shoeSize,
+    required String requestId,
+  }) async {
+    try {
+      LoadingManager.startLoading();
+      var body = {
+        "requestId": requestId,
+        "height": num.parse(height),
+        "weight": num.parse(weight),
+        "chestSize": num.parse(chestSize),
+        "normalChestSize": num.parse(normalChestSize),
+        "highJump": num.parse(highJump),
+        "lowJump": num.parse(lowJump),
+        "heartBeatingRate": num.parse(heartBeatingRate),
+        "pulseRate": num.parse(pulseRate),
+        "tshirtSize": tshirtSize,
+        "waistSize": num.parse(waistSize),
+        "shoeSize": num.parse(shoeSize),
+      };
+      final res = await HttpWrapper.postRequest(submit_measurement, body);
+      final data = jsonDecode(res.body);
+      if (res.statusCode == 200) {
+        Get.back();
+      }
+      customSnackbar(message: data['message']);
     } on ServerException catch (e) {
       await LoadingManager.endLoading();
       customSnackbar(message: e.message);

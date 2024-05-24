@@ -33,7 +33,7 @@ class CustomTabBar extends StatelessWidget {
               labelColor: Colors.white,
               indicatorWeight: 5,
               indicator: BoxDecoration(
-                  color: primaryColor(),
+                  gradient: kGradientColor(),
                   borderRadius: BorderRadius.circular(20)),
               controller: _tabController,
               tabs: customTabs,

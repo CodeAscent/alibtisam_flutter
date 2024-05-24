@@ -10,6 +10,7 @@ class ViewAddmisionForm extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    print(player.requests);
     return Scaffold(
       body: SafeArea(
           child: CustomScrollView(
@@ -39,11 +40,9 @@ class ViewAddmisionForm extends StatelessWidget {
                   mainAxisAlignment: MainAxisAlignment.start,
                   children: [
                     kCustomListTile(key: "Name", value: player.name),
-                    Visibility(
-                      visible: player.requests != {},
-                      child: kCustomListTile(
+                    if (player.requests["status"] != null)
+                      kCustomListTile(
                           key: "Status", value: player.requests["status"]),
-                    ),
                     kCustomListTile(key: "Game", value: player.name),
                     kCustomListTile(key: "E-mail", value: player.email),
                     kCustomListTile(key: "Mobile", value: player.mobile),
@@ -52,6 +51,25 @@ class ViewAddmisionForm extends StatelessWidget {
                     kCustomListTile(key: "Gender", value: player.gender),
                     kCustomListTile(key: "Height", value: player.height),
                     kCustomListTile(key: "Weight", value: player.weight),
+                    if (player.chestSize != 0) ...[
+                      kCustomListTile(
+                          key: "Chest Size", value: player.chestSize),
+                      kCustomListTile(
+                          key: "Normal Chest Size",
+                          value: player.normalChestSize),
+                      kCustomListTile(
+                          key: "Heartbeating Rate",
+                          value: player.heartBeatingRate),
+                      kCustomListTile(key: "HighJump", value: player.highJump),
+                      kCustomListTile(key: "Low Jump", value: player.lowJump),
+                      kCustomListTile(
+                          key: "Pulse Rate", value: player.pulseRate),
+                      kCustomListTile(key: "Shoe Size", value: player.shoeSize),
+                      kCustomListTile(
+                          key: "T-shirt Size", value: player.tshirtSize),
+                      kCustomListTile(
+                          key: "Waist Size", value: player.waistSize),
+                    ],
                     kCustomListTile(
                         key: "Father's Name", value: player.fatherName),
                     kCustomListTile(

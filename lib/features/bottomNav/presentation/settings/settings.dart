@@ -2,6 +2,7 @@ import 'package:alibtisam_flutter/Localization/switch.dart';
 import 'package:alibtisam_flutter/features/bottomNav/controller/user.dart';
 import 'package:alibtisam_flutter/features/bottomNav/model/user.dart';
 import 'package:alibtisam_flutter/features/bottomNav/presentation/settings/presentation/switch_user.dart';
+import 'package:alibtisam_flutter/features/bottomNav/presentation/userDashboard/presentation/chat/chat_navigation.dart';
 import 'package:alibtisam_flutter/helper/common/constants/switch_theme_dialog.dart';
 import 'package:alibtisam_flutter/features/bottomNav/presentation/settings/presentation/profile.dart';
 import 'package:alibtisam_flutter/features/bottomNav/presentation/settings/widgets/custom_settings_card.dart';
@@ -91,6 +92,12 @@ class _SettingScreenState extends State<SettingScreen> {
                         },
                         child: CustomSettingsCard(label: "language".tr)),
                     CustomSettingsCard(label: "about".tr),
+                    GestureDetector(
+                      onTap: () {
+                        Get.to(() => ChatNavigation());
+                      },
+                      child: CustomSettingsCard(label: "Chat"),
+                    ),
                   ],
                 ),
                 SizedBox(height: 80),

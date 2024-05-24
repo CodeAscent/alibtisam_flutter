@@ -9,6 +9,7 @@ class UserController extends GetxController {
   Future fetchUser() async {
     try {
       user = await ApiRequests().getUser();
+
       update();
     } catch (e) {
       customSnackbar(message: e.toString());
