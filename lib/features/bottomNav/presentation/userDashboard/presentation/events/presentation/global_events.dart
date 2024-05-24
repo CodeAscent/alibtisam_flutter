@@ -2,6 +2,7 @@ import 'package:alibtisam_flutter/features/bottomNav/presentation/userDashboard/
 import 'package:alibtisam_flutter/helper/common/widgets/custom_loading.dart';
 import 'package:alibtisam_flutter/network/api_requests.dart';
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 
 class GlobalEvents extends StatelessWidget {
   const GlobalEvents({
@@ -23,11 +24,11 @@ class GlobalEvents extends StatelessWidget {
                     child: Column(
                   children: [
                     CustomEventsCallByCategory(
-                      label: 'ANNOUNCEMENT EVENT',
+                      label: 'announcementEvent'.tr,
                       snapshot: snapshot.data![0],
                     ),
                     CustomEventsCallByCategory(
-                      label: 'SPORTS EVENT',
+                      label: 'sportEvent'.tr,
                       snapshot: snapshot.data![1],
                     ),
                   ],

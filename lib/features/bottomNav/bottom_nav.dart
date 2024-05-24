@@ -87,7 +87,7 @@ class _BottomNavState extends State<BottomNav> {
                               curve: Curves.easeIn);
                         },
                         child: kRepeatedBottomNavItem(
-                            "Home", CupertinoIcons.home, isHomeSelected),
+                            "home".tr, CupertinoIcons.home, isHomeSelected),
                       ),
                       SizedBox(width: 50),
                       GestureDetector(
@@ -101,7 +101,7 @@ class _BottomNavState extends State<BottomNav> {
                                 duration: Duration(milliseconds: 400),
                                 curve: Curves.easeIn);
                           },
-                          child: kRepeatedBottomNavItem("Settings",
+                          child: kRepeatedBottomNavItem("settings".tr,
                               CupertinoIcons.settings, isSettingsSelected)),
                     ],
                   ),

@@ -1,3 +1,4 @@
+import 'package:alibtisam_flutter/Localization/switch.dart';
 import 'package:alibtisam_flutter/features/bottomNav/controller/user.dart';
 import 'package:alibtisam_flutter/features/bottomNav/model/user.dart';
 import 'package:alibtisam_flutter/features/bottomNav/presentation/settings/presentation/switch_user.dart';
@@ -70,7 +71,7 @@ class _SettingScreenState extends State<SettingScreen> {
                                 user: user,
                               ));
                         },
-                        child: CustomSettingsCard(label: "Profile")),
+                        child: CustomSettingsCard(label: "profile".tr)),
                     Visibility(
                       visible: user.role == "GUARDIAN" || user.guardianId != '',
                       child: GestureDetector(
@@ -83,9 +84,13 @@ class _SettingScreenState extends State<SettingScreen> {
                         onTap: () {
                           kSwitchThemeDialog(context);
                         },
-                        child: CustomSettingsCard(label: "Theme")),
-                    CustomSettingsCard(label: "Language"),
-                    CustomSettingsCard(label: "About"),
+                        child: CustomSettingsCard(label: "theme".tr)),
+                    GestureDetector(
+                        onTap: () {
+                          showLanguageSwitchDialog(context);
+                        },
+                        child: CustomSettingsCard(label: "language".tr)),
+                    CustomSettingsCard(label: "about".tr),
                   ],
                 ),
                 SizedBox(height: 80),
@@ -97,7 +102,7 @@ class _SettingScreenState extends State<SettingScreen> {
                     mainAxisAlignment: MainAxisAlignment.center,
                     children: [
                       Text(
-                        "Log Out",
+                        "logOut".tr,
                         style: TextStyle(
                             fontSize: 18,
                             fontWeight: FontWeight.w600,

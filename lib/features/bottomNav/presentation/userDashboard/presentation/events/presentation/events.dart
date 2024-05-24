@@ -45,7 +45,7 @@ class _AllEventsState extends State<AllEvents> with TickerProviderStateMixin {
                         child: Column(
                       children: [
                         SizedBox(height: 15),
-                        Text("Events"),
+                        Text("events".tr),
                       ],
                     )),
                     Align(
@@ -66,10 +66,10 @@ class _AllEventsState extends State<AllEvents> with TickerProviderStateMixin {
                 ),
                 TabBar(controller: tabController, tabs: [
                   Tab(
-                    text: "GLOBAL EVENTS",
+                    text: "globalEvents".tr,
                   ),
                   Tab(
-                    text: "My EVENTS",
+                    text: "myEvents".tr,
                   ),
                 ]),
               ]),
