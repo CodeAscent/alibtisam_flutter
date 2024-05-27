@@ -39,11 +39,15 @@ class _AboutOrganizationState extends State<AboutOrganization> {
                     child: Column(
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
-                        Center(
-                          child: Image.network(
-                            organization.logo,
-                            height: 100,
-                            width: 100,
+                        Container(
+                          color: Colors.white,
+                          child: Center(
+                            child: Image.network(
+                              organization.logo,
+                              height: 100,
+                              width: double.infinity,
+                              fit: BoxFit.cover,
+                            ),
                           ),
                         ),
                         SizedBox(height: 16),
@@ -143,11 +147,15 @@ class _AboutOrganizationState extends State<AboutOrganization> {
                           ),
                         ),
                         SizedBox(height: 24),
-                        Center(
-                          child: Image.network(
-                            organization.banner,
-                            height: 200,
-                            fit: BoxFit.cover,
+                        Container(
+                          color: Colors.white,
+                          child: Center(
+                            child: Image.network(
+                              organization.banner,
+                              height: 200,
+                              width: double.infinity,
+                              fit: BoxFit.cover,
+                            ),
                           ),
                         ),
                         SizedBox(height: 24),
