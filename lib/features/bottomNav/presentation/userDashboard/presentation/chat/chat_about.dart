@@ -33,13 +33,13 @@ class _ChatAboutState extends State<ChatAbout> {
             child: SingleChildScrollView(
               child: Column(
                 children: [
-                  ...List.generate(
-                      12,
-                      (int index) => CustomChatCards(
-                          label: "Player name",
-                          lastMessage: "lastMessage",
-                          time:
-                              customChatTimeFormat(DateTime.now().toString())))
+                  // ...List.generate(
+                  //     12,
+                  //     (int index) => CustomChatCards(
+                  //         label: "Player name",
+                  //         lastMessage: "lastMessage",
+                  //         time:
+                  //             customChatTimeFormat(DateTime.now().toString()),))
                 ],
               ),
             ),

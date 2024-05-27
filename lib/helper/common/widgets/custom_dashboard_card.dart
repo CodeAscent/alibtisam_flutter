@@ -3,7 +3,7 @@ import 'package:alibtisam_flutter/helper/theme/app_theme.dart';
 import 'package:flutter/material.dart';
 import 'package:lottie/lottie.dart';
 
-class CustomDashboardCard extends StatelessWidget {
+class CustomDashboardCard extends StatefulWidget {
   const CustomDashboardCard({
     super.key,
     required this.label,
@@ -11,6 +11,12 @@ class CustomDashboardCard extends StatelessWidget {
   });
   final String label;
   final String icon;
+
+  @override
+  State<CustomDashboardCard> createState() => _CustomDashboardCardState();
+}
+
+class _CustomDashboardCardState extends State<CustomDashboardCard> {
   @override
   Widget build(BuildContext context) {
     return Container(
@@ -33,15 +39,16 @@ class CustomDashboardCard extends StatelessWidget {
           child: Row(
         children: [
           Text(
-            label,
+            widget.label,
             style: TextStyle(
                 fontWeight: FontWeight.w800, fontSize: 22, color: Colors.white),
           ),
           Spacer(),
           LottieBuilder.asset(
-            icon,
+            widget.icon,
             height: 100,
             width: 100,
+            frameRate: FrameRate.composition,
             fit: BoxFit.cover,
           ),
         ],

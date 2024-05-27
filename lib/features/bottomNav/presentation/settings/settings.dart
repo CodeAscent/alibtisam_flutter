@@ -1,6 +1,7 @@
 import 'package:alibtisam_flutter/Localization/switch.dart';
 import 'package:alibtisam_flutter/features/bottomNav/controller/user.dart';
 import 'package:alibtisam_flutter/features/bottomNav/model/user.dart';
+import 'package:alibtisam_flutter/features/bottomNav/presentation/settings/presentation/about.dart';
 import 'package:alibtisam_flutter/features/bottomNav/presentation/settings/presentation/switch_user.dart';
 import 'package:alibtisam_flutter/features/bottomNav/presentation/userDashboard/presentation/chat/chat_navigation.dart';
 import 'package:alibtisam_flutter/helper/common/constants/switch_theme_dialog.dart';
@@ -32,6 +33,7 @@ class _SettingScreenState extends State<SettingScreen> {
   @override
   Widget build(BuildContext context) {
     final user = userController.user;
+
     return CustomLoader(
       child: Scaffold(
         appBar: AppBar(
@@ -43,63 +45,69 @@ class _SettingScreenState extends State<SettingScreen> {
             padding: const EdgeInsets.all(16.0),
             child: Column(
               children: [
-                Column(
-                  children: [
-                    Row(
-                      children: [
-                        ClipRRect(
-                          borderRadius: BorderRadius.circular(160),
-                          child: Image.network(
-                            user!.pic,
-                            height: 100,
-                            width: 100,
-                            fit: BoxFit.cover,
+                if (user != null)
+                  Column(
+                    children: [
+                      Row(
+                        children: [
+                          ClipRRect(
+                            borderRadius: BorderRadius.circular(160),
+                            child: Image.network(
+                              user!.pic,
+                              height: 100,
+                              width: 100,
+                              fit: BoxFit.cover,
+                            ),
                           ),
-                        ),
-                        SizedBox(width: 20),
-                        Column(
-                          children: [
-                            Text(user.userName.capitalize!),
-                          ],
-                        )
-                      ],
-                    ),
-                    SizedBox(height: 30),
-                    GestureDetector(
-                        onTap: () {
-                          LoadingManager.dummyLoading();
-                          Get.to(() => ProfileScreen(
-                                user: user,
-                              ));
-                        },
-                        child: CustomSettingsCard(label: "profile".tr)),
-                    Visibility(
-                      visible: user.role == "GUARDIAN" || user.guardianId != '',
-                      child: GestureDetector(
+                          SizedBox(width: 20),
+                          Column(
+                            children: [
+                              Text(user.userName.capitalize!),
+                            ],
+                          )
+                        ],
+                      ),
+                      SizedBox(height: 30),
+                      GestureDetector(
                           onTap: () {
-                            Get.to(() => SwitchUser());
+                            LoadingManager.dummyLoading();
+                            Get.to(() => ProfileScreen(
+                                  user: user,
+                                ));
                           },
-                          child: CustomSettingsCard(label: "Switch User")),
-                    ),
-                    GestureDetector(
+                          child: CustomSettingsCard(label: "profile".tr)),
+                      Visibility(
+                        visible:
+                            user.role == "GUARDIAN" || user.guardianId != '',
+                        child: GestureDetector(
+                            onTap: () {
+                              Get.to(() => SwitchUser());
+                            },
+                            child: CustomSettingsCard(label: "Switch User")),
+                      ),
+                      GestureDetector(
+                          onTap: () {
+                            kSwitchThemeDialog(context);
+                          },
+                          child: CustomSettingsCard(label: "theme".tr)),
+                      GestureDetector(
+                          onTap: () {
+                            showLanguageSwitchDialog(context);
+                          },
+                          child: CustomSettingsCard(label: "language".tr)),
+                      GestureDetector(
+                          onTap: () {
+                            Get.to(() => AboutOrganization());
+                          },
+                          child: CustomSettingsCard(label: "about".tr)),
+                      GestureDetector(
                         onTap: () {
-                          kSwitchThemeDialog(context);
+                          Get.to(() => ChatNavigation());
                         },
-                        child: CustomSettingsCard(label: "theme".tr)),
-                    GestureDetector(
-                        onTap: () {
-                          showLanguageSwitchDialog(context);
-                        },
-                        child: CustomSettingsCard(label: "language".tr)),
-                    CustomSettingsCard(label: "about".tr),
-                    GestureDetector(
-                      onTap: () {
-                        Get.to(() => ChatNavigation());
-                      },
-                      child: CustomSettingsCard(label: "Chat"),
-                    ),
-                  ],
-                ),
+                        child: CustomSettingsCard(label: "Chat"),
+                      ),
+                    ],
+                  ),
                 SizedBox(height: 80),
                 GestureDetector(
                   onTap: () {

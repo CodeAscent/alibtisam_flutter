@@ -1,3 +1,4 @@
+import 'package:alibtisam_flutter/features/bottomNav/presentation/userDashboard/presentation/statistics/controller/monitoring.dart';
 import 'package:alibtisam_flutter/features/bottomNav/presentation/userDashboard/presentation/statistics/player_statistics.dart';
 import 'package:alibtisam_flutter/helper/common/widgets/custom_loading.dart';
 import 'package:alibtisam_flutter/helper/theme/app_colors.dart';
@@ -14,6 +15,7 @@ class CoachPlayersList extends StatefulWidget {
 }
 
 class _CoachPlayersListState extends State<CoachPlayersList> {
+  final monitoringController = Get.find<MonitoringController>();
   @override
   Widget build(BuildContext context) {
     return CustomLoader(
@@ -38,6 +40,8 @@ class _CoachPlayersListState extends State<CoachPlayersList> {
                     itemBuilder: (context, index) {
                       return GestureDetector(
                         onTap: () {
+                          monitoringController.fetchMonitoringData();
+
                           Get.to(() => PlayerStatistics());
                         },
                         child: Container(

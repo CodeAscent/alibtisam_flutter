@@ -2,9 +2,13 @@ import 'dart:convert';
 
 import 'package:alibtisam_flutter/features/bottomNav/bottom_nav.dart';
 import 'package:alibtisam_flutter/features/bottomNav/controller/user.dart';
+import 'package:alibtisam_flutter/features/bottomNav/model/chat_message.dart';
+import 'package:alibtisam_flutter/features/bottomNav/model/chats_list.dart';
 import 'package:alibtisam_flutter/features/bottomNav/model/dashboard.dart';
 import 'package:alibtisam_flutter/features/bottomNav/model/user.dart';
+import 'package:alibtisam_flutter/features/bottomNav/presentation/settings/model/about.dart';
 import 'package:alibtisam_flutter/features/bottomNav/presentation/userDashboard/presentation/events/model/events_model.dart';
+import 'package:alibtisam_flutter/features/bottomNav/presentation/userDashboard/presentation/statistics/model/monitoring.dart';
 import 'package:alibtisam_flutter/helper/error/server_exception.dart';
 import 'package:alibtisam_flutter/helper/localStorage/token_id.dart';
 import 'package:alibtisam_flutter/helper/utils/custom_snackbar.dart';
@@ -199,7 +203,7 @@ class ApiRequests {
   Future getClubs() async {
     try {
       LoadingManager.startLoading();
-      final res = await HttpWrapper.getRequest(get_organization);
+      final res = await HttpWrapper.getRequest(get_organization_dropdown);
       final data = jsonDecode(res.body);
       if (res.statusCode == 200) {
         return data['dropdown'];
@@ -211,19 +215,6 @@ class ApiRequests {
       customSnackbar(message: e.message);
     }
   }
-  // Future<void> updateUser(File? file) async {
-  //   try {
-  //     String uid = await getUid() ?? '';
-  //     String url = update_user + uid;
-  //     List<File> files = [];
-  //     files.add(file!);
-  //     // final res = await HttpWrapper.multipartRequest(url, files);
-  //     // print(res.body);
-  //   } on ServerException catch (e) {
-  //     await LoadingManager.endLoading();
-  //     customSnackbar(message: e.message);
-  //   }
-  // }
 
   Future createPlayerForm({
     required String name,
@@ -333,6 +324,83 @@ class ApiRequests {
       if (res.statusCode == 200) {
         Get.back();
       }
+      customSnackbar(message: data['message']);
+    } on ServerException catch (e) {
+      await LoadingManager.endLoading();
+      customSnackbar(message: e.message);
+    }
+  }
+
+  Future<List<ChatMessages>?> getChatMessages() async {
+    try {
+      List<ChatMessages> messages = [];
+      final res = await HttpWrapper.getRequest(get_chat_messages);
+      final data = jsonDecode(res.body);
+      if (res.statusCode == 200) {
+        for (var message in data['messages']) {
+          messages.add(ChatMessages.fromMap(message));
+        }
+        return messages;
+      }
+    } on ServerException catch (e) {
+      customSnackbar(message: e.message);
+    }
+    return null;
+  }
+
+  Future<List<ChatsList>?> getChatsList() async {
+    try {
+      List<ChatsList> chats = [];
+      final res = await HttpWrapper.getRequest(get_chats_list);
+      final data = jsonDecode(res.body);
+      if (res.statusCode == 200) {
+        for (var chat in data['chats']) {
+          chats.add(ChatsList.fromMap(chat));
+        }
+        return chats;
+      }
+    } on ServerException catch (e) {
+      customSnackbar(message: e.message);
+    }
+    return null;
+  }
+
+  Future<About?> getOrganization() async {
+    try {
+      final res = await HttpWrapper.getRequest(get_organization);
+      final data = jsonDecode(res.body);
+      print(data);
+      return About.fromMap(data['organization']);
+    } on ServerException catch (e) {
+      await LoadingManager.endLoading();
+      customSnackbar(message: e.message);
+    }
+    return null;
+  }
+
+  Future<MonitoringModel?> getMonitoringByPlayerId() async {
+    try {
+      final res = await HttpWrapper.getRequest(
+          get_monitoring_by_playerId + "7562647562636a646364636a");
+      final data = jsonDecode(res.body);
+      if (res.statusCode == 200) {
+        MonitoringModel monitoring =
+            MonitoringModel.fromMap(data['monitoring']);
+        return monitoring;
+      }
+    } on ServerException catch (e) {
+      await LoadingManager.endLoading();
+      customSnackbar(message: e.message);
+    }
+    return null;
+  }
+
+  Future<void> updateMonitoringByPlayerId(Object body) async {
+    try {
+      LoadingManager.startLoading();
+      final res = await HttpWrapper.postRequest(
+          update_monitoring_by_playerId + "7562647562636a646364636a", body);
+      final data = jsonDecode(res.body);
       customSnackbar(message: data['message']);
     } on ServerException catch (e) {
       await LoadingManager.endLoading();

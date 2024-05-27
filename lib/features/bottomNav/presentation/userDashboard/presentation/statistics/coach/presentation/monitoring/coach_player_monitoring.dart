@@ -1,6 +1,11 @@
+import 'package:alibtisam_flutter/features/bottomNav/presentation/userDashboard/presentation/statistics/coach/presentation/monitoring/presentation/overview.dart';
+import 'package:alibtisam_flutter/features/bottomNav/presentation/userDashboard/presentation/statistics/coach/presentation/monitoring/presentation/readiness.dart';
+import 'package:alibtisam_flutter/features/bottomNav/presentation/userDashboard/presentation/statistics/coach/presentation/monitoring/presentation/test_results.dart';
+import 'package:alibtisam_flutter/features/bottomNav/presentation/userDashboard/presentation/statistics/coach/presentation/monitoring/presentation/training_load.dart';
 import 'package:alibtisam_flutter/helper/common/widgets/custom_loading.dart';
 import 'package:alibtisam_flutter/helper/theme/app_colors.dart';
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 
 class CoachPlayerMonitering extends StatefulWidget {
   const CoachPlayerMonitering({
@@ -14,17 +19,31 @@ class CoachPlayerMonitering extends StatefulWidget {
 class _CoachPlayerMoniteringState extends State<CoachPlayerMonitering> {
   @override
   Widget build(BuildContext context) {
-    return CustomLoader(
-      child: Scaffold(
-        body: Column(
-          children: [
-            SizedBox(height: 20),
-            kRepeatedCards(kOverviewColor(), "Overview"),
-            kRepeatedCards(kTrainingLoadColor(), "Training Load"),
-            kRepeatedCards(kReadiness(), "Readiness"),
-            kRepeatedCards(kTestResults(), "Test Results"),
-          ],
-        ),
+    return Scaffold(
+      body: Column(
+        children: [
+          SizedBox(height: 20),
+          GestureDetector(
+              onTap: () {
+                Get.to(() => Overview());
+              },
+              child: kRepeatedCards(kOverviewColor(), "Overview")),
+          GestureDetector(
+              onTap: () {
+                Get.to(() => TrainingLoad());
+              },
+              child: kRepeatedCards(kTrainingLoadColor(), "Training Load")),
+          GestureDetector(
+              onTap: () {
+                Get.to(() => Readiness());
+              },
+              child: kRepeatedCards(kReadiness(), "Readiness")),
+          GestureDetector(
+              onTap: () {
+                Get.to(() => TestResults());
+              },
+              child: kRepeatedCards(kTestResults(), "Test Results")),
+        ],
       ),
     );
   }

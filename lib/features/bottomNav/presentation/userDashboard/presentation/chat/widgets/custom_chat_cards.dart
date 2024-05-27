@@ -6,11 +6,12 @@ class CustomChatCards extends StatelessWidget {
     super.key,
     required this.label,
     required this.lastMessage,
-    required this.time,
+    required this.time, required this.image,
   });
   final String label;
   final String lastMessage;
   final String time;
+  final String image;
   @override
   Widget build(BuildContext context) {
     return Container(
@@ -21,8 +22,14 @@ class CustomChatCards extends StatelessWidget {
       color: kAppGreyColor(),
       child: Row(
         children: [
-          CircleAvatar(
-            radius: 40,
+          ClipRRect(
+            borderRadius: BorderRadius.circular(160),
+            child: Image.network(
+              image,
+              height: 60,
+              width: 60,
+              fit: BoxFit.cover,
+            ),
           ),
           SizedBox(width: 10),
           Expanded(

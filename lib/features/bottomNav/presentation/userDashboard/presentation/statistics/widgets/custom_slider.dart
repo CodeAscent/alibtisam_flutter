@@ -25,6 +25,8 @@ class _CustomSliderState extends State<CustomSlider> {
   @override
   Widget build(BuildContext context) {
     return Card(
+      color: primaryColor(),
+      surfaceTintColor: Colors.white,
       child: Column(
         children: [
           SizedBox(height: 10),
@@ -35,17 +37,17 @@ class _CustomSliderState extends State<CustomSlider> {
                 Text(
                   widget.label,
                   style: TextStyle(
-                    fontWeight: FontWeight.w800,
-                    fontSize: 16,
-                  ),
+                      fontWeight: FontWeight.w800,
+                      fontSize: 16,
+                      color: Colors.white),
                 ),
                 Spacer(),
                 Text(
                   widget.value.toString(),
                   style: TextStyle(
-                    fontWeight: FontWeight.w800,
-                    fontSize: 16,
-                  ),
+                      fontWeight: FontWeight.w800,
+                      fontSize: 16,
+                      color: Colors.white),
                 ),
               ],
             ),
@@ -55,7 +57,8 @@ class _CustomSliderState extends State<CustomSlider> {
             min: 0,
             max: 5,
             divisions: 5,
-            activeColor: primaryColor(),
+            activeColor: primaryColor().withBlue(40),
+            inactiveColor: Colors.white,
             label: "${widget.value}",
             onChanged: widget.canChange ? widget.onChanged : (double val) {},
           ),

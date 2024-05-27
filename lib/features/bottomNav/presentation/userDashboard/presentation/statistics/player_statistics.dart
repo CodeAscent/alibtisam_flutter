@@ -1,5 +1,6 @@
 import 'package:alibtisam_flutter/features/bottomNav/presentation/userDashboard/presentation/statistics/coach/presentation/monitoring/coach_player_monitoring.dart';
 import 'package:alibtisam_flutter/features/bottomNav/presentation/userDashboard/presentation/statistics/coach/presentation/reports/coach_player_reports.dart';
+import 'package:alibtisam_flutter/helper/common/widgets/custom_loading.dart';
 import 'package:alibtisam_flutter/helper/common/widgets/custom_tab_bar.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
@@ -22,21 +23,23 @@ class _PlayerStatisticsState extends State<PlayerStatistics>
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: AppBar(
-        title: Text("Statistics"),
-      ),
-      body: CustomTabBar(
-        tabController: _tabController,
-        customTabs: [
-          Tab(
-            text: "Monitoring".tr,
-          ),
-          Tab(
-            text: "Reports".tr,
-          ),
-        ],
-        tabViewScreens: [CoachPlayerMonitering(), CoachPlayerReports()],
+    return CustomLoader(
+      child: Scaffold(
+        appBar: AppBar(
+          title: Text("Statistics"),
+        ),
+        body: CustomTabBar(
+          tabController: _tabController,
+          customTabs: [
+            Tab(
+              text: "Monitoring".tr,
+            ),
+            Tab(
+              text: "Reports".tr,
+            ),
+          ],
+          tabViewScreens: [CoachPlayerMonitering(), CoachPlayerReports()],
+        ),
       ),
     );
   }

@@ -16,19 +16,19 @@ class PlayerChatList extends StatelessWidget {
         padding: const EdgeInsets.all(8.0),
         child: Column(
           children: [
-            ...List.generate(5, (int index) {
-              return GestureDetector(
-                onTap: () {
-                  Get.to(() => ChatScreen());
-                },
-                child: CustomChatCards(
-                  label: 'Player name',
-                  lastMessage:
-                      "Last message: jdj ddj djjd djjdjdj djdjdjdjjnjdjdjdj  djj d",
-                  time: customChatTimeFormat(DateTime.now().toString()),
-                ),
-              );
-            })
+            // ...List.generate(5, (int index) {
+            //   return GestureDetector(
+            //     onTap: () {
+            //       Get.to(() => ChatScreen());
+            //     },
+            //     child: CustomChatCards(
+            //       label: 'Player name',
+            //       lastMessage:
+            //           "Last message: jdj ddj djjd djjdjdj djdjdjdjjnjdjdjdj  djj d",
+            //       time: customChatTimeFormat(DateTime.now().toString()),
+            //     ),
+            //   );
+            // })
           ],
         ),
       ),
