@@ -46,7 +46,7 @@ class ProfileScreen extends StatelessWidget {
                               Get.to(() => CustomCropImage(imageData: image));
                             }
                           },
-                          child: Text("Edit")))
+                          child: Text("edit".tr)))
                 ],
               ),
             ),
@@ -61,7 +61,7 @@ class ProfileScreen extends StatelessWidget {
                     suffix: Icon(Icons.edit),
                     initial: user.name,
                     controller: null,
-                    label: "Name",
+                    label: "name".tr,
                     readOnly: true,
                   ),
                   SizedBox(height: 20),
@@ -69,14 +69,14 @@ class ProfileScreen extends StatelessWidget {
                     suffix: Icon(Icons.edit),
                     initial: user.userName,
                     controller: null,
-                    label: "Username",
+                    label: "userName".tr,
                     readOnly: true,
                   ),
                   SizedBox(height: 20),
                   CustomTextField(
                     initial: user.email,
                     controller: null,
-                    label: "Email",
+                    label: "email".tr,
                     readOnly: true,
                   ),
                   SizedBox(height: 20),
@@ -84,14 +84,14 @@ class ProfileScreen extends StatelessWidget {
                     suffix: Icon(Icons.edit),
                     initial: user.mobile,
                     controller: null,
-                    label: "Phone",
+                    label: "phone".tr,
                     readOnly: true,
                   ),
                   SizedBox(height: 20),
                   CustomTextField(
                     initial: user.role,
                     controller: null,
-                    label: "Role",
+                    label: "role".tr,
                     readOnly: true,
                   ),
                   SizedBox(height: 20),

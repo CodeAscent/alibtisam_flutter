@@ -26,7 +26,7 @@ class _TestResultsState extends State<TestResults> {
       builder: (MonitoringController monitoringController) {
         return Scaffold(
             appBar: AppBar(
-              title: Text('Test Results'),
+              title: Text('testResults'.tr),
               actions: userController.user!.role == "EXTERNAL USER"
                   ? [
                       GestureDetector(
@@ -40,7 +40,7 @@ class _TestResultsState extends State<TestResults> {
                           }
                         },
                         child: Text(
-                          canUpdate ? "Cancel" : "Edit",
+                          canUpdate ? "cancel".tr : "edit".tr,
                           style: TextStyle(fontWeight: FontWeight.w800),
                         ),
                       ),
@@ -56,7 +56,7 @@ class _TestResultsState extends State<TestResults> {
                     CustomSlider(
                       value:
                           monitoringController.monitoring!.testResults.wellness,
-                      label: "Wellness",
+                      label: "wellness".tr,
                       canChange: canUpdate,
                       onChanged: (val) {
                         monitoringController.monitoring!.testResults.wellness =
@@ -67,7 +67,7 @@ class _TestResultsState extends State<TestResults> {
                     CustomSlider(
                       value:
                           monitoringController.monitoring!.testResults.workload,
-                      label: "Workload",
+                      label: "workload".tr,
                       canChange: canUpdate,
                       onChanged: (val) {
                         monitoringController.monitoring!.testResults.workload =
@@ -79,7 +79,7 @@ class _TestResultsState extends State<TestResults> {
                     CustomSlider(
                       value:
                           monitoringController.monitoring!.testResults.health,
-                      label: "Health",
+                      label: "health".tr,
                       canChange: canUpdate,
                       onChanged: (val) {
                         monitoringController.monitoring!.testResults.health =
@@ -91,7 +91,7 @@ class _TestResultsState extends State<TestResults> {
                     CustomSlider(
                       value: monitoringController
                           .monitoring!.testResults.performance,
-                      label: "Performance",
+                      label: "performance".tr,
                       canChange: canUpdate,
                       onChanged: (val) {
                         monitoringController
@@ -124,7 +124,7 @@ class _TestResultsState extends State<TestResults> {
                                   canUpdate = false;
                                 });
                               },
-                              label: "Save")),
+                              label: "save".tr)),
                     SizedBox(height: 20),
                   ],
                 )));

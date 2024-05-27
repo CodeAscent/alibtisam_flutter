@@ -55,7 +55,7 @@ class _SignUpScreenState extends State<SignUpScreen> {
                     CustomTextField(
                       controller: clubController,
                       maxLines: 1,
-                      label: "Sports Club",
+                      label: "sportsClub".tr,
                       height: 60,
                       readOnly: true,
                       suffix: DropdownButton(
@@ -77,22 +77,22 @@ class _SignUpScreenState extends State<SignUpScreen> {
                     SizedBox(height: 20),
                     CustomTextField(
                       controller: nameController,
-                      label: "Name",
+                      label: "name".tr,
                     ),
                     SizedBox(height: 20),
                     CustomTextField(
                       controller: emailController,
-                      label: "Email",
+                      label: "email".tr,
                     ),
                     SizedBox(height: 20),
                     CustomTextField(
                       controller: phoneController,
-                      label: "Phone",
+                      label: "phone".tr,
                     ),
                     SizedBox(height: 20),
                     CustomTextField(
                       controller: passwordController,
-                      label: "Password",
+                      label: "password".tr,
                     ),
                     SizedBox(height: 20),
                     ElevatedButton(
@@ -106,17 +106,17 @@ class _SignUpScreenState extends State<SignUpScreen> {
                                 name: nameController.text.trim());
                           }
                         },
-                        child: Text('Sign Up')),
+                        child: Text('signUp'.tr)),
                     SizedBox(height: 40),
                     Divider(),
                     SizedBox(height: 20),
-                    Text("Already have an acoount?"),
+                    Text("alreadyHaveAnAcoount".tr),
                     SizedBox(height: 20),
                     ElevatedButton(
                         onPressed: () {
                           Get.back();
                         },
-                        child: Text('Login')),
+                        child: Text('login'.tr)),
                   ],
                 ),
               ),

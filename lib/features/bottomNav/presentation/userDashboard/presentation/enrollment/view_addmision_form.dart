@@ -38,54 +38,56 @@ class ViewAddmisionForm extends StatelessWidget {
                 child: Column(
                   mainAxisAlignment: MainAxisAlignment.start,
                   children: [
-                    kCustomListTile(key: "Name", value: player.name),
+                    kCustomListTile(key: "name".tr, value: player.name),
                     if (player.request["status"] != null)
                       kCustomListTile(
-                          key: "Status", value: player.request["status"]),
-                    kCustomListTile(key: "Game", value: player.name),
-                    kCustomListTile(key: "E-mail", value: player.email),
-                    kCustomListTile(key: "Mobile", value: player.mobile),
+                          key: "status".tr, value: player.request["status"]),
+                    kCustomListTile(key: "game".tr, value: player.name),
+                    kCustomListTile(key: "email".tr, value: player.email),
+                    kCustomListTile(key: "mobile".tr, value: player.mobile),
                     kCustomListTile(
-                        key: "Blood Group", value: player.bloodGroup),
-                    kCustomListTile(key: "Gender", value: player.gender),
-                    kCustomListTile(key: "Height", value: player.height),
-                    kCustomListTile(key: "Weight", value: player.weight),
+                        key: "bloodGroup".tr, value: player.bloodGroup),
+                    kCustomListTile(key: "gender".tr, value: player.gender),
+                    kCustomListTile(key: "height".tr, value: player.height),
+                    kCustomListTile(key: "weight".tr, value: player.weight),
                     if (player.chestSize != 0) ...[
                       kCustomListTile(
-                          key: "Chest Size", value: player.chestSize),
+                          key: "chestSize".tr, value: player.chestSize),
                       kCustomListTile(
-                          key: "Normal Chest Size",
+                          key: "normalChestSize".tr,
                           value: player.normalChestSize),
                       kCustomListTile(
-                          key: "Heartbeating Rate",
+                          key: "heartbeatingRate".tr,
                           value: player.heartBeatingRate),
-                      kCustomListTile(key: "HighJump", value: player.highJump),
-                      kCustomListTile(key: "Low Jump", value: player.lowJump),
                       kCustomListTile(
-                          key: "Pulse Rate", value: player.pulseRate),
-                      kCustomListTile(key: "Shoe Size", value: player.shoeSize),
+                          key: "highJump".tr, value: player.highJump),
+                      kCustomListTile(key: "lowJump".tr, value: player.lowJump),
                       kCustomListTile(
-                          key: "T-shirt Size", value: player.tshirtSize),
+                          key: "pulseRate".tr, value: player.pulseRate),
                       kCustomListTile(
-                          key: "Waist Size", value: player.waistSize),
+                          key: "shoeSize".tr, value: player.shoeSize),
+                      kCustomListTile(
+                          key: "tshirtSize".tr, value: player.tshirtSize),
+                      kCustomListTile(
+                          key: "waistSize".tr, value: player.waistSize),
                     ],
                     kCustomListTile(
-                        key: "Father's Name", value: player.fatherName),
+                        key: "fatherName".tr, value: player.fatherName),
                     kCustomListTile(
-                        key: "Mother's Name", value: player.motherName),
+                        key: "motherName".tr, value: player.motherName),
                     kCustomListTile(
-                        key: "Date of birth",
+                        key: "dateOfBirth".tr,
                         value: customDateFormat(player.dateOfBirth)),
-                    kCustomListTile(key: "Address", value: player.address),
-                    kCustomListTile(key: "City", value: player.city),
-                    kCustomListTile(key: "State", value: player.state),
-                    kCustomListTile(key: "Country", value: player.country),
+                    kCustomListTile(key: "address".tr, value: player.address),
+                    kCustomListTile(key: "city".tr, value: player.city),
+                    kCustomListTile(key: "state".tr, value: player.state),
+                    kCustomListTile(key: "country".tr, value: player.country),
                     SizedBox(height: 10),
                     Row(
                       children: [
                         Column(
                           children: [
-                            Text("ID PROOF FRONT"),
+                            Text("idProofFront".tr),
                             Image.network(
                               player.idFrontImage,
                               height: 150,
@@ -97,7 +99,7 @@ class ViewAddmisionForm extends StatelessWidget {
                         SizedBox(width: 20),
                         Column(
                           children: [
-                            Text("ID PROOF BACK"),
+                            Text("idProofBack".tr),
                             Image.network(
                               player.idBackImage,
                               height: 150,
@@ -115,7 +117,7 @@ class ViewAddmisionForm extends StatelessWidget {
                         alignment: Alignment.centerLeft,
                         child: Column(
                           children: [
-                            Text("CERTIFICATE"),
+                            Text("certificate".tr),
                             Image.network(
                               player.certificateLink,
                               height: 150,

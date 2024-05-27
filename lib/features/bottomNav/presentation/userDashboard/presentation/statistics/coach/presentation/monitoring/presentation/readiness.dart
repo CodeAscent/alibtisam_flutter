@@ -25,7 +25,7 @@ class _ReadinessState extends State<Readiness> {
       builder: (MonitoringController monitoringController) {
         return Scaffold(
             appBar: AppBar(
-              title: Text('Readiness'),
+              title: Text('readiness'.tr),
               actions: userController.user!.role == "EXTERNAL USER"
                   ? [
                       GestureDetector(
@@ -39,7 +39,7 @@ class _ReadinessState extends State<Readiness> {
                           }
                         },
                         child: Text(
-                          canUpdate ? "Cancel" : "Edit",
+                          canUpdate ? "cancel".tr : "edit".tr,
                           style: TextStyle(fontWeight: FontWeight.w800),
                         ),
                       ),
@@ -55,7 +55,7 @@ class _ReadinessState extends State<Readiness> {
                     CustomSlider(
                       value:
                           monitoringController.monitoring!.readiness.hydration,
-                      label: "Hydration",
+                      label: "hydration".tr,
                       canChange: canUpdate,
                       onChanged: (val) {
                         monitoringController.monitoring!.readiness.hydration =
@@ -65,7 +65,7 @@ class _ReadinessState extends State<Readiness> {
                     ),
                     CustomSlider(
                       value: monitoringController.monitoring!.readiness.stress,
-                      label: "Stress",
+                      label: "stress".tr,
                       canChange: canUpdate,
                       onChanged: (val) {
                         monitoringController.monitoring!.readiness.stress = val;
@@ -75,7 +75,7 @@ class _ReadinessState extends State<Readiness> {
                     ),
                     CustomSlider(
                       value: monitoringController.monitoring!.readiness.sleep,
-                      label: "Sleep",
+                      label: "sleep".tr,
                       canChange: canUpdate,
                       onChanged: (val) {
                         monitoringController.monitoring!.readiness.sleep = val;
@@ -85,7 +85,7 @@ class _ReadinessState extends State<Readiness> {
                     ),
                     CustomSlider(
                       value: monitoringController.monitoring!.readiness.overall,
-                      label: "Overall",
+                      label: "overall".tr,
                       canChange: canUpdate,
                       onChanged: (val) {
                         monitoringController.monitoring!.readiness.overall =
@@ -97,7 +97,7 @@ class _ReadinessState extends State<Readiness> {
                     CustomSlider(
                       value:
                           monitoringController.monitoring!.readiness.nutrition,
-                      label: "Nutrition",
+                      label: "nutrition".tr,
                       canChange: canUpdate,
                       onChanged: (val) {
                         monitoringController.monitoring!.readiness.nutrition =
@@ -108,7 +108,7 @@ class _ReadinessState extends State<Readiness> {
                     ),
                     CustomSlider(
                       value: monitoringController.monitoring!.readiness.injury,
-                      label: "Injury",
+                      label: "injury".tr,
                       canChange: canUpdate,
                       onChanged: (val) {
                         monitoringController.monitoring!.readiness.injury = val;
@@ -144,7 +144,7 @@ class _ReadinessState extends State<Readiness> {
                                   canUpdate = false;
                                 });
                               },
-                              label: "Save")),
+                              label: "save".tr)),
                     SizedBox(height: 20),
                   ],
                 )));

@@ -26,16 +26,16 @@ class _PlayerStatisticsState extends State<PlayerStatistics>
     return CustomLoader(
       child: Scaffold(
         appBar: AppBar(
-          title: Text("Statistics"),
+          title: Text("statistics".tr),
         ),
         body: CustomTabBar(
           tabController: _tabController,
           customTabs: [
             Tab(
-              text: "Monitoring".tr,
+              text: "monitoring".tr,
             ),
             Tab(
-              text: "Reports".tr,
+              text: "reports".tr,
             ),
           ],
           tabViewScreens: [CoachPlayerMonitering(), CoachPlayerReports()],

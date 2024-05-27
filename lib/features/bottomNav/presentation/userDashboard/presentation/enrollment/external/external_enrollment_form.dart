@@ -145,7 +145,7 @@ class _ExternalEnrollmentFormState extends State<ExternalEnrollmentForm> {
                   ),
                   SizedBox(height: 10),
                   CustomTextField(
-                      controller: nameController, label: "Full name"),
+                      controller: nameController, label: "fullName".tr),
                   SizedBox(height: 10),
                   Center(
                     child: GenderPickerWithImage(
@@ -170,11 +170,11 @@ class _ExternalEnrollmentFormState extends State<ExternalEnrollmentForm> {
                     ),
                   ),
                   SizedBox(height: 10),
-                  CustomTextField(controller: emailController, label: "Email"),
+                  CustomTextField(controller: emailController, label: "email".tr),
                   CustomTextField(
-                      controller: fatherNameController, label: "Father's name"),
+                      controller: fatherNameController, label: "fatherName".tr),
                   CustomTextField(
-                      controller: motherNameController, label: "Mother's name"),
+                      controller: motherNameController, label: "motherName".tr),
                   Row(
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     children: [
@@ -201,7 +201,7 @@ class _ExternalEnrollmentFormState extends State<ExternalEnrollmentForm> {
                       //BLOOD GROUP
                       CustomTextField(
                         maxLines: 1,
-                        label: "Blood Group*",
+                        label: "bloodGroup".tr,
                         width: Get.width * 0.44,
                         height: 60,
                         readOnly: true,
@@ -248,13 +248,13 @@ class _ExternalEnrollmentFormState extends State<ExternalEnrollmentForm> {
                       CustomTextField(
                         digitsOnly: true,
                         keyboardType: TextInputType.phone,
-                        label: "Contact*",
+                        label: "contact".tr,
                         width: Get.width * 0.44,
                         maxLength: 10,
                         controller: phoneController,
                       ),
                       CustomTextField(
-                        label: "Country*",
+                        label: "country".tr,
                         width: Get.width * 0.44,
                         controller: countryController,
                       ),
@@ -264,12 +264,12 @@ class _ExternalEnrollmentFormState extends State<ExternalEnrollmentForm> {
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     children: [
                       CustomTextField(
-                        label: "City*",
+                        label: "city".tr,
                         width: Get.width * 0.44,
                         controller: cityController,
                       ),
                       CustomTextField(
-                        label: "State*",
+                        label: "state".tr,
                         width: Get.width * 0.44,
                         controller: stateController,
                       ),
@@ -277,13 +277,13 @@ class _ExternalEnrollmentFormState extends State<ExternalEnrollmentForm> {
                   ),
                   CustomTextField(
                     maxLines: null,
-                    label: "Address*",
+                    label: "address".tr,
                     width: Get.width,
                     controller: addressController,
                   ),
                   CustomTextField(
                     maxLines: null,
-                    label: "Correspondence Address",
+                    label: "correspondenceAddress".tr,
                     shouldValidate: false,
                     controller: correspondenceAddressController,
                   ),
@@ -292,7 +292,7 @@ class _ExternalEnrollmentFormState extends State<ExternalEnrollmentForm> {
                       CustomTextField(
                         digitsOnly: true,
                         keyboardType: TextInputType.number,
-                        label: "Postal Code*",
+                        label: "postalCode".tr,
                         width: Get.width * 0.44,
                         maxLength: 8,
                         controller: postalCodeController,
@@ -304,7 +304,7 @@ class _ExternalEnrollmentFormState extends State<ExternalEnrollmentForm> {
                     visible: showRelationShipField,
                     child: CustomTextField(
                       maxLines: 1,
-                      label: "Relation with applicant*",
+                      label: "relationWithApplicant".tr,
                       height: 60,
                       readOnly: true,
                       controller: relationWithApplicantController,
@@ -334,7 +334,7 @@ class _ExternalEnrollmentFormState extends State<ExternalEnrollmentForm> {
                             idProofFront == null ||
                             idProofBack == null) {
                           customSnackbar(
-                              message: "Please pick all mendatory images");
+                              message: "pleasePickAllMendatoryImages".tr);
                         } else {
                           final res = await ApiRequests().createPlayerForm(
                               name: nameController.text.trim(),
@@ -386,7 +386,7 @@ class _ExternalEnrollmentFormState extends State<ExternalEnrollmentForm> {
                         }
                       }
                     },
-                    label: "Submit Form",
+                    label: "submitForm".tr,
                   ),
                 ],
               ),

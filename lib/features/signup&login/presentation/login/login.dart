@@ -43,12 +43,12 @@ class _LoginScreenState extends State<LoginScreen> {
                       SizedBox(height: 50),
                       CustomTextField(
                         controller: usernameController,
-                        label: "Username or Email",
+                        label: "userName&Email".tr,
                       ),
                       SizedBox(height: 20),
                       CustomTextField(
                         controller: passwordController,
-                        label: "Password",
+                        label: "password".tr,
                       ),
                       SizedBox(height: 20),
                       ElevatedButton(
@@ -59,17 +59,17 @@ class _LoginScreenState extends State<LoginScreen> {
                                   password: passwordController.text.trim());
                             }
                           },
-                          child: Text('Login')),
+                          child: Text('login'.tr)),
                       SizedBox(height: 40),
                       Divider(),
                       SizedBox(height: 20),
-                      Text("Don't have an acoount?"),
+                      Text("dontHaveAnAcoount".tr),
                       SizedBox(height: 20),
                       ElevatedButton(
                           onPressed: () {
                             Get.to(() => SignUpScreen());
                           },
-                          child: Text('Sign Up')),
+                          child: Text('signUp'.tr)),
                     ],
                   ),
                 ),

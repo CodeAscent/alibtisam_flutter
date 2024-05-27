@@ -9,7 +9,6 @@ class Overview extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-
     final monitoringController = Get.find<MonitoringController>();
     List<Color> colorList = [
       Colors.greenAccent.shade700,
@@ -18,7 +17,7 @@ class Overview extends StatelessWidget {
     ];
     return Scaffold(
       appBar: AppBar(
-        title: Text('Overview'),
+        title: Text('overview'.tr),
       ),
       body: SafeArea(
           child: Column(
@@ -26,13 +25,13 @@ class Overview extends StatelessWidget {
         children: [
           PieChart(
             dataMap: {
-              "Training Load": monitoringController
+              "trainingLoad".tr: monitoringController
                   .monitoring!.trainingLoadOverallPercent
                   .toDouble(),
-              "Readiness": monitoringController
+              "readiness".tr: monitoringController
                   .monitoring!.readinessOverallPercent
                   .toDouble(),
-              "Test Results": monitoringController
+              "testResults".tr: monitoringController
                   .monitoring!.testResultsOverallPercent
                   .toDouble(),
             },

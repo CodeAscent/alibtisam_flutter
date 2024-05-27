@@ -104,7 +104,7 @@ class _SettingScreenState extends State<SettingScreen> {
                         onTap: () {
                           Get.to(() => ChatNavigation());
                         },
-                        child: CustomSettingsCard(label: "Chat"),
+                        child: CustomSettingsCard(label: "chat".tr),
                       ),
                     ],
                   ),

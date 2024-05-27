@@ -26,16 +26,16 @@ class _MeasurementTabBarState extends State<MeasurementTabBar>
     return CustomLoader(
       child: Scaffold(
         appBar: AppBar(
-          title: Text("Measurement Request"),
+          title: Text("measurementRequest".tr),
         ),
         body: CustomTabBar(
           tabController: _tabController,
           customTabs: [
             Tab(
-              text: "Request".tr,
+              text: "request".tr,
             ),
             Tab(
-              text: "History".tr,
+              text: "history".tr,
             ),
           ],
           tabViewScreens: [MeasurementRequest(), MeasurementHistory()],

@@ -58,9 +58,9 @@ class _CoachPlayersListState extends State<CoachPlayersList> {
                                   height: 200,
                                 ),
                                 Spacer(),
-                                Text("PLAYER ID"),
+                                Text("playerId".tr),
                                 Text(
-                                  "PLAYER Name",
+                                  "playerName".tr,
                                   maxLines: 1,
                                 ),
                               ],

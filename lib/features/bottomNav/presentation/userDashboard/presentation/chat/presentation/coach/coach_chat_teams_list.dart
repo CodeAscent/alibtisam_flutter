@@ -31,14 +31,14 @@ class _CoachChatTeamListState extends State<CoachChatTeamList>
     return CustomLoader(
       child: Scaffold(
         appBar: AppBar(
-          title: Text('Chat'),
+          title: Text('chat'.tr),
         ),
         body: CustomTabBar(
           tabController: _tabController,
           customTabs: [
-            Tab(text: "Team"),
+            Tab(text: "team".tr),
             Tab(
-              text: "Player",
+              text: "player".tr,
             )
           ],
           tabViewScreens: [TeamChatList(), PlayerChatList()],

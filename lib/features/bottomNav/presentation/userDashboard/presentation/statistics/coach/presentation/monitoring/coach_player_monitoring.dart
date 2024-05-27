@@ -27,22 +27,22 @@ class _CoachPlayerMoniteringState extends State<CoachPlayerMonitering> {
               onTap: () {
                 Get.to(() => Overview());
               },
-              child: kRepeatedCards(kOverviewColor(), "Overview")),
+              child: kRepeatedCards(kOverviewColor(), "overview".tr)),
           GestureDetector(
               onTap: () {
                 Get.to(() => TrainingLoad());
               },
-              child: kRepeatedCards(kTrainingLoadColor(), "Training Load")),
+              child: kRepeatedCards(kTrainingLoadColor(), "trainingLoad".tr)),
           GestureDetector(
               onTap: () {
                 Get.to(() => Readiness());
               },
-              child: kRepeatedCards(kReadiness(), "Readiness")),
+              child: kRepeatedCards(kReadiness(), "readiness".tr)),
           GestureDetector(
               onTap: () {
                 Get.to(() => TestResults());
               },
-              child: kRepeatedCards(kTestResults(), "Test Results")),
+              child: kRepeatedCards(kTestResults(), "testResults".tr)),
         ],
       ),
     );

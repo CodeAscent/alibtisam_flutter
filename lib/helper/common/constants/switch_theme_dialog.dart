@@ -11,7 +11,7 @@ Future<dynamic> kSwitchThemeDialog(BuildContext context) {
     builder: (context) {
       return Obx(() {
         return AlertDialog(
-          title: Text("Theme"),
+          title: Text("theme".tr),
           content: Container(
             height: 100,
             child: Column(
@@ -30,7 +30,7 @@ Future<dynamic> kSwitchThemeDialog(BuildContext context) {
                           ? themeController.liveGreyColor.value
                           : null,
                     ),
-                    child: Text("Light"),
+                    child: Text("light".tr),
                   ),
                 ),
                 GestureDetector(
@@ -47,7 +47,7 @@ Future<dynamic> kSwitchThemeDialog(BuildContext context) {
                           ? themeController.liveGreyColor.value
                           : null,
                     ),
-                    child: Text("Dark"),
+                    child: Text("dark".tr),
                   ),
                 ),
               ],
@@ -58,14 +58,14 @@ Future<dynamic> kSwitchThemeDialog(BuildContext context) {
                 onPressed: () {
                   Get.back();
                 },
-                child: Text("Cancel")),
+                child: Text("cancel".tr)),
             TextButton(
                 onPressed: () {
                   themeController
                       .switchTheme(themeController.selectedTheme.value);
                   Get.back();
                 },
-                child: Text("Confirm"))
+                child: Text("confirm".tr))
           ],
         );
       });

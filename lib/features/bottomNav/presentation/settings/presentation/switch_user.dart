@@ -22,7 +22,7 @@ class _SwitchUserState extends State<SwitchUser> {
     return CustomLoader(
       child: Scaffold(
         appBar: AppBar(
-          title: Text("Switch User"),
+          title: Text("switchUser".tr),
         ),
         body: Column(
           mainAxisAlignment: MainAxisAlignment.center,

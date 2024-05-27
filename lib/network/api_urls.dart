@@ -1,5 +1,5 @@
-String base_url = "http://192.168.1.10:8000/";
-// String base_url = "http://15.206.185.144:8000/";
+//String base_url = "http://192.168.1.10:8000/";
+String base_url = "http://15.206.185.144:8000/";
 String api_version = "api/v1/";
 String event = "event/";
 String user = "user/";
@@ -42,7 +42,7 @@ String get_measurement_requests =
 String get_organization_dropdown =
     base_url + api_version + organization + "getDropdown";
 
-// GET ORGANIZATION 
+// GET ORGANIZATION
 String get_organization = base_url + api_version + organization + "get";
 
 // GET DASHBOARD SERVICES

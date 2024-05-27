@@ -145,7 +145,7 @@ class _GuardianAllFormsState extends State<GuardianAllForms> {
                   onTap: () {
                     Get.to(() => ExternalEnrollmentForm());
                   },
-                  label: 'New Form')),
+                  label: 'newForm'.tr)),
         ),
       ),
     );

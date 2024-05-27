@@ -9,7 +9,7 @@ Future<dynamic> kConfirmExit(BuildContext context) {
       builder: (context) {
         return AlertDialog(
           title: Text(
-            "Are You Sure You Want to Exit ?",
+            "areYouSureYouWantToExit".tr,
             style: TextStyle(fontSize: 20),
           ),
           actions: [
@@ -18,7 +18,7 @@ Future<dynamic> kConfirmExit(BuildContext context) {
                   Get.back();
                 },
                 child: Text(
-                  "no",
+                  "no".tr,
                   style: TextStyle(color: primaryColor()),
                 )),
             ElevatedButton(

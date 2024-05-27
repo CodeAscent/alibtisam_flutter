@@ -31,7 +31,7 @@ class _AboutOrganizationState extends State<AboutOrganization> {
             ? Scaffold()
             : Scaffold(
                 appBar: AppBar(
-                  title: Text('About ${organization.name}'),
+                  title: Text('about'.tr + ' ${organization.name}'),
                 ),
                 body: SingleChildScrollView(
                   child: Padding(
@@ -59,7 +59,8 @@ class _AboutOrganizationState extends State<AboutOrganization> {
                         SizedBox(height: 16),
                         Center(
                           child: Text(
-                            'Founded on ${customDateFormat(organization.foundedOn)} by ${organization.founder}',
+                            'foundedOn'.tr +
+                                '${customDateFormat(organization.foundedOn)} by ${organization.founder}',
                             style: TextStyle(
                               fontSize: 16,
                               color: Colors.grey[700],
@@ -68,7 +69,7 @@ class _AboutOrganizationState extends State<AboutOrganization> {
                         ),
                         SizedBox(height: 24),
                         Text(
-                          'Mission',
+                          'mission'.tr,
                           style: TextStyle(
                             fontSize: 18,
                             fontWeight: FontWeight.bold,
@@ -83,7 +84,7 @@ class _AboutOrganizationState extends State<AboutOrganization> {
                         ),
                         SizedBox(height: 16),
                         Text(
-                          'Vision',
+                          'vision'.tr,
                           style: TextStyle(
                             fontSize: 18,
                             fontWeight: FontWeight.bold,
@@ -98,7 +99,7 @@ class _AboutOrganizationState extends State<AboutOrganization> {
                         ),
                         SizedBox(height: 16),
                         Text(
-                          'Description',
+                          'description'.tr,
                           style: TextStyle(
                             fontSize: 18,
                             fontWeight: FontWeight.bold,
@@ -113,7 +114,7 @@ class _AboutOrganizationState extends State<AboutOrganization> {
                         ),
                         SizedBox(height: 16),
                         Text(
-                          'Location',
+                          'location'.tr,
                           style: TextStyle(
                             fontSize: 18,
                             fontWeight: FontWeight.bold,
@@ -128,7 +129,7 @@ class _AboutOrganizationState extends State<AboutOrganization> {
                         ),
                         SizedBox(height: 16),
                         Text(
-                          'Registration Number',
+                          'registrationNumber'.tr,
                           style: TextStyle(
                             fontSize: 18,
                             fontWeight: FontWeight.bold,
@@ -155,7 +156,7 @@ class _AboutOrganizationState extends State<AboutOrganization> {
                                 crossAxisAlignment: CrossAxisAlignment.start,
                                 children: [
                                   Text(
-                                    'Social Media',
+                                    'socialMedia'.tr,
                                     style: TextStyle(
                                       fontSize: 18,
                                       fontWeight: FontWeight.bold,

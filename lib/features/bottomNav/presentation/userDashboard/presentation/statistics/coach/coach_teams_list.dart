@@ -22,7 +22,7 @@ class _CoachTeamsListState extends State<CoachTeamsList> {
     return CustomLoader(
       child: Scaffold(
         appBar: AppBar(
-          title: Text("Teams"),
+          title: Text("teams".tr),
         ),
         body: SingleChildScrollView(
           child: Padding(
@@ -34,7 +34,7 @@ class _CoachTeamsListState extends State<CoachTeamsList> {
                     onTap: () {
                       Get.to(() => CoachPlayersList());
                     },
-                    label: "Team $index",
+                    label: "team".tr + "$index",
                   );
                 })
               ],

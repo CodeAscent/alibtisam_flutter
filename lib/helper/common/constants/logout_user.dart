@@ -11,7 +11,7 @@ Future<dynamic> kLogoutUser(BuildContext context) {
       builder: (context) {
         return AlertDialog(
           title: Text(
-            "Are You Sure You Want to Log Out?",
+            "areYouSureYouWantToLogOut".tr,
             style: TextStyle(fontSize: 20),
           ),
           actions: [
@@ -20,7 +20,7 @@ Future<dynamic> kLogoutUser(BuildContext context) {
                   Navigator.pop(context);
                 },
                 child: Text(
-                  "no",
+                  "no".tr,
                   style: TextStyle(color: primaryColor()),
                 )),
             ElevatedButton(
@@ -33,7 +33,7 @@ Future<dynamic> kLogoutUser(BuildContext context) {
                   Get.to(() => LoginScreen());
                 },
                 child: Text(
-                  "yes",
+                  "yes".tr,
                   style: TextStyle(color: Colors.white),
                 )),
           ],

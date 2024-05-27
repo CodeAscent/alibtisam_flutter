@@ -122,7 +122,7 @@ class _ChatScreenState extends State<ChatScreen> {
                                         themeController.isDarkTheme()
                                     ? Colors.white
                                     : null,
-                                    //flutter run --enable-impeller
+                                //flutter run --enable-impeller
                                 fontSize: 16,
                               ),
                             ),
@@ -163,7 +163,7 @@ class _ChatScreenState extends State<ChatScreen> {
                                 messageController.clear();
                               },
                               decoration: InputDecoration(
-                                hintText: 'Type your message...',
+                                hintText: 'typeYourMessage'.tr,
                                 focusedBorder: OutlineInputBorder(
                                   borderRadius: BorderRadius.circular(25),
                                 ),

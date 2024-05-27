@@ -25,7 +25,7 @@ class _TrainingLoadState extends State<TrainingLoad> {
       builder: (MonitoringController monitoringController) {
         return Scaffold(
             appBar: AppBar(
-              title: Text('Training Load'),
+              title: Text('trainingLoad'.tr),
               actions: userController.user!.role == "EXTERNAL USER"
                   ? [
                       GestureDetector(
@@ -39,7 +39,7 @@ class _TrainingLoadState extends State<TrainingLoad> {
                           }
                         },
                         child: Text(
-                          canUpdate ? "Cancel" : "Edit",
+                          canUpdate ? "cancel".tr : "edit".tr,
                           style: TextStyle(fontWeight: FontWeight.w800),
                         ),
                       ),
@@ -55,7 +55,7 @@ class _TrainingLoadState extends State<TrainingLoad> {
                     CustomSlider(
                       value:
                           monitoringController.monitoring!.trainingLoad.monday,
-                      label: "Monday",
+                      label: "monday".tr,
                       canChange: canUpdate,
                       onChanged: (val) {
                         monitoringController.monitoring!.trainingLoad.monday =
@@ -66,7 +66,7 @@ class _TrainingLoadState extends State<TrainingLoad> {
                     CustomSlider(
                       value:
                           monitoringController.monitoring!.trainingLoad.tuesday,
-                      label: "Tuesday",
+                      label: "tuesday".tr,
                       canChange: canUpdate,
                       onChanged: (val) {
                         monitoringController.monitoring!.trainingLoad.tuesday =
@@ -78,7 +78,7 @@ class _TrainingLoadState extends State<TrainingLoad> {
                     CustomSlider(
                       value: monitoringController
                           .monitoring!.trainingLoad.wednesday,
-                      label: "Wednesday",
+                      label: "wednesday".tr,
                       canChange: canUpdate,
                       onChanged: (val) {
                         monitoringController
@@ -90,7 +90,7 @@ class _TrainingLoadState extends State<TrainingLoad> {
                     CustomSlider(
                       value: monitoringController
                           .monitoring!.trainingLoad.thursday,
-                      label: "Thursday",
+                      label: "thursday".tr,
                       canChange: canUpdate,
                       onChanged: (val) {
                         monitoringController.monitoring!.trainingLoad.thursday =
@@ -102,7 +102,7 @@ class _TrainingLoadState extends State<TrainingLoad> {
                     CustomSlider(
                       value:
                           monitoringController.monitoring!.trainingLoad.sunday,
-                      label: "Sunday",
+                      label: "sunday".tr,
                       canChange: canUpdate,
                       onChanged: (val) {
                         monitoringController.monitoring!.trainingLoad.sunday =
@@ -137,7 +137,7 @@ class _TrainingLoadState extends State<TrainingLoad> {
                                   canUpdate = false;
                                 });
                               },
-                              label: "Save")),
+                              label: "save".tr)),
                     SizedBox(height: 20),
                   ],
                 )));
