@@ -21,7 +21,7 @@ void main() async {
 
 class MyApp extends StatelessWidget {
   MyApp({Key? key}) : super(key: key); // Fix the constructor
-  final savedLocale = GetStorage().read('locale') ?? 'ar_DZ';
+  final savedLocale = GetStorage().read('locale') ?? 'en_US';
 
   @override
   Widget build(BuildContext context) {
