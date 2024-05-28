@@ -3,6 +3,7 @@
 import 'package:alibtisam_flutter/features/bottomNav/presentation/userDashboard/presentation/events/controller/event_navigation.dart';
 import 'package:alibtisam_flutter/features/bottomNav/presentation/userDashboard/presentation/events/model/events_model.dart';
 import 'package:alibtisam_flutter/features/bottomNav/presentation/userDashboard/presentation/events/presentation/events.dart';
+import 'package:alibtisam_flutter/features/bottomNav/presentation/userDashboard/presentation/events/widgets/feedPlayer/feed_player.dart';
 import 'package:alibtisam_flutter/helper/common/widgets/custom_loading.dart';
 import 'package:alibtisam_flutter/helper/utils/custom_date_formatter.dart';
 import 'package:alibtisam_flutter/helper/common/widgets/custom_pod_player.dart';
@@ -64,7 +65,9 @@ class _EventDescriptionState extends State<EventDescription> {
                 children: [
                   SizedBox(height: 30),
                   CarouselSlider(
-                    options: CarouselOptions(height: 400.0),
+                    disableGesture: false,
+                    options: CarouselOptions(
+                        aspectRatio: 25 / 10, viewportFraction: 1),
                     items: widget.event.media.map((i) {
                       return Builder(
                         builder: (BuildContext context) {
@@ -78,8 +81,9 @@ class _EventDescriptionState extends State<EventDescription> {
                                       i.url,
                                       fit: BoxFit.cover,
                                     )
-                                  : CustomPodPlayer(
+                                  : FeedPlayer(
                                       url: i.url,
+                                      showControls: true,
                                     ));
                         },
                       );

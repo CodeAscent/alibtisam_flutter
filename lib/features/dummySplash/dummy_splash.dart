@@ -1,3 +1,4 @@
+import 'package:alibtisam_flutter/features/bottomNav/presentation/userDashboard/presentation/events/widgets/feedPlayer/feed_player.dart';
 import 'package:alibtisam_flutter/features/signup&login/presentation/checkLogin/check_login.dart';
 import 'package:alibtisam_flutter/features/bottomNav/presentation/userDashboard/presentation/events/controller/active_player.dart';
 import 'package:alibtisam_flutter/features/bottomNav/presentation/userDashboard/presentation/events/model/events_model.dart';
@@ -51,37 +52,56 @@ class _DummySplashState extends State<DummySplash> {
                             "assets/images/dummy_splash.png",
                           ))),
                   child: Center(
-                    child: CarouselSlider(
-                      options: CarouselOptions(
-                        height: 400.0,
-                      ),
-                      items: snapshot.data!.map((i) {
-                        return Builder(
-                          builder: (BuildContext context) {
-                            return GestureDetector(
-                              onTap: () {
-                                LoadingManager.dummyLoading();
-                                eventNavigationController
-                                    .navigatingFromSplash(true);
-                                Get.to(() => EventDescription(event: i));
-                              },
-                              child: Container(
-                                  height: 400,
-                                  width: 300,
-                                  margin: EdgeInsets.symmetric(horizontal: 5.0),
-                                  child: i.media[0].type == 'image'
-                                      ? Image.network(
-                                          i.media[0].url,
-                                          fit: BoxFit.cover,
-                                        )
-                                      : CustomPodPlayer(
-                                          showOptions: false,
-                                          url: i.media[0].url,
-                                        )),
-                            );
-                          },
-                        );
-                      }).toList(),
+                    child: Stack(
+                      children: [
+                        Center(
+                          child: Container(
+                            height: 400,
+                            width: 310,
+                            decoration: BoxDecoration(
+                                color: Colors.black,
+                                borderRadius: BorderRadius.circular(25)),
+                          ),
+                        ),
+                        Positioned.fill(
+                          child: CarouselSlider(
+                            options: CarouselOptions(
+                                viewportFraction: 1, aspectRatio: 25 / 10),
+                            items: snapshot.data!.map((i) {
+                              return Builder(
+                                builder: (BuildContext context) {
+                                  return GestureDetector(
+                                    onTap: () {
+                                      LoadingManager.dummyLoading();
+                                      eventNavigationController
+                                          .navigatingFromSplash(true);
+                                      Get.to(() => EventDescription(event: i));
+                                    },
+                                    child: Stack(
+                                      children: [
+                                        Container(
+                                            width: 310,
+                                            decoration: BoxDecoration(
+                                                color: Colors.black),
+                                            margin: EdgeInsets.symmetric(
+                                                horizontal: 5.0),
+                                            child: i.media[0].type == 'image'
+                                                ? Image.network(
+                                                    i.media[0].url,
+                                                    fit: BoxFit.cover,
+                                                  )
+                                                : FeedPlayer(
+                                                    url: i.media[0].url,
+                                                  )),
+                                      ],
+                                    ),
+                                  );
+                                },
+                              );
+                            }).toList(),
+                          ),
+                        ),
+                      ],
                     ),
                   ),
                 ),

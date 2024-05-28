@@ -1,16 +1,15 @@
-
 import 'package:alibtisam_flutter/features/bottomNav/presentation/userDashboard/presentation/events/controller/active_player.dart';
+import 'package:alibtisam_flutter/features/bottomNav/presentation/userDashboard/presentation/events/widgets/feedPlayer/feed_player.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:pod_player/pod_player.dart';
+import 'package:flick_video_player/flick_video_player.dart';
+import 'package:video_player/video_player.dart';
 
 class CustomPodPlayer extends StatefulWidget {
-  final bool? showOptions;
   final String url;
   const CustomPodPlayer({
     super.key,
     required this.url,
-    this.showOptions,
   });
 
   @override
@@ -18,66 +17,58 @@ class CustomPodPlayer extends StatefulWidget {
 }
 
 class _CustomPodPlayerState extends State<CustomPodPlayer> {
-  late PodPlayerController playerController;
-  final activePlayerController = Get.find<ActivePlayerController>();
-
+  late FlickManager flickManager;
   @override
   void initState() {
     super.initState();
-
-    playerController = PodPlayerController(
-        playVideoFrom: PlayVideoFrom.network(widget.url,
-            videoPlayerOptions: VideoPlayerOptions()),
-        podPlayerConfig: PodPlayerConfig(autoPlay: false))
-      ..initialise().then((value) {
-        playerController.hideOverlay();
-        activePlayerController.setActivePlayer(playerController);
-
-        setState(() {});
-      })
-      ..addListener(() {
-        if (playerController.isVideoPlaying) {
-          if (playerController != activePlayerController.activePlayer) {
-            activePlayerController.pauseActive();
-            activePlayerController.setActivePlayer(playerController);
-          }
-        }
-      });
+    flickManager = FlickManager(
+        autoPlay: false,
+        videoPlayerController: VideoPlayerController.networkUrl(
+          Uri.parse(widget.url),
+        ));
   }
 
   @override
   void dispose() {
+    flickManager.dispose();
     super.dispose();
-    playerController.dispose();
   }
+  // final activePlayerController = Get.find<ActivePlayerController>();
 
-  @override
-  void didUpdateWidget(covariant CustomPodPlayer oldWidget) {
-    super.didUpdateWidget(oldWidget);
-    playerController.pause();
-  }
+  // @override
+  // void initState() {
+  //   super.initState();
 
-  @override
-  void didChangeDependencies() {
-    super.didChangeDependencies();
-    playerController.pause();
-  }
+  // playerController = PodPlayerController(
+  //     playVideoFrom: PlayVideoFrom.network(widget.url,
+  //         videoPlayerOptions: VideoPlayerOptions()),
+  //     podPlayerConfig: PodPlayerConfig(autoPlay: false))
+  //   ..initialise().then((value) {
+  //     playerController.hideOverlay();
+  //   activePlayerController.setActivePlayer(playerController);
+
+  //   setState(() {});
+  // })
+  // ..addListener(() {
+  //   if (playerController.isVideoPlaying) {
+  //     if (playerController != activePlayerController.activePlayer) {
+  //       activePlayerController.pauseActive();
+  //       activePlayerController.setActivePlayer(playerController);
+  //     }
+  //   }
+  // });
+  // }
+
+  // @override
+  // void dispose() {
+  //   super.dispose();
+  //   // playerController.dispose();
+  // }
 
   @override
   Widget build(BuildContext context) {
-    return widget.showOptions ?? true
-        ? PodVideoPlayer(
-            matchVideoAspectRatioToFrame: true,
-            controller: playerController,
-            frameAspectRatio: 20 / 28,
-          )
-        : PodVideoPlayer(
-            overlayBuilder: (options) {
-              return Text('');
-            },
-            matchVideoAspectRatioToFrame: true,
-            controller: playerController,
-            frameAspectRatio: 20 / 28,
-          );
+    return FeedPlayer(
+      url: widget.url,
+    );
   }
 }

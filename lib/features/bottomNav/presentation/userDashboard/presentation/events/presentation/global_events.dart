@@ -20,8 +20,8 @@ class GlobalEvents extends StatelessWidget {
           builder: (context, snapshot) {
             if (snapshot.hasData) {
               return SingleChildScrollView(
-                child: SafeArea(
-                    child: Column(
+                child: Column(
+                  mainAxisAlignment: MainAxisAlignment.start,
                   children: [
                     CustomEventsCallByCategory(
                       label: 'announcementEvent'.tr,
@@ -31,8 +31,16 @@ class GlobalEvents extends StatelessWidget {
                       label: 'sportEvent'.tr,
                       snapshot: snapshot.data![1],
                     ),
+                    CustomEventsCallByCategory(
+                      label: 'sportEvent'.tr,
+                      snapshot: snapshot.data![1],
+                    ),
+                    CustomEventsCallByCategory(
+                      label: 'sportEvent'.tr,
+                      snapshot: snapshot.data![1],
+                    ),
                   ],
-                )),
+                ),
               );
             }
             return Center();

@@ -1,6 +1,7 @@
 import 'package:alibtisam_flutter/features/bottomNav/presentation/userDashboard/presentation/events/controller/active_player.dart';
 import 'package:alibtisam_flutter/features/bottomNav/presentation/userDashboard/presentation/events/model/events_model.dart';
 import 'package:alibtisam_flutter/features/bottomNav/presentation/userDashboard/presentation/events/presentation/event_desciption.dart';
+import 'package:alibtisam_flutter/features/bottomNav/presentation/userDashboard/presentation/events/widgets/feedPlayer/feed_player.dart';
 import 'package:alibtisam_flutter/helper/common/widgets/custom_pod_player.dart';
 import 'package:alibtisam_flutter/helper/utils/loading_manager.dart';
 import 'package:flutter/material.dart';
@@ -18,10 +19,7 @@ class CustomEventsCallByCategory extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final activePlayerController = Get.find<ActivePlayerController>();
-
     return Column(children: [
-      SizedBox(height: 20),
       Text(
         label,
         style: TextStyle(
@@ -37,20 +35,19 @@ class CustomEventsCallByCategory extends StatelessWidget {
               return GestureDetector(
                 onTap: () {
                   LoadingManager.dummyLoading();
-                  activePlayerController.pauseActive();
+                  // activePlayerController.pauseActive();
                   Get.to(() => EventDescription(
                         event: event,
                       ));
                 },
                 child: Container(
-                  height: 370,
-                  width: 180,
+                  height: 250,
+                  width: 200,
                   child: Card(
                     elevation: 0.2,
                     child: Padding(
                       padding: const EdgeInsets.all(8.0),
                       child: Column(
-                        crossAxisAlignment: CrossAxisAlignment.start,
                         children: [
                           Text(
                             event.name,
@@ -61,13 +58,17 @@ class CustomEventsCallByCategory extends StatelessWidget {
                           if (event.media[0].type == "image")
                             Image.network(
                               event.media[0].url,
-                              height: 250,
+                              height: 100,
                               fit: BoxFit.cover,
                             ),
                           if (event.media[0].type == "video") ...[
-                            Container(
-                                height: 250,
-                                child: CustomPodPlayer(url: event.media[0].url))
+                            Center(
+                              child: Icon(
+                                Icons.play_circle_fill,
+                                color: Colors.red,
+                                size: 100,
+                              ),
+                            ),
                           ],
                           SizedBox(height: 10),
                           Text(
