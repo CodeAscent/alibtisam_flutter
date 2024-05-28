@@ -5,7 +5,6 @@ import 'package:alibtisam_flutter/features/bottomNav/presentation/userDashboard/
 import 'package:alibtisam_flutter/features/bottomNav/presentation/userDashboard/presentation/events/presentation/event_desciption.dart';
 import 'package:alibtisam_flutter/helper/common/widgets/custom_loading.dart';
 import 'package:alibtisam_flutter/features/bottomNav/presentation/userDashboard/presentation/events/controller/event_navigation.dart';
-import 'package:alibtisam_flutter/helper/common/widgets/custom_pod_player.dart';
 import 'package:alibtisam_flutter/helper/utils/loading_manager.dart';
 import 'package:alibtisam_flutter/network/api_requests.dart';
 import 'package:carousel_slider/carousel_slider.dart';
