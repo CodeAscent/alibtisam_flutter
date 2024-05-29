@@ -12,11 +12,10 @@ class ChatNavigation extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final userController = Get.find<UserController>();
-    return CoachChatTeamList();
-    // userController.user!.role == "COACH"
-    //     ? CoachChatTeamList()
-    //     : userController.user!.role == "GUARDIAN"
-    //         ? GuardianChat()
-    //         : ChatScreen();
+    return userController.user!.role == "COACH"
+        ? CoachChatTeamList()
+        : CoachChatTeamList();
   }
 }
+//  : userController.user!.role == "GUARDIAN"
+//             ? GuardianChat()

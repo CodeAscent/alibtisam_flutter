@@ -9,6 +9,9 @@ String org_application_service = "org-application-service/";
 String request = "request/";
 String chat = "chat/";
 String monitoring = "monitoring/";
+String playerApproval = "player-approval/";
+String collection = "collection/";
+String game = "game/";
 
 //
 String all_events = base_url + api_version + event + "all";
@@ -36,7 +39,7 @@ String get_token_by_id = base_url + api_version + player + "token/";
 
 // GET MESAUREMENT REQUESTS
 String get_measurement_requests =
-    base_url + api_version + request + "get-measurement/";
+    base_url + api_version + request + playerApproval + "get/";
 
 // GET ORGANIZATION DROPDOWN
 String get_organization_dropdown =
@@ -59,6 +62,10 @@ String get_chat_messages = base_url + api_version + chat + "";
 // GET CHATS LIST
 String get_chats_list = base_url + api_version + chat + "get";
 
+// GET COLLECTIONS BY GAME FILTER
+String get_collection_by_game_filter =
+    base_url + api_version + collection + "get";
+
 // GET MONITORING BY PLAYER ID
 String get_monitoring_by_playerId =
     base_url + api_version + monitoring + "get/";
@@ -66,3 +73,9 @@ String get_monitoring_by_playerId =
 // GET MONITORING BY PLAYER ID
 String update_monitoring_by_playerId =
     base_url + api_version + monitoring + "update/";
+
+// GET ALL GAMES
+String get_all_games = base_url + api_version + game + "all";
+
+// GET ALL GAMES
+String get_player_reports = base_url + api_version + monitoring + "get-report/";

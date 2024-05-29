@@ -100,12 +100,12 @@ class _SettingScreenState extends State<SettingScreen> {
                             Get.to(() => AboutOrganization());
                           },
                           child: CustomSettingsCard(label: "about".tr)),
-                      GestureDetector(
-                        onTap: () {
-                          Get.to(() => ChatNavigation());
-                        },
-                        child: CustomSettingsCard(label: "chat".tr),
-                      ),
+                      // GestureDetector(
+                      //   onTap: () {
+                      //     Get.to(() => ChatNavigation());
+                      //   },
+                      //   child: CustomSettingsCard(label: "chat".tr),
+                      // ),
                     ],
                   ),
                 SizedBox(height: 80),

@@ -27,7 +27,7 @@ class _TestResultsState extends State<TestResults> {
         return Scaffold(
             appBar: AppBar(
               title: Text('testResults'.tr),
-              actions: userController.user!.role == "EXTERNAL USER"
+              actions: userController.user!.role == "COACH"
                   ? [
                       GestureDetector(
                         onTap: () async {
@@ -107,6 +107,20 @@ class _TestResultsState extends State<TestResults> {
                           child: CustomGradientButton(
                               onTap: () async {
                                 await ApiRequests().updateMonitoringByPlayerId({
+                                 "readiness": {
+                                    "hydration": monitoringController
+                                        .monitoring!.readiness.hydration,
+                                    "stress": monitoringController
+                                        .monitoring!.readiness.stress,
+                                    "sleep": monitoringController
+                                        .monitoring!.readiness.sleep,
+                                    "overall": monitoringController
+                                        .monitoring!.readiness.overall,
+                                    "nutrition": monitoringController
+                                        .monitoring!.readiness.nutrition,
+                                    "injury": monitoringController
+                                        .monitoring!.readiness.injury
+                                  },
                                   "testResults": {
                                     "wellness": monitoringController
                                         .monitoring!.testResults.wellness,
@@ -116,6 +130,18 @@ class _TestResultsState extends State<TestResults> {
                                         .monitoring!.testResults.health,
                                     "performance": monitoringController
                                         .monitoring!.testResults.performance,
+                                  },
+                                  "trainingLoad": {
+                                    "monday": monitoringController
+                                        .monitoring!.trainingLoad.monday,
+                                    "tuesday": monitoringController
+                                        .monitoring!.trainingLoad.tuesday,
+                                    "wednesday": monitoringController
+                                        .monitoring!.trainingLoad.wednesday,
+                                    "thursday": monitoringController
+                                        .monitoring!.trainingLoad.thursday,
+                                    "sunday": monitoringController
+                                        .monitoring!.trainingLoad.sunday
                                   },
                                 });
 

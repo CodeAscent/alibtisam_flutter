@@ -17,6 +17,7 @@ class MonitoringModel {
   final TestResultsModel testResults;
   final TrainingLoadModel trainingLoad;
   final ReadinessModel readiness;
+  final String updatedAt;
 
   MonitoringModel(
       this.playerId,
@@ -29,7 +30,8 @@ class MonitoringModel {
       this.injuryStatus,
       this.testResults,
       this.trainingLoad,
-      this.readiness);
+      this.readiness,
+      this.updatedAt);
 
   Map<String, dynamic> toMap() {
     return <String, dynamic>{
@@ -44,6 +46,7 @@ class MonitoringModel {
       'testResults': testResults.toMap(),
       'trainingLoad': trainingLoad.toMap(),
       'readiness': readiness.toMap(),
+      'updatedAt': updatedAt,
     };
   }
 
@@ -60,6 +63,7 @@ class MonitoringModel {
       TestResultsModel.fromMap(map['testResults'] as Map<String, dynamic>),
       TrainingLoadModel.fromMap(map['trainingLoad'] as Map<String, dynamic>),
       ReadinessModel.fromMap(map['readiness'] as Map<String, dynamic>),
+      map['updatedAt'] as String,
     );
   }
 

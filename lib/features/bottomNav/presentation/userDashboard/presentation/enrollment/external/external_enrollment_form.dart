@@ -1,5 +1,6 @@
 import 'dart:io';
 
+import 'package:alibtisam_flutter/features/bottomNav/controller/games.dart';
 import 'package:alibtisam_flutter/features/bottomNav/controller/user.dart';
 import 'package:alibtisam_flutter/features/bottomNav/model/user.dart';
 import 'package:alibtisam_flutter/features/bottomNav/presentation/userDashboard/presentation/enrollment/guardian/guardian_all_forms.dart';
@@ -48,17 +49,12 @@ class _ExternalEnrollmentFormState extends State<ExternalEnrollmentForm> {
   TextEditingController stateController = TextEditingController();
   TextEditingController motherNameController = TextEditingController();
   TextEditingController sportsController = TextEditingController();
+  TextEditingController gameController = TextEditingController();
   XFile? pic;
   XFile? idProofFront;
   XFile? idProofBack;
   XFile? certificate;
   String gameId = '';
-
-  bool canCheckSchool = false;
-  bool canCheckAcademy = false;
-  bool showInstitution = false;
-  bool showbatchSelection = false;
-  bool isLoading = false;
 
   List<String> bloodGroups = ['A+', 'A-', 'B+', 'B-', 'AB+', 'AB-', 'O+', 'O-'];
   List<dynamic> selectSports = [];
@@ -67,19 +63,13 @@ class _ExternalEnrollmentFormState extends State<ExternalEnrollmentForm> {
   List<dynamic> selectBatch = [];
 
   final userController = Get.find<UserController>();
-  setDefaults() {
-    showInstitution = true;
-    canCheckAcademy = false;
-    canCheckSchool = false;
-    batchController.clear();
-    selectBatch.clear();
-    showbatchSelection = false;
-  }
+  final gamesController = Get.find<GamesController>();
 
   @override
   void initState() {
     super.initState();
     setRelationshipIfGuardian();
+    gamesController.fetchGames();
   }
 
   bool showRelationShipField = true;
@@ -145,8 +135,63 @@ class _ExternalEnrollmentFormState extends State<ExternalEnrollmentForm> {
                   ),
                   SizedBox(height: 10),
                   CustomTextField(
-                      controller: nameController, label: "fullName".tr),
-                  SizedBox(height: 10),
+                      readOnly: relationWithApplicantController.text == 'SELF',
+                      controller: nameController,
+                      label: "fullName".tr),
+                  Visibility(
+                    visible: showRelationShipField,
+                    child: CustomTextField(
+                      maxLines: 1,
+                      label: "relationWithApplicant".tr,
+                      height: 60,
+                      readOnly: true,
+                      controller: relationWithApplicantController,
+                      suffix: DropdownButton(
+                        dropdownColor: Colors.white,
+                        iconSize: 40,
+                        isDense: true,
+                        items: selectRelationWithApplicant.map((String value) {
+                          return DropdownMenuItem<String>(
+                            value: value,
+                            child: Text(value),
+                          );
+                        }).toList(),
+                        onChanged: (val) {
+                          relationWithApplicantController.text = val ?? '';
+                          if (val == "SELF") {
+                            nameController.text = userController.user!.name;
+                            emailController.text = userController.user!.email;
+                            phoneController.text = userController.user!.mobile;
+                          }
+                          setState(() {});
+                        },
+                      ),
+                    ),
+                  ),
+                  CustomTextField(
+                    maxLines: 1,
+                    label: "game".tr,
+                    height: 50,
+                    readOnly: true,
+                    controller: gameController,
+                    suffix: DropdownButton(
+                      dropdownColor: Colors.white,
+                      iconSize: 40,
+                      isDense: true,
+                      items: gamesController.games.map((value) {
+                        return DropdownMenuItem(
+                          value: value,
+                          child: Text(
+                              value.name.capitalize! + " (${value.stage})"),
+                        );
+                      }).toList(),
+                      onChanged: (val) {
+                        gameController.text = val!.name.capitalize!;
+                        gameId = val.id;
+                        setState(() {});
+                      },
+                    ),
+                  ),
                   Center(
                     child: GenderPickerWithImage(
                       verticalAlignedText: false,
@@ -170,7 +215,10 @@ class _ExternalEnrollmentFormState extends State<ExternalEnrollmentForm> {
                     ),
                   ),
                   SizedBox(height: 10),
-                  CustomTextField(controller: emailController, label: "email".tr),
+                  CustomTextField(
+                      readOnly: relationWithApplicantController.text == 'SELF',
+                      controller: emailController,
+                      label: "email".tr),
                   CustomTextField(
                       controller: fatherNameController, label: "fatherName".tr),
                   CustomTextField(
@@ -246,6 +294,8 @@ class _ExternalEnrollmentFormState extends State<ExternalEnrollmentForm> {
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     children: [
                       CustomTextField(
+                        readOnly:
+                            relationWithApplicantController.text == 'SELF',
                         digitsOnly: true,
                         keyboardType: TextInputType.phone,
                         label: "contact".tr,
@@ -299,31 +349,6 @@ class _ExternalEnrollmentFormState extends State<ExternalEnrollmentForm> {
                       ),
                       Spacer(),
                     ],
-                  ),
-                  Visibility(
-                    visible: showRelationShipField,
-                    child: CustomTextField(
-                      maxLines: 1,
-                      label: "relationWithApplicant".tr,
-                      height: 60,
-                      readOnly: true,
-                      controller: relationWithApplicantController,
-                      suffix: DropdownButton(
-                        dropdownColor: Colors.white,
-                        iconSize: 40,
-                        isDense: true,
-                        items: selectRelationWithApplicant.map((String value) {
-                          return DropdownMenuItem<String>(
-                            value: value,
-                            child: Text(value),
-                          );
-                        }).toList(),
-                        onChanged: (val) {
-                          relationWithApplicantController.text = val ?? '';
-                          setState(() {});
-                        },
-                      ),
-                    ),
                   ),
                   kDocumentSection(),
                   SizedBox(height: 20),
@@ -379,7 +404,8 @@ class _ExternalEnrollmentFormState extends State<ExternalEnrollmentForm> {
                               if (user!.role == "GUARDIAN") {
                                 Get.off(() => GuardianAllForms());
                               }
-                            } else if (userController.user!.role == "GUARDIAN") {
+                            } else if (userController.user!.role ==
+                                "GUARDIAN") {
                               Get.off(() => GuardianAllForms());
                             }
                           }

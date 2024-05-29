@@ -1,3 +1,4 @@
+import 'package:alibtisam_flutter/features/bottomNav/presentation/userDashboard/presentation/chat/chat_navigation.dart';
 import 'package:alibtisam_flutter/features/bottomNav/presentation/userDashboard/presentation/enrollment/enrollment_navigation.dart';
 import 'package:alibtisam_flutter/features/bottomNav/presentation/userDashboard/presentation/events/presentation/events.dart';
 import 'package:alibtisam_flutter/features/bottomNav/presentation/userDashboard/presentation/attendance/attendance_navigation.dart';
@@ -32,4 +33,5 @@ List<GetPage<dynamic>>? pages = [
   GetPage(name: '/playerPolarization', page: () => PlayerPolarization()),
   GetPage(name: '/tournamentRequest', page: () => TournamentRequest()),
   GetPage(name: '/coachMonitering', page: () => CoachPlayerMonitering()),
+  GetPage(name: '/chat', page: () => ChatNavigation()),
 ];

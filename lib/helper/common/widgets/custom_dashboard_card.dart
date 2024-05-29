@@ -49,7 +49,7 @@ class _CustomDashboardCardState extends State<CustomDashboardCard> {
             height: 100,
             width: 100,
             frameRate: FrameRate.composition,
-            fit: BoxFit.cover,
+            fit: BoxFit.contain,
           ),
         ],
       )),

@@ -1,3 +1,4 @@
+import 'package:alibtisam_flutter/helper/common/widgets/custom_gradient_button.dart';
 import 'package:alibtisam_flutter/helper/common/widgets/custom_loading.dart';
 import 'package:alibtisam_flutter/network/api_requests.dart';
 import 'package:flutter/material.dart';
@@ -95,28 +96,34 @@ class _SignUpScreenState extends State<SignUpScreen> {
                       label: "password".tr,
                     ),
                     SizedBox(height: 20),
-                    ElevatedButton(
-                        onPressed: () {
-                          if (formKey.currentState!.validate()) {
-                            ApiRequests().register(
-                                clubId: clubIdController.text.trim(),
-                                email: emailController.text.trim(),
-                                mobile: phoneController.text.trim(),
-                                password: passwordController.text.trim(),
-                                name: nameController.text.trim());
-                          }
-                        },
-                        child: Text('signUp'.tr)),
+                    SizedBox(
+                      height: 70,
+                      child: CustomGradientButton(
+                          onTap: () {
+                            if (formKey.currentState!.validate()) {
+                              ApiRequests().register(
+                                  clubId: clubIdController.text.trim(),
+                                  email: emailController.text.trim(),
+                                  mobile: phoneController.text.trim(),
+                                  password: passwordController.text.trim(),
+                                  name: nameController.text.trim());
+                            }
+                          },
+                          label: 'signUp'.tr),
+                    ),
                     SizedBox(height: 40),
                     Divider(),
                     SizedBox(height: 20),
                     Text("alreadyHaveAnAcoount".tr),
                     SizedBox(height: 20),
-                    ElevatedButton(
-                        onPressed: () {
-                          Get.back();
-                        },
-                        child: Text('login'.tr)),
+                    SizedBox(
+                      height: 70,
+                      child: CustomGradientButton(
+                          onTap: () {
+                            Get.back();
+                          },
+                          label: 'login'.tr),
+                    ),
                   ],
                 ),
               ),

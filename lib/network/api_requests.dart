@@ -5,6 +5,7 @@ import 'package:alibtisam_flutter/features/bottomNav/controller/user.dart';
 import 'package:alibtisam_flutter/features/bottomNav/model/chat_message.dart';
 import 'package:alibtisam_flutter/features/bottomNav/model/chats_list.dart';
 import 'package:alibtisam_flutter/features/bottomNav/model/dashboard.dart';
+import 'package:alibtisam_flutter/features/bottomNav/model/game.dart';
 import 'package:alibtisam_flutter/features/bottomNav/model/user.dart';
 import 'package:alibtisam_flutter/features/bottomNav/presentation/settings/model/about.dart';
 import 'package:alibtisam_flutter/features/bottomNav/presentation/userDashboard/presentation/events/model/events_model.dart';
@@ -127,8 +128,10 @@ class ApiRequests {
     try {
       LoadingManager.startLoading();
       final res = await HttpWrapper.getRequest(
-          get_measurement_requests + "?status=REQUESTED");
+          get_measurement_requests + "?status=COACH-REQUESTED");
+
       final data = jsonDecode(res.body);
+      print(data);
       if (res.statusCode == 200) {
         return data['requests'];
       } else {
@@ -144,7 +147,7 @@ class ApiRequests {
     try {
       LoadingManager.startLoading();
       final res = await HttpWrapper.getRequest(
-          get_measurement_requests + "?status=COMPLETED");
+          get_measurement_requests + "?status=APPROVED");
       final data = jsonDecode(res.body);
       if (res.statusCode == 200) {
         return data['requests'];
@@ -265,7 +268,7 @@ class ApiRequests {
         "country": country,
         "relation": relationWithApplicant,
         "batch": batch,
-        "gameId": "663b6e7e84b08ed875f84d91",
+        "gameId": gameId,
         "institutionalTypes": institutionalTypes,
       };
       List<http.MultipartFile> files = [];
@@ -395,6 +398,25 @@ class ApiRequests {
     return null;
   }
 
+  Future<List<MonitoringModel?>> getReportsByPlayerId() async {
+    try {
+      List<MonitoringModel> reports = [];
+      final res = await HttpWrapper.getRequest(
+          get_player_reports + "7562647562636a646364636a");
+      final data = jsonDecode(res.body);
+      if (res.statusCode == 200) {
+        for (var report in data['monitoring']) {
+          reports.add(MonitoringModel.fromMap(report));
+        }
+        return reports;
+      }
+    } on ServerException catch (e) {
+      await LoadingManager.endLoading();
+      customSnackbar(message: e.message);
+    }
+    return [];
+  }
+
   Future<void> updateMonitoringByPlayerId(Object body) async {
     try {
       LoadingManager.startLoading();
@@ -406,5 +428,35 @@ class ApiRequests {
       await LoadingManager.endLoading();
       customSnackbar(message: e.message);
     }
+  }
+
+  Future getCollectionsByGameFilter(String gameId) async {
+    try {
+      LoadingManager.startLoading();
+      final res = await HttpWrapper.getRequest(
+          get_collection_by_game_filter + "?filter=$gameId");
+      final data = jsonDecode(res.body);
+      return data['collection'];
+    } on ServerException catch (e) {
+      await LoadingManager.endLoading();
+      customSnackbar(message: e.message);
+    }
+  }
+
+  Future<List<GameModel>?> getGames() async {
+    try {
+      List<GameModel> games = [];
+      LoadingManager.startLoading();
+      final res = await HttpWrapper.getRequest(get_all_games);
+      final data = jsonDecode(res.body);
+      for (var game in data['games']) {
+        games.add(GameModel.fromMap(game));
+      }
+      return games;
+    } on ServerException catch (e) {
+      await LoadingManager.endLoading();
+      customSnackbar(message: e.message);
+    }
+    return [];
   }
 }

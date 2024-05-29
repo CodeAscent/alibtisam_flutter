@@ -26,7 +26,7 @@ class _ReadinessState extends State<Readiness> {
         return Scaffold(
             appBar: AppBar(
               title: Text('readiness'.tr),
-              actions: userController.user!.role == "EXTERNAL USER"
+              actions: userController.user!.role == "COACH"
                   ? [
                       GestureDetector(
                         onTap: () async {
@@ -136,6 +136,28 @@ class _ReadinessState extends State<Readiness> {
                                         .monitoring!.readiness.nutrition,
                                     "injury": monitoringController
                                         .monitoring!.readiness.injury
+                                  },
+                                  "testResults": {
+                                    "wellness": monitoringController
+                                        .monitoring!.testResults.wellness,
+                                    "workload": monitoringController
+                                        .monitoring!.testResults.workload,
+                                    "health": monitoringController
+                                        .monitoring!.testResults.health,
+                                    "performance": monitoringController
+                                        .monitoring!.testResults.performance,
+                                  },
+                                  "trainingLoad": {
+                                    "monday": monitoringController
+                                        .monitoring!.trainingLoad.monday,
+                                    "tuesday": monitoringController
+                                        .monitoring!.trainingLoad.tuesday,
+                                    "wednesday": monitoringController
+                                        .monitoring!.trainingLoad.wednesday,
+                                    "thursday": monitoringController
+                                        .monitoring!.trainingLoad.thursday,
+                                    "sunday": monitoringController
+                                        .monitoring!.trainingLoad.sunday
                                   },
                                 });
 

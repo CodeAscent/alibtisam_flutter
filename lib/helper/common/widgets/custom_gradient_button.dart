@@ -22,7 +22,8 @@ class CustomGradientButton extends StatelessWidget {
         child: Center(
           child: Text(
             label,
-            maxLines: 1,
+            maxLines: 2,
+            textAlign: TextAlign.center,
             style: TextStyle(
                 color: Colors.white,
                 fontWeight: FontWeight.w800,
