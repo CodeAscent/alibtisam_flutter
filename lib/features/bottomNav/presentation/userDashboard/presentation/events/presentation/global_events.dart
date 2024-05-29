@@ -12,7 +12,8 @@ class GlobalEvents extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return CustomLoader(
-      child: FutureBuilder(
+      child: 
+      FutureBuilder(
           future: Future.wait([
             ApiRequests().allEvents("ANNOUNCEMENT EVENT"),
             ApiRequests().allEvents("SPORT EVENT")

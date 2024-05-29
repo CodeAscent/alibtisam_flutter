@@ -34,51 +34,54 @@ class _AllEventsState extends State<AllEvents> with TickerProviderStateMixin {
       },
       shouldAddCallback: true,
       child: Scaffold(
-          appBar: AppBar(
-            toolbarHeight: 120,
-            automaticallyImplyLeading: false,
-            title: SafeArea(
-              child: Column(children: [
-                Stack(
-                  children: [
-                    Center(
-                        child: Column(
-                      children: [
-                        SizedBox(height: 15),
-                        Text("events".tr),
-                      ],
-                    )),
-                    Align(
-                      alignment: Alignment.topLeft,
-                      child: IconButton(
-                          onPressed: () {
-                            eventNavigationController
-                                    .navigatingFromSplashScreen.isTrue
-                                ? Get.offAll(() => DummySplash())
-                                : Get.back();
-                          },
-                          icon: Icon(
-                            Icons.navigate_before,
-                            size: 45,
-                          )),
-                    ),
-                  ],
-                ),
-                TabBar(controller: tabController, tabs: [
-                  Tab(
-                    text: "globalEvents".tr,
+        appBar: AppBar(
+          // toolbarHeight: 120,
+          automaticallyImplyLeading: false,
+          title: SafeArea(
+            child: Column(children: [
+              Stack(
+                children: [
+                  Center(
+                      child: Column(
+                    children: [
+                      SizedBox(height: 15),
+                      Text("events".tr),
+                    ],
+                  )),
+                  Align(
+                    alignment: Alignment.topLeft,
+                    child: IconButton(
+                        onPressed: () {
+                          eventNavigationController
+                                  .navigatingFromSplashScreen.isTrue
+                              ? Get.offAll(() => DummySplash())
+                              : Get.back();
+                        },
+                        icon: Icon(
+                          Icons.navigate_before,
+                          size: 45,
+                        )),
                   ),
-                  Tab(
-                    text: "myEvents".tr,
-                  ),
-                ]),
-              ]),
-            ),
+                ],
+              ),
+              // TabBar(controller: tabController, tabs: [
+              //   Tab(
+              //     text: "globalEvents".tr,
+              //   ),
+              //   Tab(
+              //     text: "myEvents".tr,
+              //   ),
+              // ]),
+            ]),
           ),
-          body: TabBarView(
-            controller: tabController,
-            children: [GlobalEvents(), UserEvents()],
-          )),
+        ),
+        body: GlobalEvents(),
+
+        // TabBarView(
+        //   controller: tabController,
+        //   children: [GlobalEvents(), UserEvents()],
+        // ),
+      ),
     );
   }
 }
