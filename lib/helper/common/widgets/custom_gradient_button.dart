@@ -6,9 +6,11 @@ class CustomGradientButton extends StatelessWidget {
     super.key,
     required this.label,
     this.onTap,
+    this.icon,
   });
   final String label;
   final void Function()? onTap;
+  final IconData? icon;
   @override
   Widget build(BuildContext context) {
     return GestureDetector(

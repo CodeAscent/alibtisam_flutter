@@ -87,6 +87,7 @@ class _SignUpScreenState extends State<SignUpScreen> {
                     ),
                     SizedBox(height: 20),
                     CustomTextField(
+                      maxLength: 10,
                       controller: phoneController,
                       label: "phone".tr,
                     ),

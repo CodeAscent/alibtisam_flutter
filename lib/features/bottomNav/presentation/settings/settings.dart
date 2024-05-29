@@ -2,6 +2,7 @@ import 'package:alibtisam_flutter/Localization/switch.dart';
 import 'package:alibtisam_flutter/features/bottomNav/controller/user.dart';
 import 'package:alibtisam_flutter/features/bottomNav/model/user.dart';
 import 'package:alibtisam_flutter/features/bottomNav/presentation/settings/presentation/about.dart';
+import 'package:alibtisam_flutter/features/bottomNav/presentation/settings/presentation/help_support.dart';
 import 'package:alibtisam_flutter/features/bottomNav/presentation/settings/presentation/switch_user.dart';
 import 'package:alibtisam_flutter/features/bottomNav/presentation/userDashboard/presentation/chat/chat_navigation.dart';
 import 'package:alibtisam_flutter/helper/common/constants/switch_theme_dialog.dart';
@@ -14,6 +15,7 @@ import 'package:alibtisam_flutter/network/api_requests.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:image_picker/image_picker.dart';
+import 'package:url_launcher/url_launcher.dart';
 
 class SettingScreen extends StatefulWidget {
   const SettingScreen({super.key});
@@ -100,6 +102,12 @@ class _SettingScreenState extends State<SettingScreen> {
                             Get.to(() => AboutOrganization());
                           },
                           child: CustomSettingsCard(label: "about".tr)),
+                      GestureDetector(
+                          onTap: () {
+                            Get.to(() => HelpSupportPage());
+                          },
+                          child:
+                              CustomSettingsCard(label: "Help & Support".tr)),
                       // GestureDetector(
                       //   onTap: () {
                       //     Get.to(() => ChatNavigation());

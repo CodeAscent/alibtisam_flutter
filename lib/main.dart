@@ -29,6 +29,7 @@ class MyApp extends StatelessWidget {
       init: ThemeController(),
       builder: (controller) {
         return GetMaterialApp(
+          debugShowCheckedModeBanner: false,
           translations: AppLocalization(),
           locale: Locale(savedLocale.split('_')[0], savedLocale.split('_')[1]),
           fallbackLocale: Locale('ar', 'DZ'),
