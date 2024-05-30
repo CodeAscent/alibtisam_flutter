@@ -43,7 +43,7 @@ class HelpSupportPage extends StatelessWidget {
                 },
                 child: _buildSupportCard(
                   icon: Icons.question_answer,
-                  title: "Frequently Asked Questions",
+                  title: "Zoho form",
                 ),
               ),
               GestureDetector(
@@ -81,7 +81,7 @@ class HelpSupportPage extends StatelessWidget {
       decoration: BoxDecoration(
           gradient: kGradientColor(), borderRadius: BorderRadius.circular(15)),
       child: ListTile(
-        leading: Icon(icon, color: primaryColor(), size: 36),
+        leading: Icon(icon, color: Colors.white, size: 36),
         title: Text(
           title,
           style: TextStyle(
