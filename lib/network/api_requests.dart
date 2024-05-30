@@ -445,7 +445,7 @@ class ApiRequests {
     try {
       LoadingManager.startLoading();
       final res = await HttpWrapper.getRequest(
-          get_collection_by_game_filter + "?filter=$gameId");
+          get_collection_by_game_filter + "?gameId=$gameId");
       final data = jsonDecode(res.body);
       return data['collection'];
     } on ServerException catch (e) {

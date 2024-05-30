@@ -117,6 +117,20 @@ class _CollectionScreenState extends State<CollectionScreen>
                                                         ),
                                                       )).then((v) =>
                                                   collection.media.pause());
+                                            } else {
+                                              showDialog(
+                                                  context: context,
+                                                  builder: (context) => Dialog(
+                                                        child: Container(
+                                                          height: 200,
+                                                          width: 200,
+                                                          color: primaryColor(),
+                                                          child: Image.network(
+                                                            collection.media,
+                                                            fit: BoxFit.cover,
+                                                          ),
+                                                        ),
+                                                      ));
                                             }
                                           },
                                           child: Container(

@@ -23,7 +23,8 @@ class CustomTabBar extends StatelessWidget {
         Padding(
           padding: const EdgeInsets.all(8.0),
           child: TabBar(
-            labelPadding: EdgeInsets.symmetric(horizontal: 20, vertical: 10),
+            labelPadding: EdgeInsets.symmetric(
+                horizontal: tabViewScreens.length <= 2 ? 50 : 20, vertical: 10),
             tabAlignment: TabAlignment.center,
             isScrollable: true,
             dividerHeight: 0,

@@ -1,4 +1,4 @@
-String base_url = "http://192.168.29.162:8000/";
+String base_url = "http://15.206.185.144:8000/";
 // String base_url = "http://15.206.185.144:8000/";
 String api_version = "api/v1/";
 String event = "event/";
