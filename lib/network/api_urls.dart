@@ -12,6 +12,7 @@ String monitoring = "monitoring/";
 String playerApproval = "player-approval/";
 String collection = "collection/";
 String game = "game/";
+String team = "team/";
 
 //
 String all_events = base_url + api_version + event + "all";
@@ -79,3 +80,6 @@ String get_all_games = base_url + api_version + game + "all";
 
 // GET ALL GAMES
 String get_player_reports = base_url + api_version + monitoring + "get-report/";
+
+// GET ALL GAMES
+String get_teams_by_coach = base_url + api_version + team + "get-by-coach";

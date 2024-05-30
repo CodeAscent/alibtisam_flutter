@@ -1,3 +1,4 @@
+import 'package:alibtisam_flutter/features/bottomNav/model/team.dart';
 import 'package:alibtisam_flutter/features/bottomNav/presentation/userDashboard/presentation/statistics/controller/monitoring.dart';
 import 'package:alibtisam_flutter/features/bottomNav/presentation/userDashboard/presentation/statistics/player_statistics.dart';
 import 'package:alibtisam_flutter/helper/common/widgets/custom_loading.dart';
@@ -6,8 +7,10 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
 class CoachPlayersList extends StatefulWidget {
+  final List<PlayersModel> players;
   const CoachPlayersList({
     super.key,
+    required this.players,
   });
 
   @override
@@ -30,7 +33,7 @@ class _CoachPlayersListState extends State<CoachPlayersList> {
                   padding: const EdgeInsets.all(16.0),
                   child: GridView.builder(
                     physics: NeverScrollableScrollPhysics(),
-                    itemCount: 10,
+                    itemCount: widget.players.length,
                     shrinkWrap: true,
                     gridDelegate: SliverGridDelegateWithMaxCrossAxisExtent(
                         mainAxisSpacing: 8,
@@ -40,9 +43,9 @@ class _CoachPlayersListState extends State<CoachPlayersList> {
                     itemBuilder: (context, index) {
                       return GestureDetector(
                         onTap: () {
-                          monitoringController.fetchMonitoringData();
+                      
 
-                          Get.to(() => PlayerStatistics());
+                          Get.to(() => PlayerStatistics(playerId: widget.players[index].playerId.id,));
                         },
                         child: Container(
                           decoration: BoxDecoration(
@@ -53,14 +56,15 @@ class _CoachPlayersListState extends State<CoachPlayersList> {
                             child: Column(
                               children: [
                                 Image.network(
-                                  'https://icon-library.com/images/anonymous-avatar-icon/anonymous-avatar-icon-25.jpg',
+                                  widget.players[index].playerId.pic,
                                   fit: BoxFit.cover,
                                   height: 200,
                                 ),
                                 Spacer(),
-                                Text("playerId".tr),
+                                Text(widget
+                                    .players[index].playerId.name.capitalize!),
                                 Text(
-                                  "playerName".tr,
+                                  widget.players[index].playerId.userName,
                                   maxLines: 1,
                                 ),
                               ],

@@ -352,67 +352,72 @@ class _ExternalEnrollmentFormState extends State<ExternalEnrollmentForm> {
                   ),
                   kDocumentSection(),
                   SizedBox(height: 20),
-                  CustomContainerButton(
-                    onTap: () async {
-                      if (formKey.currentState!.validate()) {
-                        if (pic == null ||
-                            idProofFront == null ||
-                            idProofBack == null) {
-                          customSnackbar(
-                              message: "pleasePickAllMendatoryImages".tr);
-                        } else {
-                          final res = await ApiRequests().createPlayerForm(
-                              name: nameController.text.trim(),
-                              fatherName: fatherNameController.text.trim(),
-                              motherName: motherNameController.text.trim(),
-                              gender: genderController.text.trim(),
-                              dateOfBirth: dobController.text.trim(),
-                              bloodGroup: bloodGroupController.text.trim(),
-                              height: heightController.text.trim(),
-                              weight: weightController.text.trim(),
-                              phoneNumber: phoneController.text.trim(),
-                              email: emailController.text.trim(),
-                              address: addressController.text.trim(),
-                              correspondenceAddress:
-                                  correspondenceAddressController.text.trim(),
-                              postalCode: postalCodeController.text.trim(),
-                              city: cityController.text.trim(),
-                              state: stateController.text.trim(),
-                              country: countryController.text.trim(),
-                              relationWithApplicant:
-                                  relationWithApplicantController.text == "SELF"
-                                      ? "me"
-                                      : relationWithApplicantController.text,
-                              idProofFrontPath: idProofFront,
-                              idProofBackPath: idProofBack,
-                              pic: pic,
-                              certificate: certificate,
-                              batch: batchController.text.trim(),
-                              gameId: gameId,
-                              institutionalTypes:
-                                  institutionalTypeController.text.trim());
-                          if (relationWithApplicantController.text == "SELF") {
-                            print('-------------------->');
-                            saveToken(res['token'], '');
-                            UserModel? user = await ApiRequests().getUser();
-                            Get.off(() => ViewAddmisionForm(
-                                  player: user!,
-                                ));
+                  SizedBox(
+                    height: 70,
+                    child: CustomContainerButton(
+                      onTap: () async {
+                        if (formKey.currentState!.validate()) {
+                          if (pic == null ||
+                              idProofFront == null ||
+                              idProofBack == null) {
+                            customSnackbar(
+                                message: "pleasePickAllMendatoryImages".tr);
                           } else {
-                            if (userController.user!.role != "GUARDIAN") {
+                            final res = await ApiRequests().createPlayerForm(
+                                name: nameController.text.trim(),
+                                fatherName: fatherNameController.text.trim(),
+                                motherName: motherNameController.text.trim(),
+                                gender: genderController.text.trim(),
+                                dateOfBirth: dobController.text.trim(),
+                                bloodGroup: bloodGroupController.text.trim(),
+                                height: heightController.text.trim(),
+                                weight: weightController.text.trim(),
+                                phoneNumber: phoneController.text.trim(),
+                                email: emailController.text.trim(),
+                                address: addressController.text.trim(),
+                                correspondenceAddress:
+                                    correspondenceAddressController.text.trim(),
+                                postalCode: postalCodeController.text.trim(),
+                                city: cityController.text.trim(),
+                                state: stateController.text.trim(),
+                                country: countryController.text.trim(),
+                                relationWithApplicant:
+                                    relationWithApplicantController.text ==
+                                            "SELF"
+                                        ? "me"
+                                        : relationWithApplicantController.text,
+                                idProofFrontPath: idProofFront,
+                                idProofBackPath: idProofBack,
+                                pic: pic,
+                                certificate: certificate,
+                                batch: batchController.text.trim(),
+                                gameId: gameId,
+                                institutionalTypes:
+                                    institutionalTypeController.text.trim());
+                            if (relationWithApplicantController.text ==
+                                "SELF") {
+                              print('-------------------->');
+                              saveToken(res['token'], '');
                               UserModel? user = await ApiRequests().getUser();
-                              if (user!.role == "GUARDIAN") {
+                              Get.off(() => ViewPlayerByUserModel(
+                                    player: user!,
+                                  ));
+                            } else {
+                              if (userController.user!.role != "GUARDIAN") {
+                                UserModel? user = await ApiRequests().getUser();
+                                if (user!.role == "GUARDIAN") {
+                                  Get.off(() => GuardianAllForms());
+                                }
+                              } else if (userController.user!.role ==
+                                  "GUARDIAN") {
                                 Get.off(() => GuardianAllForms());
                               }
-                            } else if (userController.user!.role ==
-                                "GUARDIAN") {
-                              Get.off(() => GuardianAllForms());
                             }
                           }
                         }
-                      }
-                    },
-                    label: "submitForm".tr,
+                      },
+                      label: "submitForm".tr,
+                    ),
                   ),
                 ],
               ),

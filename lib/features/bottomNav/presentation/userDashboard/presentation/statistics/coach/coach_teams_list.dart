@@ -1,3 +1,4 @@
+import 'package:alibtisam_flutter/features/bottomNav/controller/teams.dart';
 import 'package:alibtisam_flutter/features/bottomNav/presentation/userDashboard/presentation/statistics/coach/coach_players_list.dart';
 import 'package:alibtisam_flutter/helper/common/widgets/custom_gradient_button.dart';
 import 'package:alibtisam_flutter/helper/common/widgets/custom_loading.dart';
@@ -12,36 +13,42 @@ class CoachTeamsList extends StatefulWidget {
 }
 
 class _CoachTeamsListState extends State<CoachTeamsList> {
+  TeamsController teamsController = Get.find<TeamsController>();
   @override
   void initState() {
     super.initState();
+    teamsController.fetchTeams();
   }
 
   @override
   Widget build(BuildContext context) {
-    return CustomLoader(
-      child: Scaffold(
-        appBar: AppBar(
-          title: Text("teams".tr),
-        ),
-        body: SingleChildScrollView(
-          child: Padding(
-            padding: const EdgeInsets.all(16.0),
-            child: Column(
-              children: [
-                ...List.generate(5, (int index) {
-                  return CustomGradientButton(
-                    onTap: () {
-                      Get.to(() => CoachPlayersList());
-                    },
-                    label: "team".tr + "$index",
-                  );
-                })
-              ],
+    return CustomLoader(child: GetBuilder(
+      builder: (TeamsController teamsController) {
+        return Scaffold(
+          appBar: AppBar(
+            title: Text("teams".tr),
+          ),
+          body: SingleChildScrollView(
+            child: Padding(
+              padding: const EdgeInsets.all(16.0),
+              child: Column(
+                children: [
+                  ...List.generate(teamsController.teams.length, (int index) {
+                    return CustomGradientButton(
+                      onTap: () {
+                        Get.to(() => CoachPlayersList(
+                              players: teamsController.teams[index].players,
+                            ));
+                      },
+                      label: teamsController.teams[index].name,
+                    );
+                  })
+                ],
+              ),
             ),
           ),
-        ),
-      ),
-    );
+        );
+      },
+    ));
   }
 }

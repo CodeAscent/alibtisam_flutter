@@ -1,21 +1,17 @@
 import 'package:alibtisam_flutter/Localization/switch.dart';
 import 'package:alibtisam_flutter/features/bottomNav/controller/user.dart';
-import 'package:alibtisam_flutter/features/bottomNav/model/user.dart';
 import 'package:alibtisam_flutter/features/bottomNav/presentation/settings/presentation/about.dart';
 import 'package:alibtisam_flutter/features/bottomNav/presentation/settings/presentation/help_support.dart';
 import 'package:alibtisam_flutter/features/bottomNav/presentation/settings/presentation/switch_user.dart';
-import 'package:alibtisam_flutter/features/bottomNav/presentation/userDashboard/presentation/chat/chat_navigation.dart';
 import 'package:alibtisam_flutter/helper/common/constants/switch_theme_dialog.dart';
 import 'package:alibtisam_flutter/features/bottomNav/presentation/settings/presentation/profile.dart';
 import 'package:alibtisam_flutter/features/bottomNav/presentation/settings/widgets/custom_settings_card.dart';
 import 'package:alibtisam_flutter/helper/common/constants/logout_user.dart';
 import 'package:alibtisam_flutter/helper/common/widgets/custom_loading.dart';
 import 'package:alibtisam_flutter/helper/utils/loading_manager.dart';
-import 'package:alibtisam_flutter/network/api_requests.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:image_picker/image_picker.dart';
-import 'package:url_launcher/url_launcher.dart';
+
 
 class SettingScreen extends StatefulWidget {
   const SettingScreen({super.key});
@@ -116,7 +112,7 @@ class _SettingScreenState extends State<SettingScreen> {
                       // ),
                     ],
                   ),
-                SizedBox(height: 80),
+                SizedBox(height: 20),
                 GestureDetector(
                   onTap: () {
                     kLogoutUser(context);
@@ -135,7 +131,8 @@ class _SettingScreenState extends State<SettingScreen> {
                       Icon(Icons.logout, color: Colors.red.shade500),
                     ],
                   ),
-                )
+                ),
+                SizedBox(height: 150),
               ],
             ),
           ),

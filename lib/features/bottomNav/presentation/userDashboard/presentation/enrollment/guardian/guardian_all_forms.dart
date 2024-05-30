@@ -56,7 +56,7 @@ class _GuardianAllFormsState extends State<GuardianAllForms> {
                             UserModel player = snapshot.data![index + 1];
                             return GestureDetector(
                               onTap: () {
-                                Get.to(() => ViewAddmisionForm(
+                                Get.to(() => ViewPlayerByUserModel(
                                       player: player,
                                     ));
                               },
@@ -141,11 +141,14 @@ class _GuardianAllFormsState extends State<GuardianAllForms> {
             ),
           ),
           bottomNavigationBar: SafeArea(
-              child: CustomContainerButton(
-                  onTap: () {
-                    Get.to(() => ExternalEnrollmentForm());
-                  },
-                  label: 'newForm'.tr)),
+              child: SizedBox(
+            height: 70,
+            child: CustomContainerButton(
+                onTap: () {
+                  Get.to(() => ExternalEnrollmentForm());
+                },
+                label: 'newForm'.tr),
+          )),
         ),
       ),
     );

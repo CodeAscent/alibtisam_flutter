@@ -1,6 +1,7 @@
 import 'package:alibtisam_flutter/features/bottomNav/controller/chat_messages.dart';
 import 'package:alibtisam_flutter/features/bottomNav/controller/user.dart';
 import 'package:alibtisam_flutter/features/bottomNav/model/chat_message.dart';
+import 'package:alibtisam_flutter/features/bottomNav/model/chats_list.dart';
 import 'package:alibtisam_flutter/features/bottomNav/presentation/userDashboard/presentation/chat/chat_about.dart';
 import 'package:alibtisam_flutter/helper/theme/app_colors.dart';
 import 'package:alibtisam_flutter/helper/theme/controller/theme_controller.dart';
@@ -12,7 +13,15 @@ import 'package:get/get.dart';
 
 class ChatScreen extends StatefulWidget {
   final String chatId;
-  const ChatScreen({super.key, required this.chatId});
+  final String name;
+  final String image;
+  final Chat chatInfo;
+  const ChatScreen(
+      {super.key,
+      required this.chatId,
+      required this.name,
+      required this.image,
+      required this.chatInfo});
 
   @override
   State<ChatScreen> createState() => _ChatScreenState();
@@ -27,8 +36,7 @@ class _ChatScreenState extends State<ChatScreen> {
   @override
   void initState() {
     super.initState();
-    SocketConnection.joinChat(
-        widget.chatId, userController.user!.id, _scrollToBottom);
+    SocketConnection.joinChat(widget.chatId, _scrollToBottom);
     SocketConnection.listenMessages(_scrollToBottom);
   }
 
@@ -45,6 +53,7 @@ class _ChatScreenState extends State<ChatScreen> {
   @override
   void dispose() {
     _scrollController.dispose();
+    SocketConnection.clearListeners();
     super.dispose();
   }
 
@@ -54,17 +63,33 @@ class _ChatScreenState extends State<ChatScreen> {
         date1.day == date2.day;
   }
 
-  String currDate = '';
-
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
         title: GestureDetector(
           onTap: () {
-            Get.to(() => ChatAbout());
+            Get.to(() => ChatAbout(
+                  image: widget.image,
+                  chat: widget.chatInfo,
+                  name: widget.name,
+                ));
           },
-          child: Text("Team name or Player name"),
+          child: Row(
+            children: [
+              ClipRRect(
+                borderRadius: BorderRadius.circular(160),
+                child: Image.network(
+                  widget.image,
+                  height: 40,
+                  width: 40,
+                  fit: BoxFit.cover,
+                ),
+              ),
+              SizedBox(width: 10),
+              Expanded(child: Text(widget.name)),
+            ],
+          ),
         ),
       ),
       body: GetBuilder<ChatMessagesController>(

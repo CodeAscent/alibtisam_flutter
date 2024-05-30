@@ -3,37 +3,48 @@ import 'dart:convert';
 
 import 'package:alibtisam_flutter/features/bottomNav/model/user.dart';
 
-class ChatsList {
+class Chat {
   final String? id;
+  final String? name;
+  final String? profilePic;
   final bool? isGroup;
-  final List<UserModel>? participantDetails;
+  final List<UserModel>? participants;
   final String? lastMessage;
   final String? updatedAt;
 
-  ChatsList(
-      {required this.id,
-      required this.isGroup,
-      required this.participantDetails,
-      required this.lastMessage,
-      required this.updatedAt});
+  Chat(this.id, this.name, this.profilePic, this.isGroup, this.participants,
+      this.lastMessage, this.updatedAt);
 
-  factory ChatsList.fromMap(Map<String, dynamic> map) {
-    return ChatsList(
-      isGroup: map['isGroup'] != null ? map['isGroup'] as bool : null,
-      participantDetails: map['participantDetails'] != null
-          ? List<UserModel>.from(
-              (map['participantDetails']).map<UserModel?>(
-                (x) => UserModel.fromMap(x),
-              ),
-            )
-          : null,
-      lastMessage:
-          map['lastMessage'] != null ? map['lastMessage'] as String : null,
-      updatedAt: map['updatedAt'] != null ? map['updatedAt'] as String : null,
-      id: map['_id'],
+  Map<String, dynamic> toMap() {
+    return <String, dynamic>{
+      'id': id,
+      'name': name,
+      'profilePic': profilePic,
+      'isGroup': isGroup,
+      'participants': participants!.map((x) => x.toMap()).toList(),
+      'lastMessage': lastMessage,
+      'updatedAt': updatedAt,
+    };
+  }
+
+  factory Chat.fromMap(Map<String, dynamic> map) {
+    return Chat(
+      map['_id'] ?? '',
+      map['name'] ?? '',
+      map['profilePic'] ?? '',
+      map['isGroup'] ?? false,
+      List.from(
+        (map['participants']).map(
+          (x) => UserModel.fromMap(x),
+        ),
+      ),
+      map['lastMessage'] ?? '',
+      map['updatedAt'] ?? '',
     );
   }
 
-  factory ChatsList.fromJson(String source) =>
-      ChatsList.fromMap(json.decode(source) as Map<String, dynamic>);
+  String toJson() => json.encode(toMap());
+
+  factory Chat.fromJson(String source) =>
+      Chat.fromMap(json.decode(source) as Map<String, dynamic>);
 }

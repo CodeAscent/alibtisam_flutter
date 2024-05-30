@@ -165,25 +165,28 @@ class MeasurementForm extends StatelessWidget {
                   ],
                 ),
                 Spacer(),
-                CustomContainerButton(
-                    onTap: () async {
-                      if (formKey.currentState!.validate()) {
-                        await ApiRequests().submitMeasurementRequest(
-                            height: heightController.text,
-                            weight: weightController.text,
-                            chestSize: chestController.text,
-                            normalChestSize: normalController.text,
-                            highJump: highJumpController.text,
-                            lowJump: lowJumpController.text,
-                            heartBeatingRate: heartBeatingRateController.text,
-                            pulseRate: pulseRateController.text,
-                            tshirtSize: tShirtSizeController.text,
-                            waistSize: waistSizeController.text,
-                            shoeSize: shoesSizeController.text,
-                            requestId: requestId);
-                      }
-                    },
-                    label: "submit".tr),
+                SizedBox(
+                  height: 70,
+                  child: CustomContainerButton(
+                      onTap: () async {
+                        if (formKey.currentState!.validate()) {
+                          await ApiRequests().submitMeasurementRequest(
+                              height: heightController.text,
+                              weight: weightController.text,
+                              chestSize: chestController.text,
+                              normalChestSize: normalController.text,
+                              highJump: highJumpController.text,
+                              lowJump: lowJumpController.text,
+                              heartBeatingRate: heartBeatingRateController.text,
+                              pulseRate: pulseRateController.text,
+                              tshirtSize: tShirtSizeController.text,
+                              waistSize: waistSizeController.text,
+                              shoeSize: shoesSizeController.text,
+                              requestId: requestId);
+                        }
+                      },
+                      label: "submit".tr),
+                ),
                 SizedBox(height: 20)
               ],
             ),

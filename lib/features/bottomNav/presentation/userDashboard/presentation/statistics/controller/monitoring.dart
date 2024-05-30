@@ -6,9 +6,9 @@ import 'package:get/get.dart';
 class MonitoringController extends GetxController {
   MonitoringModel? monitoring;
 
-  fetchMonitoringData() async {
+  fetchMonitoringData(String playerId) async {
     LoadingManager.startLoading();
-    monitoring = await ApiRequests().getMonitoringByPlayerId();
+    monitoring = await ApiRequests().getMonitoringByPlayerId(playerId);
     update();
   }
 }
