@@ -53,15 +53,16 @@ class _CoachPlayerMoniteringState extends State<CoachPlayerMonitering> {
       padding: const EdgeInsets.symmetric(vertical: 6),
       child: Card(
         child: Container(
+            margin: EdgeInsets.all(5),
             decoration: BoxDecoration(
-                color: kAppGreyColor(),
-                borderRadius: BorderRadius.circular(20)),
+                color: primaryColor(), borderRadius: BorderRadius.circular(15)),
             height: 60,
             width: double.infinity,
             child: Center(
               child: Text(
                 label,
                 style: TextStyle(
+                  color: Colors.white,
                   fontSize: 18,
                   fontWeight: FontWeight.w800,
                 ),

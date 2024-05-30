@@ -141,11 +141,14 @@ class _GuardianAllFormsState extends State<GuardianAllForms> {
             ),
           ),
           bottomNavigationBar: SafeArea(
-              child: CustomContainerButton(
-                  onTap: () {
-                    Get.to(() => ExternalEnrollmentForm());
-                  },
-                  label: 'newForm'.tr)),
+              child: SizedBox(
+            height: 70,
+            child: CustomContainerButton(
+                onTap: () {
+                  Get.to(() => ExternalEnrollmentForm());
+                },
+                label: 'newForm'.tr),
+          )),
         ),
       ),
     );
