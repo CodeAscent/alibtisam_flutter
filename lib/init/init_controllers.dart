@@ -4,6 +4,8 @@ import 'package:alibtisam_flutter/features/bottomNav/controller/chats_list.dart'
 import 'package:alibtisam_flutter/features/bottomNav/controller/dashboard.dart';
 import 'package:alibtisam_flutter/features/bottomNav/controller/games.dart';
 import 'package:alibtisam_flutter/features/bottomNav/controller/measurement_req.dart';
+import 'package:alibtisam_flutter/features/bottomNav/controller/selected_player.dart';
+import 'package:alibtisam_flutter/features/bottomNav/controller/teams.dart';
 import 'package:alibtisam_flutter/features/bottomNav/controller/user.dart';
 import 'package:alibtisam_flutter/features/bottomNav/presentation/settings/controller/organization.dart';
 import 'package:alibtisam_flutter/features/bottomNav/presentation/userDashboard/presentation/events/controller/active_player.dart';
@@ -28,4 +30,6 @@ initControllers() {
   Get.put(OrganizationController());
   Get.put(GamesController());
   Get.put(ReportsController());
+  Get.put(TeamsController());
+  Get.put(SelectedPlayerController());
 }

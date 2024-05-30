@@ -1,4 +1,4 @@
-String base_url = "http://192.168.1.8:8000/";
+String base_url = "http://192.168.29.162:8000/";
 // String base_url = "http://15.206.185.144:8000/";
 String api_version = "api/v1/";
 String event = "event/";
@@ -12,6 +12,7 @@ String monitoring = "monitoring/";
 String playerApproval = "player-approval/";
 String collection = "collection/";
 String game = "game/";
+String team = "team/";
 
 //
 String all_events = base_url + api_version + event + "all";
@@ -79,3 +80,6 @@ String get_all_games = base_url + api_version + game + "all";
 
 // GET ALL GAMES
 String get_player_reports = base_url + api_version + monitoring + "get-report/";
+
+// GET ALL GAMES
+String get_teams_by_coach = base_url + api_version + team + "get-by-coach";

@@ -22,8 +22,7 @@ class MeasurementRequest extends StatelessWidget {
           },
           init: MeasurementReqController(),
           builder: (controller) {
-            return 
-            Column(
+            return Column(
               children: [
                 ListView.builder(
                   shrinkWrap: true,
@@ -54,7 +53,7 @@ class MeasurementRequest extends StatelessWidget {
                         subtitle: Text(user.email),
                         trailing: IconButton(
                             onPressed: () {
-                              Get.to(() => ViewAddmisionForm(player: user));
+                              Get.to(() => ViewPlayerByUserModel(player: user));
                             },
                             icon: Icon(CupertinoIcons.info)),
                       ),

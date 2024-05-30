@@ -16,8 +16,7 @@ class PlayerChatList extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     UserController userController = Get.find<UserController>();
-    return 
-    GetBuilder(
+    return GetBuilder(
       init: ChatsListController(),
       builder: (controller) {
         return SingleChildScrollView(
@@ -26,7 +25,7 @@ class PlayerChatList extends StatelessWidget {
             child: Column(
               children: [
                 ...List.generate(controller.chats.length, (int index) {
-                  ChatsList chat = controller.chats[index];
+                  Chat chat = controller.chats[index];
 
                   return GestureDetector(onTap: () {
                     // Get.to(() => ChatScreen(

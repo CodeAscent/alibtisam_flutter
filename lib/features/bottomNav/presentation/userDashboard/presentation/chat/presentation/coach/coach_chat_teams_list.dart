@@ -52,7 +52,7 @@ class _CoachChatTeamListState extends State<CoachChatTeamList>
                 child: Column(
                   children: [
                     ...List.generate(controller.chats.length, (int index) {
-                      ChatsList chat = controller.chats[index];
+                      Chat chat = controller.chats[index];
 
                       return Builder(
                         builder: (context) {

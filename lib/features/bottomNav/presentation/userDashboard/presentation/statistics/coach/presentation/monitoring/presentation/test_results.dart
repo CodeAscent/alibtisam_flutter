@@ -1,3 +1,4 @@
+import 'package:alibtisam_flutter/features/bottomNav/controller/selected_player.dart';
 import 'package:alibtisam_flutter/features/bottomNav/controller/user.dart';
 import 'package:alibtisam_flutter/features/bottomNav/presentation/userDashboard/presentation/statistics/controller/monitoring.dart';
 import 'package:alibtisam_flutter/helper/common/widgets/custom_gradient_button.dart';
@@ -19,6 +20,8 @@ class TestResults extends StatefulWidget {
 class _TestResultsState extends State<TestResults> {
   bool canUpdate = false;
   final userController = Get.find<UserController>();
+  SelectedPlayerController selectedPlayerController =
+      Get.find<SelectedPlayerController>();
 
   @override
   Widget build(BuildContext context) {
@@ -36,7 +39,8 @@ class _TestResultsState extends State<TestResults> {
                             canUpdate = !canUpdate;
                           });
                           if (!canUpdate) {
-                            monitoringController.fetchMonitoringData();
+                            monitoringController.fetchMonitoringData(
+                                selectedPlayerController.playerId);
                           }
                         },
                         child: Text(
@@ -106,8 +110,9 @@ class _TestResultsState extends State<TestResults> {
                           height: 60,
                           child: CustomGradientButton(
                               onTap: () async {
-                                await ApiRequests().updateMonitoringByPlayerId({
-                                 "readiness": {
+                                await ApiRequests().updateMonitoringByPlayerId(
+                                    selectedPlayerController.playerId, {
+                                  "readiness": {
                                     "hydration": monitoringController
                                         .monitoring!.readiness.hydration,
                                     "stress": monitoringController
@@ -145,7 +150,8 @@ class _TestResultsState extends State<TestResults> {
                                   },
                                 });
 
-                                monitoringController.fetchMonitoringData();
+                                monitoringController.fetchMonitoringData(
+                                    selectedPlayerController.playerId);
                                 setState(() {
                                   canUpdate = false;
                                 });

@@ -15,7 +15,7 @@ class ChatScreen extends StatefulWidget {
   final String chatId;
   final String name;
   final String image;
-  final ChatsList chatInfo;
+  final Chat chatInfo;
   const ChatScreen(
       {super.key,
       required this.chatId,
@@ -69,7 +69,11 @@ class _ChatScreenState extends State<ChatScreen> {
       appBar: AppBar(
         title: GestureDetector(
           onTap: () {
-            // Get.to(() => ChatAbout());
+            Get.to(() => ChatAbout(
+                  image: widget.image,
+                  chat: widget.chatInfo,
+                  name: widget.name,
+                ));
           },
           child: Row(
             children: [

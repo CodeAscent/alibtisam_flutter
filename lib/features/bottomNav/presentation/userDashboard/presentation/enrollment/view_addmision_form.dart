@@ -4,9 +4,9 @@ import 'package:alibtisam_flutter/helper/utils/custom_date_formatter.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
-class ViewAddmisionForm extends StatelessWidget {
+class ViewPlayerByUserModel extends StatelessWidget {
   final UserModel player;
-  const ViewAddmisionForm({super.key, required this.player});
+  const ViewPlayerByUserModel({super.key, required this.player});
 
   @override
   Widget build(BuildContext context) {

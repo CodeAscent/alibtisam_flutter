@@ -56,7 +56,7 @@ class _GuardianAllFormsState extends State<GuardianAllForms> {
                             UserModel player = snapshot.data![index + 1];
                             return GestureDetector(
                               onTap: () {
-                                Get.to(() => ViewAddmisionForm(
+                                Get.to(() => ViewPlayerByUserModel(
                                       player: player,
                                     ));
                               },

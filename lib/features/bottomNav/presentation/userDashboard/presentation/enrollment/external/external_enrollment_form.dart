@@ -399,7 +399,7 @@ class _ExternalEnrollmentFormState extends State<ExternalEnrollmentForm> {
                               print('-------------------->');
                               saveToken(res['token'], '');
                               UserModel? user = await ApiRequests().getUser();
-                              Get.off(() => ViewAddmisionForm(
+                              Get.off(() => ViewPlayerByUserModel(
                                     player: user!,
                                   ));
                             } else {

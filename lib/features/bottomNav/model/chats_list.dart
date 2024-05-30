@@ -3,7 +3,7 @@ import 'dart:convert';
 
 import 'package:alibtisam_flutter/features/bottomNav/model/user.dart';
 
-class ChatsList {
+class Chat {
   final String? id;
   final String? name;
   final String? profilePic;
@@ -12,8 +12,8 @@ class ChatsList {
   final String? lastMessage;
   final String? updatedAt;
 
-  ChatsList(this.id, this.name, this.profilePic, this.isGroup,
-      this.participants, this.lastMessage, this.updatedAt);
+  Chat(this.id, this.name, this.profilePic, this.isGroup, this.participants,
+      this.lastMessage, this.updatedAt);
 
   Map<String, dynamic> toMap() {
     return <String, dynamic>{
@@ -27,8 +27,8 @@ class ChatsList {
     };
   }
 
-  factory ChatsList.fromMap(Map<String, dynamic> map) {
-    return ChatsList(
+  factory Chat.fromMap(Map<String, dynamic> map) {
+    return Chat(
       map['_id'] ?? '',
       map['name'] ?? '',
       map['profilePic'] ?? '',
@@ -45,6 +45,6 @@ class ChatsList {
 
   String toJson() => json.encode(toMap());
 
-  factory ChatsList.fromJson(String source) =>
-      ChatsList.fromMap(json.decode(source) as Map<String, dynamic>);
+  factory Chat.fromJson(String source) =>
+      Chat.fromMap(json.decode(source) as Map<String, dynamic>);
 }

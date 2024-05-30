@@ -1,11 +1,13 @@
 import 'dart:convert';
 
 import 'package:alibtisam_flutter/features/bottomNav/bottom_nav.dart';
+import 'package:alibtisam_flutter/features/bottomNav/controller/selected_player.dart';
 import 'package:alibtisam_flutter/features/bottomNav/controller/user.dart';
 import 'package:alibtisam_flutter/features/bottomNav/model/chat_message.dart';
 import 'package:alibtisam_flutter/features/bottomNav/model/chats_list.dart';
 import 'package:alibtisam_flutter/features/bottomNav/model/dashboard.dart';
 import 'package:alibtisam_flutter/features/bottomNav/model/game.dart';
+import 'package:alibtisam_flutter/features/bottomNav/model/team.dart';
 import 'package:alibtisam_flutter/features/bottomNav/model/user.dart';
 import 'package:alibtisam_flutter/features/bottomNav/presentation/settings/model/about.dart';
 import 'package:alibtisam_flutter/features/bottomNav/presentation/userDashboard/presentation/events/model/events_model.dart';
@@ -19,6 +21,7 @@ import 'package:alibtisam_flutter/network/http_wrapper.dart';
 import 'package:get/get.dart';
 import 'package:http/http.dart' as http;
 import 'package:image_picker/image_picker.dart';
+import 'package:logger/web.dart';
 
 class ApiRequests {
   Future<List<Events>> allEvents(String filter) async {
@@ -284,8 +287,12 @@ class ApiRequests {
       }
       final res =
           await HttpWrapper.multipartRequest(url, files, fields: fields);
-      final data = await res.stream.bytesToString();
-      return jsonDecode(data);
+      final response = await res.stream.bytesToString();
+      final data = jsonDecode(response);
+      if (data["success"] == false) {
+        customSnackbar(message: data["error"]);
+      }
+      return data;
     } on ServerException catch (e) {
       await LoadingManager.endLoading();
       customSnackbar(message: e.message);
@@ -351,14 +358,14 @@ class ApiRequests {
     return null;
   }
 
-  Future<List<ChatsList>?> getChatsList() async {
+  Future<List<Chat>?> getChatsList() async {
     try {
-      List<ChatsList> chats = [];
+      List<Chat> chats = [];
       final res = await HttpWrapper.getRequest(get_chats_list);
       final data = jsonDecode(res.body);
       if (res.statusCode == 200) {
         for (var chat in data['chats']) {
-          chats.add(ChatsList.fromMap(chat));
+          chats.add(Chat.fromMap(chat));
         }
         return chats;
       }
@@ -381,11 +388,12 @@ class ApiRequests {
     return null;
   }
 
-  Future<MonitoringModel?> getMonitoringByPlayerId() async {
+  Future<MonitoringModel?> getMonitoringByPlayerId(String playerId) async {
     try {
-      final res = await HttpWrapper.getRequest(
-          get_monitoring_by_playerId + "7562647562636a646364636a");
+      final res =
+          await HttpWrapper.getRequest(get_monitoring_by_playerId + playerId);
       final data = jsonDecode(res.body);
+      Logger().e(data);
       if (res.statusCode == 200) {
         MonitoringModel monitoring =
             MonitoringModel.fromMap(data['monitoring']);
@@ -400,9 +408,12 @@ class ApiRequests {
 
   Future<List<MonitoringModel?>> getReportsByPlayerId() async {
     try {
+      SelectedPlayerController selectedPlayerController =
+          Get.find<SelectedPlayerController>();
+
       List<MonitoringModel> reports = [];
       final res = await HttpWrapper.getRequest(
-          get_player_reports + "7562647562636a646364636a");
+          get_player_reports + selectedPlayerController.playerId);
       final data = jsonDecode(res.body);
       if (res.statusCode == 200) {
         for (var report in data['monitoring']) {
@@ -417,11 +428,11 @@ class ApiRequests {
     return [];
   }
 
-  Future<void> updateMonitoringByPlayerId(Object body) async {
+  Future<void> updateMonitoringByPlayerId(String playerId, Object body) async {
     try {
       LoadingManager.startLoading();
       final res = await HttpWrapper.postRequest(
-          update_monitoring_by_playerId + "7562647562636a646364636a", body);
+          update_monitoring_by_playerId + playerId, body);
       final data = jsonDecode(res.body);
       customSnackbar(message: data['message']);
     } on ServerException catch (e) {
@@ -453,6 +464,24 @@ class ApiRequests {
         games.add(GameModel.fromMap(game));
       }
       return games;
+    } on ServerException catch (e) {
+      await LoadingManager.endLoading();
+      customSnackbar(message: e.message);
+    }
+    return [];
+  }
+
+  Future<List<TeamModel>> getTeams() async {
+    try {
+      List<TeamModel> teams = [];
+      final res = await HttpWrapper.getRequest(get_teams_by_coach);
+      final data = jsonDecode(res.body);
+      if (res.statusCode == 200) {
+        for (var team in data['teams']) {
+          teams.add(TeamModel.fromMap(team));
+        }
+      }
+      return teams;
     } on ServerException catch (e) {
       await LoadingManager.endLoading();
       customSnackbar(message: e.message);
