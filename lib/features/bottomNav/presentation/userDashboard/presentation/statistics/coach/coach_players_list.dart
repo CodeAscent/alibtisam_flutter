@@ -1,6 +1,7 @@
 import 'package:alibtisam_flutter/features/bottomNav/model/team.dart';
 import 'package:alibtisam_flutter/features/bottomNav/presentation/userDashboard/presentation/statistics/controller/monitoring.dart';
 import 'package:alibtisam_flutter/features/bottomNav/presentation/userDashboard/presentation/statistics/player_statistics.dart';
+import 'package:alibtisam_flutter/helper/common/widgets/custom_empty_icon.dart';
 import 'package:alibtisam_flutter/helper/common/widgets/custom_loading.dart';
 import 'package:alibtisam_flutter/helper/theme/app_colors.dart';
 import 'package:flutter/material.dart';
@@ -26,58 +27,62 @@ class _CoachPlayersListState extends State<CoachPlayersList> {
           appBar: AppBar(
             title: Text("players".tr),
           ),
-          body: SingleChildScrollView(
-            child: Column(
-              children: [
-                Padding(
-                  padding: const EdgeInsets.all(16.0),
-                  child: GridView.builder(
-                    physics: NeverScrollableScrollPhysics(),
-                    itemCount: widget.players.length,
-                    shrinkWrap: true,
-                    gridDelegate: SliverGridDelegateWithMaxCrossAxisExtent(
-                        mainAxisSpacing: 8,
-                        crossAxisSpacing: 8,
-                        mainAxisExtent: 250,
-                        maxCrossAxisExtent: 220),
-                    itemBuilder: (context, index) {
-                      return GestureDetector(
-                        onTap: () {
-                      
-
-                          Get.to(() => PlayerStatistics(playerId: widget.players[index].playerId.id,));
-                        },
-                        child: Container(
-                          decoration: BoxDecoration(
-                            color: kAppGreyColor(),
-                          ),
-                          child: Padding(
-                            padding: const EdgeInsets.all(2.0),
-                            child: Column(
-                              children: [
-                                Image.network(
-                                  widget.players[index].playerId.pic,
-                                  fit: BoxFit.cover,
-                                  height: 200,
+          body: widget.players.length == 0
+              ? CustomEmptyWidget()
+              : SingleChildScrollView(
+                  child: Column(
+                    children: [
+                      Padding(
+                        padding: const EdgeInsets.all(16.0),
+                        child: GridView.builder(
+                          physics: NeverScrollableScrollPhysics(),
+                          itemCount: widget.players.length,
+                          shrinkWrap: true,
+                          gridDelegate:
+                              SliverGridDelegateWithMaxCrossAxisExtent(
+                                  mainAxisSpacing: 8,
+                                  crossAxisSpacing: 8,
+                                  mainAxisExtent: 250,
+                                  maxCrossAxisExtent: 220),
+                          itemBuilder: (context, index) {
+                            return GestureDetector(
+                              onTap: () {
+                                Get.to(() => PlayerStatistics(
+                                      playerId:
+                                          widget.players[index].playerId.id,
+                                    ));
+                              },
+                              child: Container(
+                                decoration: BoxDecoration(
+                                  color: kAppGreyColor(),
                                 ),
-                                Spacer(),
-                                Text(widget
-                                    .players[index].playerId.name.capitalize!),
-                                Text(
-                                  widget.players[index].playerId.userName,
-                                  maxLines: 1,
+                                child: Padding(
+                                  padding: const EdgeInsets.all(2.0),
+                                  child: Column(
+                                    children: [
+                                      Image.network(
+                                        widget.players[index].playerId.pic,
+                                        fit: BoxFit.cover,
+                                        height: 200,
+                                      ),
+                                      Spacer(),
+                                      Text(widget.players[index].playerId.name
+                                          .capitalize!),
+                                      Text(
+                                        widget.players[index].playerId.userName,
+                                        maxLines: 1,
+                                      ),
+                                    ],
+                                  ),
                                 ),
-                              ],
-                            ),
-                          ),
+                              ),
+                            );
+                          },
                         ),
-                      );
-                    },
+                      )
+                    ],
                   ),
                 )
-              ],
-            ),
-          )
           // FutureBuilder(
           //   future: AppApi()
           //       .getPlayersByTeamId(teamId: widget.teamsModel.id.toString()),

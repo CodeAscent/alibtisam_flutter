@@ -7,6 +7,7 @@ import 'package:alibtisam_flutter/features/bottomNav/presentation/userDashboard/
 import 'package:alibtisam_flutter/features/bottomNav/presentation/userDashboard/presentation/chat/presentation/coach/teams_list.dart';
 import 'package:alibtisam_flutter/features/bottomNav/presentation/userDashboard/presentation/chat/widgets/custom_chat_cards.dart';
 import 'package:alibtisam_flutter/features/bottomNav/presentation/userDashboard/presentation/statistics/coach/coach_players_list.dart';
+import 'package:alibtisam_flutter/helper/common/widgets/custom_empty_icon.dart';
 import 'package:alibtisam_flutter/helper/common/widgets/custom_gradient_button.dart';
 import 'package:alibtisam_flutter/helper/common/widgets/custom_loading.dart';
 import 'package:alibtisam_flutter/helper/common/widgets/custom_tab_bar.dart';
@@ -46,52 +47,56 @@ class _CoachChatTeamListState extends State<CoachChatTeamList>
         body: GetBuilder(
           init: ChatsListController(),
           builder: (controller) {
-            return SingleChildScrollView(
-              child: Padding(
-                padding: const EdgeInsets.all(8.0),
-                child: Column(
-                  children: [
-                    ...List.generate(controller.chats.length, (int index) {
-                      Chat chat = controller.chats[index];
+            return controller.chats.length == 0
+                ? CustomEmptyWidget()
+                : SingleChildScrollView(
+                    child: Padding(
+                      padding: const EdgeInsets.all(8.0),
+                      child: Column(
+                        children: [
+                          ...List.generate(controller.chats.length,
+                              (int index) {
+                            Chat chat = controller.chats[index];
 
-                      return Builder(
-                        builder: (context) {
-                          String chatName = '';
-                          String profilePic = '';
-                          if (!chat.isGroup!) {
-                            for (var user in chat.participants!) {
-                              if (user.id != userController.user!.id) {
-                                chatName = user.name;
-                                profilePic = user.pic;
-                              }
-                            }
-                          } else {
-                            chatName = chat.name!;
-                            profilePic = chat.profilePic!;
-                          }
-                          return GestureDetector(
-                            onTap: () {
-                              Get.to(() => ChatScreen(
-                                    chatId: chat.id!,
-                                    name: chatName,
+                            return Builder(
+                              builder: (context) {
+                                String chatName = '';
+                                String profilePic = '';
+                                if (!chat.isGroup!) {
+                                  for (var user in chat.participants!) {
+                                    if (user.id != userController.user!.id) {
+                                      chatName = user.name;
+                                      profilePic = user.pic;
+                                    }
+                                  }
+                                } else {
+                                  chatName = chat.name!;
+                                  profilePic = chat.profilePic!;
+                                }
+                                return GestureDetector(
+                                  onTap: () {
+                                    Get.to(() => ChatScreen(
+                                          chatId: chat.id!,
+                                          name: chatName,
+                                          image: profilePic,
+                                          chatInfo: chat,
+                                        ));
+                                  },
+                                  child: CustomChatCards(
+                                    label: chatName,
+                                    lastMessage: chat.lastMessage ?? '',
+                                    time: customChatTimeFormat(
+                                        chat.updatedAt ?? ''),
                                     image: profilePic,
-                                    chatInfo: chat,
-                                  ));
-                            },
-                            child: CustomChatCards(
-                              label: chatName,
-                              lastMessage: chat.lastMessage ?? '',
-                              time: customChatTimeFormat(chat.updatedAt ?? ''),
-                              image: profilePic,
-                            ),
-                          );
-                        },
-                      );
-                    })
-                  ],
-                ),
-              ),
-            );
+                                  ),
+                                );
+                              },
+                            );
+                          })
+                        ],
+                      ),
+                    ),
+                  );
           },
         ),
 

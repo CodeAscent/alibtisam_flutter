@@ -29,6 +29,7 @@ class _MeasurementTabBarState extends State<MeasurementTabBar>
           title: Text("measurementRequest".tr),
         ),
         body: CustomTabBar(
+          
           tabController: _tabController,
           customTabs: [
             Tab(

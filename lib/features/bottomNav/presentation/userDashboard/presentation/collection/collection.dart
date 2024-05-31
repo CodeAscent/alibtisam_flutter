@@ -1,5 +1,6 @@
 import 'package:alibtisam_flutter/features/bottomNav/controller/games.dart';
 import 'package:alibtisam_flutter/features/bottomNav/model/collection.dart';
+import 'package:alibtisam_flutter/helper/common/widgets/custom_empty_icon.dart';
 import 'package:alibtisam_flutter/helper/common/widgets/custom_loading.dart';
 import 'package:alibtisam_flutter/helper/common/widgets/custom_tab_bar.dart';
 import 'package:alibtisam_flutter/helper/theme/app_colors.dart';
@@ -57,105 +58,122 @@ class _CollectionScreenState extends State<CollectionScreen>
                               ApiRequests().getCollectionsByGameFilter(game.id),
                           builder: (context, snapshot) {
                             if (snapshot.hasData) {
-                              return SafeArea(
-                                child: SingleChildScrollView(
-                                    child: Padding(
-                                  padding: EdgeInsets.all(16),
-                                  child: Column(children: [
-                                    Row(
-                                      children: [
-                                        // Spacer(),
-                                        // TextButton(
-                                        //     onPressed: () {
-                                        //       Get.generalDialog(
-                                        //         pageBuilder: (context, animation,
-                                        //                 secondaryAnimation) =>
-                                        //             Scaffold(),
-                                        //       );
-                                        //     },`
-                                        //     child: Text("Filter")),
-                                      ],
-                                    ),
-                                    SizedBox(
-                                      height: 10,
-                                    ),
-                                    GridView.builder(
-                                      shrinkWrap: true,
-                                      itemCount: snapshot.data.length,
-                                      physics: NeverScrollableScrollPhysics(),
-                                      gridDelegate: SliverQuiltedGridDelegate(
-                                        crossAxisCount: 4,
-                                        mainAxisSpacing: 4,
-                                        crossAxisSpacing: 4,
-                                        repeatPattern:
-                                            QuiltedGridRepeatPattern.inverted,
-                                        pattern: [
-                                          QuiltedGridTile(2, 2),
-                                          QuiltedGridTile(1, 1),
-                                          QuiltedGridTile(1, 1),
-                                          QuiltedGridTile(1, 2),
-                                        ],
-                                      ),
-                                      itemBuilder:
-                                          (BuildContext context, int index) {
-                                        Collection collection =
-                                            Collection.fromMap(
-                                                snapshot.data[index]);
-                                        return GestureDetector(
-                                          onTap: () {
-                                            if (collection.type == 'video') {
-                                              collection.media.play();
-                                              showDialog(
-                                                  context: context,
-                                                  builder: (context) => Dialog(
-                                                        child: Container(
-                                                          height: 200,
-                                                          width: 200,
-                                                          color: primaryColor(),
-                                                          child: VideoPlayer(
-                                                              collection.media),
-                                                        ),
-                                                      )).then((v) =>
-                                                  collection.media.pause());
-                                            } else {
-                                              showDialog(
-                                                  context: context,
-                                                  builder: (context) => Dialog(
-                                                        child: Container(
-                                                          height: 200,
-                                                          width: 200,
-                                                          color: primaryColor(),
-                                                          child: Image.network(
-                                                            collection.media,
-                                                            fit: BoxFit.cover,
-                                                          ),
-                                                        ),
-                                                      ));
-                                            }
-                                          },
-                                          child: Container(
-                                            child: collection.type == 'image'
-                                                ? Image.network(
-                                                    collection.media,
-                                                    fit: BoxFit.cover,
-                                                  )
-                                                : Builder(builder: (context) {
-                                                    collection.media
-                                                        .initialize();
-                                                    return VideoPlayer(
-                                                        collection.media);
-                                                  }),
-                                            color: primaryColor(),
+                              return snapshot.data.length == 0
+                                  ? CustomEmptyWidget()
+                                  : SafeArea(
+                                      child: SingleChildScrollView(
+                                          child: Padding(
+                                        padding: EdgeInsets.all(16),
+                                        child: Column(children: [
+                                          Row(
+                                            children: [
+                                              // Spacer(),
+                                              // TextButton(
+                                              //     onPressed: () {
+                                              //       Get.generalDialog(
+                                              //         pageBuilder: (context, animation,
+                                              //                 secondaryAnimation) =>
+                                              //             Scaffold(),
+                                              //       );
+                                              //     },`
+                                              //     child: Text("Filter")),
+                                            ],
                                           ),
-                                        );
-                                      },
-                                    ),
-                                    SizedBox(
-                                      height: 20,
-                                    ),
-                                  ]),
-                                )),
-                              );
+                                          SizedBox(
+                                            height: 10,
+                                          ),
+                                          GridView.builder(
+                                            shrinkWrap: true,
+                                            itemCount: snapshot.data.length,
+                                            physics:
+                                                NeverScrollableScrollPhysics(),
+                                            gridDelegate:
+                                                SliverQuiltedGridDelegate(
+                                              crossAxisCount: 4,
+                                              mainAxisSpacing: 4,
+                                              crossAxisSpacing: 4,
+                                              repeatPattern:
+                                                  QuiltedGridRepeatPattern
+                                                      .inverted,
+                                              pattern: [
+                                                QuiltedGridTile(2, 2),
+                                                QuiltedGridTile(1, 1),
+                                                QuiltedGridTile(1, 1),
+                                                QuiltedGridTile(1, 2),
+                                              ],
+                                            ),
+                                            itemBuilder: (BuildContext context,
+                                                int index) {
+                                              Collection collection =
+                                                  Collection.fromMap(
+                                                      snapshot.data[index]);
+                                              return GestureDetector(
+                                                onTap: () {
+                                                  if (collection.type ==
+                                                      'video') {
+                                                    collection.media.play();
+                                                    showDialog(
+                                                        context: context,
+                                                        builder: (context) =>
+                                                            Dialog(
+                                                              child: Container(
+                                                                height: 200,
+                                                                width: 200,
+                                                                color:
+                                                                    primaryColor(),
+                                                                child: VideoPlayer(
+                                                                    collection
+                                                                        .media),
+                                                              ),
+                                                            )).then((v) =>
+                                                        collection.media
+                                                            .pause());
+                                                  } else {
+                                                    showDialog(
+                                                        context: context,
+                                                        builder: (context) =>
+                                                            Dialog(
+                                                              child: Container(
+                                                                height: 200,
+                                                                width: 200,
+                                                                color:
+                                                                    primaryColor(),
+                                                                child: Image
+                                                                    .network(
+                                                                  collection
+                                                                      .media,
+                                                                  fit: BoxFit
+                                                                      .cover,
+                                                                ),
+                                                              ),
+                                                            ));
+                                                  }
+                                                },
+                                                child: Container(
+                                                  child: collection.type ==
+                                                          'image'
+                                                      ? Image.network(
+                                                          collection.media,
+                                                          fit: BoxFit.cover,
+                                                        )
+                                                      : Builder(
+                                                          builder: (context) {
+                                                          collection.media
+                                                              .initialize();
+                                                          return VideoPlayer(
+                                                              collection.media);
+                                                        }),
+                                                  color: primaryColor(),
+                                                ),
+                                              );
+                                            },
+                                          ),
+                                          SizedBox(
+                                            height: 20,
+                                          ),
+                                        ]),
+                                      )),
+                                    );
                             }
                             return Center(
                               child: CircularProgressIndicator(),

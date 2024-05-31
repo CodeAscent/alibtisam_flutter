@@ -4,6 +4,7 @@ import 'package:alibtisam_flutter/features/bottomNav/model/dashboard.dart';
 import 'package:alibtisam_flutter/features/bottomNav/presentation/userDashboard/presentation/events/controller/event_navigation.dart';
 import 'package:alibtisam_flutter/helper/common/widgets/custom_dashboard_card.dart';
 import 'package:alibtisam_flutter/helper/common/widgets/custom_loading.dart';
+import 'package:alibtisam_flutter/helper/theme/app_colors.dart';
 import 'package:alibtisam_flutter/network/api_requests.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
@@ -31,46 +32,55 @@ class _UserDashboardState extends State<UserDashboard> {
   Widget build(BuildContext context) {
     return CustomLoader(
       child: Scaffold(
-        body: SingleChildScrollView(
-          child: SafeArea(
-              child: Padding(
-            padding: const EdgeInsets.all(16.0),
-            child: Column(
-              children: [
-                SizedBox(height: 20),
-                GetBuilder(
-                  init: DashboardController(),
-                  builder: (controller) {
-                    return ListView.builder(
-                      shrinkWrap: true,
-                      itemCount: controller.dashboard.length,
-                      physics: NeverScrollableScrollPhysics(),
-                      itemBuilder: (context, index) {
-                        DashboardModel dashboard = controller.dashboard[index];
-                        return GestureDetector(
-                          onTap: () {
-                            print(dashboard.route);
-                            if (dashboard.name == "Events") {
-                              eventNavigationController
-                                  .navigatingFromSplash(false);
-                            }
-                            Get.toNamed(dashboard.route)!.then((_) {
-                              userController.fetchUser();
-                              dashboardController.fetchDashboardItems();
-                            });
-                          },
-                          child: CustomDashboardCard(
-                            label: dashboard.name,
-                            icon: dashboard.icon,
-                          ),
-                        );
-                      },
-                    );
-                  },
-                )
-              ],
-            ),
-          )),
+        body: RefreshIndicator(
+          color: primaryColor(),
+          triggerMode: RefreshIndicatorTriggerMode.anywhere,
+          onRefresh: () async {
+            dashboardController.fetchDashboardItems();
+          },
+          child: SingleChildScrollView(
+            child: SafeArea(
+                child: Padding(
+              padding: const EdgeInsets.all(16.0),
+              child: Column(
+                children: [
+                  SizedBox(height: 20),
+                  GetBuilder(
+                    init: DashboardController(),
+                    builder: (controller) {
+                      return ListView.builder(
+                        shrinkWrap: true,
+                        itemCount: controller.dashboard.length,
+                        physics: NeverScrollableScrollPhysics(),
+                        itemBuilder: (context, index) {
+                          DashboardModel dashboard =
+                              controller.dashboard[index];
+                          return GestureDetector(
+                            onTap: () {
+                              print(dashboard.route);
+                              if (dashboard.name == "Events") {
+                                eventNavigationController
+                                    .navigatingFromSplash(false);
+                              }
+                              Get.toNamed(dashboard.route)!.then((_) {
+                                userController.fetchUser();
+                                dashboardController.fetchDashboardItems();
+                              });
+                            },
+                            child: CustomDashboardCard(
+                              label: dashboard.name,
+                              icon: dashboard.icon,
+                            ),
+                          );
+                        },
+                      );
+                    },
+                  ),
+                  SizedBox(height: 250),
+                ],
+              ),
+            )),
+          ),
         ),
       ),
     );

@@ -1,8 +1,9 @@
 import 'package:alibtisam_flutter/helper/theme/app_colors.dart';
+import 'package:alibtisam_flutter/helper/utils/loading_manager.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
-class CustomTabBar extends StatelessWidget {
+class CustomTabBar extends StatefulWidget {
   const CustomTabBar({
     super.key,
     required TabController tabController,
@@ -13,6 +14,23 @@ class CustomTabBar extends StatelessWidget {
   final TabController _tabController;
   final List<Widget> customTabs;
   final List<Widget> tabViewScreens;
+
+  @override
+  State<CustomTabBar> createState() => _CustomTabBarState();
+}
+
+class _CustomTabBarState extends State<CustomTabBar> {
+  @override
+  void initState() {
+    super.initState();
+  }
+
+  @override
+  void dispose() {
+    super.dispose();
+    widget._tabController.dispose();
+  }
+
   @override
   Widget build(BuildContext context) {
     return Column(
@@ -23,8 +41,10 @@ class CustomTabBar extends StatelessWidget {
         Padding(
           padding: const EdgeInsets.all(8.0),
           child: TabBar(
+            onTap: (value) {},
             labelPadding: EdgeInsets.symmetric(
-                horizontal: tabViewScreens.length <= 2 ? 50 : 20, vertical: 10),
+                horizontal: widget.tabViewScreens.length <= 2 ? 50 : 20,
+                vertical: 10),
             tabAlignment: TabAlignment.center,
             isScrollable: true,
             dividerHeight: 0,
@@ -35,13 +55,14 @@ class CustomTabBar extends StatelessWidget {
             indicator: BoxDecoration(
                 gradient: kGradientColor(),
                 borderRadius: BorderRadius.circular(20)),
-            controller: _tabController,
-            tabs: customTabs,
+            controller: widget._tabController,
+            tabs: widget.customTabs,
           ),
         ),
         Expanded(
-          child:
-              TabBarView(controller: _tabController, children: tabViewScreens),
+          child: TabBarView(
+              controller: widget._tabController,
+              children: widget.tabViewScreens),
         )
       ],
     );
