@@ -1,10 +1,10 @@
-import 'package:alibtisam_flutter/helper/common/widgets/custom_gradient_button.dart';
-import 'package:alibtisam_flutter/helper/common/widgets/custom_loading.dart';
-import 'package:alibtisam_flutter/helper/theme/app_colors.dart';
-import 'package:alibtisam_flutter/network/api_requests.dart';
+import 'package:SNP/helper/common/widgets/custom_gradient_button.dart';
+import 'package:SNP/helper/common/widgets/custom_loading.dart';
+import 'package:SNP/helper/theme/app_colors.dart';
+import 'package:SNP/network/api_requests.dart';
 import 'package:flutter/material.dart';
-import 'package:alibtisam_flutter/features/signup&login/widgets/logo_&_arabic_text.dart';
-import 'package:alibtisam_flutter/helper/common/widgets/custom_text_field.dart';
+import 'package:SNP/features/signup&login/widgets/logo_&_arabic_text.dart';
+import 'package:SNP/helper/common/widgets/custom_text_field.dart';
 import 'package:get/get.dart';
 
 class SignUpScreen extends StatefulWidget {

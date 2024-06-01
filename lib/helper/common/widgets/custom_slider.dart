@@ -1,5 +1,5 @@
 // ignore: must_be_immutable
-import 'package:alibtisam_flutter/helper/theme/app_colors.dart';
+import 'package:SNP/helper/theme/app_colors.dart';
 import 'package:flutter/material.dart';
 
 // ignore: must_be_immutable

@@ -1,5 +1,5 @@
-import 'package:alibtisam_flutter/features/bottomNav/model/dashboard.dart';
-import 'package:alibtisam_flutter/network/api_requests.dart';
+import 'package:SNP/features/bottomNav/model/dashboard.dart';
+import 'package:SNP/network/api_requests.dart';
 import 'package:get/get.dart';
 
 class DashboardController extends GetxController {

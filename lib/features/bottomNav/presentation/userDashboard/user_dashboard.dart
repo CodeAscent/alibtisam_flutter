@@ -1,11 +1,11 @@
-import 'package:alibtisam_flutter/features/bottomNav/controller/dashboard.dart';
-import 'package:alibtisam_flutter/features/bottomNav/controller/user.dart';
-import 'package:alibtisam_flutter/features/bottomNav/model/dashboard.dart';
-import 'package:alibtisam_flutter/features/bottomNav/presentation/userDashboard/presentation/events/controller/event_navigation.dart';
-import 'package:alibtisam_flutter/helper/common/widgets/custom_dashboard_card.dart';
-import 'package:alibtisam_flutter/helper/common/widgets/custom_loading.dart';
-import 'package:alibtisam_flutter/helper/theme/app_colors.dart';
-import 'package:alibtisam_flutter/network/api_requests.dart';
+import 'package:SNP/features/bottomNav/controller/dashboard.dart';
+import 'package:SNP/features/bottomNav/controller/user.dart';
+import 'package:SNP/features/bottomNav/model/dashboard.dart';
+import 'package:SNP/features/bottomNav/presentation/userDashboard/presentation/events/controller/event_navigation.dart';
+import 'package:SNP/helper/common/widgets/custom_dashboard_card.dart';
+import 'package:SNP/helper/common/widgets/custom_loading.dart';
+import 'package:SNP/helper/theme/app_colors.dart';
+import 'package:SNP/network/api_requests.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 

@@ -1,5 +1,5 @@
-import 'package:alibtisam_flutter/helper/common/widgets/custom_gradient_button.dart';
-import 'package:alibtisam_flutter/helper/theme/app_colors.dart';
+import 'package:SNP/helper/common/widgets/custom_gradient_button.dart';
+import 'package:SNP/helper/theme/app_colors.dart';
 import 'package:flutter/material.dart';
 import 'package:url_launcher/url_launcher.dart';
 

@@ -1,4 +1,4 @@
-import 'package:alibtisam_flutter/helper/common/widgets/custom_loading.dart';
+import 'package:SNP/helper/common/widgets/custom_loading.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
@@ -38,7 +38,6 @@ class _CoachAttendanceHistoryState extends State<CoachAttendanceHistory> {
           surfaceTintColor: Colors.white,
           backgroundColor: Colors.white,
           automaticallyImplyLeading: false,
-          
         ),
         body: SingleChildScrollView(
             child: Column(

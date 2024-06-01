@@ -1,7 +1,7 @@
-import 'package:alibtisam_flutter/features/bottomNav/controller/user.dart';
-import 'package:alibtisam_flutter/features/bottomNav/presentation/userDashboard/presentation/store/coach/coach_store.dart';
-import 'package:alibtisam_flutter/features/bottomNav/presentation/userDashboard/presentation/store/external/external_store.dart';
-import 'package:alibtisam_flutter/features/bottomNav/presentation/userDashboard/presentation/store/internal/internal_store.dart';
+import 'package:SNP/features/bottomNav/controller/user.dart';
+import 'package:SNP/features/bottomNav/presentation/userDashboard/presentation/store/coach/coach_store.dart';
+import 'package:SNP/features/bottomNav/presentation/userDashboard/presentation/store/external/external_store.dart';
+import 'package:SNP/features/bottomNav/presentation/userDashboard/presentation/store/internal/internal_store.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 

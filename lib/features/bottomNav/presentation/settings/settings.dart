@@ -1,14 +1,14 @@
-import 'package:alibtisam_flutter/Localization/switch.dart';
-import 'package:alibtisam_flutter/features/bottomNav/controller/user.dart';
-import 'package:alibtisam_flutter/features/bottomNav/presentation/settings/presentation/about.dart';
-import 'package:alibtisam_flutter/features/bottomNav/presentation/settings/presentation/help_support.dart';
-import 'package:alibtisam_flutter/features/bottomNav/presentation/settings/presentation/switch_user.dart';
-import 'package:alibtisam_flutter/helper/common/constants/switch_theme_dialog.dart';
-import 'package:alibtisam_flutter/features/bottomNav/presentation/settings/presentation/profile.dart';
-import 'package:alibtisam_flutter/features/bottomNav/presentation/settings/widgets/custom_settings_card.dart';
-import 'package:alibtisam_flutter/helper/common/constants/logout_user.dart';
-import 'package:alibtisam_flutter/helper/common/widgets/custom_loading.dart';
-import 'package:alibtisam_flutter/helper/utils/loading_manager.dart';
+import 'package:SNP/Localization/switch.dart';
+import 'package:SNP/features/bottomNav/controller/user.dart';
+import 'package:SNP/features/bottomNav/presentation/settings/presentation/about.dart';
+import 'package:SNP/features/bottomNav/presentation/settings/presentation/help_support.dart';
+import 'package:SNP/features/bottomNav/presentation/settings/presentation/switch_user.dart';
+import 'package:SNP/helper/common/constants/switch_theme_dialog.dart';
+import 'package:SNP/features/bottomNav/presentation/settings/presentation/profile.dart';
+import 'package:SNP/features/bottomNav/presentation/settings/widgets/custom_settings_card.dart';
+import 'package:SNP/helper/common/constants/logout_user.dart';
+import 'package:SNP/helper/common/widgets/custom_loading.dart';
+import 'package:SNP/helper/utils/loading_manager.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 

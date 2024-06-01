@@ -1,6 +1,6 @@
-import 'package:alibtisam_flutter/features/bottomNav/model/user.dart';
-import 'package:alibtisam_flutter/helper/utils/custom_snackbar.dart';
-import 'package:alibtisam_flutter/network/api_requests.dart';
+import 'package:SNP/features/bottomNav/model/user.dart';
+import 'package:SNP/helper/utils/custom_snackbar.dart';
+import 'package:SNP/network/api_requests.dart';
 import 'package:get/get.dart';
 
 class UserController extends GetxController {

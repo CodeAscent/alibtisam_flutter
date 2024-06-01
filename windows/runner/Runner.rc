@@ -90,12 +90,12 @@ BEGIN
         BLOCK "040904e4"
         BEGIN
             VALUE "CompanyName", "com." "\0"
-            VALUE "FileDescription", "alibtisam_flutter" "\0"
+            VALUE "FileDescription", "SNP" "\0"
             VALUE "FileVersion", VERSION_AS_STRING "\0"
-            VALUE "InternalName", "alibtisam_flutter" "\0"
+            VALUE "InternalName", "SNP" "\0"
             VALUE "LegalCopyright", "Copyright (C) 2024 com.. All rights reserved." "\0"
-            VALUE "OriginalFilename", "alibtisam_flutter.exe" "\0"
-            VALUE "ProductName", "alibtisam_flutter" "\0"
+            VALUE "OriginalFilename", "SNP.exe" "\0"
+            VALUE "ProductName", "SNP" "\0"
             VALUE "ProductVersion", VERSION_AS_STRING "\0"
         END
     END

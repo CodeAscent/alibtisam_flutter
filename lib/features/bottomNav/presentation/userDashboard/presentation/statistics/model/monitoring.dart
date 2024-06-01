@@ -1,9 +1,9 @@
 // ignore_for_file: public_member_api_docs, sort_constructors_first
 import 'dart:convert';
 
-import 'package:alibtisam_flutter/features/bottomNav/presentation/userDashboard/presentation/statistics/model/readiness.dart';
-import 'package:alibtisam_flutter/features/bottomNav/presentation/userDashboard/presentation/statistics/model/test_results.dart';
-import 'package:alibtisam_flutter/features/bottomNav/presentation/userDashboard/presentation/statistics/model/training_load.dart';
+import 'package:SNP/features/bottomNav/presentation/userDashboard/presentation/statistics/model/readiness.dart';
+import 'package:SNP/features/bottomNav/presentation/userDashboard/presentation/statistics/model/test_results.dart';
+import 'package:SNP/features/bottomNav/presentation/userDashboard/presentation/statistics/model/training_load.dart';
 
 class MonitoringModel {
   final String playerId;

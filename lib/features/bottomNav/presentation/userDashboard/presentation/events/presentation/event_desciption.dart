@@ -1,12 +1,12 @@
 // ignore_for_file: deprecated_member_use
 
-import 'package:alibtisam_flutter/features/bottomNav/presentation/userDashboard/presentation/events/controller/event_navigation.dart';
-import 'package:alibtisam_flutter/features/bottomNav/presentation/userDashboard/presentation/events/model/events_model.dart';
-import 'package:alibtisam_flutter/features/bottomNav/presentation/userDashboard/presentation/events/presentation/events.dart';
-import 'package:alibtisam_flutter/features/bottomNav/presentation/userDashboard/presentation/events/widgets/feedPlayer/feed_player.dart';
-import 'package:alibtisam_flutter/helper/common/widgets/custom_loading.dart';
-import 'package:alibtisam_flutter/helper/utils/custom_date_formatter.dart';
-import 'package:alibtisam_flutter/helper/common/widgets/custom_pod_player.dart';
+import 'package:SNP/features/bottomNav/presentation/userDashboard/presentation/events/controller/event_navigation.dart';
+import 'package:SNP/features/bottomNav/presentation/userDashboard/presentation/events/model/events_model.dart';
+import 'package:SNP/features/bottomNav/presentation/userDashboard/presentation/events/presentation/events.dart';
+import 'package:SNP/features/bottomNav/presentation/userDashboard/presentation/events/widgets/feedPlayer/feed_player.dart';
+import 'package:SNP/helper/common/widgets/custom_loading.dart';
+import 'package:SNP/helper/utils/custom_date_formatter.dart';
+import 'package:SNP/helper/common/widgets/custom_pod_player.dart';
 import 'package:carousel_slider/carousel_slider.dart';
 import 'package:cupertino_will_pop_scope/cupertino_will_pop_scope.dart';
 import 'package:flutter/material.dart';

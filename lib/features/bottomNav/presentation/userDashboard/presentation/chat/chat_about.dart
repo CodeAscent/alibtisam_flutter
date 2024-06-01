@@ -1,8 +1,8 @@
-import 'package:alibtisam_flutter/features/bottomNav/controller/user.dart';
-import 'package:alibtisam_flutter/features/bottomNav/model/chats_list.dart';
-import 'package:alibtisam_flutter/features/bottomNav/model/user.dart';
-import 'package:alibtisam_flutter/features/bottomNav/presentation/userDashboard/presentation/enrollment/view_addmision_form.dart';
-import 'package:alibtisam_flutter/helper/theme/app_colors.dart';
+import 'package:SNP/features/bottomNav/controller/user.dart';
+import 'package:SNP/features/bottomNav/model/chats_list.dart';
+import 'package:SNP/features/bottomNav/model/user.dart';
+import 'package:SNP/features/bottomNav/presentation/userDashboard/presentation/enrollment/view_addmision_form.dart';
+import 'package:SNP/helper/theme/app_colors.dart';
 
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';

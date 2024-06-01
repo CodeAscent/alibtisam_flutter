@@ -1,6 +1,6 @@
-import 'package:alibtisam_flutter/features/bottomNav/presentation/settings/controller/organization.dart';
-import 'package:alibtisam_flutter/helper/common/widgets/custom_loading.dart';
-import 'package:alibtisam_flutter/helper/utils/custom_date_formatter.dart';
+import 'package:SNP/features/bottomNav/presentation/settings/controller/organization.dart';
+import 'package:SNP/helper/common/widgets/custom_loading.dart';
+import 'package:SNP/helper/utils/custom_date_formatter.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
