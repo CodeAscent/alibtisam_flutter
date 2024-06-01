@@ -1,6 +1,7 @@
-import 'package:alibtisam_flutter/features/bottomNav/presentation/userDashboard/presentation/statistics/model/monitoring.dart';
-import 'package:alibtisam_flutter/helper/common/widgets/custom_slider.dart';
-import 'package:alibtisam_flutter/helper/utils/custom_date_formatter.dart';
+import 'package:SNP/features/bottomNav/presentation/userDashboard/presentation/statistics/model/monitoring.dart';
+import 'package:SNP/helper/common/widgets/custom_slider.dart';
+import 'package:SNP/helper/theme/app_colors.dart';
+import 'package:SNP/helper/utils/custom_date_formatter.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:pie_chart/pie_chart.dart';
@@ -16,7 +17,7 @@ class ReportView extends StatelessWidget {
     List<Color> colorList = [
       Colors.greenAccent.shade700,
       Colors.blue.shade700,
-      Colors.yellow.shade700
+      primaryColor()
     ];
     return Scaffold(
       appBar: AppBar(

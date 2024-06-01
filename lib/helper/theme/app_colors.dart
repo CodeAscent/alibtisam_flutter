@@ -1,5 +1,5 @@
-import 'package:alibtisam_flutter/helper/theme/app_theme.dart';
-import 'package:alibtisam_flutter/helper/theme/controller/theme_controller.dart';
+import 'package:SNP/helper/theme/app_theme.dart';
+import 'package:SNP/helper/theme/controller/theme_controller.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 

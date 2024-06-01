@@ -1,7 +1,7 @@
 // ignore_for_file: public_member_api_docs, sort_constructors_first
 import 'dart:convert';
 
-import 'package:alibtisam_flutter/features/bottomNav/presentation/userDashboard/presentation/events/model/media_model.dart';
+import 'package:SNP/features/bottomNav/presentation/userDashboard/presentation/events/model/media_model.dart';
 
 class Events {
   final String id;

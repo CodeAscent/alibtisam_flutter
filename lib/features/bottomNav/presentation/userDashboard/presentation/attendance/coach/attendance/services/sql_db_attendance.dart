@@ -1,4 +1,4 @@
-import 'package:alibtisam_flutter/features/bottomNav/presentation/userDashboard/presentation/attendance/coach/attendance/attendance_sqf_model.dart';
+import 'package:SNP/features/bottomNav/presentation/userDashboard/presentation/attendance/coach/attendance/attendance_sqf_model.dart';
 import 'package:path/path.dart';
 import 'package:sqflite/sqflite.dart';
 

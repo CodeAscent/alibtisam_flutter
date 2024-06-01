@@ -1,10 +1,10 @@
-import 'package:alibtisam_flutter/client/socket_io.dart';
-import 'package:alibtisam_flutter/features/bottomNav/controller/chats_list.dart';
-import 'package:alibtisam_flutter/features/bottomNav/controller/user.dart';
-import 'package:alibtisam_flutter/features/bottomNav/model/chats_list.dart';
-import 'package:alibtisam_flutter/features/bottomNav/presentation/userDashboard/presentation/chat/chat.dart';
-import 'package:alibtisam_flutter/features/bottomNav/presentation/userDashboard/presentation/chat/widgets/custom_chat_cards.dart';
-import 'package:alibtisam_flutter/helper/utils/custom_date_formatter.dart';
+import 'package:SNP/client/socket_io.dart';
+import 'package:SNP/features/bottomNav/controller/chats_list.dart';
+import 'package:SNP/features/bottomNav/controller/user.dart';
+import 'package:SNP/features/bottomNav/model/chats_list.dart';
+import 'package:SNP/features/bottomNav/presentation/userDashboard/presentation/chat/chat.dart';
+import 'package:SNP/features/bottomNav/presentation/userDashboard/presentation/chat/widgets/custom_chat_cards.dart';
+import 'package:SNP/helper/utils/custom_date_formatter.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 

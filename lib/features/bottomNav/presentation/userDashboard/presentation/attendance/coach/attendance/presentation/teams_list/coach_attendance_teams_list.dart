@@ -1,6 +1,6 @@
-import 'package:alibtisam_flutter/helper/common/widgets/custom_loading.dart';
-import 'package:alibtisam_flutter/helper/theme/app_colors.dart';
-import 'package:alibtisam_flutter/network/http_wrapper.dart';
+import 'package:SNP/helper/common/widgets/custom_loading.dart';
+import 'package:SNP/helper/theme/app_colors.dart';
+import 'package:SNP/network/http_wrapper.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
@@ -30,7 +30,8 @@ class _CoachAttendanceTeamsListState extends State<CoachAttendanceTeamsList> {
   Widget build(BuildContext context) {
     return CustomLoader(
       child: Scaffold(
-        appBar: AppBar(title: Text("teamAttendance".tr),
+        appBar: AppBar(
+          title: Text("teamAttendance".tr),
           toolbarHeight: 80,
           backgroundColor: Colors.white,
           automaticallyImplyLeading: false,

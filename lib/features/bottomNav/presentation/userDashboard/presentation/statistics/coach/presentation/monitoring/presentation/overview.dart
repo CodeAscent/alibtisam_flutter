@@ -1,4 +1,5 @@
-import 'package:alibtisam_flutter/features/bottomNav/presentation/userDashboard/presentation/statistics/controller/monitoring.dart';
+import 'package:SNP/features/bottomNav/presentation/userDashboard/presentation/statistics/controller/monitoring.dart';
+import 'package:SNP/helper/theme/app_colors.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:pie_chart/pie_chart.dart';
@@ -13,7 +14,7 @@ class Overview extends StatelessWidget {
     List<Color> colorList = [
       Colors.greenAccent.shade700,
       Colors.blue.shade700,
-      Colors.yellow.shade700
+      primaryColor()
     ];
     return Scaffold(
       appBar: AppBar(

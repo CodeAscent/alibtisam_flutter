@@ -1,8 +1,8 @@
-import 'package:alibtisam_flutter/features/bottomNav/controller/teams.dart';
-import 'package:alibtisam_flutter/features/bottomNav/presentation/userDashboard/presentation/statistics/coach/coach_players_list.dart';
-import 'package:alibtisam_flutter/helper/common/widgets/custom_empty_icon.dart';
-import 'package:alibtisam_flutter/helper/common/widgets/custom_gradient_button.dart';
-import 'package:alibtisam_flutter/helper/common/widgets/custom_loading.dart';
+import 'package:SNP/features/bottomNav/controller/teams.dart';
+import 'package:SNP/features/bottomNav/presentation/userDashboard/presentation/statistics/coach/coach_players_list.dart';
+import 'package:SNP/helper/common/widgets/custom_empty_icon.dart';
+import 'package:SNP/helper/common/widgets/custom_gradient_button.dart';
+import 'package:SNP/helper/common/widgets/custom_loading.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 

@@ -1,4 +1,4 @@
-import 'package:alibtisam_flutter/helper/theme/app_colors.dart';
+import 'package:SNP/helper/theme/app_colors.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:get/get.dart';

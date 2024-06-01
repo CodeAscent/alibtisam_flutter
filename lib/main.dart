@@ -1,9 +1,9 @@
-import 'package:alibtisam_flutter/Localization/localization.dart';
-import 'package:alibtisam_flutter/client/socket_io.dart';
-import 'package:alibtisam_flutter/features/dummySplash/dummy_splash.dart';
-import 'package:alibtisam_flutter/helper/theme/controller/theme_controller.dart';
-import 'package:alibtisam_flutter/init/init_controllers.dart';
-import 'package:alibtisam_flutter/routes/app_routes.dart';
+import 'package:SNP/Localization/localization.dart';
+import 'package:SNP/client/socket_io.dart';
+import 'package:SNP/features/dummySplash/dummy_splash.dart';
+import 'package:SNP/helper/theme/controller/theme_controller.dart';
+import 'package:SNP/init/init_controllers.dart';
+import 'package:SNP/routes/app_routes.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:get_storage/get_storage.dart';

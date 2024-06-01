@@ -1,4 +1,4 @@
-package com.alibtisam_flutter
+package com.sportsnetwork.portal
 
 import io.flutter.embedding.android.FlutterActivity
 

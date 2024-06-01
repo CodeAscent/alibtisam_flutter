@@ -57,6 +57,14 @@ packages:
       url: "https://pub.dev"
     source: hosted
     version: "4.2.1"
+  change_app_package_name:
+    dependency: "direct main"
+    description:
+      name: change_app_package_name
+      sha256: f9ebaf68a4b5a68c581492579bb68273c523ef325fbf9ce2f1b57fb136ad023b
+      url: "https://pub.dev"
+    source: hosted
+    version: "1.1.0"
   characters:
     dependency: transitive
     description:
@@ -540,10 +548,10 @@ packages:
     dependency: "direct main"
     description:
       name: lottie
-      sha256: "46def1e76c4fbfd4643e823980112cfe94a2ba1d9152fe54701c0bf30be4f4cd"
+      sha256: "6a24ade5d3d918c306bb1c21a6b9a04aab0489d51a2582522eea820b4093b62b"
       url: "https://pub.dev"
     source: hosted
-    version: "3.1.1"
+    version: "3.1.2"
   matcher:
     dependency: transitive
     description:

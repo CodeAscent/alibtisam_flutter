@@ -1,13 +1,15 @@
 // ignore_for_file: public_member_api_docs, sort_constructors_first
-import 'package:alibtisam_flutter/features/bottomNav/presentation/userDashboard/presentation/attendance/coach/attendance/attendance_sqf_model.dart';
-import 'package:alibtisam_flutter/features/bottomNav/presentation/userDashboard/presentation/attendance/coach/attendance/services/sql_db_attendance.dart';
-import 'package:alibtisam_flutter/helper/common/widgets/custom_loading.dart';
-import 'package:alibtisam_flutter/helper/theme/app_colors.dart';
+import 'package:SNP/features/bottomNav/presentation/userDashboard/presentation/attendance/coach/attendance/attendance_sqf_model.dart';
+import 'package:SNP/features/bottomNav/presentation/userDashboard/presentation/attendance/coach/attendance/services/sql_db_attendance.dart';
+import 'package:SNP/helper/common/widgets/custom_loading.dart';
+import 'package:SNP/helper/theme/app_colors.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
 class CoachMarkAttendance extends StatefulWidget {
-  const CoachMarkAttendance({super.key, });
+  const CoachMarkAttendance({
+    super.key,
+  });
 
   @override
   State<CoachMarkAttendance> createState() => _CoachMarkAttendanceState();
@@ -55,7 +57,8 @@ class _CoachMarkAttendanceState extends State<CoachMarkAttendance> {
             name: data['name'],
             inTime: "",
             outTime: "",
-            remark: "", id: ''));
+            remark: "",
+            id: ''));
       }
       await getAttendance();
       setState(() {

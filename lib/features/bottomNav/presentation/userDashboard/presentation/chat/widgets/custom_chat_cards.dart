@@ -1,4 +1,4 @@
-import 'package:alibtisam_flutter/helper/theme/app_colors.dart';
+import 'package:SNP/helper/theme/app_colors.dart';
 import 'package:flutter/material.dart';
 
 class CustomChatCards extends StatelessWidget {
@@ -6,7 +6,8 @@ class CustomChatCards extends StatelessWidget {
     super.key,
     required this.label,
     required this.lastMessage,
-    required this.time, required this.image,
+    required this.time,
+    required this.image,
   });
   final String label;
   final String lastMessage;

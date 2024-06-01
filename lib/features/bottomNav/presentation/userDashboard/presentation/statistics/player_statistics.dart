@@ -1,10 +1,10 @@
-import 'package:alibtisam_flutter/features/bottomNav/controller/selected_player.dart';
-import 'package:alibtisam_flutter/features/bottomNav/presentation/userDashboard/presentation/statistics/coach/presentation/monitoring/coach_player_monitoring.dart';
-import 'package:alibtisam_flutter/features/bottomNav/presentation/userDashboard/presentation/statistics/coach/presentation/reports/coach_player_reports.dart';
-import 'package:alibtisam_flutter/features/bottomNav/presentation/userDashboard/presentation/statistics/controller/monitoring.dart';
-import 'package:alibtisam_flutter/helper/common/widgets/custom_loading.dart';
-import 'package:alibtisam_flutter/helper/common/widgets/custom_tab_bar.dart';
-import 'package:alibtisam_flutter/network/api_urls.dart';
+import 'package:SNP/features/bottomNav/controller/selected_player.dart';
+import 'package:SNP/features/bottomNav/presentation/userDashboard/presentation/statistics/coach/presentation/monitoring/coach_player_monitoring.dart';
+import 'package:SNP/features/bottomNav/presentation/userDashboard/presentation/statistics/coach/presentation/reports/coach_player_reports.dart';
+import 'package:SNP/features/bottomNav/presentation/userDashboard/presentation/statistics/controller/monitoring.dart';
+import 'package:SNP/helper/common/widgets/custom_loading.dart';
+import 'package:SNP/helper/common/widgets/custom_tab_bar.dart';
+import 'package:SNP/network/api_urls.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
@@ -27,7 +27,8 @@ class _PlayerStatisticsState extends State<PlayerStatistics>
 
   MonitoringController monitoringController = Get.find<MonitoringController>();
   late TabController _tabController;
-SelectedPlayerController selectedPlayerController = Get.find<SelectedPlayerController>();
+  SelectedPlayerController selectedPlayerController =
+      Get.find<SelectedPlayerController>();
   @override
   Widget build(BuildContext context) {
     return CustomLoader(

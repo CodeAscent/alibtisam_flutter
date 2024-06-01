@@ -1,5 +1,5 @@
-import 'package:alibtisam_flutter/features/bottomNav/model/chat_message.dart';
-import 'package:alibtisam_flutter/network/api_requests.dart';
+import 'package:SNP/features/bottomNav/model/chat_message.dart';
+import 'package:SNP/network/api_requests.dart';
 import 'package:get/get.dart';
 
 class ChatMessagesController extends GetxController {

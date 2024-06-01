@@ -1,4 +1,4 @@
-import 'package:alibtisam_flutter/helper/common/controller/custom_loading_controller.dart';
+import 'package:SNP/helper/common/controller/custom_loading_controller.dart';
 import 'package:get/get.dart';
 
 class LoadingManager {
