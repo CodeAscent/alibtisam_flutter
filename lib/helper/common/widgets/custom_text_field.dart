@@ -17,6 +17,7 @@ class CustomTextField extends StatelessWidget {
   final TextEditingController? controller;
   final String? initial;
   final String? hintText;
+  final bool? obscureText;
   const CustomTextField(
       {super.key,
       required this.label,
@@ -32,6 +33,7 @@ class CustomTextField extends StatelessWidget {
       this.shouldValidate,
       this.maxLength,
       this.initial,
+      this.obscureText,
       this.hintText});
 
   @override
@@ -41,6 +43,7 @@ class CustomTextField extends StatelessWidget {
       width: width,
       height: height,
       child: TextFormField(
+        obscureText: obscureText ?? false,
         initialValue: initial,
         keyboardType: keyboardType,
         onChanged: onChanged,

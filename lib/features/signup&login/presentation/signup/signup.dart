@@ -1,5 +1,6 @@
 import 'package:alibtisam_flutter/helper/common/widgets/custom_gradient_button.dart';
 import 'package:alibtisam_flutter/helper/common/widgets/custom_loading.dart';
+import 'package:alibtisam_flutter/helper/theme/app_colors.dart';
 import 'package:alibtisam_flutter/network/api_requests.dart';
 import 'package:flutter/material.dart';
 import 'package:alibtisam_flutter/features/signup&login/widgets/logo_&_arabic_text.dart';
@@ -22,6 +23,7 @@ class _SignUpScreenState extends State<SignUpScreen> {
   final phoneController = TextEditingController();
   final formKey = GlobalKey<FormState>();
   List<dynamic> clubs = [];
+  bool isSecurePassword = true;
 
   @override
   void initState() {
@@ -93,6 +95,9 @@ class _SignUpScreenState extends State<SignUpScreen> {
                     ),
                     SizedBox(height: 20),
                     CustomTextField(
+                      maxLines: 1,
+                      suffix: TogglePassword(),
+                      obscureText: isSecurePassword,
                       controller: passwordController,
                       label: "password".tr,
                     ),
@@ -132,6 +137,20 @@ class _SignUpScreenState extends State<SignUpScreen> {
           ),
         ),
       ),
+    );
+  }
+
+  Widget TogglePassword() {
+    return IconButton(
+      onPressed: () {
+        setState(() {
+          isSecurePassword = !isSecurePassword;
+        });
+      },
+      icon: isSecurePassword
+          ? Icon(Icons.visibility_off)
+          : Icon(Icons.visibility),
+      color: primaryColor(),
     );
   }
 }

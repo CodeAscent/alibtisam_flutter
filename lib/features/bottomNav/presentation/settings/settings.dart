@@ -12,7 +12,6 @@ import 'package:alibtisam_flutter/helper/utils/loading_manager.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
-
 class SettingScreen extends StatefulWidget {
   const SettingScreen({super.key});
 
@@ -103,7 +102,7 @@ class _SettingScreenState extends State<SettingScreen> {
                             Get.to(() => HelpSupportPage());
                           },
                           child:
-                              CustomSettingsCard(label: "Help & Support".tr)),
+                              CustomSettingsCard(label: "helpAndSupport".tr)),
                       // GestureDetector(
                       //   onTap: () {
                       //     Get.to(() => ChatNavigation());

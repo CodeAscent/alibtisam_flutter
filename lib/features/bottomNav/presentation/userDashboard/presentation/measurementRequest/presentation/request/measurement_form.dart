@@ -38,7 +38,7 @@ class MeasurementForm extends StatelessWidget {
       child: CustomLoader(
         child: Scaffold(
           appBar: AppBar(
-            title: Text("Form"),
+            title: Text("form".tr),
           ),
           body: Padding(
             padding: const EdgeInsets.symmetric(horizontal: 10.0),
@@ -54,7 +54,7 @@ class MeasurementForm extends StatelessWidget {
                         keyboardType: TextInputType.number,
                         controller: heightController,
                         width: Get.width * 0.46,
-                        label: "height ft"),
+                        label: "height".tr),
                     SizedBox(
                       width: 10,
                     ),
@@ -63,7 +63,7 @@ class MeasurementForm extends StatelessWidget {
                         keyboardType: TextInputType.number,
                         controller: weightController,
                         width: Get.width * 0.46,
-                        label: "weight kg")
+                        label: "weight".tr)
                   ],
                 ),
                 Row(
@@ -73,7 +73,7 @@ class MeasurementForm extends StatelessWidget {
                         keyboardType: TextInputType.number,
                         controller: chestController,
                         width: Get.width * 0.46,
-                        label: "chest size"),
+                        label: "chestSize".tr),
                     SizedBox(
                       width: 10,
                     ),
@@ -82,7 +82,7 @@ class MeasurementForm extends StatelessWidget {
                         keyboardType: TextInputType.number,
                         controller: normalController,
                         width: Get.width * 0.46,
-                        label: "normal chest size")
+                        label: "normal chest size".tr)
                   ],
                 ),
                 Row(
@@ -92,7 +92,7 @@ class MeasurementForm extends StatelessWidget {
                         keyboardType: TextInputType.number,
                         controller: highJumpController,
                         width: Get.width * 0.46,
-                        label: "high jump"),
+                        label: "highJump".tr),
                     SizedBox(
                       width: 10,
                     ),
@@ -101,7 +101,7 @@ class MeasurementForm extends StatelessWidget {
                         keyboardType: TextInputType.number,
                         controller: lowJumpController,
                         width: Get.width * 0.46,
-                        label: "low jump")
+                        label: "lowJump".tr)
                   ],
                 ),
                 Row(
@@ -111,7 +111,7 @@ class MeasurementForm extends StatelessWidget {
                         keyboardType: TextInputType.number,
                         controller: heartBeatingRateController,
                         width: Get.width * 0.46,
-                        label: "heartBeatingRate"),
+                        label: "heartBeatingRate".tr),
                     SizedBox(
                       width: 10,
                     ),
@@ -120,7 +120,7 @@ class MeasurementForm extends StatelessWidget {
                         keyboardType: TextInputType.number,
                         controller: pulseRateController,
                         width: Get.width * 0.46,
-                        label: "pulseRate")
+                        label: "pulseRate".tr)
                   ],
                 ),
                 Row(
@@ -139,7 +139,7 @@ class MeasurementForm extends StatelessWidget {
                         keyboardType: TextInputType.number,
                         controller: tShirtSizeController,
                         width: Get.width * 0.46,
-                        label: "tShirtSize"),
+                        label: "tShirtSize".tr),
                     SizedBox(
                       width: 10,
                     ),
@@ -148,7 +148,7 @@ class MeasurementForm extends StatelessWidget {
                         keyboardType: TextInputType.number,
                         controller: waistSizeController,
                         width: Get.width * 0.46,
-                        label: "waistSize")
+                        label: "waistSize".tr)
                   ],
                 ),
                 Row(
@@ -158,7 +158,7 @@ class MeasurementForm extends StatelessWidget {
                         keyboardType: TextInputType.number,
                         controller: shoesSizeController,
                         width: Get.width * 0.46,
-                        label: "shoeSize"),
+                        label: "shoeSize".tr),
                     SizedBox(
                       width: 10,
                     ),

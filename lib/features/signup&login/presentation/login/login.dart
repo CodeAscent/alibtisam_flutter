@@ -3,6 +3,7 @@ import 'package:alibtisam_flutter/features/signup&login/widgets/logo_&_arabic_te
 import 'package:alibtisam_flutter/helper/common/widgets/custom_gradient_button.dart';
 import 'package:alibtisam_flutter/helper/common/widgets/custom_loading.dart';
 import 'package:alibtisam_flutter/helper/common/widgets/custom_text_field.dart';
+import 'package:alibtisam_flutter/helper/theme/app_colors.dart';
 import 'package:alibtisam_flutter/network/api_requests.dart';
 import 'package:cupertino_will_pop_scope/cupertino_will_pop_scope.dart';
 import 'package:flutter/material.dart';
@@ -17,6 +18,8 @@ class LoginScreen extends StatefulWidget {
 }
 
 class _LoginScreenState extends State<LoginScreen> {
+  bool isSecurePassword = true;
+
   final usernameController = TextEditingController();
   final passwordController = TextEditingController();
   final formKey = GlobalKey<FormState>();
@@ -48,6 +51,9 @@ class _LoginScreenState extends State<LoginScreen> {
                       ),
                       SizedBox(height: 20),
                       CustomTextField(
+                        maxLines: 1,
+                        obscureText: isSecurePassword,
+                        suffix: TogglePassword(),
                         controller: passwordController,
                         label: "password".tr,
                       ),
@@ -85,6 +91,20 @@ class _LoginScreenState extends State<LoginScreen> {
           ),
         ),
       ),
+    );
+  }
+
+  Widget TogglePassword() {
+    return IconButton(
+      onPressed: () {
+        setState(() {
+          isSecurePassword = !isSecurePassword;
+        });
+      },
+      icon: isSecurePassword
+          ? Icon(Icons.visibility_off)
+          : Icon(Icons.visibility),
+      color: primaryColor(),
     );
   }
 }
