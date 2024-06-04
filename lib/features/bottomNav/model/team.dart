@@ -62,7 +62,7 @@ class PlayersModel {
   factory PlayersModel.fromMap(Map<String, dynamic> map) {
     return PlayersModel(
       UserModel.fromMap(map['playerId']),
-      map['isPlaying'] as bool,
+      map['isPlaying'] ?? true,
     );
   }
 
