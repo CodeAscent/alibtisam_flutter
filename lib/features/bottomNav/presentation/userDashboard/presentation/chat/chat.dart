@@ -133,23 +133,50 @@ class _ChatScreenState extends State<ChatScreen> {
                                   ),
                                 ),
                               ),
-                            BubbleSpecialThree(
-                              text: message.content,
-                              color: message.senderId == userController.user!.id
-                                  ? primaryColor()
-                                  : kAppGreyColor(),
-                              tail: true,
-                              isSender:
-                                  message.senderId == userController.user!.id,
-                              textStyle: TextStyle(
-                                color: message.senderId ==
-                                            userController.user!.id ||
-                                        themeController.isDarkTheme()
-                                    ? Colors.white
-                                    : null,
-                                //flutter run --enable-impeller
-                                fontSize: 16,
-                              ),
+                            Column(
+                              crossAxisAlignment: CrossAxisAlignment.start,
+                              children: [
+                                Builder(
+                                  builder: (context) {
+                                    String name = '';
+                                    if (widget.chatInfo.isGroup!) {
+                                      for (var participant
+                                          in widget.chatInfo.participants!) {
+                                        if (participant.id ==
+                                                message.senderId &&
+                                            message.senderId !=
+                                                userController.user!.id) {
+                                          name = participant.name;
+                                        }
+                                      }
+                                    }
+                                    return Padding(
+                                      padding: const EdgeInsets.symmetric(
+                                          horizontal: 15),
+                                      child: Text(name),
+                                    );
+                                  },
+                                ),
+                                BubbleSpecialThree(
+                                  text: message.content,
+                                  color: message.senderId ==
+                                          userController.user!.id
+                                      ? primaryColor()
+                                      : kAppGreyColor(),
+                                  tail: true,
+                                  isSender: message.senderId ==
+                                      userController.user!.id,
+                                  textStyle: TextStyle(
+                                    color: message.senderId ==
+                                                userController.user!.id ||
+                                            themeController.isDarkTheme()
+                                        ? Colors.white
+                                        : null,
+                                    //flutter run --enable-impeller
+                                    fontSize: 16,
+                                  ),
+                                ),
+                              ],
                             ),
                             Padding(
                               padding:
@@ -157,6 +184,7 @@ class _ChatScreenState extends State<ChatScreen> {
                               child:
                                   Text(customChatTimeFormat(message.updatedAt)),
                             ),
+                            SizedBox(height: 10)
                           ],
                         );
                       }),

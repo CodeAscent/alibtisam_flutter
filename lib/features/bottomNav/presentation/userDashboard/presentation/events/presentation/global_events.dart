@@ -23,8 +23,8 @@ class GlobalEvents extends StatelessWidget {
           builder: (context, snapshot) {
             if (snapshot.hasData) {
               return snapshot.data![0].length == 0 &&
-                      snapshot.data![0].length == 0 &&
-                      snapshot.data![0].length == 0
+                      snapshot.data![1].length == 0 &&
+                      snapshot.data![2].length == 0
                   ? CustomEmptyWidget()
                   : SingleChildScrollView(
                       child: Column(
