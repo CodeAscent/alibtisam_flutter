@@ -29,7 +29,7 @@ class _ReadinessState extends State<Readiness> {
         return Scaffold(
             appBar: AppBar(
               title: Text('readiness'.tr),
-              actions: userController.user!.role == "COACH"
+              actions: userController.user!.role == "INTERNAL USER"
                   ? [
                       GestureDetector(
                         onTap: () async {
