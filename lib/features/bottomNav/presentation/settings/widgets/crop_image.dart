@@ -12,7 +12,8 @@ class CustomCropImage extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
         appBar: AppBar(),
-        bottomNavigationBar: CustomContainerButton(label: 'Update'),
+        bottomNavigationBar:
+            SizedBox(height: 70, child: CustomContainerButton(label: 'Update')),
         body: Crop(
             aspectRatio: 10 / 10,
             image: imageData,

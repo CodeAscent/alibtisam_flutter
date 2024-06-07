@@ -15,7 +15,7 @@ void main() async {
 
   await GetStorage.init();
 
-  // FlutterNativeSplash.preserve(widgetsBinding: widgetsBinding);
+  // FlutterNativeSplash.preserve(widgetsBindin g: widgetsBinding);
   runApp(MyApp());
 }
 

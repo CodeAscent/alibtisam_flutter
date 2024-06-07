@@ -396,6 +396,15 @@ class AppLocalization extends Translations {
           "registrationNumber": "Registration Number",
           "socialMedia": "Social Media",
           "typeYourMessage": "Type your message...",
+          
+          //---new keywords
+          "wereHereToHelp": "We're here to help!",
+          "ifYouHaveAnyQuestion":
+              "If you have any questions or need assistance, feel free to reach out to us.",
+          "zohoForm": "Zoho form",
+          "contactUsOnWhatsapp": "Contact Us on WhatsApp",
+          "emailUs": "Email Us",
+          "help&support":"Help & Support",
         },
         'ar_DZ': {
           "enterUsername": "أدخل اسم المستخدم",
