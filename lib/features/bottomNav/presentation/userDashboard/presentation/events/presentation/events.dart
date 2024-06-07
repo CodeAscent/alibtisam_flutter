@@ -1,7 +1,6 @@
 import 'package:SNP/features/dummySplash/dummy_splash.dart';
 import 'package:SNP/features/bottomNav/presentation/userDashboard/presentation/events/controller/event_navigation.dart';
 import 'package:SNP/features/bottomNav/presentation/userDashboard/presentation/events/presentation/global_events.dart';
-import 'package:SNP/features/bottomNav/presentation/userDashboard/presentation/events/presentation/user_events.dart';
 import 'package:cupertino_will_pop_scope/cupertino_will_pop_scope.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';

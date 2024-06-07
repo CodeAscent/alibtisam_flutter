@@ -4,7 +4,6 @@ import 'package:SNP/helper/common/widgets/custom_loading.dart';
 import 'package:SNP/network/api_requests.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:lottie/lottie.dart';
 
 class GlobalEvents extends StatelessWidget {
   const GlobalEvents({
@@ -23,8 +22,8 @@ class GlobalEvents extends StatelessWidget {
           builder: (context, snapshot) {
             if (snapshot.hasData) {
               return snapshot.data![0].length == 0 &&
-                      snapshot.data![0].length == 0 &&
-                      snapshot.data![0].length == 0
+                      snapshot.data![1].length == 0 &&
+                      snapshot.data![2].length == 0
                   ? CustomEmptyWidget()
                   : SingleChildScrollView(
                       child: Column(
