@@ -81,5 +81,5 @@ String get_all_games = base_url + api_version + game + "all";
 // GET ALL GAMES
 String get_player_reports = base_url + api_version + monitoring + "get-report/";
 
-// GET ALL GAMES
+// GET TEAMS BY COACH
 String get_teams_by_coach = base_url + api_version + team + "get-by-coach";
