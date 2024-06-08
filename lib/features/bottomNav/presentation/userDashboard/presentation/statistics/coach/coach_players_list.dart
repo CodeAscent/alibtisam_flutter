@@ -54,23 +54,41 @@ class _CoachPlayersListState extends State<CoachPlayersList> {
                               },
                               child: Container(
                                 decoration: BoxDecoration(
-                                  color: kAppGreyColor(),
-                                ),
+                                    color: kAppGreyColor(),
+                                    borderRadius: BorderRadius.circular(10)),
                                 child: Padding(
-                                  padding: const EdgeInsets.all(2.0),
+                                  padding: const EdgeInsets.only(bottom: 5),
                                   child: Column(
                                     children: [
-                                      Image.network(
-                                        widget.players[index].playerId.pic,
-                                        fit: BoxFit.cover,
-                                        height: 200,
+                                      ClipRRect(
+                                        borderRadius: BorderRadius.circular(10),
+                                        child: Image.network(
+                                          widget.players[index].playerId.pic,
+                                          fit: BoxFit.cover,
+                                          height: 200,
+                                          width: double.infinity,
+                                        ),
                                       ),
                                       Spacer(),
                                       Text(widget.players[index].playerId.name
                                           .capitalize!),
-                                      Text(
-                                        widget.players[index].playerId.userName,
-                                        maxLines: 1,
+                                      Row(
+                                        mainAxisAlignment:
+                                            MainAxisAlignment.center,
+                                        children: [
+                                          Text(
+                                            "PlayerId: ",
+                                            style: TextStyle(
+                                                fontWeight: FontWeight.w800,
+                                                letterSpacing: 0),
+                                          ),
+                                          Text(
+                                            widget.players[index].playerId.pId,
+                                            style: TextStyle(
+                                                fontWeight: FontWeight.w800,
+                                                letterSpacing: 0),
+                                          ),
+                                        ],
                                       ),
                                     ],
                                   ),
