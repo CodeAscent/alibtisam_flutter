@@ -15,41 +15,43 @@ class CustomChatCards extends StatelessWidget {
   final String image;
   @override
   Widget build(BuildContext context) {
-    return Container(
-      width: double.infinity,
-      padding: EdgeInsets.all(5),
-      height: 100,
-      margin: EdgeInsets.all(2),
-      color: kAppGreyColor(),
-      child: Row(
-        children: [
-          ClipRRect(
-            borderRadius: BorderRadius.circular(160),
-            child: Image.network(
-              image,
-              height: 60,
-              width: 60,
-              fit: BoxFit.cover,
+    return Card(
+      child: Container(
+        width: double.infinity,
+        padding: EdgeInsets.all(5),
+        height: 100,
+        margin: EdgeInsets.all(2),
+        color: kAppGreyColor(),
+        child: Row(
+          children: [
+            ClipRRect(
+              borderRadius: BorderRadius.circular(160),
+              child: Image.network(
+                image,
+                height: 60,
+                width: 60,
+                fit: BoxFit.cover,
+              ),
             ),
-          ),
-          SizedBox(width: 10),
-          Expanded(
-            child: Column(
-              mainAxisAlignment: MainAxisAlignment.center,
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: [
-                Text(label),
-                Text(
-                  lastMessage,
-                  maxLines: 1,
-                  overflow: TextOverflow.ellipsis,
-                ),
-              ],
+            SizedBox(width: 10),
+            Expanded(
+              child: Column(
+                mainAxisAlignment: MainAxisAlignment.center,
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  Text(label),
+                  Text(
+                    lastMessage,
+                    maxLines: 1,
+                    overflow: TextOverflow.ellipsis,
+                  ),
+                ],
+              ),
             ),
-          ),
-          SizedBox(width: 10),
-          Text(time),
-        ],
+            SizedBox(width: 10),
+            Text(time),
+          ],
+        ),
       ),
     );
   }

@@ -4,6 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
 Color primaryColor() =>
+//fa3d9b
     isAppThemeDark() ? Color.fromARGB(255, 250, 61, 155) : Color(0xff7928ca);
 Color kAppGreyColor() {
   final themeController = Get.find<ThemeController>();
