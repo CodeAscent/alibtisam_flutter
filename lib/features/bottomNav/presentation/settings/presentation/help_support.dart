@@ -1,6 +1,7 @@
 import 'package:SNP/helper/common/widgets/custom_gradient_button.dart';
 import 'package:SNP/helper/theme/app_colors.dart';
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 import 'package:url_launcher/url_launcher.dart';
 
 class HelpSupportPage extends StatelessWidget {
@@ -13,7 +14,7 @@ class HelpSupportPage extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text("Help & Support"),
+        title: Text("help&support".tr),
       ),
       body: Container(
         child: Padding(
@@ -22,7 +23,7 @@ class HelpSupportPage extends StatelessWidget {
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
               Text(
-                "We're here to help!",
+                "wereHereToHelp".tr,
                 style: TextStyle(
                   fontSize: 28,
                   fontWeight: FontWeight.bold,
@@ -30,7 +31,7 @@ class HelpSupportPage extends StatelessWidget {
               ),
               SizedBox(height: 8),
               Text(
-                "If you have any questions or need assistance, feel free to reach out to us.",
+                "ifYouHaveAnyQuestion".tr,
                 style: TextStyle(
                   fontSize: 18,
                 ),
@@ -43,7 +44,7 @@ class HelpSupportPage extends StatelessWidget {
                 },
                 child: _buildSupportCard(
                   icon: Icons.question_answer,
-                  title: "Zoho form",
+                  title: "zohoForm".tr,
                 ),
               ),
               GestureDetector(
@@ -52,7 +53,7 @@ class HelpSupportPage extends StatelessWidget {
                 },
                 child: _buildSupportCard(
                   icon: Icons.chat,
-                  title: "Contact Us on WhatsApp",
+                  title: "contactUsOnWhatsapp".tr,
                 ),
               ),
               GestureDetector(
@@ -61,7 +62,7 @@ class HelpSupportPage extends StatelessWidget {
                 },
                 child: _buildSupportCard(
                   icon: Icons.email,
-                  title: "Email Us",
+                  title: "emailUs".tr,
                 ),
               ),
             ],
