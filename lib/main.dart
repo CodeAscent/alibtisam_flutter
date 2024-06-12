@@ -2,6 +2,7 @@ import 'package:SNP/Localization/localization.dart';
 import 'package:SNP/client/socket_io.dart';
 import 'package:SNP/features/dummySplash/dummy_splash.dart';
 import 'package:SNP/firebase_options.dart';
+import 'package:SNP/helper/localStorage/token_id.dart';
 import 'package:SNP/helper/theme/controller/theme_controller.dart';
 import 'package:SNP/init/init_controllers.dart';
 import 'package:SNP/routes/app_routes.dart';
@@ -46,12 +47,13 @@ class _MyAppState extends State<MyApp> {
     installationId =
         await FirebaseInstallations.id ?? 'Unknown installation id';
     String? token = await messaging.getToken();
-
+    String? uid = await getUid();
     setState(() {
       _fcmToken = token;
     });
     print("FCM TOKEN -------> $_fcmToken");
     print("INSTALLATION ID -------> $installationId");
+    print("UID -------> $uid");
   }
 
   @override

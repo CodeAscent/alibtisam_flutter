@@ -1,5 +1,5 @@
 //String base_url = "http://15.206.185.144:8000/";
-String base_url = "http://52.66.197.219:8000/";
+String base_url = "http://192.168.29.116:8000/";
 String api_version = "api/v1/";
 String event = "event/";
 String user = "user/";
@@ -13,6 +13,7 @@ String playerApproval = "player-approval/";
 String collection = "collection/";
 String game = "game/";
 String team = "team/";
+String attendance = "attendance/";
 
 //
 String all_events = base_url + api_version + event + "all";
@@ -83,3 +84,21 @@ String get_player_reports = base_url + api_version + monitoring + "get-report/";
 
 // GET TEAMS BY COACH
 String get_teams_by_coach = base_url + api_version + team + "get-by-coach";
+
+// ADD ATTENDANCE
+String add_attendance = base_url + api_version + attendance + "add";
+
+// MARK ATTENDANCE
+String mark_attendance = base_url + api_version + attendance + "mark/";
+
+// GET MARKED ATTENDANCE
+String get_marked_attendance =
+    base_url + api_version + attendance + "get-marked/";
+
+// GET COMPLETED ATTENDANCE
+String get_completed_attendance =
+    base_url + api_version + attendance + "get-completed/";
+
+// GET COMPLETED ATTENDANCE
+String get_all_completed_attendance =
+    base_url + api_version + attendance + "get-all-completed/";

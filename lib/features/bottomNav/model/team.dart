@@ -5,18 +5,20 @@ import 'package:SNP/features/bottomNav/model/user.dart';
 
 class TeamModel {
   final String name;
+  final String id;
   final String gameId;
   final num totalPlayer;
   final num playingPlayer;
   final String organizationId;
   final List<PlayersModel> players;
 
-  TeamModel(this.name, this.gameId, this.totalPlayer, this.playingPlayer,
-      this.organizationId, this.players);
+  TeamModel(this.name, this.id, this.gameId, this.totalPlayer,
+      this.playingPlayer, this.organizationId, this.players);
 
   Map<String, dynamic> toMap() {
     return <String, dynamic>{
       'name': name,
+      'id': id,
       'gameId': gameId,
       'totalPlayer': totalPlayer,
       'playingPlayer': playingPlayer,
@@ -28,6 +30,7 @@ class TeamModel {
   factory TeamModel.fromMap(Map<String, dynamic> map) {
     return TeamModel(
       map['name'] as String,
+      map['_id'] as String,
       map['gameId'] as String,
       map['totalPlayer'] as num,
       map['playingPlayer'] as num,

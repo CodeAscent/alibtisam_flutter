@@ -1,4 +1,5 @@
 import 'package:SNP/client/socket_io.dart';
+import 'package:SNP/features/bottomNav/controller/attendance.dart';
 import 'package:SNP/features/bottomNav/controller/chat_messages.dart';
 import 'package:SNP/features/bottomNav/controller/chats_list.dart';
 import 'package:SNP/features/bottomNav/controller/dashboard.dart';
@@ -32,4 +33,5 @@ initControllers() {
   Get.put(ReportsController());
   Get.put(TeamsController());
   Get.put(SelectedPlayerController());
+  Get.put(AttendanceController());
 }

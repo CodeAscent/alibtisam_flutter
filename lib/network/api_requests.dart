@@ -1,8 +1,11 @@
+import 'dart:async';
 import 'dart:convert';
 
 import 'package:SNP/features/bottomNav/bottom_nav.dart';
 import 'package:SNP/features/bottomNav/controller/selected_player.dart';
 import 'package:SNP/features/bottomNav/controller/user.dart';
+import 'package:SNP/features/bottomNav/model/attendance.dart';
+import 'package:SNP/features/bottomNav/model/attendance_history.dart';
 import 'package:SNP/features/bottomNav/model/chat_message.dart';
 import 'package:SNP/features/bottomNav/model/chats_list.dart';
 import 'package:SNP/features/bottomNav/model/dashboard.dart';
@@ -10,6 +13,7 @@ import 'package:SNP/features/bottomNav/model/game.dart';
 import 'package:SNP/features/bottomNav/model/team.dart';
 import 'package:SNP/features/bottomNav/model/user.dart';
 import 'package:SNP/features/bottomNav/presentation/settings/model/about.dart';
+import 'package:SNP/features/bottomNav/presentation/userDashboard/presentation/attendance/coach/attendance/attendance_players_list.dart';
 import 'package:SNP/features/bottomNav/presentation/userDashboard/presentation/events/model/events_model.dart';
 import 'package:SNP/features/bottomNav/presentation/userDashboard/presentation/statistics/model/monitoring.dart';
 import 'package:SNP/helper/error/server_exception.dart';
@@ -170,6 +174,7 @@ class ApiRequests {
       LoadingManager.startLoading();
       final res = await HttpWrapper.getRequest(get_dashboard_services);
       final data = jsonDecode(res.body);
+      print(data);
       for (var item in data['services']) {
         dashboardItems.add(DashboardModel.fromMap(item));
       }
@@ -488,5 +493,111 @@ class ApiRequests {
       customSnackbar(message: e.message);
     }
     return [];
+  }
+
+  Future<Map<String, dynamic>> addAttendance({required String teamId}) async {
+    List<AttendanceModel> attendance = [];
+    UserController userController = Get.find<UserController>();
+    try {
+      final res = await HttpWrapper.postRequest(add_attendance, {
+        "coachId": userController.user!.id,
+        "teamId": teamId,
+      });
+
+      final data = jsonDecode(res.body);
+
+      for (var player in data['attendance']['players']) {
+        attendance.add(AttendanceModel.fromMap(player));
+      }
+      return {
+        "attendanceId": data['attendance']['_id'],
+        "attendance": attendance
+      };
+    } on ServerException catch (e) {
+      await LoadingManager.endLoading();
+      customSnackbar(message: e.message);
+    }
+    return {};
+  }
+
+  Future<Map<String, dynamic>> getMarkedIntimeAttendance(
+      {required String attendanceId}) async {
+    try {
+      print('----------------------->');
+
+      List<AttendanceModel> attendance = [];
+      final res =
+          await HttpWrapper.getRequest(get_marked_attendance + attendanceId);
+      print('----------------------->');
+      final data = jsonDecode(res.body);
+      for (var player in data['attendance']['players']) {
+        attendance.add(AttendanceModel.fromMap(player));
+      }
+      return {"attendanceId": attendanceId, "attendance": attendance};
+    } on ServerException catch (e) {
+      await LoadingManager.endLoading();
+      customSnackbar(message: e.message);
+    }
+    return {};
+  }
+
+  Future<Map<String, dynamic>> getCompletedAttendance(
+      {required String attendanceId}) async {
+    try {
+      print('----------------------->');
+
+      List<AttendanceModel> attendance = [];
+      final res =
+          await HttpWrapper.getRequest(get_completed_attendance + attendanceId);
+      print('----------------------->');
+      final data = jsonDecode(res.body);
+      for (var player in data['attendance']['players']) {
+        attendance.add(AttendanceModel.fromMap(player));
+      }
+      return {"attendanceId": attendanceId, "attendance": attendance};
+    } on ServerException catch (e) {
+      await LoadingManager.endLoading();
+      customSnackbar(message: e.message);
+    }
+    return {};
+  }
+
+  Future<List<AttendanceHistoryModel>>
+      getAllCompletedAttendanceByCoach() async {
+    List<AttendanceHistoryModel> attendances = [];
+
+    try {
+      UserController userController = Get.find<UserController>();
+
+      final res = await HttpWrapper.getRequest(
+          get_all_completed_attendance + userController.user!.id);
+      final data = jsonDecode(res.body);
+      for (var attendance in data['attendances']) {
+        attendances.add(AttendanceHistoryModel.fromMap(attendance));
+      }
+      return attendances;
+    } on ServerException catch (e) {
+      await LoadingManager.endLoading();
+      customSnackbar(message: e.message);
+    }
+    return attendances;
+  }
+
+  Future markAttendance(
+      {required String attendanceId,
+      required List<PlayersAttendance> playersAttendance}) async {
+    try {
+      List playersList =
+          playersAttendance.map((player) => player.toMap()).toList();
+      print(playersList);
+      final res =
+          await HttpWrapper.postRequest(mark_attendance + attendanceId, {
+        "playerIds": playersList,
+      });
+      print(res);
+    } on ServerException catch (e) {
+      await LoadingManager.endLoading();
+      customSnackbar(message: e.message);
+    }
   }
 }

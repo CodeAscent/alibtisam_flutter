@@ -1,5 +1,8 @@
 import 'package:SNP/features/bottomNav/controller/teams.dart';
-import 'package:SNP/features/bottomNav/presentation/userDashboard/presentation/statistics/coach/coach_players_list.dart';
+import 'package:SNP/features/bottomNav/controller/user.dart';
+import 'package:SNP/features/bottomNav/presentation/userDashboard/presentation/attendance/coach/attendance/attendance_history_list.dart';
+import 'package:SNP/features/bottomNav/presentation/userDashboard/presentation/attendance/coach/attendance/attendance_players_list.dart';
+import 'package:SNP/features/bottomNav/presentation/userDashboard/presentation/attendance/coach/attendance/attendance_tab_screen.dart';
 import 'package:SNP/helper/common/widgets/custom_empty_icon.dart';
 import 'package:SNP/helper/common/widgets/custom_gradient_button.dart';
 import 'package:SNP/helper/common/widgets/custom_loading.dart';
@@ -28,6 +31,13 @@ class _CoachTeamsListState extends State<CoachTeamsList> {
         return Scaffold(
           appBar: AppBar(
             title: Text("teams".tr),
+            actions: [
+              TextButton(
+                  onPressed: () {
+                    Get.to(() => AttendanceHistoryList());
+                  },
+                  child: Text("History"))
+            ],
           ),
           body: teamsController.teams.length == 0
               ? CustomEmptyWidget()
@@ -40,9 +50,11 @@ class _CoachTeamsListState extends State<CoachTeamsList> {
                             (int index) {
                           return CustomGradientButton(
                             onTap: () {
-                              Get.to(() => CoachPlayersList(
-                                    players:
-                                        teamsController.teams[index].players,
+                              UserController userController =
+                                  Get.find<UserController>();
+                              print(userController.user!.id);
+                              Get.to(() => AttendanceTabScreen(
+                                    teamId: teamsController.teams[index].id,
                                   ));
                             },
                             label: teamsController.teams[index].name,

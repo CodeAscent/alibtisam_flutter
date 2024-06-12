@@ -40,7 +40,9 @@ class _CoachTeamsListState extends State<CoachTeamsList> {
                             (int index) {
                           return CustomGradientButton(
                             onTap: () {
-                              // Get.to(()=> );
+                              Get.to(() => CoachPlayersList(
+                                  players:
+                                      teamsController.teams[index].players));
                             },
                             label: teamsController.teams[index].name,
                           );
