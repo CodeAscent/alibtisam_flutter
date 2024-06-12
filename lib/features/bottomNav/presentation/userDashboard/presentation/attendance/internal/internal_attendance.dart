@@ -11,6 +11,7 @@ import 'package:dashed_circular_progress_bar/dashed_circular_progress_bar.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:get_storage/get_storage.dart';
 
 class InternalAttendanceTab extends StatefulWidget {
   const InternalAttendanceTab({super.key});
@@ -104,14 +105,8 @@ class _InternalAttendanceStatisticsState
                             .toString(),
                         items: attendanceController
                             .attendanceStatistics!.monthlyStats.keys
-                            .map((val) => DropdownMenuItem(
-                                value: attendanceController
-                                    .attendanceStatistics!
-                                    .monthlyStats
-                                    .keys
-                                    .first
-                                    .toString(),
-                                child: Text(val)))
+                            .map((val) =>
+                                DropdownMenuItem(value: val, child: Text(val)))
                             .toList(),
                         onChanged: (val) {
                           setState(() {
@@ -167,14 +162,8 @@ class _InternalAttendanceStatisticsState
                             .toString(),
                         items: attendanceController
                             .attendanceStatistics!.yearlyStats.keys
-                            .map((val) => DropdownMenuItem(
-                                value: attendanceController
-                                    .attendanceStatistics!
-                                    .yearlyStats
-                                    .keys
-                                    .first
-                                    .toString(),
-                                child: Text(val)))
+                            .map((val) =>
+                                DropdownMenuItem(value: val, child: Text(val)))
                             .toList(),
                         onChanged: (val) {
                           setState(() {
