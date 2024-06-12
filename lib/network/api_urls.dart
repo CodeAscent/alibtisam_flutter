@@ -105,3 +105,6 @@ String get_all_completed_attendance =
 
 // GET PLAYER ATTENDANCE
 String get_player_attendance = base_url + api_version + attendance + "player/";
+
+// GET PLAYER ATTENDANCE
+String get_player_attendance_statistics = base_url + api_version + attendance + "player-statistics";

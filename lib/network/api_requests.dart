@@ -6,6 +6,7 @@ import 'package:SNP/features/bottomNav/controller/selected_player.dart';
 import 'package:SNP/features/bottomNav/controller/user.dart';
 import 'package:SNP/features/bottomNav/model/attendance.dart';
 import 'package:SNP/features/bottomNav/model/attendance_history.dart';
+import 'package:SNP/features/bottomNav/model/attendance_statistics.dart';
 import 'package:SNP/features/bottomNav/model/chat_message.dart';
 import 'package:SNP/features/bottomNav/model/chats_list.dart';
 import 'package:SNP/features/bottomNav/model/dashboard.dart';
@@ -605,5 +606,19 @@ class ApiRequests {
       customSnackbar(message: e.message);
     }
     return playerAttendances;
+  }
+
+  Future<AttendanceStatisticsModel?> getPlayerAttendanceStatistics() async {
+    try {
+      final res =
+          await HttpWrapper.getRequest(get_player_attendance_statistics);
+      final data = jsonDecode(res.body);
+
+      return AttendanceStatisticsModel.fromMap(data['statistics']);
+    } on ServerException catch (e) {
+      await LoadingManager.endLoading();
+      customSnackbar(message: e.message);
+    }
+    return null;
   }
 }

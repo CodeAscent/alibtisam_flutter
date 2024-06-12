@@ -1,11 +1,13 @@
 import 'package:SNP/features/bottomNav/model/attendance.dart';
 import 'package:SNP/features/bottomNav/model/attendance_history.dart';
+import 'package:SNP/features/bottomNav/model/attendance_statistics.dart';
 import 'package:SNP/helper/utils/loading_manager.dart';
 import 'package:SNP/network/api_requests.dart';
 import 'package:get/get.dart';
 
 class AttendanceController extends GetxController {
   List<AttendanceModel> attendance = [];
+  AttendanceStatisticsModel? attendanceStatistics;
   List<AttendanceHistoryModel> attendancesHistory = [];
   String attendanceId = '';
   fetchAttendanceForInTime({required String teamId}) async {
@@ -46,9 +48,16 @@ class AttendanceController extends GetxController {
   fetchAttendanceHistoryByPlayer() async {
     attendancesHistory.clear();
     print('--------------> here');
-
     LoadingManager.startLoading();
     attendancesHistory = await ApiRequests().getPlayerAttendanceHistory();
+    update();
+  }
+
+  fetchPlayerAttendanceStatistics() async {
+    attendancesHistory.clear();
+    LoadingManager.startLoading();
+    attendanceStatistics =
+        (await ApiRequests().getPlayerAttendanceStatistics())!;
     update();
   }
 }

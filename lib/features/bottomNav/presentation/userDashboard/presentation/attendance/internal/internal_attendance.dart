@@ -38,11 +38,11 @@ class _InternalAttendanceTabState extends State<InternalAttendanceTab>
               text: "Attendance",
             ),
             Tab(
-              text: "Analysis",
+              text: "Statistics",
             )
           ], tabViewScreens: [
             InternalAttendance(),
-            InternalAttendanceAnalysis(),
+            InternalAttendanceStatistics(),
           ]),
         )));
       },
@@ -50,12 +50,20 @@ class _InternalAttendanceTabState extends State<InternalAttendanceTab>
   }
 }
 
-class InternalAttendanceAnalysis extends StatelessWidget {
-  const InternalAttendanceAnalysis({super.key});
+class InternalAttendanceStatistics extends StatelessWidget {
+  const InternalAttendanceStatistics({super.key});
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold();
+    final attendanceController = Get.find<AttendanceController>();
+    return GetBuilder(
+      initState: (state) {
+        attendanceController.fetchPlayerAttendanceStatistics();
+      },
+      builder: (AttendanceController attendanceController) {
+        return Card();
+      },
+    );
   }
 }
 
