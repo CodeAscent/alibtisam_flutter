@@ -68,7 +68,6 @@ class _SignUpScreenState extends State<SignUpScreen> {
                             .toList(),
                         onChanged: (dynamic val) {
                           setState(() {
-                            print(val);
                             clubController.text = val['name'];
                             clubIdController.text = val['_id'];
                           });

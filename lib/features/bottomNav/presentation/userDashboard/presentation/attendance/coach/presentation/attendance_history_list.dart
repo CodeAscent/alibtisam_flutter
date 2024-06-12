@@ -1,6 +1,5 @@
 import 'package:SNP/features/bottomNav/controller/attendance.dart';
-import 'package:SNP/features/bottomNav/model/team.dart';
-import 'package:SNP/features/bottomNav/presentation/userDashboard/presentation/attendance/coach/attendance/today_attendance_history.dart';
+import 'package:SNP/features/bottomNav/presentation/userDashboard/presentation/attendance/coach/presentation/attendance_single_history.dart';
 import 'package:SNP/helper/common/widgets/custom_container_button.dart';
 import 'package:SNP/helper/common/widgets/custom_loading.dart';
 import 'package:SNP/helper/utils/custom_date_formatter.dart';
@@ -20,7 +19,7 @@ class _AttendanceHistoryListState extends State<AttendanceHistoryList> {
   @override
   void initState() {
     super.initState();
-    attendanceController.fetchAttAttendanceHistory();
+    attendanceController.fetchAttendanceHistoryListByCoach();
   }
 
   @override
@@ -44,7 +43,7 @@ class _AttendanceHistoryListState extends State<AttendanceHistoryList> {
                         onTap: () {
                           attendanceController.attendanceId =
                               attendanceController.attendancesHistory[index].id;
-                          Get.to(() => TodayAttendanceHistory());
+                          Get.to(() => AttendanceSingleHistory());
                         },
                         child: CustomContainerButton(
                             label:

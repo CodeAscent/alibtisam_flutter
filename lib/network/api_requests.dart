@@ -13,7 +13,7 @@ import 'package:SNP/features/bottomNav/model/game.dart';
 import 'package:SNP/features/bottomNav/model/team.dart';
 import 'package:SNP/features/bottomNav/model/user.dart';
 import 'package:SNP/features/bottomNav/presentation/settings/model/about.dart';
-import 'package:SNP/features/bottomNav/presentation/userDashboard/presentation/attendance/coach/attendance/attendance_players_list.dart';
+import 'package:SNP/features/bottomNav/presentation/userDashboard/presentation/attendance/coach/presentation/attendance_In_time.dart';
 import 'package:SNP/features/bottomNav/presentation/userDashboard/presentation/events/model/events_model.dart';
 import 'package:SNP/features/bottomNav/presentation/userDashboard/presentation/statistics/model/monitoring.dart';
 import 'package:SNP/helper/error/server_exception.dart';
@@ -139,7 +139,6 @@ class ApiRequests {
       final data = jsonDecode(res.body);
       Logger().e(data);
 
-      print(data);
       if (res.statusCode == 200) {
         return data['requests'];
       } else {
@@ -174,7 +173,6 @@ class ApiRequests {
       LoadingManager.startLoading();
       final res = await HttpWrapper.getRequest(get_dashboard_services);
       final data = jsonDecode(res.body);
-      print(data);
       for (var item in data['services']) {
         dashboardItems.add(DashboardModel.fromMap(item));
       }
@@ -198,9 +196,7 @@ class ApiRequests {
       final res =
           await HttpWrapper.getRequest(get_player_by_guardian + "$guardianId");
       final data = jsonDecode(res.body);
-      print(data);
       List<UserModel> players = [];
-      print(data);
       for (var item in data['players']) {
         players.add(UserModel.fromMap(item));
       }
@@ -385,7 +381,6 @@ class ApiRequests {
     try {
       final res = await HttpWrapper.getRequest(get_organization);
       final data = jsonDecode(res.body);
-      print(data);
       return About.fromMap(data['organization']);
     } on ServerException catch (e) {
       await LoadingManager.endLoading();
@@ -460,13 +455,15 @@ class ApiRequests {
     }
   }
 
-  Future<List<GameModel>?> getGames() async {
+  Future<List<GameModel>?> getGames({required String date}) async {
     try {
       List<GameModel> games = [];
       LoadingManager.startLoading();
-      final res = await HttpWrapper.getRequest(get_all_games);
+      final res = await HttpWrapper.getRequest(get_all_games + "?date=$date");
       final data = jsonDecode(res.body);
-      for (var game in data['games']) {
+      Logger().w(get_all_games + "?date=$date");
+      Logger().w(data);
+      for (var game in data['dropdown']) {
         games.add(GameModel.fromMap(game));
       }
       return games;
@@ -495,7 +492,8 @@ class ApiRequests {
     return [];
   }
 
-  Future<Map<String, dynamic>> addAttendance({required String teamId}) async {
+  Future<Map<String, dynamic>> getAttendanceForInTime(
+      {required String teamId}) async {
     List<AttendanceModel> attendance = [];
     UserController userController = Get.find<UserController>();
     try {
@@ -520,15 +518,12 @@ class ApiRequests {
     return {};
   }
 
-  Future<Map<String, dynamic>> getMarkedIntimeAttendance(
+  Future<Map<String, dynamic>> getAttendanceForOutTime(
       {required String attendanceId}) async {
     try {
-      print('----------------------->');
-
       List<AttendanceModel> attendance = [];
       final res =
           await HttpWrapper.getRequest(get_marked_attendance + attendanceId);
-      print('----------------------->');
       final data = jsonDecode(res.body);
       for (var player in data['attendance']['players']) {
         attendance.add(AttendanceModel.fromMap(player));
@@ -541,15 +536,12 @@ class ApiRequests {
     return {};
   }
 
-  Future<Map<String, dynamic>> getCompletedAttendance(
+  Future<Map<String, dynamic>> getSingleAttendanceById(
       {required String attendanceId}) async {
     try {
-      print('----------------------->');
-
       List<AttendanceModel> attendance = [];
       final res =
           await HttpWrapper.getRequest(get_completed_attendance + attendanceId);
-      print('----------------------->');
       final data = jsonDecode(res.body);
       for (var player in data['attendance']['players']) {
         attendance.add(AttendanceModel.fromMap(player));
@@ -562,8 +554,7 @@ class ApiRequests {
     return {};
   }
 
-  Future<List<AttendanceHistoryModel>>
-      getAllCompletedAttendanceByCoach() async {
+  Future<List<AttendanceHistoryModel>> getAttendanceHistoryListByCoach() async {
     List<AttendanceHistoryModel> attendances = [];
 
     try {
@@ -589,15 +580,30 @@ class ApiRequests {
     try {
       List playersList =
           playersAttendance.map((player) => player.toMap()).toList();
-      print(playersList);
       final res =
           await HttpWrapper.postRequest(mark_attendance + attendanceId, {
         "playerIds": playersList,
       });
-      print(res);
     } on ServerException catch (e) {
       await LoadingManager.endLoading();
       customSnackbar(message: e.message);
     }
+  }
+
+  Future<List<AttendanceHistoryModel>> getPlayerAttendanceHistory() async {
+    List<AttendanceHistoryModel> playerAttendances = [];
+    try {
+      final res = await HttpWrapper.getRequest(get_player_attendance);
+      final data = jsonDecode(res.body);
+      for (var attendance in data['attendances']) {
+        playerAttendances.add(AttendanceHistoryModel.fromMap(attendance));
+      }
+      Logger().w(playerAttendances);
+      return playerAttendances;
+    } on ServerException catch (e) {
+      await LoadingManager.endLoading();
+      customSnackbar(message: e.message);
+    }
+    return playerAttendances;
   }
 }

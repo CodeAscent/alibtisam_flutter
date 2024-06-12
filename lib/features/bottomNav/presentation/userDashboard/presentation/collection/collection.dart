@@ -29,7 +29,7 @@ class _CollectionScreenState extends State<CollectionScreen>
   }
 
   fetchData() async {
-    await gamesController.fetchGames();
+    await gamesController.fetchGames(date: "");
     _tabController =
         TabController(length: gamesController.games.length, vsync: this);
   }

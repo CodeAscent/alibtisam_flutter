@@ -1,6 +1,6 @@
 import 'package:SNP/features/bottomNav/controller/attendance.dart';
-import 'package:SNP/features/bottomNav/presentation/userDashboard/presentation/attendance/coach/attendance/attendance_players_list.dart';
-import 'package:SNP/features/bottomNav/presentation/userDashboard/presentation/attendance/coach/attendance/complete_attendance.dart';
+import 'package:SNP/features/bottomNav/presentation/userDashboard/presentation/attendance/coach/presentation/attendance_In_time.dart';
+import 'package:SNP/features/bottomNav/presentation/userDashboard/presentation/attendance/coach/presentation/attendance_out_time.dart';
 import 'package:SNP/helper/common/widgets/custom_tab_bar.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
@@ -24,9 +24,9 @@ class _AttendanceTabScreenState extends State<AttendanceTabScreen>
     _tabController = TabController(length: 2, vsync: this)
       ..addListener(() {
         if (_tabController.index == 0) {
-          attendanceController.fetchAttendance(teamId: widget.teamId);
+          attendanceController.fetchAttendanceForInTime(teamId: widget.teamId);
         } else {
-          attendanceController.fetchIntimeAttendance();
+          attendanceController.fetchAttendanceForOutTime();
         }
       });
   }
@@ -56,8 +56,8 @@ class _AttendanceTabScreenState extends State<AttendanceTabScreen>
                 child: Text("OUT"),
               )
             ], tabViewScreens: [
-              AttendancePlayersList(teamId: widget.teamId),
-              CompleteAttendance()
+              AttendanceInTime(teamId: widget.teamId),
+              AttendanceOutTime()
             ]),
           ],
         ),

@@ -1,7 +1,7 @@
 import 'package:SNP/features/bottomNav/controller/attendance.dart';
 import 'package:SNP/features/bottomNav/model/attendance.dart';
 import 'package:SNP/features/bottomNav/model/user.dart';
-import 'package:SNP/features/bottomNav/presentation/userDashboard/presentation/attendance/coach/attendance/attendance_players_list.dart';
+import 'package:SNP/features/bottomNav/presentation/userDashboard/presentation/attendance/coach/presentation/attendance_In_time.dart';
 import 'package:SNP/helper/common/widgets/custom_empty_icon.dart';
 import 'package:SNP/helper/common/widgets/custom_loading.dart';
 import 'package:SNP/helper/theme/app_colors.dart';
@@ -9,22 +9,22 @@ import 'package:SNP/helper/utils/custom_date_formatter.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
-class TodayAttendanceHistory extends StatefulWidget {
-  const TodayAttendanceHistory({super.key});
+class AttendanceSingleHistory extends StatefulWidget {
+  const AttendanceSingleHistory({super.key});
 
   @override
-  State<TodayAttendanceHistory> createState() => _TodayAttendanceHistoryState();
+  State<AttendanceSingleHistory> createState() =>
+      _AttendanceSingleHistoryState();
 }
 
-class _TodayAttendanceHistoryState extends State<TodayAttendanceHistory> {
+class _AttendanceSingleHistoryState extends State<AttendanceSingleHistory> {
   final AttendanceController attendanceController =
       Get.find<AttendanceController>();
   List<PlayersAttendance> playersAttendance = [];
   @override
   void initState() {
     super.initState();
-    print('--------->');
-    attendanceController.fetchCompletedAttendance();
+    attendanceController.fetchSingleAttendanceById();
   }
 
   @override

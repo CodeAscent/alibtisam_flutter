@@ -24,10 +24,8 @@ class _CheckLoginState extends State<CheckLogin> {
   navigationFunction() async {
     await Future.delayed(Duration(seconds: 2));
     String? token = await getToken();
-    String? uid = await getUid();
 
     token == null ? Get.to(() => LoginScreen()) : Get.to(() => BottomNav());
-    print(uid);
   }
 
   @override

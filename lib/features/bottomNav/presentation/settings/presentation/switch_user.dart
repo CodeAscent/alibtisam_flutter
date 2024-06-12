@@ -43,7 +43,6 @@ class _SwitchUserState extends State<SwitchUser> {
                               if (userController.user!.id == player.id) {
                                 Get.back();
                               } else {
-                                print(player.id);
                                 await ApiRequests().getTokenById(player.id);
                                 Get.offAll(() => DummySplash());
                               }

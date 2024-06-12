@@ -5,7 +5,6 @@ import 'package:get/get.dart';
 Future<dynamic> kSwitchThemeDialog(BuildContext context) {
   final themeController = Get.find<ThemeController>();
   themeController.updateSelectedTheme(themeController.selectedTheme.value);
-  print(themeController.liveTheme.value);
   return showDialog(
     context: context,
     builder: (context) {

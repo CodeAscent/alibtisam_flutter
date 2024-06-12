@@ -57,7 +57,6 @@ class _UserDashboardState extends State<UserDashboard> {
                               controller.dashboard[index];
                           return GestureDetector(
                             onTap: () {
-                              print(dashboard.route);
                               if (dashboard.name == "Events") {
                                 eventNavigationController
                                     .navigatingFromSplash(false);

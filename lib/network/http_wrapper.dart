@@ -9,7 +9,6 @@ import 'package:http/http.dart' as http;
 class HttpWrapper {
   static Future<Map<String, String>> header() async {
     String? token = await getToken();
-    print(token);
     if (token != null) {
       return {
         "Content-Type": "application/json",

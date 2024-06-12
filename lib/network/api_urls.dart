@@ -77,7 +77,7 @@ String update_monitoring_by_playerId =
     base_url + api_version + monitoring + "update/";
 
 // GET ALL GAMES
-String get_all_games = base_url + api_version + game + "all";
+String get_all_games = base_url + api_version + game + "dropdown";
 
 // GET ALL GAMES
 String get_player_reports = base_url + api_version + monitoring + "get-report/";
@@ -102,3 +102,6 @@ String get_completed_attendance =
 // GET COMPLETED ATTENDANCE
 String get_all_completed_attendance =
     base_url + api_version + attendance + "get-all-completed/";
+
+// GET PLAYER ATTENDANCE
+String get_player_attendance = base_url + api_version + attendance + "player/";
