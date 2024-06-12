@@ -46,7 +46,6 @@ class AttendanceController extends GetxController {
   }
 
   fetchAttendanceHistoryByPlayer() async {
-    attendancesHistory.clear();
     print('--------------> here');
     LoadingManager.startLoading();
     attendancesHistory = await ApiRequests().getPlayerAttendanceHistory();

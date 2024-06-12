@@ -1,9 +1,13 @@
 import 'package:SNP/features/bottomNav/controller/attendance.dart';
 import 'package:SNP/features/bottomNav/model/attendance_history.dart';
+import 'package:SNP/helper/common/controller/custom_loading_controller.dart';
 import 'package:SNP/helper/common/widgets/custom_container_button.dart';
 import 'package:SNP/helper/common/widgets/custom_loading.dart';
 import 'package:SNP/helper/common/widgets/custom_tab_bar.dart';
+import 'package:SNP/helper/theme/app_colors.dart';
 import 'package:SNP/helper/utils/custom_date_formatter.dart';
+import 'package:SNP/helper/utils/loading_manager.dart';
+import 'package:dashed_circular_progress_bar/dashed_circular_progress_bar.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
@@ -50,18 +54,169 @@ class _InternalAttendanceTabState extends State<InternalAttendanceTab>
   }
 }
 
-class InternalAttendanceStatistics extends StatelessWidget {
+class InternalAttendanceStatistics extends StatefulWidget {
   const InternalAttendanceStatistics({super.key});
 
   @override
+  State<InternalAttendanceStatistics> createState() =>
+      _InternalAttendanceStatisticsState();
+}
+
+class _InternalAttendanceStatisticsState
+    extends State<InternalAttendanceStatistics> {
+  final ValueNotifier<double> _valueNotifierMonth = ValueNotifier(0);
+  final ValueNotifier<double> _valueNotifierYear = ValueNotifier(0);
+
+  final attendanceController = Get.find<AttendanceController>();
+  final customLoadingController = Get.find<CustomLoadingController>();
+  String selectedYear = '';
+  String selectedMonth = '';
+
+  @override
   Widget build(BuildContext context) {
-    final attendanceController = Get.find<AttendanceController>();
     return GetBuilder(
-      initState: (state) {
-        attendanceController.fetchPlayerAttendanceStatistics();
+      initState: (state) async {
+        await attendanceController.fetchPlayerAttendanceStatistics();
       },
       builder: (AttendanceController attendanceController) {
-        return Card();
+        return SingleChildScrollView(
+          child: Padding(
+            padding: const EdgeInsets.all(16.0),
+            child: Column(
+              children: [
+                SizedBox(height: 20),
+                Text(
+                  "Total Present Days: ${attendanceController.attendanceStatistics!.presentDays}",
+                  style: TextStyle(fontWeight: FontWeight.w600, fontSize: 22),
+                ),
+                SizedBox(height: 20),
+                Row(
+                  mainAxisAlignment: MainAxisAlignment.end,
+                  children: [
+                    Text(
+                      'Monthly Stats  ',
+                      style: TextStyle(fontSize: 16),
+                    ),
+                    Spacer(),
+                    DropdownButton(
+                        value: attendanceController
+                            .attendanceStatistics!.monthlyStats.keys.first
+                            .toString(),
+                        items: attendanceController
+                            .attendanceStatistics!.monthlyStats.keys
+                            .map((val) => DropdownMenuItem(
+                                value: attendanceController
+                                    .attendanceStatistics!
+                                    .monthlyStats
+                                    .keys
+                                    .first
+                                    .toString(),
+                                child: Text(val)))
+                            .toList(),
+                        onChanged: (val) {
+                          setState(() {
+                            selectedMonth = val!;
+                          });
+                        }),
+                  ],
+                ),
+                SizedBox(
+                  child: DashedCircularProgressBar(
+                    valueNotifier: _valueNotifierMonth,
+                    progress: selectedMonth == ''
+                        ? attendanceController
+                            .attendanceStatistics!
+                            .monthlyStats[attendanceController
+                                .attendanceStatistics!.monthlyStats.keys.first]
+                            .toDouble()
+                        : attendanceController
+                            .attendanceStatistics!.monthlyStats[selectedMonth]
+                            .toDouble(),
+                    maxProgress: 365,
+                    corners: StrokeCap.round,
+                    foregroundColor: primaryColor(),
+                    foregroundStrokeWidth: 26,
+                    animation: true,
+                    width: 200,
+                    height: 200,
+                    child: Center(
+                      child: ValueListenableBuilder(
+                        valueListenable: _valueNotifierMonth,
+                        builder: (_, double value, __) => Text(
+                          '${value.toInt()}\nDays',
+                          textAlign: TextAlign.center,
+                          style: const TextStyle(
+                              fontWeight: FontWeight.w500, fontSize: 20),
+                        ),
+                      ),
+                    ),
+                  ),
+                ),
+                SizedBox(height: 20),
+                Row(
+                  mainAxisAlignment: MainAxisAlignment.end,
+                  children: [
+                    Text(
+                      'Yearly Stats  ',
+                      style: TextStyle(fontSize: 16),
+                    ),
+                    Spacer(),
+                    DropdownButton(
+                        value: attendanceController
+                            .attendanceStatistics!.yearlyStats.keys.first
+                            .toString(),
+                        items: attendanceController
+                            .attendanceStatistics!.yearlyStats.keys
+                            .map((val) => DropdownMenuItem(
+                                value: attendanceController
+                                    .attendanceStatistics!
+                                    .yearlyStats
+                                    .keys
+                                    .first
+                                    .toString(),
+                                child: Text(val)))
+                            .toList(),
+                        onChanged: (val) {
+                          setState(() {
+                            selectedYear = val!;
+                          });
+                        }),
+                  ],
+                ),
+                DashedCircularProgressBar(
+                  valueNotifier: _valueNotifierYear,
+                  progress: selectedYear == ''
+                      ? attendanceController
+                          .attendanceStatistics!
+                          .yearlyStats[attendanceController
+                              .attendanceStatistics!.yearlyStats.keys.first]
+                          .toDouble()
+                      : attendanceController
+                          .attendanceStatistics!.yearlyStats[selectedYear]
+                          .toDouble(),
+                  maxProgress: 365,
+                  corners: StrokeCap.round,
+                  foregroundColor: primaryColor(),
+                  foregroundStrokeWidth: 26,
+                  animation: true,
+                  width: 200,
+                  height: 200,
+                  child: Center(
+                    child: ValueListenableBuilder(
+                      valueListenable: _valueNotifierYear,
+                      builder: (_, double value, __) => Text(
+                        '${value.toInt()}\nDays',
+                        textAlign: TextAlign.center,
+                        style: const TextStyle(
+                            fontWeight: FontWeight.w500, fontSize: 20),
+                      ),
+                    ),
+                  ),
+                ),
+              ],
+            ),
+          ),
+        );
       },
     );
   }

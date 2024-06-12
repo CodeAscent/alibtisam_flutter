@@ -613,7 +613,7 @@ class ApiRequests {
       final res =
           await HttpWrapper.getRequest(get_player_attendance_statistics);
       final data = jsonDecode(res.body);
-
+      Logger().w(data['statistics']);
       return AttendanceStatisticsModel.fromMap(data['statistics']);
     } on ServerException catch (e) {
       await LoadingManager.endLoading();
