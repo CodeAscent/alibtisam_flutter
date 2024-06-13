@@ -7,10 +7,12 @@ class CustomContainerButton extends StatelessWidget {
     required this.label,
     this.onTap,
     this.flexibleHeight,
+    this.child,
   });
   final String label;
   final void Function()? onTap;
   final bool? flexibleHeight;
+  final Widget? child;
   @override
   Widget build(BuildContext context) {
     return GestureDetector(
@@ -21,14 +23,17 @@ class CustomContainerButton extends StatelessWidget {
         decoration: BoxDecoration(
             color: primaryColor(), borderRadius: BorderRadius.circular(20)),
         child: Center(
-          child: Text(
-            label,
-            textAlign: TextAlign.center,
-            style: TextStyle(
-                color: Colors.white,
-                fontWeight: FontWeight.w800,
-                letterSpacing: 2),
-          ),
+          child: child != null
+              ? child
+              : Text(
+                  label,
+                  textAlign: TextAlign.center,
+                  style: TextStyle(
+                    fontSize: 18,
+                    color: Colors.white,
+                    fontWeight: FontWeight.w800,
+                  ),
+                ),
         ),
       ),
     );

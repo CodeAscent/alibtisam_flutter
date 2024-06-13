@@ -22,6 +22,7 @@ class AttendanceController extends GetxController {
 
   fetchAttendanceForOutTime() async {
     attendance.clear();
+
     LoadingManager.startLoading();
     final res =
         await ApiRequests().getAttendanceForOutTime(attendanceId: attendanceId);
@@ -53,7 +54,6 @@ class AttendanceController extends GetxController {
   }
 
   fetchPlayerAttendanceStatistics() async {
-    attendancesHistory.clear();
     LoadingManager.startLoading();
     attendanceStatistics =
         (await ApiRequests().getPlayerAttendanceStatistics())!;

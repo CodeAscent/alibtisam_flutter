@@ -236,7 +236,7 @@ class InternalAttendance extends StatelessWidget {
                     child: CustomContainerButton(
                         flexibleHeight: true,
                         label:
-                            '\n Marked ${customDateTimeFormat(attendanceHistory.createdAt)} \n In-Time: ${customTimeFormat(attendanceHistory.players[0].inTime)} \n Out-Time: ${customTimeFormat(attendanceHistory.players[0].outTime)}, \n Remarks: ${attendanceHistory.players[0].remark}\n'),
+                            '\n Marked ${customDateTimeFormat(attendanceHistory.createdAt)} \n In-Time: ${customTimeFormat(attendanceHistory.players[0].inTime)} \n Out-Time: ${attendanceHistory.players[0].outTime == '' ? '??' : customTimeFormat(attendanceHistory.players[0].outTime)}, \n Remarks: ${attendanceHistory.players[0].remark}\n'),
                   );
                 })
               ],

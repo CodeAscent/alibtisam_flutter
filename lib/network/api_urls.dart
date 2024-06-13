@@ -1,5 +1,5 @@
-// String base_url = "https://alibtisam.club/";
-String base_url = "http://192.168.1.5:8000/";
+String base_url = "http://52.66.197.219:8000/";
+// String base_url = "http://192.168.29.116:8000/";
 String api_version = "api/v1/";
 String event = "event/";
 String user = "user/";

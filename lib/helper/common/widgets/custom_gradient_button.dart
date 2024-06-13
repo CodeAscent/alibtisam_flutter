@@ -1,5 +1,6 @@
 import 'package:SNP/helper/theme/app_colors.dart';
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 
 class CustomGradientButton extends StatelessWidget {
   const CustomGradientButton({
@@ -30,13 +31,14 @@ class CustomGradientButton extends StatelessWidget {
             borderRadius: BorderRadius.circular(20)),
         child: Center(
           child: Text(
-            label,
+            label.capitalize!,
             maxLines: 2,
             textAlign: TextAlign.center,
             style: TextStyle(
-                color: disabled! ? Colors.grey : Colors.white,
-                fontWeight: FontWeight.w800,
-                letterSpacing: 2),
+              fontSize: 18,
+              color: disabled! ? Colors.grey : Colors.white,
+              fontWeight: FontWeight.w800,
+            ),
           ),
         ),
       ),

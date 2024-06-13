@@ -44,11 +44,11 @@ class _CustomTabBarState extends State<CustomTabBar> {
             onTap: (value) {},
             labelPadding: EdgeInsets.symmetric(
                 horizontal: widget.tabViewScreens.length <= 2 ? 50 : 20,
-                vertical: 10),
+                vertical: 4),
             tabAlignment: TabAlignment.center,
             isScrollable: true,
             dividerHeight: 0,
-            // labelStyle: TextStyle(fontSize: 12),
+            labelStyle: TextStyle(fontSize: 16, fontWeight: FontWeight.w800),
             indicatorSize: TabBarIndicatorSize.tab,
             labelColor: Colors.white,
             indicatorWeight: 5,
