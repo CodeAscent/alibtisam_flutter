@@ -43,7 +43,7 @@ class _CustomTabBarState extends State<CustomTabBar> {
           child: TabBar(
             onTap: (value) {},
             labelPadding: EdgeInsets.symmetric(
-                horizontal: widget.tabViewScreens.length <= 2 ? 50 : 20,
+                horizontal: widget.tabViewScreens.length <= 2 ? 40 : 20,
                 vertical: 4),
             tabAlignment: TabAlignment.center,
             isScrollable: true,

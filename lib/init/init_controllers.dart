@@ -3,6 +3,7 @@ import 'package:SNP/features/bottomNav/controller/attendance.dart';
 import 'package:SNP/features/bottomNav/controller/chat_messages.dart';
 import 'package:SNP/features/bottomNav/controller/chats_list.dart';
 import 'package:SNP/features/bottomNav/controller/dashboard.dart';
+import 'package:SNP/features/bottomNav/controller/date_range.dart';
 import 'package:SNP/features/bottomNav/controller/games.dart';
 import 'package:SNP/features/bottomNav/controller/measurement_req.dart';
 import 'package:SNP/features/bottomNav/controller/selected_player.dart';
@@ -34,4 +35,5 @@ initControllers() {
   Get.put(TeamsController());
   Get.put(SelectedPlayerController());
   Get.put(AttendanceController());
+  Get.put(DateRangeController());
 }

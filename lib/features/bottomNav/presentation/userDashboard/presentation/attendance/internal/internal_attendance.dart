@@ -38,17 +38,32 @@ class _InternalAttendanceTabState extends State<InternalAttendanceTab>
         return CustomLoader(
             child: Scaffold(
                 body: SafeArea(
-          child: CustomTabBar(tabController: _tabController, customTabs: [
-            Tab(
-              text: "Attendance",
-            ),
-            Tab(
-              text: "Statistics",
-            )
-          ], tabViewScreens: [
-            InternalAttendance(),
-            InternalAttendanceStatistics(),
-          ]),
+          child: Stack(
+            children: [
+              Positioned(
+                top: 35,
+                child: IconButton(
+                    onPressed: () {
+                      Get.back();
+                    },
+                    icon: Icon(
+                      Icons.navigate_before,
+                      size: 35,
+                    )),
+              ),
+              CustomTabBar(tabController: _tabController, customTabs: [
+                Tab(
+                  text: "Attendance",
+                ),
+                Tab(
+                  text: "Statistics",
+                )
+              ], tabViewScreens: [
+                InternalAttendance(),
+                InternalAttendanceStatistics(),
+              ]),
+            ],
+          ),
         )));
       },
     );
@@ -132,6 +147,7 @@ class _InternalAttendanceStatisticsState
                     foregroundColor: primaryColor(),
                     foregroundStrokeWidth: 26,
                     animation: true,
+                    backgroundColor: kAppGreyColor(),
                     width: 200,
                     height: 200,
                     child: Center(
@@ -173,6 +189,7 @@ class _InternalAttendanceStatisticsState
                   ],
                 ),
                 DashedCircularProgressBar(
+                  backgroundColor: kAppGreyColor(),
                   valueNotifier: _valueNotifierYear,
                   progress: selectedYear == ''
                       ? attendanceController

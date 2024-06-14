@@ -3,6 +3,8 @@ import 'package:SNP/features/bottomNav/controller/user.dart';
 import 'package:SNP/features/bottomNav/presentation/settings/presentation/about.dart';
 import 'package:SNP/features/bottomNav/presentation/settings/presentation/help_support.dart';
 import 'package:SNP/features/bottomNav/presentation/settings/presentation/switch_user.dart';
+import 'package:SNP/features/bottomNav/presentation/userDashboard/presentation/chat/chat_about.dart';
+import 'package:SNP/features/bottomNav/presentation/userDashboard/presentation/enrollment/view_addmision_form.dart';
 import 'package:SNP/helper/common/constants/switch_theme_dialog.dart';
 import 'package:SNP/features/bottomNav/presentation/settings/presentation/profile.dart';
 import 'package:SNP/features/bottomNav/presentation/settings/widgets/custom_settings_card.dart';
@@ -34,7 +36,29 @@ class _SettingScreenState extends State<SettingScreen> {
     return CustomLoader(
       child: Scaffold(
         appBar: AppBar(
+          toolbarHeight: 90,
           automaticallyImplyLeading: false,
+          actions: [
+            GestureDetector(
+              onTap: () {
+                kLogoutUser(context);
+              },
+              child: Row(
+                mainAxisAlignment: MainAxisAlignment.end,
+                children: [
+                  Text(
+                    "logOut".tr,
+                    style: TextStyle(
+                        fontSize: 18,
+                        fontWeight: FontWeight.w600,
+                        color: Colors.red.shade500),
+                  ),
+                  SizedBox(width: 10),
+                  Icon(Icons.logout, color: Colors.red.shade500),
+                ],
+              ),
+            ),
+          ],
         ),
         body: SingleChildScrollView(
             child: SafeArea(
@@ -68,9 +92,16 @@ class _SettingScreenState extends State<SettingScreen> {
                       GestureDetector(
                           onTap: () {
                             LoadingManager.dummyLoading();
-                            Get.to(() => ProfileScreen(
-                                  user: user,
-                                ));
+                            if (user.role == 'EXTERNAL USER' ||
+                                user.role == 'GUARDIAN') {
+                              Get.to(() => ProfileScreen(
+                                    user: user,
+                                  ));
+                            } else if (user.role == 'INTERNAL USER') {
+                              Get.to(() => ViewPlayerByUserModel(player: user));
+                            } else {
+                              Get.to(() => ViewCoachProfile(user: user));
+                            }
                           },
                           child: CustomSettingsCard(label: "profile".tr)),
                       Visibility(
@@ -94,43 +125,16 @@ class _SettingScreenState extends State<SettingScreen> {
                           child: CustomSettingsCard(label: "language".tr)),
                       GestureDetector(
                           onTap: () {
+                            Get.to(() => HelpSupportPage());
+                          },
+                          child: CustomSettingsCard(label: "help&support".tr)),
+                      GestureDetector(
+                          onTap: () {
                             Get.to(() => AboutOrganization());
                           },
                           child: CustomSettingsCard(label: "about".tr)),
-                      GestureDetector(
-                          onTap: () {
-                            Get.to(() => HelpSupportPage());
-                          },
-                          child:
-                              CustomSettingsCard(label: "helpAndSupport".tr)),
-                      // GestureDetector(
-                      //   onTap: () {
-                      //     Get.to(() => ChatNavigation());
-                      //   },
-                      //   child: CustomSettingsCard(label: "chat".tr),
-                      // ),
                     ],
                   ),
-                SizedBox(height: 20),
-                GestureDetector(
-                  onTap: () {
-                    kLogoutUser(context);
-                  },
-                  child: Row(
-                    mainAxisAlignment: MainAxisAlignment.center,
-                    children: [
-                      Text(
-                        "logOut".tr,
-                        style: TextStyle(
-                            fontSize: 18,
-                            fontWeight: FontWeight.w600,
-                            color: Colors.red.shade500),
-                      ),
-                      SizedBox(width: 10),
-                      Icon(Icons.logout, color: Colors.red.shade500),
-                    ],
-                  ),
-                ),
                 SizedBox(height: 150),
               ],
             ),

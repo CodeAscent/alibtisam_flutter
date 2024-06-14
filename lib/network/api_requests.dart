@@ -51,6 +51,29 @@ class ApiRequests {
     return [];
   }
 
+  Future<List<Events>> allEventsWithDateFilter(
+      String filter, String startDate, String endDate) async {
+    try {
+      LoadingManager.startLoading();
+
+      List<Events> events = [];
+      final res = await HttpWrapper.getRequest(all_events +
+          "?category=$filter&startDate=$startDate&endDate=$endDate");
+      final data = jsonDecode(res.body);
+      if (res.statusCode == 200) {
+        for (var item in data['events']) {
+          events.add(Events.fromMap(item));
+        }
+      }
+
+      return events;
+    } on ServerException catch (e) {
+      await LoadingManager.endLoading();
+      customSnackbar(message: e.message);
+    }
+    return [];
+  }
+
   Future<void> register(
       {required String email,
       required String password,

@@ -81,14 +81,16 @@ class HelpSupportPage extends StatelessWidget {
       margin: EdgeInsets.symmetric(vertical: 10),
       decoration: BoxDecoration(
           gradient: kGradientColor(), borderRadius: BorderRadius.circular(15)),
-      child: ListTile(
-        leading: Icon(icon, color: Colors.white, size: 36),
-        title: Text(
-          title,
-          style: TextStyle(
-            fontSize: 18,
-            color: Colors.white,
-            fontWeight: FontWeight.w600,
+      child: Center(
+        child: ListTile(
+          leading: Icon(icon, color: Colors.white, size: 36),
+          title: Text(
+            title,
+            style: TextStyle(
+              fontSize: 18,
+              color: Colors.white,
+              fontWeight: FontWeight.w600,
+            ),
           ),
         ),
       ),

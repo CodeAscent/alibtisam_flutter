@@ -1,12 +1,9 @@
 import 'package:SNP/features/bottomNav/model/user.dart';
-import 'package:SNP/features/bottomNav/presentation/settings/widgets/crop_image.dart';
-import 'package:SNP/features/bottomNav/presentation/userDashboard/presentation/enrollment/external/external_enrollment_form.dart';
+
 import 'package:SNP/helper/common/widgets/custom_loading.dart';
 import 'package:SNP/helper/common/widgets/custom_text_field.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/services.dart';
 import 'package:get/get.dart';
-import 'package:image_picker/image_picker.dart';
 
 class ProfileScreen extends StatelessWidget {
   final UserModel user;
@@ -61,7 +58,7 @@ class ProfileScreen extends StatelessWidget {
                 children: [
                   SizedBox(height: 20),
                   CustomTextField(
-                    suffix: Icon(Icons.edit),
+                    // suffix: Icon(Icons.edit),
                     initial: user.name,
                     controller: null,
                     label: "name".tr,
@@ -69,7 +66,7 @@ class ProfileScreen extends StatelessWidget {
                   ),
                   SizedBox(height: 20),
                   CustomTextField(
-                    suffix: Icon(Icons.edit),
+                    // suffix: Icon(Icons.edit),
                     initial: user.userName,
                     controller: null,
                     label: "userName".tr,
@@ -84,17 +81,10 @@ class ProfileScreen extends StatelessWidget {
                   ),
                   SizedBox(height: 20),
                   CustomTextField(
-                    suffix: Icon(Icons.edit),
+                    // suffix: Icon(Icons.edit),
                     initial: user.mobile,
                     controller: null,
                     label: "phone".tr,
-                    readOnly: true,
-                  ),
-                  SizedBox(height: 20),
-                  CustomTextField(
-                    initial: user.role,
-                    controller: null,
-                    label: "role".tr,
                     readOnly: true,
                   ),
                   SizedBox(height: 20),

@@ -80,6 +80,7 @@ ThemeData kAppThemeLight() {
 
 ThemeData kAppThemeDark() {
   return ThemeData.dark().copyWith(
+    bottomSheetTheme: BottomSheetThemeData(backgroundColor: Colors.black),
     dropdownMenuTheme: DropdownMenuThemeData(
         menuStyle:
             MenuStyle(backgroundColor: WidgetStatePropertyAll(Colors.black)),
@@ -98,11 +99,6 @@ ThemeData kAppThemeDark() {
       titleTextStyle:
           TextStyle(color: Colors.white, fontSize: 18, letterSpacing: 2),
       actionsIconTheme: IconThemeData(color: Colors.white),
-      backgroundColor: Colors.black,
-      surfaceTintColor: Colors.black,
-    ),
-    datePickerTheme: DatePickerThemeData(
-      shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(10)),
       backgroundColor: Colors.black,
       surfaceTintColor: Colors.black,
     ),

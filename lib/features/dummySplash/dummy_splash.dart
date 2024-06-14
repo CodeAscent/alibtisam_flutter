@@ -54,15 +54,6 @@ class _DummySplashState extends State<DummySplash> {
                   child: Center(
                     child: Stack(
                       children: [
-                        Center(
-                          child: Container(
-                            height: 400,
-                            width: 310,
-                            decoration: BoxDecoration(
-                                color: Colors.black,
-                                borderRadius: BorderRadius.circular(25)),
-                          ),
-                        ),
                         Positioned.fill(
                           child: CarouselSlider(
                             options: CarouselOptions(
