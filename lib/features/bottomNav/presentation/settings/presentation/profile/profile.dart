@@ -36,20 +36,6 @@ class ProfileScreen extends StatelessWidget {
                 ],
               ),
             ),
-            // actions: [
-            //   Positioned(
-            //     right: 0,
-            //     child: ElevatedButton(
-            //         onPressed: () async {
-            //           XFile? profile = await pickImageFromGalary();
-            //           if (profile != null) {
-            //             Uint8List image = await profile.readAsBytes();
-            //             Get.to(() => CustomCropImage(imageData: image));
-            //           }
-            //         },
-            //         child: Text("edit".tr)),
-            //   )
-            // ],
           ),
           SliverToBoxAdapter(
             child: Padding(

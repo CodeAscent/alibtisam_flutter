@@ -3,10 +3,10 @@ import 'package:SNP/features/bottomNav/controller/user.dart';
 import 'package:SNP/features/bottomNav/presentation/settings/presentation/about.dart';
 import 'package:SNP/features/bottomNav/presentation/settings/presentation/help_support.dart';
 import 'package:SNP/features/bottomNav/presentation/settings/presentation/switch_user.dart';
-import 'package:SNP/features/bottomNav/presentation/userDashboard/presentation/chat/chat_about.dart';
+import 'package:SNP/features/bottomNav/presentation/settings/widgets/coach_profile.dart';
 import 'package:SNP/features/bottomNav/presentation/userDashboard/presentation/enrollment/view_addmision_form.dart';
 import 'package:SNP/core/common/constants/switch_theme_dialog.dart';
-import 'package:SNP/features/bottomNav/presentation/settings/presentation/profile.dart';
+import 'package:SNP/features/bottomNav/presentation/settings/presentation/profile/profile.dart';
 import 'package:SNP/features/bottomNav/presentation/settings/widgets/custom_settings_card.dart';
 import 'package:SNP/core/common/constants/logout_user.dart';
 import 'package:SNP/core/common/widgets/custom_loading.dart';
@@ -100,7 +100,7 @@ class _SettingScreenState extends State<SettingScreen> {
                             } else if (user.role == 'INTERNAL USER') {
                               Get.to(() => ViewPlayerByUserModel(player: user));
                             } else {
-                              Get.to(() => ViewCoachProfile(user: user));
+                              Get.to(() => CoachProfile(user: user));
                             }
                           },
                           child: CustomSettingsCard(label: "profile".tr)),
