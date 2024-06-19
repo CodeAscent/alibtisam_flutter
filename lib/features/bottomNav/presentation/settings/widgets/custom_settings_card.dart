@@ -1,4 +1,4 @@
-import 'package:SNP/helper/theme/app_colors.dart';
+import 'package:SNP/core/theme/app_colors.dart';
 import 'package:flutter/material.dart';
 
 class CustomSettingsCard extends StatelessWidget {
@@ -18,7 +18,7 @@ class CustomSettingsCard extends StatelessWidget {
       child: Text(
         label,
         style: TextStyle(
-            fontSize: 16, fontWeight: FontWeight.w500, letterSpacing: 2),
+            fontSize: 16, fontWeight: FontWeight.w500, letterSpacing: 1),
       ),
     );
   }

@@ -6,12 +6,12 @@ import 'package:SNP/features/bottomNav/presentation/userDashboard/presentation/c
 import 'package:SNP/features/bottomNav/presentation/userDashboard/presentation/chat/presentation/coach/players_list.dart';
 import 'package:SNP/features/bottomNav/presentation/userDashboard/presentation/chat/presentation/coach/teams_list.dart';
 import 'package:SNP/features/bottomNav/presentation/userDashboard/presentation/chat/widgets/custom_chat_cards.dart';
-import 'package:SNP/helper/common/widgets/custom_empty_icon.dart';
-import 'package:SNP/helper/common/widgets/custom_gradient_button.dart';
-import 'package:SNP/helper/common/widgets/custom_loading.dart';
-import 'package:SNP/helper/common/widgets/custom_tab_bar.dart';
-import 'package:SNP/helper/theme/app_colors.dart';
-import 'package:SNP/helper/utils/custom_date_formatter.dart';
+import 'package:SNP/core/common/widgets/custom_empty_icon.dart';
+import 'package:SNP/core/common/widgets/custom_gradient_button.dart';
+import 'package:SNP/core/common/widgets/custom_loading.dart';
+import 'package:SNP/core/common/widgets/custom_tab_bar.dart';
+import 'package:SNP/core/theme/app_colors.dart';
+import 'package:SNP/core/utils/custom_date_formatter.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 

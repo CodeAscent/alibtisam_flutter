@@ -1,9 +1,9 @@
 import 'package:SNP/features/bottomNav/model/team.dart';
 import 'package:SNP/features/bottomNav/presentation/userDashboard/presentation/statistics/controller/monitoring.dart';
 import 'package:SNP/features/bottomNav/presentation/userDashboard/presentation/statistics/player_statistics.dart';
-import 'package:SNP/helper/common/widgets/custom_empty_icon.dart';
-import 'package:SNP/helper/common/widgets/custom_loading.dart';
-import 'package:SNP/helper/theme/app_colors.dart';
+import 'package:SNP/core/common/widgets/custom_empty_icon.dart';
+import 'package:SNP/core/common/widgets/custom_loading.dart';
+import 'package:SNP/core/theme/app_colors.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 

@@ -4,8 +4,8 @@ import 'package:SNP/features/bottomNav/presentation/userDashboard/presentation/e
 import 'package:SNP/features/bottomNav/presentation/userDashboard/presentation/events/model/events_model.dart';
 import 'package:SNP/features/bottomNav/presentation/userDashboard/presentation/events/presentation/events.dart';
 import 'package:SNP/features/bottomNav/presentation/userDashboard/presentation/events/widgets/feedPlayer/feed_player.dart';
-import 'package:SNP/helper/common/widgets/custom_loading.dart';
-import 'package:SNP/helper/utils/custom_date_formatter.dart';
+import 'package:SNP/core/common/widgets/custom_loading.dart';
+import 'package:SNP/core/utils/custom_date_formatter.dart';
 import 'package:carousel_slider/carousel_slider.dart';
 import 'package:cupertino_will_pop_scope/cupertino_will_pop_scope.dart';
 import 'package:flutter/material.dart';

@@ -1,9 +1,9 @@
 import 'package:SNP/features/bottomNav/presentation/userDashboard/presentation/statistics/coach/presentation/reports/report_view.dart';
 import 'package:SNP/features/bottomNav/presentation/userDashboard/presentation/statistics/controller/reports.dart';
 import 'package:SNP/features/bottomNav/presentation/userDashboard/presentation/statistics/model/monitoring.dart';
-import 'package:SNP/helper/common/widgets/custom_container_button.dart';
-import 'package:SNP/helper/theme/app_colors.dart';
-import 'package:SNP/helper/utils/custom_date_formatter.dart';
+import 'package:SNP/core/common/widgets/custom_container_button.dart';
+import 'package:SNP/core/theme/app_colors.dart';
+import 'package:SNP/core/utils/custom_date_formatter.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
@@ -31,19 +31,15 @@ class _CoachPlayerReportsState extends State<CoachPlayerReports> {
             children: [
               ...List.generate(reportsController.reports.length, (int index) {
                 MonitoringModel report = reportsController.reports[index]!;
-                return Container(
-                    margin: EdgeInsets.all(8),
-                    decoration: BoxDecoration(
-                        color: kAppGreyColor(),
-                        borderRadius: BorderRadius.circular(10)),
-                    child: CustomContainerButton(
-                        onTap: () {
-                          Get.to(() => ReportView(
-                                report: report,
-                              ));
-                        },
-                        label:
-                            "Reported on \n${customDateTimeFormat(report.updatedAt)}"));
+                return CustomContainerButton(
+                    flexibleHeight: 100,
+                    onTap: () {
+                      Get.to(() => ReportView(
+                            report: report,
+                          ));
+                    },
+                    label:
+                        "Reported on \n${customDateTimeFormat(report.updatedAt)}");
               })
             ],
           ),

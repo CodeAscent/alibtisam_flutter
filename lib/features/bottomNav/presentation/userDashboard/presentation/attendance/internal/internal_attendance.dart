@@ -1,12 +1,12 @@
 import 'package:SNP/features/bottomNav/controller/attendance.dart';
 import 'package:SNP/features/bottomNav/model/attendance_history.dart';
-import 'package:SNP/helper/common/controller/custom_loading_controller.dart';
-import 'package:SNP/helper/common/widgets/custom_container_button.dart';
-import 'package:SNP/helper/common/widgets/custom_loading.dart';
-import 'package:SNP/helper/common/widgets/custom_tab_bar.dart';
-import 'package:SNP/helper/theme/app_colors.dart';
-import 'package:SNP/helper/utils/custom_date_formatter.dart';
-import 'package:SNP/helper/utils/loading_manager.dart';
+import 'package:SNP/core/common/controller/custom_loading_controller.dart';
+import 'package:SNP/core/common/widgets/custom_container_button.dart';
+import 'package:SNP/core/common/widgets/custom_loading.dart';
+import 'package:SNP/core/common/widgets/custom_tab_bar.dart';
+import 'package:SNP/core/theme/app_colors.dart';
+import 'package:SNP/core/utils/custom_date_formatter.dart';
+import 'package:SNP/core/utils/loading_manager.dart';
 import 'package:dashed_circular_progress_bar/dashed_circular_progress_bar.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
@@ -242,21 +242,22 @@ class InternalAttendance extends StatelessWidget {
       builder: (AttendanceController attendanceController) {
         return CustomLoader(
             child: Scaffold(
-          body: SafeArea(
-            child: Column(
-              children: [
-                ...List.generate(attendanceController.attendancesHistory.length,
-                    (int index) {
-                  AttendanceHistoryModel attendanceHistory =
-                      attendanceController.attendancesHistory[index];
-                  return Card(
-                    child: CustomContainerButton(
-                        flexibleHeight: true,
+          body: SingleChildScrollView(
+            child: SafeArea(
+              child: Column(
+                children: [
+                  ...List.generate(
+                      attendanceController.attendancesHistory.length,
+                      (int index) {
+                    AttendanceHistoryModel attendanceHistory =
+                        attendanceController.attendancesHistory[index];
+                    return CustomContainerButton(
+                        flexibleHeight: null,
                         label:
-                            '\n Marked ${customDateTimeFormat(attendanceHistory.createdAt)} \n In-Time: ${customTimeFormat(attendanceHistory.players[0].inTime)} \n Out-Time: ${attendanceHistory.players[0].outTime == '' ? '??' : customTimeFormat(attendanceHistory.players[0].outTime)}, \n Remarks: ${attendanceHistory.players[0].remark}\n'),
-                  );
-                })
-              ],
+                            '\n Marked ${customDateTimeFormat(attendanceHistory.createdAt)} \n In-Time: ${customTimeFormat(attendanceHistory.players[0].inTime)} \n Out-Time: ${attendanceHistory.players[0].outTime == '' ? '??' : customTimeFormat(attendanceHistory.players[0].outTime)}, \n Remarks: ${attendanceHistory.players[0].remark}\n');
+                  })
+                ],
+              ),
             ),
           ),
         ));

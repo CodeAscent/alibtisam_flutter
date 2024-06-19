@@ -1,10 +1,10 @@
 import 'package:SNP/features/bottomNav/controller/selected_player.dart';
 import 'package:SNP/features/bottomNav/controller/user.dart';
 import 'package:SNP/features/bottomNav/presentation/userDashboard/presentation/statistics/controller/monitoring.dart';
-import 'package:SNP/helper/common/widgets/custom_gradient_button.dart';
-import 'package:SNP/helper/common/widgets/custom_loading.dart';
-import 'package:SNP/helper/common/widgets/custom_slider.dart';
-import 'package:SNP/helper/utils/loading_manager.dart';
+import 'package:SNP/core/common/widgets/custom_gradient_button.dart';
+import 'package:SNP/core/common/widgets/custom_loading.dart';
+import 'package:SNP/core/common/widgets/custom_slider.dart';
+import 'package:SNP/core/utils/loading_manager.dart';
 import 'package:SNP/network/api_requests.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';

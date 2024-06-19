@@ -1,9 +1,10 @@
 // ignore_for_file: public_member_api_docs, sort_constructors_first
 import 'package:SNP/features/bottomNav/controller/date_range.dart';
-import 'package:SNP/helper/utils/custom_date_formatter.dart';
+import 'package:SNP/core/utils/custom_date_formatter.dart';
 import 'package:SNP/network/api_requests.dart';
 import 'package:SNP/network/api_urls.dart';
 import 'package:calendar_date_picker2/calendar_date_picker2.dart';
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:logger/web.dart';
@@ -12,10 +13,11 @@ import 'package:SNP/features/bottomNav/presentation/userDashboard/presentation/e
 import 'package:SNP/features/bottomNav/presentation/userDashboard/presentation/events/model/events_model.dart';
 import 'package:SNP/features/bottomNav/presentation/userDashboard/presentation/events/presentation/event_desciption.dart';
 import 'package:SNP/features/bottomNav/presentation/userDashboard/presentation/events/widgets/feedPlayer/feed_player.dart';
-import 'package:SNP/helper/common/widgets/custom_pod_player.dart';
-import 'package:SNP/helper/theme/app_colors.dart';
-import 'package:SNP/helper/theme/controller/theme_controller.dart';
-import 'package:SNP/helper/utils/loading_manager.dart';
+import 'package:SNP/core/common/widgets/custom_pod_player.dart';
+import 'package:SNP/core/theme/app_colors.dart';
+import 'package:SNP/core/theme/controller/theme_controller.dart';
+import 'package:SNP/core/utils/loading_manager.dart';
+import 'package:lottie/lottie.dart';
 
 class CustomEventsCallByCategory extends StatefulWidget {
   final String label;
@@ -37,16 +39,19 @@ class _CustomEventsCallByCategoryState
   @override
   Widget build(BuildContext context) {
     return Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
-      Row(
-        children: [
-          Text(
-            widget.label,
-            style: TextStyle(
-                fontSize: 18, fontWeight: FontWeight.w600, letterSpacing: 2),
-          ),
-          Spacer(),
-          ViewEventsSheetButton(label: widget.label),
-        ],
+      Padding(
+        padding: const EdgeInsets.all(8.0),
+        child: Row(
+          children: [
+            Text(
+              widget.label,
+              style: TextStyle(
+                  fontSize: 18, fontWeight: FontWeight.w600, letterSpacing: 2),
+            ),
+            Spacer(),
+            ViewEventsSheetButton(label: widget.label),
+          ],
+        ),
       ),
       SingleChildScrollView(
         scrollDirection: Axis.horizontal,
@@ -70,35 +75,50 @@ class _CustomEventsCallByCategoryState
                     elevation: 0.2,
                     child: Padding(
                       padding: const EdgeInsets.all(8.0),
-                      child: Column(
+                      child: Stack(
                         children: [
-                          Text(
-                            event.name,
-                            style: TextStyle(
-                                fontSize: 16, fontWeight: FontWeight.w500),
-                          ),
-                          SizedBox(height: 10),
-                          if (event.media[0].type == "image")
-                            Image.network(
-                              event.media[0].url,
-                              height: 100,
-                              fit: BoxFit.cover,
-                            ),
-                          if (event.media[0].type == "video") ...[
-                            Center(
-                              child: Icon(
-                                Icons.play_circle_fill,
-                                color: primaryColor(),
-                                size: 100,
+                          Column(
+                            children: [
+                              Text(
+                                event.name,
+                                style: TextStyle(
+                                    fontSize: 16, fontWeight: FontWeight.w500),
                               ),
-                            ),
-                          ],
-                          SizedBox(height: 10),
-                          Text(
-                            event.description,
-                            maxLines: 2,
-                            overflow: TextOverflow.ellipsis,
-                          )
+                              SizedBox(height: 10),
+                              if (event.media[0].type == "image")
+                                Image.network(
+                                  event.media[0].url,
+                                  height: 100,
+                                  width: double.infinity,
+                                  fit: BoxFit.cover,
+                                ),
+                              if (event.media[0].type == "video") ...[
+                                Center(
+                                  child: Icon(
+                                    Icons.play_circle_fill,
+                                    color: primaryColor(),
+                                    size: 100,
+                                  ),
+                                ),
+                              ],
+                              SizedBox(height: 10),
+                              Text(
+                                event.description,
+                                maxLines: 2,
+                                overflow: TextOverflow.ellipsis,
+                              )
+                            ],
+                          ),
+                          Positioned(
+                              top: 5,
+                              right: 0,
+                              child: Visibility(
+                                visible: event.isNew,
+                                child: LottieBuilder.asset(
+                                  'assets/lottie/new_event.json',
+                                  height: 50,
+                                ),
+                              ))
                         ],
                       ),
                     ),
@@ -350,7 +370,7 @@ class _ViewEventsSheetButtonState extends State<ViewEventsSheetButton> {
           });
         });
       },
-      icon: Icon(Icons.arrow_forward),
+      icon: Icon(Icons.filter_alt_outlined),
     );
   }
 }

@@ -4,9 +4,9 @@ import 'package:SNP/features/signup&login/presentation/checkLogin/check_login.da
 import 'package:SNP/features/bottomNav/presentation/userDashboard/presentation/events/controller/active_player.dart';
 import 'package:SNP/features/bottomNav/presentation/userDashboard/presentation/events/model/events_model.dart';
 import 'package:SNP/features/bottomNav/presentation/userDashboard/presentation/events/presentation/event_desciption.dart';
-import 'package:SNP/helper/common/widgets/custom_loading.dart';
+import 'package:SNP/core/common/widgets/custom_loading.dart';
 import 'package:SNP/features/bottomNav/presentation/userDashboard/presentation/events/controller/event_navigation.dart';
-import 'package:SNP/helper/utils/loading_manager.dart';
+import 'package:SNP/core/utils/loading_manager.dart';
 import 'package:SNP/network/api_requests.dart';
 import 'package:carousel_slider/carousel_slider.dart';
 import 'package:flutter/material.dart';

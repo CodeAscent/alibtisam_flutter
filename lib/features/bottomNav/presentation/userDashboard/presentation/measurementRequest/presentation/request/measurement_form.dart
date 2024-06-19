@@ -1,9 +1,9 @@
 import 'package:SNP/features/bottomNav/controller/measurement_req.dart';
 import 'package:SNP/features/bottomNav/model/user.dart';
-import 'package:SNP/helper/common/widgets/custom_container_button.dart';
-import 'package:SNP/helper/common/widgets/custom_loading.dart';
-import 'package:SNP/helper/common/widgets/custom_text_field.dart';
-import 'package:SNP/helper/utils/loading_manager.dart';
+import 'package:SNP/core/common/widgets/custom_container_button.dart';
+import 'package:SNP/core/common/widgets/custom_loading.dart';
+import 'package:SNP/core/common/widgets/custom_text_field.dart';
+import 'package:SNP/core/utils/loading_manager.dart';
 import 'package:SNP/network/api_requests.dart';
 import 'package:SNP/network/api_urls.dart';
 import 'package:flutter/material.dart';

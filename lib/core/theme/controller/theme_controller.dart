@@ -1,5 +1,5 @@
-import 'package:SNP/helper/localStorage/theme.dart';
-import 'package:SNP/helper/theme/app_theme.dart';
+import 'package:SNP/core/localStorage/theme.dart';
+import 'package:SNP/core/theme/app_theme.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 

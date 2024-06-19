@@ -1,4 +1,4 @@
-import 'package:SNP/helper/utils/loading_manager.dart';
+import 'package:SNP/core/utils/loading_manager.dart';
 import 'package:SNP/network/api_requests.dart';
 import 'package:get/get.dart';
 

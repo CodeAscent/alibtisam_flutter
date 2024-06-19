@@ -1,7 +1,8 @@
-import 'package:SNP/helper/theme/controller/theme_controller.dart';
-import 'package:SNP/helper/theme/app_colors.dart';
+import 'package:SNP/core/theme/controller/theme_controller.dart';
+import 'package:SNP/core/theme/app_colors.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:google_fonts/google_fonts.dart';
 
 isAppThemeDark() {
   final themeController = Get.find<ThemeController>();
@@ -10,6 +11,7 @@ isAppThemeDark() {
 
 ThemeData kAppThemeLight() {
   return ThemeData(
+    textTheme: GoogleFonts.poppinsTextTheme(),
     textButtonTheme: TextButtonThemeData(
         style: ElevatedButton.styleFrom(
             textStyle:
@@ -80,6 +82,10 @@ ThemeData kAppThemeLight() {
 
 ThemeData kAppThemeDark() {
   return ThemeData.dark().copyWith(
+    textTheme: GoogleFonts.poppinsTextTheme().apply(
+      bodyColor: Colors.white,
+      displayColor: Colors.white,
+    ),
     bottomSheetTheme: BottomSheetThemeData(backgroundColor: Colors.black),
     dropdownMenuTheme: DropdownMenuThemeData(
         menuStyle:

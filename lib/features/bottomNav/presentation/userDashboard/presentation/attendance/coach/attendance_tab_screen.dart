@@ -1,7 +1,7 @@
 import 'package:SNP/features/bottomNav/controller/attendance.dart';
 import 'package:SNP/features/bottomNav/presentation/userDashboard/presentation/attendance/coach/presentation/attendance_In_time.dart';
 import 'package:SNP/features/bottomNav/presentation/userDashboard/presentation/attendance/coach/presentation/attendance_out_time.dart';
-import 'package:SNP/helper/common/widgets/custom_tab_bar.dart';
+import 'package:SNP/core/common/widgets/custom_tab_bar.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 

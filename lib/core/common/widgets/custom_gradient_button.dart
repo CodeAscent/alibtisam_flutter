@@ -1,4 +1,5 @@
-import 'package:SNP/helper/theme/app_colors.dart';
+import 'package:SNP/core/theme/app_colors.dart';
+import 'package:SNP/core/theme/app_theme.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
@@ -26,6 +27,7 @@ class CustomGradientButton extends StatelessWidget {
         margin: EdgeInsets.symmetric(vertical: 8),
         height: 100,
         decoration: BoxDecoration(
+            boxShadow: isAppThemeDark() ? [] : kBoxShadow(),
             color: disabled! ? kAppGreyColor() : null,
             gradient: !disabled! ? kGradientColor() : null,
             borderRadius: BorderRadius.circular(20)),

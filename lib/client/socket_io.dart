@@ -5,7 +5,7 @@ import 'package:SNP/features/bottomNav/controller/chats_list.dart';
 import 'package:SNP/features/bottomNav/controller/user.dart';
 import 'package:SNP/features/bottomNav/model/chat_message.dart';
 import 'package:SNP/features/bottomNav/model/chats_list.dart';
-import 'package:SNP/helper/localStorage/token_id.dart';
+import 'package:SNP/core/localStorage/token_id.dart';
 import 'package:SNP/network/api_urls.dart';
 import 'package:get/get.dart';
 import 'package:logger/web.dart';

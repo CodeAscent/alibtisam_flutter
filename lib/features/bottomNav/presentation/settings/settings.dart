@@ -5,12 +5,12 @@ import 'package:SNP/features/bottomNav/presentation/settings/presentation/help_s
 import 'package:SNP/features/bottomNav/presentation/settings/presentation/switch_user.dart';
 import 'package:SNP/features/bottomNav/presentation/userDashboard/presentation/chat/chat_about.dart';
 import 'package:SNP/features/bottomNav/presentation/userDashboard/presentation/enrollment/view_addmision_form.dart';
-import 'package:SNP/helper/common/constants/switch_theme_dialog.dart';
+import 'package:SNP/core/common/constants/switch_theme_dialog.dart';
 import 'package:SNP/features/bottomNav/presentation/settings/presentation/profile.dart';
 import 'package:SNP/features/bottomNav/presentation/settings/widgets/custom_settings_card.dart';
-import 'package:SNP/helper/common/constants/logout_user.dart';
-import 'package:SNP/helper/common/widgets/custom_loading.dart';
-import 'package:SNP/helper/utils/loading_manager.dart';
+import 'package:SNP/core/common/constants/logout_user.dart';
+import 'package:SNP/core/common/widgets/custom_loading.dart';
+import 'package:SNP/core/utils/loading_manager.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
@@ -74,7 +74,7 @@ class _SettingScreenState extends State<SettingScreen> {
                           ClipRRect(
                             borderRadius: BorderRadius.circular(160),
                             child: Image.network(
-                              user!.pic,
+                              user.pic,
                               height: 100,
                               width: 100,
                               fit: BoxFit.cover,

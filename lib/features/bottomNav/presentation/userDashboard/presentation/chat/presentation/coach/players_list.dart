@@ -4,7 +4,7 @@ import 'package:SNP/features/bottomNav/controller/user.dart';
 import 'package:SNP/features/bottomNav/model/chats_list.dart';
 import 'package:SNP/features/bottomNav/presentation/userDashboard/presentation/chat/chat.dart';
 import 'package:SNP/features/bottomNav/presentation/userDashboard/presentation/chat/widgets/custom_chat_cards.dart';
-import 'package:SNP/helper/utils/custom_date_formatter.dart';
+import 'package:SNP/core/utils/custom_date_formatter.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 

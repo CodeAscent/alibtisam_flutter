@@ -1,7 +1,7 @@
 import 'package:SNP/features/bottomNav/presentation/userDashboard/presentation/statistics/model/monitoring.dart';
-import 'package:SNP/helper/common/widgets/custom_slider.dart';
-import 'package:SNP/helper/theme/app_colors.dart';
-import 'package:SNP/helper/utils/custom_date_formatter.dart';
+import 'package:SNP/core/common/widgets/custom_slider.dart';
+import 'package:SNP/core/theme/app_colors.dart';
+import 'package:SNP/core/utils/custom_date_formatter.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:pie_chart/pie_chart.dart';

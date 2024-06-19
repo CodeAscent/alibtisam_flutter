@@ -1,5 +1,5 @@
-import 'package:SNP/helper/common/widgets/custom_gradient_button.dart';
-import 'package:SNP/helper/theme/app_colors.dart';
+import 'package:SNP/core/common/widgets/custom_gradient_button.dart';
+import 'package:SNP/core/theme/app_colors.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:url_launcher/url_launcher.dart';

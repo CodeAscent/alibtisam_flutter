@@ -13,8 +13,8 @@ import 'package:SNP/features/bottomNav/presentation/settings/controller/organiza
 import 'package:SNP/features/bottomNav/presentation/userDashboard/presentation/events/controller/active_player.dart';
 import 'package:SNP/features/bottomNav/presentation/userDashboard/presentation/statistics/controller/monitoring.dart';
 import 'package:SNP/features/bottomNav/presentation/userDashboard/presentation/statistics/controller/reports.dart';
-import 'package:SNP/helper/theme/controller/theme_controller.dart';
-import 'package:SNP/helper/common/controller/custom_loading_controller.dart';
+import 'package:SNP/core/theme/controller/theme_controller.dart';
+import 'package:SNP/core/common/controller/custom_loading_controller.dart';
 import 'package:SNP/features/bottomNav/presentation/userDashboard/presentation/events/controller/event_navigation.dart';
 import 'package:get/get.dart';
 
