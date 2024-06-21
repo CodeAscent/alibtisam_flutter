@@ -82,7 +82,7 @@ class _EventDescriptionState extends State<EventDescription> {
                                     )
                                   : FeedPlayer(
                                       url: i.url,
-                                      showControls: true,
+                                      showControls: false,
                                     ));
                         },
                       );

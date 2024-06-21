@@ -33,6 +33,7 @@ class _FeedPlayerState extends State<FeedPlayer> {
         }
       },
       child: FlickMultiPlayer(
+        
         url: widget.url,
         flickMultiManager: flickMultiManager,
         showControls: widget.showControls,

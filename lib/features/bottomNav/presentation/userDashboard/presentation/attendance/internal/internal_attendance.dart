@@ -87,13 +87,15 @@ class _InternalAttendanceStatisticsState
   final customLoadingController = Get.find<CustomLoadingController>();
   String selectedYear = '';
   String selectedMonth = '';
+  @override
+  void initState() {
+    super.initState();
+    attendanceController.fetchPlayerAttendanceStatistics();
+  }
 
   @override
   Widget build(BuildContext context) {
     return GetBuilder(
-      initState: (state) async {
-        await attendanceController.fetchPlayerAttendanceStatistics();
-      },
       builder: (AttendanceController attendanceController) {
         return SingleChildScrollView(
           child: Padding(
@@ -130,35 +132,33 @@ class _InternalAttendanceStatisticsState
                         }),
                   ],
                 ),
-                SizedBox(
-                  child: DashedCircularProgressBar(
-                    valueNotifier: _valueNotifierMonth,
-                    progress: selectedMonth == ''
-                        ? attendanceController
-                            .attendanceStatistics!
-                            .monthlyStats[attendanceController
-                                .attendanceStatistics!.monthlyStats.keys.first]
-                            .toDouble()
-                        : attendanceController
-                            .attendanceStatistics!.monthlyStats[selectedMonth]
-                            .toDouble(),
-                    maxProgress: 365,
-                    corners: StrokeCap.round,
-                    foregroundColor: primaryColor(),
-                    foregroundStrokeWidth: 26,
-                    animation: true,
-                    backgroundColor: kAppGreyColor(),
-                    width: 200,
-                    height: 200,
-                    child: Center(
-                      child: ValueListenableBuilder(
-                        valueListenable: _valueNotifierMonth,
-                        builder: (_, double value, __) => Text(
-                          '${value.toInt()}\nDays',
-                          textAlign: TextAlign.center,
-                          style: const TextStyle(
-                              fontWeight: FontWeight.w500, fontSize: 20),
-                        ),
+                DashedCircularProgressBar(
+                  valueNotifier: _valueNotifierMonth,
+                  progress: selectedMonth == ''
+                      ? attendanceController
+                          .attendanceStatistics!
+                          .monthlyStats[attendanceController
+                              .attendanceStatistics!.monthlyStats.keys.first]
+                          .toDouble()
+                      : attendanceController
+                          .attendanceStatistics!.monthlyStats[selectedMonth]
+                          .toDouble(),
+                  maxProgress: 365,
+                  corners: StrokeCap.round,
+                  foregroundColor: primaryColor(),
+                  foregroundStrokeWidth: 26,
+                  animation: true,
+                  backgroundColor: kAppGreyColor(),
+                  width: 200,
+                  height: 200,
+                  child: Center(
+                    child: ValueListenableBuilder(
+                      valueListenable: _valueNotifierMonth,
+                      builder: (_, double value, __) => Text(
+                        '${value.toInt()}\nDays',
+                        textAlign: TextAlign.center,
+                        style: const TextStyle(
+                            fontWeight: FontWeight.w500, fontSize: 20),
                       ),
                     ),
                   ),
@@ -238,6 +238,7 @@ class InternalAttendance extends StatelessWidget {
     return GetBuilder(
       initState: (state) {
         attendanceController.fetchAttendanceHistoryByPlayer();
+        attendanceController.fetchPlayerAttendanceStatistics();
       },
       builder: (AttendanceController attendanceController) {
         return CustomLoader(

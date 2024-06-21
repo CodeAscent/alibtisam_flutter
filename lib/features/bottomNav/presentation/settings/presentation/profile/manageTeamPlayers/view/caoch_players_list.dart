@@ -1,5 +1,5 @@
 import 'package:SNP/features/bottomNav/model/team.dart';
-import 'package:SNP/features/bottomNav/presentation/settings/presentation/profile/manageTeamPlayers/player_data.dart';
+import 'package:SNP/features/bottomNav/presentation/settings/presentation/profile/manageTeamPlayers/view/player_data.dart';
 import 'package:SNP/features/bottomNav/presentation/userDashboard/presentation/statistics/controller/monitoring.dart';
 import 'package:SNP/core/common/widgets/custom_empty_icon.dart';
 import 'package:SNP/core/common/widgets/custom_loading.dart';
@@ -50,7 +50,7 @@ class _CoachPlayersListForProfileState
                             return GestureDetector(
                               onTap: () {
                                 Get.to(() => PlayerDataForProfile(
-                                    player: widget.players[index].playerId));
+                                    player: widget.players[index].playerId))!;
                               },
                               child: Container(
                                 decoration: BoxDecoration(

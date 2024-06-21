@@ -23,6 +23,7 @@ import 'package:SNP/core/utils/custom_snackbar.dart';
 import 'package:SNP/core/utils/loading_manager.dart';
 import 'package:SNP/network/api_urls.dart';
 import 'package:SNP/network/http_wrapper.dart';
+import 'package:fpdart/fpdart.dart';
 import 'package:get/get.dart';
 import 'package:http/http.dart' as http;
 import 'package:image_picker/image_picker.dart';
@@ -578,12 +579,11 @@ class ApiRequests {
     return {};
   }
 
-  Future<List<AttendanceHistoryModel>> getAttendanceHistoryListByCoach() async {
+  Future<List<AttendanceHistoryModel>?>
+      getAttendanceHistoryListByCoach() async {
     List<AttendanceHistoryModel> attendances = [];
-
     try {
       UserController userController = Get.find<UserController>();
-
       final res = await HttpWrapper.getRequest(
           get_all_completed_attendance + userController.user!.id);
       final data = jsonDecode(res.body);
@@ -595,7 +595,7 @@ class ApiRequests {
       await LoadingManager.endLoading();
       customSnackbar(message: e.message);
     }
-    return attendances;
+    return null;
   }
 
   Future markAttendance(

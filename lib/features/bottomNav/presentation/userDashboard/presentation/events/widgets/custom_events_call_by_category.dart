@@ -8,6 +8,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:logger/web.dart';
+import 'package:path_provider/path_provider.dart';
 
 import 'package:SNP/features/bottomNav/presentation/userDashboard/presentation/events/controller/active_player.dart';
 import 'package:SNP/features/bottomNav/presentation/userDashboard/presentation/events/model/events_model.dart';
@@ -18,6 +19,7 @@ import 'package:SNP/core/theme/app_colors.dart';
 import 'package:SNP/core/theme/controller/theme_controller.dart';
 import 'package:SNP/core/utils/loading_manager.dart';
 import 'package:lottie/lottie.dart';
+import 'package:video_thumbnail/video_thumbnail.dart';
 
 class CustomEventsCallByCategory extends StatefulWidget {
   final String label;
@@ -36,6 +38,18 @@ class CustomEventsCallByCategory extends StatefulWidget {
 
 class _CustomEventsCallByCategoryState
     extends State<CustomEventsCallByCategory> {
+  Future generateThumbnail(String videoUrl) async {
+    dynamic fileName = await VideoThumbnail.thumbnailFile(
+      video: videoUrl,
+      thumbnailPath: (await getTemporaryDirectory()).path,
+      imageFormat: ImageFormat.WEBP,
+      maxHeight:
+          64, // specify the height of the thumbnail, let the width auto-scaled to keep the source aspect ratio
+      quality: 75,
+    );
+    return fileName;
+  }
+
   @override
   Widget build(BuildContext context) {
     return Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
@@ -93,13 +107,38 @@ class _CustomEventsCallByCategoryState
                                   fit: BoxFit.cover,
                                 ),
                               if (event.media[0].type == "video") ...[
-                                Center(
-                                  child: Icon(
-                                    Icons.play_circle_fill,
-                                    color: primaryColor(),
-                                    size: 100,
-                                  ),
-                                ),
+                                FutureBuilder(
+                                  future: generateThumbnail(event.media[0].url),
+                                  builder: (context, thumbnailSnapshot) {
+                                    if (thumbnailSnapshot.hasData) {
+                                      return Stack(
+                                        children: [
+                                          Image.asset(
+                                            thumbnailSnapshot.data.toString(),
+                                            height: 100,
+                                            width: double.infinity,
+                                            fit: BoxFit.cover,
+                                          ),
+                                          SizedBox(
+                                            height: 100,
+                                            child: Center(
+                                              child: IconButton.filled(
+                                                  onPressed: () {},
+                                                  icon: Icon(
+                                                    Icons.play_circle_fill,
+                                                  )),
+                                            ),
+                                          )
+                                        ],
+                                      );
+                                    }
+                                    return SizedBox(
+                                        height: 100,
+                                        child: Center(
+                                            child:
+                                                CircularProgressIndicator()));
+                                  },
+                                )
                               ],
                               SizedBox(height: 10),
                               Text(
@@ -161,6 +200,18 @@ class _ViewEventsSheetButtonState extends State<ViewEventsSheetButton> {
 
     print('Fetched events: $res');
     return res;
+  }
+
+  Future generateThumbnail(String videoUrl) async {
+    dynamic fileName = await VideoThumbnail.thumbnailFile(
+      video: videoUrl,
+      thumbnailPath: (await getTemporaryDirectory()).path,
+      imageFormat: ImageFormat.WEBP,
+      maxHeight:
+          64, // specify the height of the thumbnail, let the width auto-scaled to keep the source aspect ratio
+      quality: 75,
+    );
+    return fileName;
   }
 
   @override
@@ -332,12 +383,47 @@ class _ViewEventsSheetButtonState extends State<ViewEventsSheetButton> {
                                                 ),
                                               if (event.media[0].type ==
                                                   "video")
-                                                Center(
-                                                  child: Icon(
-                                                    Icons.play_circle_fill,
-                                                    color: primaryColor(),
-                                                    size: 100,
-                                                  ),
+                                                FutureBuilder(
+                                                  future: generateThumbnail(
+                                                      event.media[0].url),
+                                                  builder: (context,
+                                                      thumbnailSnapshot) {
+                                                    if (thumbnailSnapshot
+                                                        .hasData) {
+                                                      return Stack(
+                                                        children: [
+                                                          Image.asset(
+                                                            thumbnailSnapshot
+                                                                .data
+                                                                .toString(),
+                                                            height: 100,
+                                                            width:
+                                                                double.infinity,
+                                                            fit: BoxFit.cover,
+                                                          ),
+                                                          SizedBox(
+                                                            height: 100,
+                                                            child: Center(
+                                                              child: IconButton
+                                                                  .filled(
+                                                                      onPressed:
+                                                                          () {},
+                                                                      icon:
+                                                                          Icon(
+                                                                        Icons
+                                                                            .play_circle_fill,
+                                                                      )),
+                                                            ),
+                                                          )
+                                                        ],
+                                                      );
+                                                    }
+                                                    return SizedBox(
+                                                        height: 100,
+                                                        child: Center(
+                                                            child:
+                                                                CircularProgressIndicator()));
+                                                  },
                                                 ),
                                               SizedBox(height: 10),
                                               Text(

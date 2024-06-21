@@ -1,5 +1,5 @@
 class ServerException {
   final String message;
 
-  ServerException(this.message);
+  ServerException([this.message = "Something went wrong."]);
 }

@@ -1,7 +1,7 @@
 import 'package:SNP/features/bottomNav/model/user.dart';
 import 'package:SNP/core/theme/app_colors.dart';
 import 'package:SNP/core/utils/custom_date_formatter.dart';
-import 'package:SNP/features/bottomNav/presentation/settings/presentation/profile/manageTeamPlayers/update_player_data.dart';
+import 'package:SNP/features/bottomNav/presentation/settings/presentation/profile/manageTeamPlayers/view/update_player_data.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 

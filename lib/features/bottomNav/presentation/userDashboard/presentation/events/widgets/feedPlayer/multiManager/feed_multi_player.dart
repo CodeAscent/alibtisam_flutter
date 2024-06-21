@@ -55,7 +55,9 @@ class _FlickMultiPlayerState extends State<FlickMultiPlayer> {
       },
       child: Container(
         child: widget.showControls!
-            ? FlickVideoPlayer(flickManager: flickManager)
+            ? FlickVideoPlayer(
+                flickManager: flickManager,
+              )
             : FlickVideoPlayer(
                 flickManager: flickManager,
                 flickVideoWithControls: FlickVideoWithControls(

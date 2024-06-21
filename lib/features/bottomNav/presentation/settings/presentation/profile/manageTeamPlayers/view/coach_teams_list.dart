@@ -1,6 +1,6 @@
 import 'package:SNP/features/bottomNav/controller/teams.dart';
 import 'package:SNP/features/bottomNav/controller/user.dart';
-import 'package:SNP/features/bottomNav/presentation/settings/presentation/profile/manageTeamPlayers/caoch_players_list.dart';
+import 'package:SNP/features/bottomNav/presentation/settings/presentation/profile/manageTeamPlayers/view/caoch_players_list.dart';
 import 'package:SNP/features/bottomNav/presentation/userDashboard/presentation/attendance/coach/presentation/attendance_history_list.dart';
 import 'package:SNP/features/bottomNav/presentation/userDashboard/presentation/attendance/coach/attendance_tab_screen.dart';
 import 'package:SNP/core/common/widgets/custom_empty_icon.dart';
