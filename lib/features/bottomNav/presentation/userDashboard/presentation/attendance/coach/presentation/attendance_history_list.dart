@@ -48,7 +48,8 @@ class _AttendanceHistoryListState extends State<AttendanceHistoryList> {
                         child: CustomContainerButton(
                             flexibleHeight: 100,
                             label:
-                                "${team['name']} \n ${customDateTimeFormat(attendanceController.attendancesHistory[index].createdAt)}"),
+                                "${team['name']} \n ${customDateTimeFormat(attendanceController.attendancesHistory[index].createdAt)}"
+                                    .capitalize!),
                       );
                     })
                   ],

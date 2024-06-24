@@ -10,7 +10,10 @@ class UpdatePlayerViewmodel {
     final res = await updatePlayerRemote.updateUserById(uid: uid, body: body);
     final val = switch (res) {
       Left(value: final l) => customSnackbar(message: l.message),
-      Right(value: final r) => customSnackbar(message: r)
+      Right(value: final r) => {
+          Get.back(),
+          customSnackbar(message: r),
+        }
     };
     print(val);
   }
