@@ -1,5 +1,7 @@
 import 'package:SNP/Localization/localization.dart';
 import 'package:SNP/client/socket_io.dart';
+import 'package:SNP/core/localStorage/fcm_token.dart';
+import 'package:SNP/core/localStorage/init_shared_pref.dart';
 import 'package:SNP/features/dummySplash/dummy_splash.dart';
 import 'package:SNP/firebase_options.dart';
 import 'package:SNP/core/localStorage/token_id.dart';
@@ -17,6 +19,7 @@ void main() async {
   // WidgetsBinding widgetsBinding =
   WidgetsFlutterBinding.ensureInitialized();
   initControllers();
+  await SharedPref.initSharedPrefrences();
   SocketConnection.connectSocket();
   await Firebase.initializeApp(
     options: DefaultFirebaseOptions.currentPlatform,
@@ -51,6 +54,7 @@ class _MyAppState extends State<MyApp> {
     setState(() {
       _fcmToken = token;
     });
+    await FcmToken().saveFcmToken(_fcmToken.toString());
     print("FCM TOKEN -------> $_fcmToken");
     print("INSTALLATION ID -------> $installationId");
     print("UID -------> $uid");

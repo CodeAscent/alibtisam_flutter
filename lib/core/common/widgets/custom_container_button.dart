@@ -1,6 +1,7 @@
 import 'package:SNP/core/theme/app_colors.dart';
 import 'package:SNP/core/theme/app_theme.dart';
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 
 class CustomContainerButton extends StatelessWidget {
   const CustomContainerButton({
@@ -25,7 +26,7 @@ class CustomContainerButton extends StatelessWidget {
             borderRadius: BorderRadius.circular(20)),
         child: Center(
           child: Text(
-            label,
+            label.capitalize!,
             textAlign: TextAlign.center,
             style: TextStyle(
               fontSize: 18,

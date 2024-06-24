@@ -1,5 +1,5 @@
-String base_url = "http://52.66.197.219:8000/";
-// String base_url = "http://192.168.29.116:8000/";
+// String base_url = "http://52.66.197.219:8000/";
+String base_url = "http://192.168.29.162:8000/";
 String api_version = "api/v1/";
 String event = "event/";
 String user = "user/";
@@ -23,6 +23,9 @@ String register_user = base_url + api_version + user + "register";
 
 // Login
 String login_user = base_url + api_version + user + "login";
+
+// Logout
+String logout_user = base_url + api_version + user + "logout";
 
 // GET USER
 String get_user = base_url + api_version + user + "status/get";
