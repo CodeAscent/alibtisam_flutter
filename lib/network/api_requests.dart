@@ -1,6 +1,7 @@
 import 'dart:async';
 import 'dart:convert';
 
+import 'package:SNP/core/localStorage/fcm_token.dart';
 import 'package:SNP/features/bottomNav/bottom_nav.dart';
 import 'package:SNP/features/bottomNav/controller/selected_player.dart';
 import 'package:SNP/features/bottomNav/controller/user.dart';
@@ -108,7 +109,12 @@ class ApiRequests {
       {required String userName, required String password}) async {
     try {
       LoadingManager.startLoading();
-      var body = {"userName": userName, "password": password};
+      final fcmToken = await FcmToken().getFcmToken();
+      var body = {
+        "userName": userName,
+        "password": password,
+        "fcmToken": fcmToken
+      };
       final res = await HttpWrapper.postRequest(login_user, body);
       final data = jsonDecode(res.body);
       if (res.statusCode == 200) {
@@ -117,6 +123,19 @@ class ApiRequests {
       } else {
         customSnackbar(message: data["message"]);
       }
+    } on ServerException catch (e) {
+      await LoadingManager.endLoading();
+
+      customSnackbar(message: e.message);
+    }
+  }
+
+  Future<void> logout() async {
+    try {
+      LoadingManager.startLoading();
+      final fcmToken = await FcmToken().getFcmToken();
+      var body = {"fcmToken": fcmToken};
+      await HttpWrapper.postRequest(logout_user, body);
     } on ServerException catch (e) {
       await LoadingManager.endLoading();
 
