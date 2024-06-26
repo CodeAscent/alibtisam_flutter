@@ -28,7 +28,7 @@ Future<dynamic> kLogoutUser(BuildContext context) {
                 style:
                     ElevatedButton.styleFrom(backgroundColor: primaryColor()),
                 onPressed: () async {
-                  await ApiRequests().logout();
+                //   await ApiRequests().logout();
                   LoadingManager.dummyLoading();
                   remove('token');
                   remove('uid');

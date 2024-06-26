@@ -113,7 +113,7 @@ class ApiRequests {
       var body = {
         "userName": userName,
         "password": password,
-        "fcmToken": fcmToken
+        // "fcmToken": fcmToken
       };
       final res = await HttpWrapper.postRequest(login_user, body);
       final data = jsonDecode(res.body);
@@ -130,18 +130,18 @@ class ApiRequests {
     }
   }
 
-  Future<void> logout() async {
-    try {
-      LoadingManager.startLoading();
-      final fcmToken = await FcmToken().getFcmToken();
-      var body = {"fcmToken": fcmToken};
-      await HttpWrapper.postRequest(logout_user, body);
-    } on ServerException catch (e) {
-      await LoadingManager.endLoading();
+//   Future<void> logout() async {
+//     try {
+//       LoadingManager.startLoading();
+//       final fcmToken = await FcmToken().getFcmToken();
+//       var body = {"fcmToken": fcmToken};
+//       await HttpWrapper.postRequest(logout_user, body);
+//     } on ServerException catch (e) {
+//       await LoadingManager.endLoading();
 
-      customSnackbar(message: e.message);
-    }
-  }
+//       customSnackbar(message: e.message);
+//     }
+//   }
 
   Future<UserModel?> getUser() async {
     try {
