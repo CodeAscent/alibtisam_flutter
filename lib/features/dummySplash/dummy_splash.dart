@@ -46,11 +46,13 @@ class _DummySplashState extends State<DummySplash> {
               children: [
                 Container(
                   decoration: BoxDecoration(
-                      image: DecorationImage(
-                          fit: BoxFit.cover,
-                          image: AssetImage(
-                            "assets/images/dummy_splash.png",
-                          ))),
+                    image: DecorationImage(
+                      fit: BoxFit.cover,
+                      image: AssetImage(
+                        "assets/images/dummy_splash.png",
+                      ),
+                    ),
+                  ),
                   child: Center(
                     child: Stack(
                       children: [
