@@ -22,7 +22,6 @@ class DefaultFirebaseOptions {
         'you can reconfigure this by running the FlutterFire CLI again.',
       );
     }
-    print("connected to firebase..");
     switch (defaultTargetPlatform) {
       case TargetPlatform.android:
         return android;
@@ -52,7 +51,7 @@ class DefaultFirebaseOptions {
 
   static const FirebaseOptions android = FirebaseOptions(
     apiKey: 'AIzaSyDIefHWdSO531esAp1PYpO0JS_b8ooDTsg',
-    appId: '1:974073561724:android:b4719e82dace24e5277ff9',
+    appId: '1:974073561724:android:6f85301526147551277ff9',
     messagingSenderId: '974073561724',
     projectId: 'alibtisam-a7581',
     storageBucket: 'alibtisam-a7581.appspot.com',
@@ -60,11 +59,10 @@ class DefaultFirebaseOptions {
 
   static const FirebaseOptions ios = FirebaseOptions(
     apiKey: 'AIzaSyCuEonVqeSG0n1luf7vVUiqQBO09RZdZd0',
-    appId: '1:974073561724:ios:f5ef7f2b0817aa00277ff9',
+    appId: '1:974073561724:ios:9454d6e7a48371cb277ff9',
     messagingSenderId: '974073561724',
     projectId: 'alibtisam-a7581',
     storageBucket: 'alibtisam-a7581.appspot.com',
     iosBundleId: 'com.sportsnetwork.portal',
   );
-
 }

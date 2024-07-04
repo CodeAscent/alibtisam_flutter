@@ -1,5 +1,7 @@
 import 'package:SNP/core/common/widgets/custom_gradient_button.dart';
 import 'package:SNP/core/theme/app_colors.dart';
+import 'package:SNP/core/utils/custom_snackbar.dart';
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:url_launcher/url_launcher.dart';
@@ -63,6 +65,41 @@ class HelpSupportPage extends StatelessWidget {
                 child: _buildSupportCard(
                   icon: Icons.email,
                   title: "emailUs".tr,
+                ),
+              ),
+              GestureDetector(
+                onTap: () {
+                  showDialog(
+                    context: context,
+                    builder: (context) => CupertinoAlertDialog(
+                      title: Text('Alert!'),
+                      content: Text(
+                          "Are you sure your want to request for account deletion?"),
+                      actions: [
+                        TextButton(
+                            onPressed: () {
+                              Get.back();
+                              customSnackbar(
+                                  message:
+                                      "Account deletion request has been made successfully, your account will be deleted within 48 hours");
+                            },
+                            child: Text('Yes',
+                                style: TextStyle(color: Colors.red))),
+                        TextButton(
+                            onPressed: () {
+                              Get.back();
+                            },
+                            child: Text(
+                              'No',
+                              style: TextStyle(color: Colors.blue),
+                            ))
+                      ],
+                    ),
+                  );
+                },
+                child: _buildSupportCard(
+                  icon: Icons.emoji_nature,
+                  title: "Delete Account".tr,
                 ),
               ),
             ],
