@@ -27,9 +27,9 @@ List<BoxShadow> kBoxShadow() => [
       ),
     ];
 
-Color kAlibtisamPrimary() => Color.fromARGB(255, 250, 61, 155);
+Color kAlibtisamPrimary() => Color(0xFFFA3D9B);
 
-Color kAlibtisamSecondary() => Color.fromARGB(255, 121, 40, 202);
+Color kAlibtisamSecondary() => Color(0xFF7928CA);
 
 Color kSnpPrimary() => Color(0xff780206);
 

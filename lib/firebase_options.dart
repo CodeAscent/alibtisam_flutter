@@ -60,10 +60,11 @@ class DefaultFirebaseOptions {
 
   static const FirebaseOptions ios = FirebaseOptions(
     apiKey: 'AIzaSyCuEonVqeSG0n1luf7vVUiqQBO09RZdZd0',
-    appId: '1:974073561724:ios:b7c599912af3424a277ff9',
+    appId: '1:974073561724:ios:f5ef7f2b0817aa00277ff9',
     messagingSenderId: '974073561724',
     projectId: 'alibtisam-a7581',
     storageBucket: 'alibtisam-a7581.appspot.com',
-    iosBundleId: 'com.alibtisamFlutter',
+    iosBundleId: 'com.sportsnetwork.portal',
   );
+
 }
