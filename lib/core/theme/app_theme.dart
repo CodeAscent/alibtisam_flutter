@@ -102,8 +102,8 @@ ThemeData kAppThemeDark() {
     appBarTheme: AppBarTheme(
       centerTitle: true,
       iconTheme: IconThemeData(color: Colors.white),
-      titleTextStyle:
-          TextStyle(color: Colors.white, fontSize: 18, letterSpacing: 2),
+      //   titleTextStyle:
+      //       TextStyle(color: Colors.white, fontSize: 18, letterSpacing: 2),
       actionsIconTheme: IconThemeData(color: Colors.white),
       backgroundColor: Colors.black,
       surfaceTintColor: Colors.black,

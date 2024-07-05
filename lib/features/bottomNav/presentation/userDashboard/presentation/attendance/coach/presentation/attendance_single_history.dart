@@ -6,6 +6,7 @@ import 'package:SNP/core/common/widgets/custom_empty_icon.dart';
 import 'package:SNP/core/common/widgets/custom_loading.dart';
 import 'package:SNP/core/theme/app_colors.dart';
 import 'package:SNP/core/utils/custom_date_formatter.dart';
+import 'package:SNP/features/bottomNav/widgets/player_card.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
@@ -44,81 +45,35 @@ class _AttendanceSingleHistoryState extends State<AttendanceSingleHistory> {
                       children: [
                         Padding(
                           padding: const EdgeInsets.all(16.0),
-                          child: GridView.builder(
+                          child: ListView.builder(
                             physics: NeverScrollableScrollPhysics(),
                             itemCount: attendanceController.attendance.length,
                             shrinkWrap: true,
-                            gridDelegate:
-                                SliverGridDelegateWithMaxCrossAxisExtent(
-                                    mainAxisSpacing: 8,
-                                    crossAxisSpacing: 8,
-                                    mainAxisExtent: 340,
-                                    maxCrossAxisExtent: 220),
                             itemBuilder: (context, index) {
-                              return GestureDetector(
-                                child: Container(
-                                  decoration: BoxDecoration(
-                                      color: kAppGreyColor(),
-                                      borderRadius: BorderRadius.circular(10)),
-                                  child: Padding(
-                                    padding: const EdgeInsets.only(bottom: 5),
-                                    child: Column(
-                                      children: [
-                                        ClipRRect(
-                                          borderRadius:
-                                              BorderRadius.circular(10),
-                                          child: Image.network(
-                                            attendanceController
-                                                .attendance[index].playerId.pic,
-                                            fit: BoxFit.cover,
-                                            height: 220,
-                                            width: double.infinity,
-                                          ),
-                                        ),
-                                        Spacer(),
-                                        Text(attendanceController
-                                            .attendance[index]
-                                            .playerId
-                                            .name
-                                            .capitalize!),
-                                        Row(
-                                          mainAxisAlignment:
-                                              MainAxisAlignment.center,
-                                          children: [
-                                            Text(
-                                              "PlayerId: ",
-                                              style: TextStyle(
-                                                  fontWeight: FontWeight.w800,
-                                                  letterSpacing: 0),
-                                            ),
-                                            Text(
-                                              attendanceController
-                                                  .attendance[index]
-                                                  .playerId
-                                                  .pId,
-                                              style: TextStyle(
-                                                  fontWeight: FontWeight.w800,
-                                                  letterSpacing: 0),
-                                            ),
-                                          ],
-                                        ),
-                                        Text(
-                                          attendanceController
-                                              .attendance[index].remark,
-                                          maxLines: 2,
-                                          style:
-                                              TextStyle(color: primaryColor()),
-                                          overflow: TextOverflow.ellipsis,
-                                        ),
-                                        Text("In Time: " +
-                                            customTimeFormat(
-                                                attendanceController
-                                                    .attendance[index].inTime)),
-                                        Text("Out Time: " +
-                                            "${attendanceController.attendance[index].outTime == '' ? "" : customTimeFormat(attendanceController.attendance[index].outTime)}")
-                                      ],
-                                    ),
-                                  ),
+                              UserModel player = attendanceController
+                                  .attendance[index].playerId;
+                              return PlayerCard(
+                                name: player.name,
+                                image: player.pic,
+                                playerId: player.pId,
+                                showArrow: false,
+                                extraWidget: Column(
+                                  crossAxisAlignment: CrossAxisAlignment.start,
+                                  children: [
+                                    Text(
+                                        'In Time :- ${customTimeFormat(attendanceController.attendance[index].inTime)}'),
+                                    Text(
+                                        'Out Time :- ${customTimeFormat(attendanceController.attendance[index].outTime)}'),
+                                    SizedBox(
+                                      child: Text(
+                                        attendanceController
+                                            .attendance[index].remark,
+                                        style: TextStyle(
+                                            fontWeight: FontWeight.w800,
+                                            letterSpacing: 0),
+                                      ),
+                                    )
+                                  ],
                                 ),
                               );
                             },

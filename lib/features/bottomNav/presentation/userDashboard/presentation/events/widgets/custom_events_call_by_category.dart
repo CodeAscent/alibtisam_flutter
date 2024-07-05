@@ -52,124 +52,133 @@ class _CustomEventsCallByCategoryState
 
   @override
   Widget build(BuildContext context) {
-    return Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
-      Padding(
-        padding: const EdgeInsets.all(8.0),
-        child: Row(
-          children: [
-            Text(
-              widget.label,
-              style: TextStyle(
-                  fontSize: 18, fontWeight: FontWeight.w600, letterSpacing: 2),
-            ),
-            Spacer(),
-            ViewEventsSheetButton(label: widget.label),
-          ],
+    return Column(
+      crossAxisAlignment: CrossAxisAlignment.start,
+      children: [
+        Padding(
+          padding: const EdgeInsets.all(8.0),
+          child: Row(
+            children: [
+              Text(
+                widget.label,
+                style: TextStyle(
+                    fontSize: 18,
+                    fontWeight: FontWeight.w600,
+                    letterSpacing: 2),
+              ),
+              Spacer(),
+              ViewEventsSheetButton(label: widget.label),
+            ],
+          ),
         ),
-      ),
-      SingleChildScrollView(
-        scrollDirection: Axis.horizontal,
-        child: Row(
-          children: [
-            ...List.generate(widget.snapshot.length, (index) {
-              Events event = widget.snapshot[index];
+        SingleChildScrollView(
+          scrollDirection: Axis.horizontal,
+          child: Row(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            mainAxisAlignment: MainAxisAlignment.start,
+            children: [
+              ...List.generate(widget.snapshot.length, (index) {
+                Events event = widget.snapshot[index];
 
-              return GestureDetector(
-                onTap: () {
-                  LoadingManager.dummyLoading();
-                  // activePlayerController.pauseActive();
-                  Get.to(() => EventDescription(
-                        event: event,
-                      ));
-                },
-                child: Container(
-                  height: 250,
-                  width: 200,
-                  child: Card(
-                    elevation: 0.2,
-                    child: Padding(
-                      padding: const EdgeInsets.all(8.0),
-                      child: Stack(
-                        children: [
-                          Column(
-                            children: [
-                              Text(
-                                event.name,
-                                style: TextStyle(
-                                    fontSize: 16, fontWeight: FontWeight.w500),
-                              ),
-                              SizedBox(height: 10),
-                              if (event.media[0].type == "image")
-                                Image.network(
-                                  event.media[0].url,
-                                  height: 100,
-                                  width: double.infinity,
-                                  fit: BoxFit.cover,
+                return GestureDetector(
+                  onTap: () {
+                    LoadingManager.dummyLoading();
+                    // activePlayerController.pauseActive();
+                    Get.to(() => EventDescription(
+                          event: event,
+                        ));
+                  },
+                  child: Container(
+                    constraints: BoxConstraints(maxWidth: 220),
+                    child: Card(
+                      elevation: 0.2,
+                      child: Padding(
+                        padding: const EdgeInsets.all(8.0),
+                        child: Stack(
+                          children: [
+                            Column(
+                              children: [
+                                Text(
+                                  event.name,
+                                  maxLines: 1,
+                                  style: TextStyle(
+                                      fontSize: 16,
+                                      fontWeight: FontWeight.w500),
                                 ),
-                              if (event.media[0].type == "video") ...[
-                                FutureBuilder(
-                                  future: generateThumbnail(event.media[0].url),
-                                  builder: (context, thumbnailSnapshot) {
-                                    if (thumbnailSnapshot.hasData) {
-                                      return Stack(
-                                        children: [
-                                          Image.asset(
-                                            thumbnailSnapshot.data.toString(),
-                                            height: 100,
-                                            width: double.infinity,
-                                            fit: BoxFit.cover,
-                                          ),
-                                          SizedBox(
-                                            height: 100,
-                                            child: Center(
-                                              child: IconButton.filled(
-                                                  onPressed: () {},
-                                                  icon: Icon(
-                                                    Icons.play_circle_fill,
-                                                  )),
+                                SizedBox(height: 20),
+                                if (event.media[0].type == "image")
+                                  Image.network(
+                                    event.media[0].url,
+                                    height: 100,
+                                    width: double.infinity,
+                                    fit: BoxFit.cover,
+                                  ),
+                                if (event.media[0].type == "video") ...[
+                                  FutureBuilder(
+                                    future:
+                                        generateThumbnail(event.media[0].url),
+                                    builder: (context, thumbnailSnapshot) {
+                                      if (thumbnailSnapshot.hasData) {
+                                        return Stack(
+                                          children: [
+                                            Image.asset(
+                                              thumbnailSnapshot.data.toString(),
+                                              height: 100,
+                                              width: double.infinity,
+                                              fit: BoxFit.cover,
                                             ),
-                                          )
-                                        ],
-                                      );
-                                    }
-                                    return SizedBox(
-                                        height: 100,
-                                        child: Center(
-                                            child:
-                                                CircularProgressIndicator()));
-                                  },
+                                            SizedBox(
+                                              height: 100,
+                                              child: Center(
+                                                child: IconButton.filled(
+                                                    onPressed: () {},
+                                                    icon: Icon(
+                                                      Icons.play_circle_fill,
+                                                    )),
+                                              ),
+                                            )
+                                          ],
+                                        );
+                                      }
+                                      return SizedBox(
+                                          height: 100,
+                                          child: Center(
+                                              child:
+                                                  CircularProgressIndicator()));
+                                    },
+                                  )
+                                ],
+                                SizedBox(height: 10),
+                                Text(
+                                  event.description,
+                                  maxLines: 2,
+                                  overflow: TextOverflow.ellipsis,
                                 )
                               ],
-                              SizedBox(height: 10),
-                              Text(
-                                event.description,
-                                maxLines: 2,
-                                overflow: TextOverflow.ellipsis,
-                              )
-                            ],
-                          ),
-                          Positioned(
-                              top: 5,
-                              right: 0,
-                              child: Visibility(
-                                visible: event.isNew,
-                                child: LottieBuilder.asset(
-                                  'assets/lottie/new_event.json',
-                                  height: 50,
-                                ),
-                              ))
-                        ],
+                            ),
+                            Positioned(
+                                top: 5,
+                                right: 0,
+                                child: Visibility(
+                                  visible: event.isNew,
+                                  child: LottieBuilder.asset(
+                                    'assets/lottie/new_event.json',
+                                    height: 50,
+                                  ),
+                                ))
+                          ],
+                        ),
                       ),
                     ),
                   ),
-                ),
-              );
-            })
-          ],
+                );
+              })
+            ],
+          ),
         ),
-      ),
-      Divider(),
-    ]);
+        Divider(),
+      ],
+    );
   }
 }
 
@@ -358,79 +367,97 @@ class _ViewEventsSheetButtonState extends State<ViewEventsSheetButton> {
                                           () => EventDescription(event: event));
                                     },
                                     child: Container(
-                                      height: 250,
-                                      width: 200,
+                                      constraints:
+                                          BoxConstraints(maxWidth: 220),
                                       child: Card(
                                         elevation: 0.2,
                                         child: Padding(
                                           padding: const EdgeInsets.all(8.0),
-                                          child: Column(
+                                          child: Stack(
                                             children: [
-                                              Text(
-                                                event.name,
-                                                style: TextStyle(
-                                                  fontSize: 16,
-                                                  fontWeight: FontWeight.w500,
-                                                ),
-                                              ),
-                                              SizedBox(height: 10),
-                                              if (event.media[0].type ==
-                                                  "image")
-                                                Image.network(
-                                                  event.media[0].url,
-                                                  height: 100,
-                                                  fit: BoxFit.cover,
-                                                ),
-                                              if (event.media[0].type ==
-                                                  "video")
-                                                FutureBuilder(
-                                                  future: generateThumbnail(
-                                                      event.media[0].url),
-                                                  builder: (context,
-                                                      thumbnailSnapshot) {
-                                                    if (thumbnailSnapshot
-                                                        .hasData) {
-                                                      return Stack(
-                                                        children: [
-                                                          Image.asset(
-                                                            thumbnailSnapshot
-                                                                .data
-                                                                .toString(),
-                                                            height: 100,
-                                                            width:
-                                                                double.infinity,
-                                                            fit: BoxFit.cover,
-                                                          ),
-                                                          SizedBox(
+                                              Column(
+                                                children: [
+                                                  Text(
+                                                    event.name,
+                                                    maxLines: 1,
+                                                    style: TextStyle(
+                                                        fontSize: 16,
+                                                        fontWeight:
+                                                            FontWeight.w500),
+                                                  ),
+                                                  SizedBox(height: 20),
+                                                  if (event.media[0].type ==
+                                                      "image")
+                                                    Image.network(
+                                                      event.media[0].url,
+                                                      height: 100,
+                                                      width: double.infinity,
+                                                      fit: BoxFit.cover,
+                                                    ),
+                                                  if (event.media[0].type ==
+                                                      "video") ...[
+                                                    FutureBuilder(
+                                                      future: generateThumbnail(
+                                                          event.media[0].url),
+                                                      builder: (context,
+                                                          thumbnailSnapshot) {
+                                                        if (thumbnailSnapshot
+                                                            .hasData) {
+                                                          return Stack(
+                                                            children: [
+                                                              Image.asset(
+                                                                thumbnailSnapshot
+                                                                    .data
+                                                                    .toString(),
+                                                                height: 100,
+                                                                width: double
+                                                                    .infinity,
+                                                                fit: BoxFit
+                                                                    .cover,
+                                                              ),
+                                                              SizedBox(
+                                                                height: 100,
+                                                                child: Center(
+                                                                  child: IconButton
+                                                                      .filled(
+                                                                          onPressed:
+                                                                              () {},
+                                                                          icon:
+                                                                              Icon(
+                                                                            Icons.play_circle_fill,
+                                                                          )),
+                                                                ),
+                                                              )
+                                                            ],
+                                                          );
+                                                        }
+                                                        return SizedBox(
                                                             height: 100,
                                                             child: Center(
-                                                              child: IconButton
-                                                                  .filled(
-                                                                      onPressed:
-                                                                          () {},
-                                                                      icon:
-                                                                          Icon(
-                                                                        Icons
-                                                                            .play_circle_fill,
-                                                                      )),
-                                                            ),
-                                                          )
-                                                        ],
-                                                      );
-                                                    }
-                                                    return SizedBox(
-                                                        height: 100,
-                                                        child: Center(
-                                                            child:
-                                                                CircularProgressIndicator()));
-                                                  },
-                                                ),
-                                              SizedBox(height: 10),
-                                              Text(
-                                                event.description,
-                                                maxLines: 2,
-                                                overflow: TextOverflow.ellipsis,
+                                                                child:
+                                                                    CircularProgressIndicator()));
+                                                      },
+                                                    )
+                                                  ],
+                                                  SizedBox(height: 10),
+                                                  Text(
+                                                    event.description,
+                                                    maxLines: 2,
+                                                    overflow:
+                                                        TextOverflow.ellipsis,
+                                                  )
+                                                ],
                                               ),
+                                              Positioned(
+                                                  top: 5,
+                                                  right: 0,
+                                                  child: Visibility(
+                                                    visible: event.isNew,
+                                                    child: LottieBuilder.asset(
+                                                      'assets/lottie/new_event.json',
+                                                      height: 50,
+                                                    ),
+                                                  ))
                                             ],
                                           ),
                                         ),

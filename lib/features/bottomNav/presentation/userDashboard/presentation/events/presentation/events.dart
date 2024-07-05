@@ -1,6 +1,9 @@
+import 'package:SNP/core/common/widgets/custom_empty_icon.dart';
+import 'package:SNP/core/common/widgets/custom_loading.dart';
+import 'package:SNP/features/bottomNav/presentation/userDashboard/presentation/events/widgets/custom_events_call_by_category.dart';
 import 'package:SNP/features/dummySplash/dummy_splash.dart';
 import 'package:SNP/features/bottomNav/presentation/userDashboard/presentation/events/controller/event_navigation.dart';
-import 'package:SNP/features/bottomNav/presentation/userDashboard/presentation/events/presentation/global_events.dart';
+import 'package:SNP/network/api_requests.dart';
 import 'package:cupertino_will_pop_scope/cupertino_will_pop_scope.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
@@ -32,28 +35,61 @@ class _AllEventsState extends State<AllEvents> with TickerProviderStateMixin {
         return true;
       },
       shouldAddCallback: true,
-      child: Scaffold(
-        appBar: AppBar(
-          // toolbarHeight: 120,
-          automaticallyImplyLeading: false,
-          title: Text("events".tr),
-          leading: IconButton(
-              onPressed: () {
-                eventNavigationController.navigatingFromSplashScreen.isTrue
-                    ? Get.offAll(() => DummySplash())
-                    : Get.back();
-              },
-              icon: Icon(
-                Icons.navigate_before,
-                size: 45,
-              )),
+      child: CustomLoader(
+        child: Scaffold(
+          appBar: AppBar(
+            // toolbarHeight: 120,
+            automaticallyImplyLeading: false,
+            title: Text("events".tr),
+            leading: IconButton(
+                onPressed: () {
+                  eventNavigationController.navigatingFromSplashScreen.isTrue
+                      ? Get.offAll(() => DummySplash())
+                      : Get.back();
+                },
+                icon: Icon(
+                  Icons.navigate_before,
+                  size: 45,
+                )),
+          ),
+          body: FutureBuilder(
+              future: Future.wait([
+                ApiRequests().allEvents("ANNOUNCEMENT EVENT"),
+                ApiRequests().allEvents("SPORT EVENT"),
+                ApiRequests().allEvents("GENERAL EVENT")
+              ]),
+              builder: (context, snapshot) {
+                if (snapshot.hasData) {
+                  return snapshot.data![0].length == 0 &&
+                          snapshot.data![1].length == 0 &&
+                          snapshot.data![2].length == 0
+                      ? CustomEmptyWidget()
+                      : SingleChildScrollView(
+                          child: Column(
+                            mainAxisAlignment: MainAxisAlignment.start,
+                            children: [
+                              if (snapshot.data![0].length != 0)
+                                CustomEventsCallByCategory(
+                                  label: 'announcementEvent'.tr,
+                                  snapshot: snapshot.data![0],
+                                ),
+                              if (snapshot.data![1].length != 0)
+                                CustomEventsCallByCategory(
+                                  label: 'sportEvent'.tr,
+                                  snapshot: snapshot.data![1],
+                                ),
+                              if (snapshot.data![2].length != 0)
+                                CustomEventsCallByCategory(
+                                  label: 'GENERAL EVENT'.tr,
+                                  snapshot: snapshot.data![2],
+                                ),
+                            ],
+                          ),
+                        );
+                }
+                return SizedBox();
+              }),
         ),
-        body: GlobalEvents(),
-
-        // TabBarView(
-        //   controller: tabController,
-        //   children: [GlobalEvents(), UserEvents()],
-        // ),
       ),
     );
   }

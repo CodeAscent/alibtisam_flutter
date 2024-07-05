@@ -3,6 +3,7 @@ import 'dart:convert';
 
 import 'package:SNP/features/bottomNav/model/attendance.dart';
 import 'package:SNP/features/bottomNav/presentation/userDashboard/presentation/attendance/coach/presentation/attendance_out_time.dart';
+import 'package:SNP/features/bottomNav/widgets/player_card.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:lottie/lottie.dart';
@@ -52,16 +53,10 @@ class _AttendanceInTimeState extends State<AttendanceInTime> {
                       children: [
                         Padding(
                           padding: const EdgeInsets.all(16.0),
-                          child: GridView.builder(
+                          child: ListView.builder(
                             physics: NeverScrollableScrollPhysics(),
                             itemCount: attendanceController.attendance.length,
                             shrinkWrap: true,
-                            gridDelegate:
-                                SliverGridDelegateWithMaxCrossAxisExtent(
-                                    mainAxisSpacing: 8,
-                                    crossAxisSpacing: 8,
-                                    mainAxisExtent: 320,
-                                    maxCrossAxisExtent: 220),
                             itemBuilder: (context, index) {
                               UserModel player = attendanceController
                                   .attendance[index].playerId;
@@ -78,80 +73,22 @@ class _AttendanceInTimeState extends State<AttendanceInTime> {
                                   }
                                   setState(() {});
                                 },
-                                child: Container(
-                                  decoration: BoxDecoration(
-                                      color: kAppGreyColor(),
-                                      borderRadius: BorderRadius.circular(10)),
-                                  child: Padding(
-                                    padding: const EdgeInsets.only(bottom: 5),
-                                    child: Column(
-                                      children: [
-                                        Stack(
-                                          children: [
-                                            ClipRRect(
-                                              borderRadius:
-                                                  BorderRadius.circular(10),
-                                              child: Image.network(
-                                                attendanceController
-                                                    .attendance[index]
-                                                    .playerId
-                                                    .pic,
-                                                fit: BoxFit.cover,
-                                                height: 220,
-                                                width: double.infinity,
-                                              ),
-                                            ),
-                                            if (playersAttendance.contains(
-                                                PlayersAttendance(
-                                                    id: player.id)))
-                                              Positioned(
-                                                top: 10,
-                                                right: 10,
-                                                child: CircleAvatar(
-                                                    backgroundColor:
-                                                        kAppGreyColor(),
-                                                    child: Icon(
-                                                      Icons.check,
-                                                      color: Colors.green,
-                                                    )),
-                                              )
-                                          ],
-                                        ),
-                                        Spacer(),
-                                        Text(attendanceController
-                                            .attendance[index]
-                                            .playerId
-                                            .name
-                                            .capitalize!),
-                                        Row(
-                                          mainAxisAlignment:
-                                              MainAxisAlignment.center,
-                                          children: [
-                                            Text(
-                                              "PlayerId: ",
-                                              style: TextStyle(
-                                                  fontWeight: FontWeight.w800,
-                                                  letterSpacing: 0),
-                                            ),
-                                            Text(
-                                              attendanceController
-                                                  .attendance[index]
-                                                  .playerId
-                                                  .pId,
-                                              style: TextStyle(
-                                                  fontWeight: FontWeight.w800,
-                                                  letterSpacing: 0),
-                                            ),
-                                          ],
-                                        ),
-                                        Visibility(
-                                            replacement: SizedBox(
-                                              height: 30,
-                                            ),
-                                            visible: playersAttendance.contains(
-                                                PlayersAttendance(
-                                                    id: player.id)),
-                                            child: TextButton(onPressed: () {
+                                child: Stack(
+                                  children: [
+                                    PlayerCard(
+                                      name: player.name,
+                                      image: player.pic,
+                                      playerId: player.pId,
+                                      showArrow: false,
+                                      extraWidget: SizedBox(
+                                        child: Visibility(
+                                          replacement: SizedBox(
+                                            height: 30,
+                                          ),
+                                          visible: playersAttendance.contains(
+                                              PlayersAttendance(id: player.id)),
+                                          child: TextButton(
+                                            onPressed: () {
                                               showDialog(
                                                   context: context,
                                                   builder: (context) {
@@ -194,7 +131,7 @@ class _AttendanceInTimeState extends State<AttendanceInTime> {
                                                                   players.remark =
                                                                       remarkController
                                                                           .text;
-                                                               
+
                                                                   setState(
                                                                       () {});
                                                                 }
@@ -207,7 +144,8 @@ class _AttendanceInTimeState extends State<AttendanceInTime> {
                                                       ],
                                                     );
                                                   });
-                                            }, child: Builder(
+                                            },
+                                            child: Builder(
                                               builder: (context) {
                                                 String text = '';
                                                 for (var players
@@ -222,15 +160,29 @@ class _AttendanceInTimeState extends State<AttendanceInTime> {
                                                 }
                                                 return Text(
                                                   text,
-                                                  maxLines: 2,
+                                                  maxLines: 4,
                                                   overflow:
                                                       TextOverflow.ellipsis,
                                                 );
                                               },
-                                            )))
-                                      ],
+                                            ),
+                                          ),
+                                        ),
+                                      ),
                                     ),
-                                  ),
+                                    if (playersAttendance.contains(
+                                        PlayersAttendance(id: player.id)))
+                                      Positioned(
+                                        top: 50,
+                                        right: 15,
+                                        child: CircleAvatar(
+                                            backgroundColor: primaryColor(),
+                                            child: Icon(
+                                              Icons.check,
+                                              color: Colors.white,
+                                            )),
+                                      ),
+                                  ],
                                 ),
                               );
                             },
