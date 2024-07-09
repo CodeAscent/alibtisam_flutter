@@ -20,10 +20,11 @@ import 'package:SNP/core/theme/app_colors.dart';
 import 'package:SNP/network/api_requests.dart';
 
 class AttendanceInTime extends StatefulWidget {
-  final String teamId;
+  final String ageCategoryId;
+  final String stage;
   const AttendanceInTime({
     super.key,
-    required this.teamId,
+    required this.ageCategoryId, required this.stage,
   });
 
   @override
@@ -37,7 +38,8 @@ class _AttendanceInTimeState extends State<AttendanceInTime> {
   @override
   void initState() {
     super.initState();
-    attendanceController.fetchAttendanceForInTime(teamId: widget.teamId);
+    attendanceController.fetchAttendanceForInTime(
+        ageCategoryId: widget.ageCategoryId, stage: widget.stage);
   }
 
   @override
@@ -200,7 +202,7 @@ class _AttendanceInTimeState extends State<AttendanceInTime> {
                         attendanceId: attendanceController.attendanceId,
                         playersAttendance: playersAttendance);
                     attendanceController.fetchAttendanceForInTime(
-                        teamId: widget.teamId);
+                        ageCategoryId: widget.ageCategoryId, stage: widget.stage);
                   },
                   label: "Submit",
                   disabled: attendanceController.attendance.isEmpty,

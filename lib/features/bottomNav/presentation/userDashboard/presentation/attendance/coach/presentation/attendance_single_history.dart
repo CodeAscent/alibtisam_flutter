@@ -1,10 +1,8 @@
 import 'package:SNP/features/bottomNav/controller/attendance.dart';
 import 'package:SNP/features/bottomNav/model/attendance.dart';
 import 'package:SNP/features/bottomNav/model/user.dart';
-import 'package:SNP/features/bottomNav/presentation/userDashboard/presentation/attendance/coach/presentation/attendance_In_time.dart';
 import 'package:SNP/core/common/widgets/custom_empty_icon.dart';
 import 'package:SNP/core/common/widgets/custom_loading.dart';
-import 'package:SNP/core/theme/app_colors.dart';
 import 'package:SNP/core/utils/custom_date_formatter.dart';
 import 'package:SNP/features/bottomNav/widgets/player_card.dart';
 import 'package:flutter/material.dart';
@@ -78,7 +76,7 @@ class _AttendanceSingleHistoryState extends State<AttendanceSingleHistory> {
                               );
                             },
                           ),
-                        )
+                        ),
                       ],
                     ),
                   ),

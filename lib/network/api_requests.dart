@@ -537,17 +537,16 @@ class ApiRequests {
   }
 
   Future<Map<String, dynamic>> getAttendanceForInTime(
-      {required String teamId}) async {
+      {required String ageCategoryId, required String stage}) async {
     List<AttendanceModel> attendance = [];
-    UserController userController = Get.find<UserController>();
     try {
       final res = await HttpWrapper.postRequest(add_attendance, {
-        "coachId": userController.user!.id,
-        "teamId": teamId,
+        "ageCategoryId": ageCategoryId,
+        "stage": stage,
       });
+      Logger().w(res);
 
       final data = jsonDecode(res.body);
-
       for (var player in data['attendance']['players']) {
         attendance.add(AttendanceModel.fromMap(player));
       }
@@ -598,14 +597,15 @@ class ApiRequests {
     return {};
   }
 
-  Future<List<AttendanceHistoryModel>?>
-      getAttendanceHistoryListByCoach() async {
+  Future<List<AttendanceHistoryModel>?> getAttendanceHistoryListByCoach(
+      {required String stage}) async {
     List<AttendanceHistoryModel> attendances = [];
     try {
       UserController userController = Get.find<UserController>();
-      final res = await HttpWrapper.getRequest(
-          get_all_completed_attendance + userController.user!.id);
+      final res = await HttpWrapper.getRequest(get_all_completed_attendance +
+          "?coachId=${userController.user!.id}&stage=$stage");
       final data = jsonDecode(res.body);
+      Logger().w(data);
       for (var attendance in data['attendances']) {
         attendances.add(AttendanceHistoryModel.fromMap(attendance));
       }
@@ -638,6 +638,7 @@ class ApiRequests {
     try {
       final res = await HttpWrapper.getRequest(get_player_attendance);
       final data = jsonDecode(res.body);
+      print(data);
       for (var attendance in data['attendances']) {
         playerAttendances.add(AttendanceHistoryModel.fromMap(attendance));
       }

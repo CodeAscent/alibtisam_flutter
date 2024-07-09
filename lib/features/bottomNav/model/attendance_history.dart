@@ -3,42 +3,46 @@ import 'dart:convert';
 
 import 'package:flutter/foundation.dart';
 
+import 'package:SNP/features/bottomNav/model/age_category.dart';
 import 'package:SNP/features/bottomNav/model/attendance.dart';
 import 'package:SNP/features/bottomNav/model/team.dart';
 import 'package:SNP/features/bottomNav/model/user.dart';
 
 class AttendanceHistoryModel {
   final String id;
-  final Map<String, dynamic> teamId;
   final List<AttendanceModel> players;
   final String createdAt;
+  final AgeCategoryModel? ageCategoryId;
 
   AttendanceHistoryModel(
     this.id,
-    this.teamId,
     this.players,
     this.createdAt,
+    this.ageCategoryId,
   );
 
   Map<String, dynamic> toMap() {
     return <String, dynamic>{
       'id': id,
-      'teamId': teamId,
       'players': players.map((x) => x.toMap()).toList(),
       'createdAt': createdAt,
+      'ageCategoryId': ageCategoryId?.toMap(),
     };
   }
 
   factory AttendanceHistoryModel.fromMap(Map<String, dynamic> map) {
     return AttendanceHistoryModel(
       map['_id'] as String,
-      Map<String, dynamic>.from(map['teamId']),
       List<AttendanceModel>.from(
-        map['players'].map<AttendanceModel>(
+        (map['players'] as List<dynamic>).map<AttendanceModel>(
           (x) => AttendanceModel.fromMap(x as Map<String, dynamic>),
         ),
       ),
-      map['createdAt'].toString()
+      map['createdAt'] as String,
+      map['ageCategoryId'] != null
+          ? AgeCategoryModel.fromMap(
+              map['ageCategoryId'] as Map<String, dynamic>)
+          : null,
     );
   }
 

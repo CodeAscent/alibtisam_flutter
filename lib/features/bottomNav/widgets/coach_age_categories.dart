@@ -1,6 +1,14 @@
+import 'package:SNP/core/common/widgets/custom_loading.dart';
 import 'package:SNP/core/theme/app_colors.dart';
+import 'package:SNP/core/utils/loading_manager.dart';
+import 'package:SNP/features/bottomNav/model/age_category.dart';
+import 'package:SNP/features/bottomNav/model/user.dart';
+import 'package:SNP/features/bottomNav/presentation/userDashboard/presentation/statistics/player_statistics.dart';
+import 'package:SNP/features/bottomNav/viewModel/age_category_view_model.dart';
+import 'package:SNP/features/bottomNav/viewModel/players_by_age_and_stage_viewmodel.dart';
 import 'package:SNP/features/bottomNav/widgets/player_card.dart';
 import 'package:carousel_slider/carousel_slider.dart';
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
@@ -14,138 +22,230 @@ class CoachAgeCategories extends StatefulWidget {
 class _CoachAgeCategoriesState extends State<CoachAgeCategories> {
   CarouselController controller = CarouselController();
   int currentIndex = 0;
+  bool schoolVal = true;
+  bool academyVal = false;
+  String currentAgeCategory = '';
+  String currentStage = 'SCHOOL';
+  List<AgeCategoryModel>? ageCategories;
+
+  @override
+  void initState() {
+    super.initState();
+    _fetchAgeCategories();
+  }
+
+  Future<void> _fetchAgeCategories() async {
+    List<AgeCategoryModel> fetchedCategories =
+        await AgeCategoryViewModel().fetchAgeCategory();
+    setState(() {
+      ageCategories = fetchedCategories;
+      currentAgeCategory = fetchedCategories[currentIndex].id;
+    });
+  }
+
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: AppBar(
-        automaticallyImplyLeading: false,
-        toolbarHeight: 150,
-        title: Stack(
-          children: [
-            Container(
-              height: 120,
-              decoration: BoxDecoration(
-                  borderRadius: BorderRadius.circular(10),
-                  gradient: kGradientColor()),
-              child: Column(
-                mainAxisAlignment: MainAxisAlignment.center,
-                children: [
-                  CarouselSlider.builder(
-                    carouselController: controller,
-                    options: CarouselOptions(
-                      onPageChanged: (index, reason) {
-                        setState(() {
-                          currentIndex = index;
-                        });
-                      },
-                      enlargeCenterPage: true,
-                      viewportFraction: 1,
-                      height: 50,
-                      autoPlay: false,
-                      enableInfiniteScroll: false,
-                    ),
-                    itemCount: 5,
-                    disableGesture: false,
-                    itemBuilder:
-                        (BuildContext context, int index, int realIndex) {
-                      return Column(
-                        mainAxisAlignment: MainAxisAlignment.center,
-                        children: [
-                          Center(
-                            child: Text(
-                              'Age Category 16 -18',
-                              style: TextStyle(
-                                  color: Colors.white,
-                                  fontWeight: FontWeight.w600),
-                            ),
-                          ),
-                        ],
-                      );
-                    },
-                  ),
-                  Row(
-                    mainAxisAlignment: MainAxisAlignment.center,
-                    children: [
-                      ...List.generate(
-                        5,
-                        (int dotIndex) => InkWell(
-                          onTap: () {
-                            controller.nextPage(
-                                duration: const Duration(milliseconds: 300),
-                                curve: Curves.linear);
-                          },
-                          child: Container(
-                            margin: EdgeInsets.all(5),
-                            height: currentIndex == dotIndex ? 8 : 4,
-                            width: currentIndex == dotIndex ? 8 : 4,
-                            decoration: BoxDecoration(
-                              shape: BoxShape.circle,
-                              color: Colors.white,
-                            ),
-                          ),
-                        ),
-                      )
-                    ],
-                  )
-                ],
-              ),
-            ),
-            Positioned(
-              top: 30,
-              child: IconButton(
-                  onPressed: () {
-                    Get.back();
-                  },
-                  icon: Icon(
-                    Icons.navigate_before,
-                    size: 40,
-                    color: Colors.white,
-                  )),
-            )
-          ],
-        ),
-      ),
-      body: Padding(
-        padding: const EdgeInsets.all(16.0),
-        child: Column(
-          children: [
-            Card(
-              child: Row(
-                children: [
-                  ClipRRect(
-                    borderRadius: BorderRadius.circular(10),
-                    child: Image.asset(
-                      'assets/images/launcher_icon.png',
-                      height: 120,
-                    ),
-                  ),
-                  SizedBox(
-                    width: 10,
-                  ),
-                  Expanded(
-                    child: Column(
-                      crossAxisAlignment: CrossAxisAlignment.start,
-                      mainAxisAlignment: MainAxisAlignment.start,
+    return CustomLoader(
+        child: Scaffold(
+            appBar: AppBar(
+              automaticallyImplyLeading: false,
+              toolbarHeight: 170,
+              title: ageCategories != null
+                  ? Column(
                       children: [
-                        Text('KJkncdcjndkjc dckjd '),
-                        SizedBox(height: 10),
-                        Text('Player Id: 88686885'),
+                        Stack(
+                          children: [
+                            Container(
+                              height: 120,
+                              decoration: BoxDecoration(
+                                  borderRadius: BorderRadius.circular(10),
+                                  gradient: kGradientColor()),
+                              child: Column(
+                                mainAxisAlignment: MainAxisAlignment.center,
+                                children: [
+                                  CarouselSlider.builder(
+                                    carouselController: controller,
+                                    options: CarouselOptions(
+                                      onPageChanged: (index, reason) {
+                                        LoadingManager.startLoading();
+
+                                        setState(() {
+                                          currentIndex = index;
+                                          currentAgeCategory =
+                                              ageCategories![index].id;
+                                        });
+                                      },
+                                      enlargeCenterPage: true,
+                                      viewportFraction: 1,
+                                      height: 50,
+                                      autoPlay: false,
+                                      enableInfiniteScroll: false,
+                                    ),
+                                    itemCount: ageCategories!.length,
+                                    itemBuilder: (BuildContext context,
+                                        int index, int realIndex) {
+                                      print(ageCategories![index].id);
+                                      return Column(
+                                        mainAxisAlignment:
+                                            MainAxisAlignment.center,
+                                        children: [
+                                          Center(
+                                            child: Text(
+                                              ageCategories![index]
+                                                  .name
+                                                  .capitalize!,
+                                              style: TextStyle(
+                                                  color: Colors.white,
+                                                  fontWeight: FontWeight.w600),
+                                            ),
+                                          ),
+                                        ],
+                                      );
+                                    },
+                                  ),
+                                  Row(
+                                    mainAxisAlignment: MainAxisAlignment.center,
+                                    children: [
+                                      ...List.generate(
+                                        ageCategories!.length,
+                                        (int dotIndex) => InkWell(
+                                          onTap: () {
+                                            controller.nextPage(
+                                                duration: const Duration(
+                                                    milliseconds: 300),
+                                                curve: Curves.linear);
+                                          },
+                                          child: Container(
+                                            margin: EdgeInsets.all(5),
+                                            height: currentIndex == dotIndex
+                                                ? 8
+                                                : 4,
+                                            width: currentIndex == dotIndex
+                                                ? 8
+                                                : 4,
+                                            decoration: BoxDecoration(
+                                              shape: BoxShape.circle,
+                                              color: Colors.white,
+                                            ),
+                                          ),
+                                        ),
+                                      )
+                                    ],
+                                  )
+                                ],
+                              ),
+                            ),
+                            Positioned(
+                              top: 30,
+                              child: IconButton(
+                                  onPressed: () {
+                                    Get.back();
+                                  },
+                                  icon: Icon(
+                                    Icons.navigate_before,
+                                    size: 40,
+                                    color: Colors.white,
+                                  )),
+                            )
+                          ],
+                        ),
+                        Row(
+                          children: [
+                            CupertinoCheckbox(
+                                value: schoolVal,
+                                onChanged: (val) {
+                                  setState(() {
+                                    academyVal = false;
+                                    schoolVal = true;
+                                    currentStage = 'SCHOOL';
+                                    LoadingManager.startLoading();
+                                  });
+                                }),
+                            Text('School'),
+                            SizedBox(width: 20),
+                            CupertinoCheckbox(
+                                value: academyVal,
+                                onChanged: (val) {
+                                  setState(() {
+                                    academyVal = !false;
+                                    schoolVal = !true;
+                                    currentStage = 'ACADEMY';
+                                    LoadingManager.startLoading();
+                                  });
+                                }),
+                            Text('Academy'),
+                          ],
+                        ),
                       ],
-                    ),
-                  ),
-                  SizedBox(
-                    width: 60,
-                    child: Icon(
-                      Icons.navigate_next,
-                      size: 35,
-                    ),
-                  )
-                ],
-              ),
-            )
-          ],
-        ),
-      ),
-    );
+                    )
+                  : SizedBox(),
+            ),
+            body: Padding(
+              padding: const EdgeInsets.all(8.0),
+              child: ageCategories != null
+                  ? FutureBuilder<List<UserModel>>(
+                      future: PlayersByAgeAndStageViewmodel()
+                          .fetchPlayersByAgeAndStage(
+                              stage: currentStage,
+                              ageCategoryId: currentAgeCategory),
+                      builder: (context, snapshot) {
+                        if (snapshot.hasData) {
+                          return ListView.builder(
+                            shrinkWrap: true,
+                            itemCount: snapshot.data!.length,
+                            itemBuilder: (context, index) {
+                              UserModel user = snapshot.data![index];
+                              return GestureDetector(
+                                onTap: () {
+                                  Get.to(() =>
+                                      PlayerStatistics(playerId: user.id));
+                                },
+                                child: Card(
+                                  child: Row(
+                                    children: [
+                                      ClipRRect(
+                                        borderRadius: BorderRadius.circular(10),
+                                        child: Image.network(
+                                          user.pic,
+                                          height: 120,
+                                          width: 130,
+                                          fit: BoxFit.cover,
+                                        ),
+                                      ),
+                                      SizedBox(
+                                        width: 10,
+                                      ),
+                                      Expanded(
+                                        child: Column(
+                                          crossAxisAlignment:
+                                              CrossAxisAlignment.start,
+                                          mainAxisAlignment:
+                                              MainAxisAlignment.start,
+                                          children: [
+                                            Text(user.name),
+                                            SizedBox(height: 10),
+                                            Text('Player Id: ${user.pId}'),
+                                          ],
+                                        ),
+                                      ),
+                                      SizedBox(
+                                        width: 60,
+                                        child: Icon(
+                                          Icons.navigate_next,
+                                          size: 35,
+                                        ),
+                                      )
+                                    ],
+                                  ),
+                                ),
+                              );
+                            },
+                          );
+                        }
+                        return SizedBox();
+                      },
+                    )
+                  : Center(),
+            )));
   }
 }

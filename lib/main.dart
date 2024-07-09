@@ -55,9 +55,12 @@ class _MyAppState extends State<MyApp> {
       _fcmToken = token;
     });
     await FcmToken().saveFcmToken(_fcmToken.toString());
+    final authToken = await getToken();
+
     print("FCM TOKEN -------> $_fcmToken");
     print("INSTALLATION ID -------> $installationId");
     print("UID -------> $uid");
+    print("TOKEN -------> $authToken");
   }
 
   @override

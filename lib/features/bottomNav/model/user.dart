@@ -15,7 +15,7 @@ class UserModel {
   final String bloodGroup;
   final String fatherName;
   final String motherName;
-  final String gameId;
+//   final String gameId;
   final String city;
   final String state;
   final String country;
@@ -52,7 +52,7 @@ class UserModel {
       this.bloodGroup,
       this.fatherName,
       this.motherName,
-      this.gameId,
+      //   this.gameId,
       this.city,
       this.state,
       this.country,
@@ -90,7 +90,7 @@ class UserModel {
       'bloodGroup': bloodGroup,
       'fatherName': fatherName,
       'motherName': motherName,
-      'gameId': gameId,
+      //   'gameId': gameId,
       'city': city,
       'state': state,
       'country': country,
@@ -130,7 +130,7 @@ class UserModel {
       map['bloodGroup'] ?? '',
       map['fatherName'] ?? '',
       map['motherName'] ?? '',
-      map['gameId'] ?? '',
+      //   map['gameId'] ?? '',
       map['city'] ?? '',
       map['state'] ?? '',
       map['country'] ?? '',

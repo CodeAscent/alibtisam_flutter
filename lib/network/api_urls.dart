@@ -1,8 +1,9 @@
-String base_url = "http://52.66.197.219:8000/";
-// String base_url = "http://192.168.29.162:8000/";
+// String base_url = "http://52.66.197.219:8000/";
+String base_url = "http://192.168.29.116:8000/";
 String api_version = "api/v1/";
 String event = "event/";
 String user = "user/";
+String coach = "coach/";
 String player = "player/";
 String organization = "organization/";
 String org_application_service = "org-application-service/";
@@ -115,3 +116,6 @@ String get_player_attendance_statistics =
 
 // UPDATE USER BY ID
 String update_user_by_id = base_url + api_version + user + "update/";
+// UPDATE USER BY ID
+String age_category = base_url + api_version + coach + "age-categories";
+String players_by_age_and_stage = base_url + api_version + coach;

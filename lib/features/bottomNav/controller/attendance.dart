@@ -3,6 +3,7 @@ import 'package:SNP/features/bottomNav/model/attendance_history.dart';
 import 'package:SNP/features/bottomNav/model/attendance_statistics.dart';
 import 'package:SNP/core/utils/loading_manager.dart';
 import 'package:SNP/network/api_requests.dart';
+import 'package:SNP/network/api_urls.dart';
 import 'package:get/get.dart';
 
 class AttendanceController extends GetxController {
@@ -10,12 +11,22 @@ class AttendanceController extends GetxController {
   AttendanceStatisticsModel? attendanceStatistics;
   List<AttendanceHistoryModel> attendancesHistory = [];
   String attendanceId = '';
-  fetchAttendanceForInTime({required String teamId}) async {
+  String currentStage = '';
+
+  clearAttendanceId() {
+    attendanceId = '';
+    update();
+  }
+
+  fetchAttendanceForInTime(
+      {required String ageCategoryId, required String stage}) async {
     attendance.clear();
     update();
     LoadingManager.startLoading();
-    final res = await ApiRequests().getAttendanceForInTime(teamId: teamId);
+    final res = await ApiRequests()
+        .getAttendanceForInTime(ageCategoryId: ageCategoryId, stage: stage);
     attendance = res["attendance"];
+    currentStage = stage;
     attendanceId = res['attendanceId'];
     update();
   }
@@ -24,8 +35,9 @@ class AttendanceController extends GetxController {
     attendance.clear();
 
     LoadingManager.startLoading();
-    final res =
-        await ApiRequests().getAttendanceForOutTime(attendanceId: attendanceId);
+    final res = await ApiRequests().getAttendanceForOutTime(
+      attendanceId: attendanceId,
+    );
     attendance = res["attendance"];
     update();
   }
@@ -42,7 +54,7 @@ class AttendanceController extends GetxController {
   fetchAttendanceHistoryListByCoach() async {
     LoadingManager.startLoading();
     attendancesHistory =
-        (await ApiRequests().getAttendanceHistoryListByCoach())!;
+        (await ApiRequests().getAttendanceHistoryListByCoach(stage: currentStage))!;
     update();
   }
 
