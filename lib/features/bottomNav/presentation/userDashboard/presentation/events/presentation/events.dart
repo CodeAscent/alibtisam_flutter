@@ -1,9 +1,9 @@
-import 'package:SNP/core/common/widgets/custom_empty_icon.dart';
-import 'package:SNP/core/common/widgets/custom_loading.dart';
-import 'package:SNP/features/bottomNav/presentation/userDashboard/presentation/events/widgets/custom_events_call_by_category.dart';
-import 'package:SNP/features/dummySplash/dummy_splash.dart';
-import 'package:SNP/features/bottomNav/presentation/userDashboard/presentation/events/controller/event_navigation.dart';
-import 'package:SNP/network/api_requests.dart';
+import 'package:alibtisam/core/common/widgets/custom_empty_icon.dart';
+import 'package:alibtisam/core/common/widgets/custom_loading.dart';
+import 'package:alibtisam/features/bottomNav/presentation/userDashboard/presentation/events/widgets/custom_events_call_by_category.dart';
+import 'package:alibtisam/features/dummySplash/dummy_splash.dart';
+import 'package:alibtisam/features/bottomNav/presentation/userDashboard/presentation/events/controller/event_navigation.dart';
+import 'package:alibtisam/network/api_requests.dart';
 import 'package:cupertino_will_pop_scope/cupertino_will_pop_scope.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';

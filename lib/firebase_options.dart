@@ -51,7 +51,7 @@ class DefaultFirebaseOptions {
 
   static const FirebaseOptions android = FirebaseOptions(
     apiKey: 'AIzaSyDIefHWdSO531esAp1PYpO0JS_b8ooDTsg',
-    appId: '1:974073561724:android:6f85301526147551277ff9',
+    appId: '1:974073561724:android:131530a2b5e98ed1277ff9',
     messagingSenderId: '974073561724',
     projectId: 'alibtisam-a7581',
     storageBucket: 'alibtisam-a7581.appspot.com',
@@ -59,10 +59,11 @@ class DefaultFirebaseOptions {
 
   static const FirebaseOptions ios = FirebaseOptions(
     apiKey: 'AIzaSyCuEonVqeSG0n1luf7vVUiqQBO09RZdZd0',
-    appId: '1:974073561724:ios:9454d6e7a48371cb277ff9',
+    appId: '1:974073561724:ios:0b3eedf406d0dc56277ff9',
     messagingSenderId: '974073561724',
     projectId: 'alibtisam-a7581',
     storageBucket: 'alibtisam-a7581.appspot.com',
-    iosBundleId: 'com.sportsnetwork.portal',
+    iosBundleId: 'com.alibtisam.club',
   );
+
 }

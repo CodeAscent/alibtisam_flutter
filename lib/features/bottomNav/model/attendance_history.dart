@@ -3,10 +3,10 @@ import 'dart:convert';
 
 import 'package:flutter/foundation.dart';
 
-import 'package:SNP/features/bottomNav/model/age_category.dart';
-import 'package:SNP/features/bottomNav/model/attendance.dart';
-import 'package:SNP/features/bottomNav/model/team.dart';
-import 'package:SNP/features/bottomNav/model/user.dart';
+import 'package:alibtisam/features/bottomNav/model/age_category.dart';
+import 'package:alibtisam/features/bottomNav/model/attendance.dart';
+import 'package:alibtisam/features/bottomNav/model/team.dart';
+import 'package:alibtisam/features/bottomNav/model/user.dart';
 
 class AttendanceHistoryModel {
   final String id;

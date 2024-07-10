@@ -1,29 +1,29 @@
 import 'dart:async';
 import 'dart:convert';
 
-import 'package:SNP/core/localStorage/fcm_token.dart';
-import 'package:SNP/features/bottomNav/bottom_nav.dart';
-import 'package:SNP/features/bottomNav/controller/selected_player.dart';
-import 'package:SNP/features/bottomNav/controller/user.dart';
-import 'package:SNP/features/bottomNav/model/attendance.dart';
-import 'package:SNP/features/bottomNav/model/attendance_history.dart';
-import 'package:SNP/features/bottomNav/model/attendance_statistics.dart';
-import 'package:SNP/features/bottomNav/model/chat_message.dart';
-import 'package:SNP/features/bottomNav/model/chats_list.dart';
-import 'package:SNP/features/bottomNav/model/dashboard.dart';
-import 'package:SNP/features/bottomNav/model/game.dart';
-import 'package:SNP/features/bottomNav/model/team.dart';
-import 'package:SNP/features/bottomNav/model/user.dart';
-import 'package:SNP/features/bottomNav/presentation/settings/model/about.dart';
-import 'package:SNP/features/bottomNav/presentation/userDashboard/presentation/attendance/coach/presentation/attendance_In_time.dart';
-import 'package:SNP/features/bottomNav/presentation/userDashboard/presentation/events/model/events_model.dart';
-import 'package:SNP/features/bottomNav/presentation/userDashboard/presentation/statistics/model/monitoring.dart';
-import 'package:SNP/core/error/server_exception.dart';
-import 'package:SNP/core/localStorage/token_id.dart';
-import 'package:SNP/core/utils/custom_snackbar.dart';
-import 'package:SNP/core/utils/loading_manager.dart';
-import 'package:SNP/network/api_urls.dart';
-import 'package:SNP/network/http_wrapper.dart';
+import 'package:alibtisam/core/localStorage/fcm_token.dart';
+import 'package:alibtisam/features/bottomNav/bottom_nav.dart';
+import 'package:alibtisam/features/bottomNav/controller/selected_player.dart';
+import 'package:alibtisam/features/bottomNav/controller/user.dart';
+import 'package:alibtisam/features/bottomNav/model/attendance.dart';
+import 'package:alibtisam/features/bottomNav/model/attendance_history.dart';
+import 'package:alibtisam/features/bottomNav/model/attendance_statistics.dart';
+import 'package:alibtisam/features/bottomNav/model/chat_message.dart';
+import 'package:alibtisam/features/bottomNav/model/chats_list.dart';
+import 'package:alibtisam/features/bottomNav/model/dashboard.dart';
+import 'package:alibtisam/features/bottomNav/model/game.dart';
+import 'package:alibtisam/features/bottomNav/model/team.dart';
+import 'package:alibtisam/features/bottomNav/model/user.dart';
+import 'package:alibtisam/features/bottomNav/presentation/settings/model/about.dart';
+import 'package:alibtisam/features/bottomNav/presentation/userDashboard/presentation/attendance/coach/presentation/attendance_In_time.dart';
+import 'package:alibtisam/features/bottomNav/presentation/userDashboard/presentation/events/model/events_model.dart';
+import 'package:alibtisam/features/bottomNav/presentation/userDashboard/presentation/statistics/model/monitoring.dart';
+import 'package:alibtisam/core/error/server_exception.dart';
+import 'package:alibtisam/core/localStorage/token_id.dart';
+import 'package:alibtisam/core/utils/custom_snackbar.dart';
+import 'package:alibtisam/core/utils/loading_manager.dart';
+import 'package:alibtisam/network/api_urls.dart';
+import 'package:alibtisam/network/http_wrapper.dart';
 import 'package:fpdart/fpdart.dart';
 import 'package:get/get.dart';
 import 'package:http/http.dart' as http;
@@ -200,6 +200,7 @@ class ApiRequests {
       final res = await HttpWrapper.getRequest(
           get_measurement_requests + "?status=APPROVED");
       final data = jsonDecode(res.body);
+      Logger().w(data);
       if (res.statusCode == 200) {
         return data['requests'];
       } else {
@@ -292,7 +293,7 @@ class ApiRequests {
     required XFile? certificate,
     required String batch,
     required String gameId,
-    required String institutionalTypes,
+    required String stage,
   }) async {
     try {
       LoadingManager.startLoading();
@@ -318,7 +319,7 @@ class ApiRequests {
         "relation": relationWithApplicant,
         "batch": batch,
         "gameId": gameId,
-        "institutionalTypes": institutionalTypes,
+        "stage": stage,
       };
       List<http.MultipartFile> files = [];
       files.addAll([
@@ -499,11 +500,13 @@ class ApiRequests {
     }
   }
 
-  Future<List<GameModel>?> getGames({required String date}) async {
+  Future<List<GameModel>?> getGames(
+      {required String date, required String stage}) async {
     try {
       List<GameModel> games = [];
       LoadingManager.startLoading();
-      final res = await HttpWrapper.getRequest(get_all_games + "?date=$date");
+      final res = await HttpWrapper.getRequest(
+          get_all_games + "?date=$date&stage=$stage");
       final data = jsonDecode(res.body);
       Logger().w(get_all_games + "?date=$date");
       Logger().w(data);

@@ -1,9 +1,9 @@
-import 'package:SNP/features/bottomNav/model/attendance.dart';
-import 'package:SNP/features/bottomNav/model/attendance_history.dart';
-import 'package:SNP/features/bottomNav/model/attendance_statistics.dart';
-import 'package:SNP/core/utils/loading_manager.dart';
-import 'package:SNP/network/api_requests.dart';
-import 'package:SNP/network/api_urls.dart';
+import 'package:alibtisam/features/bottomNav/model/attendance.dart';
+import 'package:alibtisam/features/bottomNav/model/attendance_history.dart';
+import 'package:alibtisam/features/bottomNav/model/attendance_statistics.dart';
+import 'package:alibtisam/core/utils/loading_manager.dart';
+import 'package:alibtisam/network/api_requests.dart';
+import 'package:alibtisam/network/api_urls.dart';
 import 'package:get/get.dart';
 
 class AttendanceController extends GetxController {
@@ -18,15 +18,13 @@ class AttendanceController extends GetxController {
     update();
   }
 
-  fetchAttendanceForInTime(
-      {required String ageCategoryId, required String stage}) async {
+  fetchAttendanceForInTime({required String ageCategoryId}) async {
     attendance.clear();
     update();
     LoadingManager.startLoading();
-    final res = await ApiRequests()
-        .getAttendanceForInTime(ageCategoryId: ageCategoryId, stage: stage);
+    final res = await ApiRequests().getAttendanceForInTime(
+        ageCategoryId: ageCategoryId, stage: currentStage);
     attendance = res["attendance"];
-    currentStage = stage;
     attendanceId = res['attendanceId'];
     update();
   }
@@ -53,8 +51,8 @@ class AttendanceController extends GetxController {
 
   fetchAttendanceHistoryListByCoach() async {
     LoadingManager.startLoading();
-    attendancesHistory =
-        (await ApiRequests().getAttendanceHistoryListByCoach(stage: currentStage))!;
+    attendancesHistory = (await ApiRequests()
+        .getAttendanceHistoryListByCoach(stage: currentStage))!;
     update();
   }
 

@@ -1,9 +1,9 @@
 import 'dart:convert';
 
-import 'package:SNP/features/bottomNav/controller/user.dart';
-import 'package:SNP/features/bottomNav/presentation/userDashboard/presentation/enrollment/external/external_enrollment_form.dart';
-import 'package:SNP/features/bottomNav/presentation/userDashboard/presentation/enrollment/guardian/guardian_all_forms.dart';
-import 'package:SNP/features/bottomNav/presentation/userDashboard/presentation/enrollment/view_addmision_form.dart';
+import 'package:alibtisam/features/bottomNav/controller/user.dart';
+import 'package:alibtisam/features/bottomNav/presentation/userDashboard/presentation/enrollment/external/external_enrollment_form.dart';
+import 'package:alibtisam/features/bottomNav/presentation/userDashboard/presentation/enrollment/guardian/guardian_all_forms.dart';
+import 'package:alibtisam/features/bottomNav/presentation/userDashboard/presentation/enrollment/view_addmision_form.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:get/get.dart';
 import 'package:logger/web.dart';

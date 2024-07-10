@@ -1,9 +1,9 @@
-import 'package:SNP/features/bottomNav/presentation/userDashboard/presentation/statistics/coach/presentation/reports/report_view.dart';
-import 'package:SNP/features/bottomNav/presentation/userDashboard/presentation/statistics/controller/reports.dart';
-import 'package:SNP/features/bottomNav/presentation/userDashboard/presentation/statistics/model/monitoring.dart';
-import 'package:SNP/core/common/widgets/custom_container_button.dart';
-import 'package:SNP/core/theme/app_colors.dart';
-import 'package:SNP/core/utils/custom_date_formatter.dart';
+import 'package:alibtisam/features/bottomNav/presentation/userDashboard/presentation/statistics/coach/presentation/reports/report_view.dart';
+import 'package:alibtisam/features/bottomNav/presentation/userDashboard/presentation/statistics/controller/reports.dart';
+import 'package:alibtisam/features/bottomNav/presentation/userDashboard/presentation/statistics/model/monitoring.dart';
+import 'package:alibtisam/core/common/widgets/custom_container_button.dart';
+import 'package:alibtisam/core/theme/app_colors.dart';
+import 'package:alibtisam/core/utils/custom_date_formatter.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 

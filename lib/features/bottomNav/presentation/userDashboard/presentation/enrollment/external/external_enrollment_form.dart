@@ -1,18 +1,18 @@
 import 'dart:io';
 
-import 'package:SNP/features/bottomNav/controller/games.dart';
-import 'package:SNP/features/bottomNav/controller/user.dart';
-import 'package:SNP/features/bottomNav/model/user.dart';
-import 'package:SNP/features/bottomNav/presentation/userDashboard/presentation/enrollment/guardian/guardian_all_forms.dart';
-import 'package:SNP/features/bottomNav/presentation/userDashboard/presentation/enrollment/view_addmision_form.dart';
-import 'package:SNP/core/common/widgets/custom_container_button.dart';
-import 'package:SNP/core/common/widgets/custom_loading.dart';
-import 'package:SNP/core/common/widgets/custom_text_field.dart';
-import 'package:SNP/core/localStorage/token_id.dart';
-import 'package:SNP/core/theme/app_colors.dart';
-import 'package:SNP/core/utils/custom_date_formatter.dart';
-import 'package:SNP/core/utils/custom_snackbar.dart';
-import 'package:SNP/network/api_requests.dart';
+import 'package:alibtisam/features/bottomNav/controller/games.dart';
+import 'package:alibtisam/features/bottomNav/controller/user.dart';
+import 'package:alibtisam/features/bottomNav/model/user.dart';
+import 'package:alibtisam/features/bottomNav/presentation/userDashboard/presentation/enrollment/guardian/guardian_all_forms.dart';
+import 'package:alibtisam/features/bottomNav/presentation/userDashboard/presentation/enrollment/view_addmision_form.dart';
+import 'package:alibtisam/core/common/widgets/custom_container_button.dart';
+import 'package:alibtisam/core/common/widgets/custom_loading.dart';
+import 'package:alibtisam/core/common/widgets/custom_text_field.dart';
+import 'package:alibtisam/core/localStorage/token_id.dart';
+import 'package:alibtisam/core/theme/app_colors.dart';
+import 'package:alibtisam/core/utils/custom_date_formatter.dart';
+import 'package:alibtisam/core/utils/custom_snackbar.dart';
+import 'package:alibtisam/network/api_requests.dart';
 import 'package:flutter/material.dart';
 import 'package:gender_picker/source/enums.dart';
 import 'package:gender_picker/source/gender_picker.dart';
@@ -41,7 +41,7 @@ class _ExternalEnrollmentFormState extends State<ExternalEnrollmentForm> {
   TextEditingController countryController = TextEditingController();
   TextEditingController cityController = TextEditingController();
   TextEditingController postalCodeController = TextEditingController();
-  TextEditingController institutionalTypeController = TextEditingController();
+  TextEditingController stageController = TextEditingController(text: 'SCHOOL');
   TextEditingController bloodGroupController = TextEditingController();
   TextEditingController heightController = TextEditingController();
   TextEditingController weightController = TextEditingController();
@@ -58,7 +58,7 @@ class _ExternalEnrollmentFormState extends State<ExternalEnrollmentForm> {
 
   List<String> bloodGroups = ['A+', 'A-', 'B+', 'B-', 'AB+', 'AB-', 'O+', 'O-'];
   List<dynamic> selectSports = [];
-  List<dynamic> selectInstitutionalType = ["SCHOOL, ACADEMY"];
+  List<dynamic> selectStage = ["SCHOOL", "ACADEMY"];
   List<String> selectRelationWithApplicant = ["SELF", "GUARDIAN"];
   List<dynamic> selectBatch = [];
 
@@ -69,7 +69,7 @@ class _ExternalEnrollmentFormState extends State<ExternalEnrollmentForm> {
   void initState() {
     super.initState();
     setRelationshipIfGuardian();
-    gamesController.fetchGames(date: '');
+    gamesController.fetchGames(date: '', stage: stageController.text);
   }
 
   bool showRelationShipField = true;
@@ -196,7 +196,8 @@ class _ExternalEnrollmentFormState extends State<ExternalEnrollmentForm> {
                                   gameController.clear();
                                   gameId = '';
                                   gamesController.fetchGames(
-                                      date: dobController.text);
+                                      date: dobController.text,
+                                      stage: stageController.text);
                                 },
                                 icon: Icon(Icons.date_range)),
                             controller: dobController,
@@ -228,6 +229,32 @@ class _ExternalEnrollmentFormState extends State<ExternalEnrollmentForm> {
                       ),
                       CustomTextField(
                         maxLines: 1,
+                        label: "stage".tr,
+                        height: 50,
+                        readOnly: true,
+                        controller: stageController,
+                        suffix: DropdownButton(
+                          dropdownColor: Colors.white,
+                          iconSize: 40,
+                          isDense: true,
+                          items: selectStage.map((value) {
+                            return DropdownMenuItem(
+                              value: value,
+                              child: Text(value.toString()),
+                            );
+                          }).toList(),
+                          onChanged: (val) {
+                            stageController.text = val.toString();
+                            gamesController.fetchGames(
+                                date: dobController.text,
+                                stage: stageController.text);
+
+                            setState(() {});
+                          },
+                        ),
+                      ),
+                      CustomTextField(
+                        maxLines: 1,
                         label: "game".tr,
                         height: 50,
                         readOnly: true,
@@ -239,8 +266,7 @@ class _ExternalEnrollmentFormState extends State<ExternalEnrollmentForm> {
                           items: gamesController.games.map((value) {
                             return DropdownMenuItem(
                               value: value,
-                              child: Text(
-                                  value.name.capitalize! + " (${value.stage})"),
+                              child: Text(value.name.capitalize!),
                             );
                           }).toList(),
                           onChanged: (val) {
@@ -413,9 +439,7 @@ class _ExternalEnrollmentFormState extends State<ExternalEnrollmentForm> {
                                     certificate: certificate,
                                     batch: batchController.text.trim(),
                                     gameId: gameId,
-                                    institutionalTypes:
-                                        institutionalTypeController.text
-                                            .trim());
+                                    stage: stageController.text.trim());
                                 if (relationWithApplicantController.text ==
                                     "SELF") {
                                   saveToken(res['token'], '');

@@ -1,5 +1,5 @@
-import 'package:SNP/features/bottomNav/model/chats_list.dart';
-import 'package:SNP/network/api_requests.dart';
+import 'package:alibtisam/features/bottomNav/model/chats_list.dart';
+import 'package:alibtisam/network/api_requests.dart';
 import 'package:get/get.dart';
 
 class ChatsListController extends GetxController {

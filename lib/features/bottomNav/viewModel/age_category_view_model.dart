@@ -1,8 +1,8 @@
-import 'package:SNP/core/error/server_exception.dart';
-import 'package:SNP/core/utils/custom_snackbar.dart';
-import 'package:SNP/core/utils/loading_manager.dart';
-import 'package:SNP/features/bottomNav/model/age_category.dart';
-import 'package:SNP/features/bottomNav/repositories/age_category_repo.dart';
+import 'package:alibtisam/core/error/server_exception.dart';
+import 'package:alibtisam/core/utils/custom_snackbar.dart';
+import 'package:alibtisam/core/utils/loading_manager.dart';
+import 'package:alibtisam/features/bottomNav/model/age_category.dart';
+import 'package:alibtisam/features/bottomNav/repositories/age_category_repo.dart';
 import 'package:fpdart/src/either.dart';
 
 class AgeCategoryViewModel {

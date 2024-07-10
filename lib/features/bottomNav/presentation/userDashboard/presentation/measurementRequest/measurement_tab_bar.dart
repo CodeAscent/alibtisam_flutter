@@ -1,7 +1,7 @@
-import 'package:SNP/features/bottomNav/presentation/userDashboard/presentation/measurementRequest/presentation/history/measurement_history.dart';
-import 'package:SNP/features/bottomNav/presentation/userDashboard/presentation/measurementRequest/presentation/request/measurement_request.dart';
-import 'package:SNP/core/common/widgets/custom_loading.dart';
-import 'package:SNP/core/common/widgets/custom_tab_bar.dart';
+import 'package:alibtisam/features/bottomNav/presentation/userDashboard/presentation/measurementRequest/presentation/history/measurement_history.dart';
+import 'package:alibtisam/features/bottomNav/presentation/userDashboard/presentation/measurementRequest/presentation/request/measurement_request.dart';
+import 'package:alibtisam/core/common/widgets/custom_loading.dart';
+import 'package:alibtisam/core/common/widgets/custom_tab_bar.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 

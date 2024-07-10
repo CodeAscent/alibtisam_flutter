@@ -5,18 +5,18 @@
     "version": "0.2.0",
     "configurations": [
         {
-            "name": "snp",
+            "name": "alibtisam",
             "request": "launch",
             "type": "dart"
         },
         {
-            "name": "snp (profile mode)",
+            "name": "alibtisam (profile mode)",
             "request": "launch",
             "type": "dart",
             "flutterMode": "profile"
         },
         {
-            "name": "snp (release mode)",
+            "name": "alibtisam (release mode)",
             "request": "launch",
             "type": "dart",
             "flutterMode": "release"

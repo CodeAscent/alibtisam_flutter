@@ -1,4 +1,4 @@
-import 'package:SNP/core/theme/controller/theme_controller.dart';
+import 'package:alibtisam/core/theme/controller/theme_controller.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 

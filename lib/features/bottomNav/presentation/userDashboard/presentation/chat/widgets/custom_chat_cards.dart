@@ -1,4 +1,4 @@
-import 'package:SNP/core/theme/app_colors.dart';
+import 'package:alibtisam/core/theme/app_colors.dart';
 import 'package:flutter/material.dart';
 
 class CustomChatCards extends StatelessWidget {

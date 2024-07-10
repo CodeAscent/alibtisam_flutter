@@ -1,6 +1,6 @@
-import 'package:SNP/features/bottomNav/model/user.dart';
-import 'package:SNP/core/theme/app_colors.dart';
-import 'package:SNP/core/utils/custom_date_formatter.dart';
+import 'package:alibtisam/features/bottomNav/model/user.dart';
+import 'package:alibtisam/core/theme/app_colors.dart';
+import 'package:alibtisam/core/utils/custom_date_formatter.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 

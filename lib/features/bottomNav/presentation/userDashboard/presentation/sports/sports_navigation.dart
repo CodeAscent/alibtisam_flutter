@@ -1,7 +1,7 @@
-import 'package:SNP/features/bottomNav/controller/user.dart';
-import 'package:SNP/features/bottomNav/presentation/userDashboard/presentation/sports/coach/coach_sports.dart';
-import 'package:SNP/features/bottomNav/presentation/userDashboard/presentation/sports/external/external_sports.dart';
-import 'package:SNP/features/bottomNav/presentation/userDashboard/presentation/sports/internal/internal_sports.dart';
+import 'package:alibtisam/features/bottomNav/controller/user.dart';
+import 'package:alibtisam/features/bottomNav/presentation/userDashboard/presentation/sports/coach/coach_sports.dart';
+import 'package:alibtisam/features/bottomNav/presentation/userDashboard/presentation/sports/external/external_sports.dart';
+import 'package:alibtisam/features/bottomNav/presentation/userDashboard/presentation/sports/internal/internal_sports.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';

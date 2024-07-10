@@ -1,10 +1,10 @@
-import 'package:SNP/features/bottomNav/controller/games.dart';
-import 'package:SNP/features/bottomNav/model/collection.dart';
-import 'package:SNP/core/common/widgets/custom_empty_icon.dart';
-import 'package:SNP/core/common/widgets/custom_loading.dart';
-import 'package:SNP/core/common/widgets/custom_tab_bar.dart';
-import 'package:SNP/core/theme/app_colors.dart';
-import 'package:SNP/network/api_requests.dart';
+import 'package:alibtisam/features/bottomNav/controller/games.dart';
+import 'package:alibtisam/features/bottomNav/model/collection.dart';
+import 'package:alibtisam/core/common/widgets/custom_empty_icon.dart';
+import 'package:alibtisam/core/common/widgets/custom_loading.dart';
+import 'package:alibtisam/core/common/widgets/custom_tab_bar.dart';
+import 'package:alibtisam/core/theme/app_colors.dart';
+import 'package:alibtisam/network/api_requests.dart';
 import 'package:flick_video_player/flick_video_player.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
@@ -30,7 +30,7 @@ class _CollectionScreenState extends State<CollectionScreen>
   }
 
   fetchData() async {
-    await gamesController.fetchGames(date: "");
+    await gamesController.fetchGames(date: "", stage: '');
     _tabController =
         TabController(length: gamesController.games.length, vsync: this);
   }

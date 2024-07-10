@@ -1,8 +1,8 @@
-import 'package:SNP/features/bottomNav/controller/selected_player.dart';
-import 'package:SNP/features/bottomNav/controller/user.dart';
-import 'package:SNP/features/bottomNav/widgets/coach_age_categories.dart';
-import 'package:SNP/features/bottomNav/presentation/userDashboard/presentation/statistics/coach/coach_teams_list.dart';
-import 'package:SNP/features/bottomNav/presentation/userDashboard/presentation/statistics/player_statistics.dart';
+import 'package:alibtisam/features/bottomNav/controller/selected_player.dart';
+import 'package:alibtisam/features/bottomNav/controller/user.dart';
+import 'package:alibtisam/features/bottomNav/widgets/coach_age_categories.dart';
+import 'package:alibtisam/features/bottomNav/presentation/userDashboard/presentation/statistics/coach/coach_teams_list.dart';
+import 'package:alibtisam/features/bottomNav/presentation/userDashboard/presentation/statistics/player_statistics.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';

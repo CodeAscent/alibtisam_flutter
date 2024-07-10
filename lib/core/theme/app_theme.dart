@@ -1,5 +1,5 @@
-import 'package:SNP/core/theme/controller/theme_controller.dart';
-import 'package:SNP/core/theme/app_colors.dart';
+import 'package:alibtisam/core/theme/controller/theme_controller.dart';
+import 'package:alibtisam/core/theme/app_colors.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';

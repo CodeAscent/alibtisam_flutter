@@ -1,10 +1,10 @@
-import 'package:SNP/features/signup&login/presentation/signup/signup.dart';
-import 'package:SNP/features/signup&login/widgets/logo_&_arabic_text.dart';
-import 'package:SNP/core/common/widgets/custom_gradient_button.dart';
-import 'package:SNP/core/common/widgets/custom_loading.dart';
-import 'package:SNP/core/common/widgets/custom_text_field.dart';
-import 'package:SNP/core/theme/app_colors.dart';
-import 'package:SNP/network/api_requests.dart';
+import 'package:alibtisam/features/signup&login/presentation/signup/signup.dart';
+import 'package:alibtisam/features/signup&login/widgets/logo_&_arabic_text.dart';
+import 'package:alibtisam/core/common/widgets/custom_gradient_button.dart';
+import 'package:alibtisam/core/common/widgets/custom_loading.dart';
+import 'package:alibtisam/core/common/widgets/custom_text_field.dart';
+import 'package:alibtisam/core/theme/app_colors.dart';
+import 'package:alibtisam/network/api_requests.dart';
 import 'package:cupertino_will_pop_scope/cupertino_will_pop_scope.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';

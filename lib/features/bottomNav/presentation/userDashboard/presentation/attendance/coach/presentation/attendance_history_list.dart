@@ -1,10 +1,11 @@
-import 'package:SNP/core/utils/loading_manager.dart';
-import 'package:SNP/features/bottomNav/controller/attendance.dart';
-import 'package:SNP/features/bottomNav/model/age_category.dart';
-import 'package:SNP/features/bottomNav/presentation/userDashboard/presentation/attendance/coach/presentation/attendance_single_history.dart';
-import 'package:SNP/core/common/widgets/custom_container_button.dart';
-import 'package:SNP/core/common/widgets/custom_loading.dart';
-import 'package:SNP/core/utils/custom_date_formatter.dart';
+import 'package:alibtisam/core/utils/loading_manager.dart';
+import 'package:alibtisam/features/bottomNav/controller/attendance.dart';
+import 'package:alibtisam/features/bottomNav/controller/user.dart';
+import 'package:alibtisam/features/bottomNav/model/age_category.dart';
+import 'package:alibtisam/features/bottomNav/presentation/userDashboard/presentation/attendance/coach/presentation/attendance_single_history.dart';
+import 'package:alibtisam/core/common/widgets/custom_container_button.dart';
+import 'package:alibtisam/core/common/widgets/custom_loading.dart';
+import 'package:alibtisam/core/utils/custom_date_formatter.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
@@ -22,9 +23,15 @@ class _AttendanceHistoryListState extends State<AttendanceHistoryList> {
   @override
   void initState() {
     super.initState();
-    attendanceController.currentStage = 'SCHOOL';
+    if (userController.user!.stage != 'SCHOOL-AND-ACADEMY') {
+      attendanceController.currentStage = userController.user!.stage;
+    } else {
+      attendanceController.currentStage = 'SCHOOL';
+    }
     attendanceController.fetchAttendanceHistoryListByCoach();
   }
+
+  final userController = Get.find<UserController>();
 
   bool schoolVal = true;
   bool academyVal = false;
@@ -40,37 +47,38 @@ class _AttendanceHistoryListState extends State<AttendanceHistoryList> {
                   builder: (AttendanceController attendanceController) {
                 return Column(
                   children: [
-                    Row(
-                      children: [
-                        CupertinoCheckbox(
-                            value: schoolVal,
-                            onChanged: (val) {
-                              setState(() {
-                                academyVal = false;
-                                schoolVal = true;
-                                attendanceController.currentStage = 'SCHOOL';
-                                attendanceController.clearAttendanceId();
-                                attendanceController
-                                    .fetchAttendanceHistoryListByCoach();
-                              });
-                            }),
-                        Text('School'),
-                        SizedBox(width: 20),
-                        CupertinoCheckbox(
-                            value: academyVal,
-                            onChanged: (val) {
-                              setState(() {
-                                academyVal = !false;
-                                schoolVal = !true;
-                                attendanceController.currentStage = 'ACADEMY';
-                                attendanceController.clearAttendanceId();
-                                attendanceController
-                                    .fetchAttendanceHistoryListByCoach();
-                              });
-                            }),
-                        Text('Academy'),
-                      ],
-                    ),
+                    if (userController.user!.stage == 'SCHOOL-AND-ACADEMY')
+                      Row(
+                        children: [
+                          CupertinoCheckbox(
+                              value: schoolVal,
+                              onChanged: (val) {
+                                setState(() {
+                                  academyVal = false;
+                                  schoolVal = true;
+                                  attendanceController.currentStage = 'SCHOOL';
+                                  attendanceController.clearAttendanceId();
+                                  attendanceController
+                                      .fetchAttendanceHistoryListByCoach();
+                                });
+                              }),
+                          Text('School'),
+                          SizedBox(width: 20),
+                          CupertinoCheckbox(
+                              value: academyVal,
+                              onChanged: (val) {
+                                setState(() {
+                                  academyVal = !false;
+                                  schoolVal = !true;
+                                  attendanceController.currentStage = 'ACADEMY';
+                                  attendanceController.clearAttendanceId();
+                                  attendanceController
+                                      .fetchAttendanceHistoryListByCoach();
+                                });
+                              }),
+                          Text('Academy'),
+                        ],
+                      ),
                     ...List.generate(
                         attendanceController.attendancesHistory.length,
                         (int index) {

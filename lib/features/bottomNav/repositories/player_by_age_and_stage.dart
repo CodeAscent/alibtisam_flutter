@@ -1,11 +1,11 @@
 import 'dart:convert';
 
-import 'package:SNP/core/error/server_exception.dart';
-import 'package:SNP/core/utils/custom_snackbar.dart';
-import 'package:SNP/core/utils/loading_manager.dart';
-import 'package:SNP/features/bottomNav/model/user.dart';
-import 'package:SNP/network/api_urls.dart';
-import 'package:SNP/network/http_wrapper.dart';
+import 'package:alibtisam/core/error/server_exception.dart';
+import 'package:alibtisam/core/utils/custom_snackbar.dart';
+import 'package:alibtisam/core/utils/loading_manager.dart';
+import 'package:alibtisam/features/bottomNav/model/user.dart';
+import 'package:alibtisam/network/api_urls.dart';
+import 'package:alibtisam/network/http_wrapper.dart';
 import 'package:fpdart/fpdart.dart';
 import 'package:get_storage/get_storage.dart';
 import 'package:logger/web.dart';
@@ -19,11 +19,13 @@ class PlayerByAgeAndStageRepo {
       final data = jsonDecode(res.body);
       List<UserModel> players = [];
 
+      Logger().w(players_by_age_and_stage +
+          'players?stage=$stage&ageCategoryId=$ageCategoryId');
+
       if (res.statusCode == 200) {
         for (var p in data['players']) {
           players.add(UserModel.fromMap(p));
         }
-        Logger().w(players);
 
         return Right(players);
       } else {

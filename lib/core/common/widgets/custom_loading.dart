@@ -1,4 +1,4 @@
-import 'package:SNP/core/common/controller/custom_loading_controller.dart';
+import 'package:alibtisam/core/common/controller/custom_loading_controller.dart';
 import 'package:blurry_modal_progress_hud/blurry_modal_progress_hud.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';

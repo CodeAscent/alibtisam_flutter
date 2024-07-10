@@ -1,6 +1,6 @@
-import 'package:SNP/features/bottomNav/controller/user.dart';
-import 'package:SNP/features/bottomNav/presentation/userDashboard/presentation/requestPortal/coach/coach_request_portal.dart';
-import 'package:SNP/features/bottomNav/presentation/userDashboard/presentation/requestPortal/internal/internal_request_portal.dart';
+import 'package:alibtisam/features/bottomNav/controller/user.dart';
+import 'package:alibtisam/features/bottomNav/presentation/userDashboard/presentation/requestPortal/coach/coach_request_portal.dart';
+import 'package:alibtisam/features/bottomNav/presentation/userDashboard/presentation/requestPortal/internal/internal_request_portal.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 

@@ -1,6 +1,6 @@
-import 'package:SNP/features/bottomNav/controller/user.dart';
-import 'package:SNP/features/bottomNav/presentation/userDashboard/presentation/attendance/coach/presentation/attendance_age_list.dart';
-import 'package:SNP/features/bottomNav/presentation/userDashboard/presentation/attendance/internal/internal_attendance.dart';
+import 'package:alibtisam/features/bottomNav/controller/user.dart';
+import 'package:alibtisam/features/bottomNav/presentation/userDashboard/presentation/attendance/coach/presentation/attendance_age_list.dart';
+import 'package:alibtisam/features/bottomNav/presentation/userDashboard/presentation/attendance/internal/internal_attendance.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:get/get.dart';
 

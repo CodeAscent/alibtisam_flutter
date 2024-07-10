@@ -1,5 +1,5 @@
-import 'package:SNP/features/bottomNav/presentation/userDashboard/presentation/events/controller/active_player.dart';
-import 'package:SNP/features/bottomNav/presentation/userDashboard/presentation/events/widgets/feedPlayer/feed_player.dart';
+import 'package:alibtisam/features/bottomNav/presentation/userDashboard/presentation/events/controller/active_player.dart';
+import 'package:alibtisam/features/bottomNav/presentation/userDashboard/presentation/events/widgets/feedPlayer/feed_player.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:flick_video_player/flick_video_player.dart';

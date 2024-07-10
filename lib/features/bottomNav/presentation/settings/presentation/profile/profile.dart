@@ -1,7 +1,7 @@
-import 'package:SNP/features/bottomNav/model/user.dart';
+import 'package:alibtisam/features/bottomNav/model/user.dart';
 
-import 'package:SNP/core/common/widgets/custom_loading.dart';
-import 'package:SNP/core/common/widgets/custom_text_field.dart';
+import 'package:alibtisam/core/common/widgets/custom_loading.dart';
+import 'package:alibtisam/core/common/widgets/custom_text_field.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 

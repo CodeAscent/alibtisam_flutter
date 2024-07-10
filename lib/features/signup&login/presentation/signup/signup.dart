@@ -1,11 +1,12 @@
-import 'package:SNP/core/common/widgets/custom_gradient_button.dart';
-import 'package:SNP/core/common/widgets/custom_loading.dart';
-import 'package:SNP/core/theme/app_colors.dart';
-import 'package:SNP/network/api_requests.dart';
+import 'package:alibtisam/core/common/widgets/custom_gradient_button.dart';
+import 'package:alibtisam/core/common/widgets/custom_loading.dart';
+import 'package:alibtisam/core/theme/app_colors.dart';
+import 'package:alibtisam/network/api_requests.dart';
 import 'package:flutter/material.dart';
-import 'package:SNP/features/signup&login/widgets/logo_&_arabic_text.dart';
-import 'package:SNP/core/common/widgets/custom_text_field.dart';
+import 'package:alibtisam/features/signup&login/widgets/logo_&_arabic_text.dart';
+import 'package:alibtisam/core/common/widgets/custom_text_field.dart';
 import 'package:get/get.dart';
+import 'package:logger/logger.dart';
 
 class SignUpScreen extends StatefulWidget {
   const SignUpScreen({super.key});
@@ -16,8 +17,8 @@ class SignUpScreen extends StatefulWidget {
 
 class _SignUpScreenState extends State<SignUpScreen> {
   final nameController = TextEditingController();
-  final clubController = TextEditingController();
-  final clubIdController = TextEditingController();
+//   final clubController = TextEditingController();
+//   final clubIdController = TextEditingController();
   final passwordController = TextEditingController();
   final emailController = TextEditingController();
   final phoneController = TextEditingController();
@@ -39,6 +40,7 @@ class _SignUpScreenState extends State<SignUpScreen> {
     setState(() {});
   }
 
+  String alibtisamClubId = '666aa3d2db7dedd02b16a297';
   @override
   Widget build(BuildContext context) {
     return CustomLoader(
@@ -54,45 +56,46 @@ class _SignUpScreenState extends State<SignUpScreen> {
                     Center(
                       child: LogoAndArabicText(),
                     ),
-                    SizedBox(height: 20),
-                    CustomTextField(
-                      controller: clubController,
-                      maxLines: 1,
-                      label: "sportsClub".tr,
-                      height: 60,
-                      readOnly: true,
-                      suffix: DropdownButton(
-                        items: clubs
-                            .map((club) => DropdownMenuItem(
-                                value: club, child: Text(club['name'])))
-                            .toList(),
-                        onChanged: (dynamic val) {
-                          setState(() {
-                            clubController.text = val['name'];
-                            clubIdController.text = val['_id'];
-                          });
-                        },
-                        iconSize: 40,
-                        isDense: true,
-                      ),
-                    ),
-                    SizedBox(height: 20),
+                    SizedBox(height: 10),
+                    // CustomTextField(
+                    //   controller: clubController,
+                    //   maxLines: 1,
+                    //   label: "sportsClub".tr,
+                    //   height: 60,
+                    //   readOnly: true,
+                    //   suffix: DropdownButton(
+                    //     items: clubs
+                    //         .map((club) => DropdownMenuItem(
+                    //             value: club, child: Text(club['name'])))
+                    //         .toList(),
+                    //     onChanged: (dynamic val) {
+                    //       setState(() {
+                    //         clubController.text = val['name'];
+                    //         clubIdController.text = val['_id'];
+                    //         Logger().w(val['_id']);
+                    //       });
+                    //     },
+                    //     iconSize: 40,
+                    //     isDense: true,
+                    //   ),
+                    // ),
+                    // SizedBox(height: 20),
                     CustomTextField(
                       controller: nameController,
                       label: "name".tr,
                     ),
-                    SizedBox(height: 20),
+                    SizedBox(height: 10),
                     CustomTextField(
                       controller: emailController,
                       label: "email".tr,
                     ),
-                    SizedBox(height: 20),
+                    SizedBox(height: 10),
                     CustomTextField(
                       maxLength: 10,
                       controller: phoneController,
                       label: "phone".tr,
                     ),
-                    SizedBox(height: 20),
+                    SizedBox(height: 10),
                     CustomTextField(
                       maxLines: 1,
                       suffix: TogglePassword(),
@@ -100,14 +103,14 @@ class _SignUpScreenState extends State<SignUpScreen> {
                       controller: passwordController,
                       label: "password".tr,
                     ),
-                    SizedBox(height: 20),
+                    SizedBox(height: 10),
                     SizedBox(
                       height: 70,
                       child: CustomGradientButton(
                           onTap: () {
                             if (formKey.currentState!.validate()) {
                               ApiRequests().register(
-                                  clubId: clubIdController.text.trim(),
+                                  clubId: alibtisamClubId,
                                   email: emailController.text.trim(),
                                   mobile: phoneController.text.trim(),
                                   password: passwordController.text.trim(),

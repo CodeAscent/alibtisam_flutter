@@ -1,9 +1,9 @@
 import 'dart:convert';
 import 'dart:io';
 
-import 'package:SNP/core/error/server_exception.dart';
-import 'package:SNP/core/localStorage/token_id.dart';
-import 'package:SNP/core/utils/loading_manager.dart';
+import 'package:alibtisam/core/error/server_exception.dart';
+import 'package:alibtisam/core/localStorage/token_id.dart';
+import 'package:alibtisam/core/utils/loading_manager.dart';
 import 'package:http/http.dart' as http;
 
 class HttpWrapper {

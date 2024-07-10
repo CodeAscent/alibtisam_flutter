@@ -1,4 +1,4 @@
-import 'package:SNP/core/common/controller/custom_loading_controller.dart';
+import 'package:alibtisam/core/common/controller/custom_loading_controller.dart';
 import 'package:get/get.dart';
 
 class LoadingManager {

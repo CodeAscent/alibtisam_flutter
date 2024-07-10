@@ -1,11 +1,11 @@
-import 'package:SNP/features/bottomNav/controller/teams.dart';
-import 'package:SNP/features/bottomNav/controller/user.dart';
-import 'package:SNP/features/bottomNav/presentation/settings/presentation/profile/manageTeamPlayers/view/caoch_players_list.dart';
-import 'package:SNP/features/bottomNav/presentation/userDashboard/presentation/attendance/coach/presentation/attendance_history_list.dart';
-import 'package:SNP/features/bottomNav/presentation/userDashboard/presentation/attendance/coach/attendance_tab_screen.dart';
-import 'package:SNP/core/common/widgets/custom_empty_icon.dart';
-import 'package:SNP/core/common/widgets/custom_gradient_button.dart';
-import 'package:SNP/core/common/widgets/custom_loading.dart';
+import 'package:alibtisam/features/bottomNav/controller/teams.dart';
+import 'package:alibtisam/features/bottomNav/controller/user.dart';
+import 'package:alibtisam/features/bottomNav/presentation/settings/presentation/profile/manageTeamPlayers/view/caoch_players_list.dart';
+import 'package:alibtisam/features/bottomNav/presentation/userDashboard/presentation/attendance/coach/presentation/attendance_history_list.dart';
+import 'package:alibtisam/features/bottomNav/presentation/userDashboard/presentation/attendance/coach/attendance_tab_screen.dart';
+import 'package:alibtisam/core/common/widgets/custom_empty_icon.dart';
+import 'package:alibtisam/core/common/widgets/custom_gradient_button.dart';
+import 'package:alibtisam/core/common/widgets/custom_loading.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 

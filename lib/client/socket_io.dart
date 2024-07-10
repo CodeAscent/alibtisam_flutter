@@ -1,12 +1,12 @@
 import 'dart:convert';
 
-import 'package:SNP/features/bottomNav/controller/chat_messages.dart';
-import 'package:SNP/features/bottomNav/controller/chats_list.dart';
-import 'package:SNP/features/bottomNav/controller/user.dart';
-import 'package:SNP/features/bottomNav/model/chat_message.dart';
-import 'package:SNP/features/bottomNav/model/chats_list.dart';
-import 'package:SNP/core/localStorage/token_id.dart';
-import 'package:SNP/network/api_urls.dart';
+import 'package:alibtisam/features/bottomNav/controller/chat_messages.dart';
+import 'package:alibtisam/features/bottomNav/controller/chats_list.dart';
+import 'package:alibtisam/features/bottomNav/controller/user.dart';
+import 'package:alibtisam/features/bottomNav/model/chat_message.dart';
+import 'package:alibtisam/features/bottomNav/model/chats_list.dart';
+import 'package:alibtisam/core/localStorage/token_id.dart';
+import 'package:alibtisam/network/api_urls.dart';
 import 'package:get/get.dart';
 import 'package:logger/web.dart';
 import 'package:socket_io_client/socket_io_client.dart' as IO;

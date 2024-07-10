@@ -1,30 +1,29 @@
 // ignore_for_file: public_member_api_docs, sort_constructors_first
 import 'dart:convert';
 
-import 'package:SNP/features/bottomNav/model/attendance.dart';
-import 'package:SNP/features/bottomNav/presentation/userDashboard/presentation/attendance/coach/presentation/attendance_out_time.dart';
-import 'package:SNP/features/bottomNav/widgets/player_card.dart';
+import 'package:alibtisam/features/bottomNav/model/attendance.dart';
+import 'package:alibtisam/features/bottomNav/presentation/userDashboard/presentation/attendance/coach/presentation/attendance_out_time.dart';
+import 'package:alibtisam/features/bottomNav/widgets/player_card.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:lottie/lottie.dart';
 
-import 'package:SNP/features/bottomNav/controller/attendance.dart';
-import 'package:SNP/features/bottomNav/model/team.dart';
-import 'package:SNP/features/bottomNav/model/user.dart';
-import 'package:SNP/features/bottomNav/presentation/userDashboard/presentation/statistics/controller/monitoring.dart';
-import 'package:SNP/features/bottomNav/presentation/userDashboard/presentation/statistics/player_statistics.dart';
-import 'package:SNP/core/common/widgets/custom_empty_icon.dart';
-import 'package:SNP/core/common/widgets/custom_gradient_button.dart';
-import 'package:SNP/core/common/widgets/custom_loading.dart';
-import 'package:SNP/core/theme/app_colors.dart';
-import 'package:SNP/network/api_requests.dart';
+import 'package:alibtisam/features/bottomNav/controller/attendance.dart';
+import 'package:alibtisam/features/bottomNav/model/team.dart';
+import 'package:alibtisam/features/bottomNav/model/user.dart';
+import 'package:alibtisam/features/bottomNav/presentation/userDashboard/presentation/statistics/controller/monitoring.dart';
+import 'package:alibtisam/features/bottomNav/presentation/userDashboard/presentation/statistics/player_statistics.dart';
+import 'package:alibtisam/core/common/widgets/custom_empty_icon.dart';
+import 'package:alibtisam/core/common/widgets/custom_gradient_button.dart';
+import 'package:alibtisam/core/common/widgets/custom_loading.dart';
+import 'package:alibtisam/core/theme/app_colors.dart';
+import 'package:alibtisam/network/api_requests.dart';
 
 class AttendanceInTime extends StatefulWidget {
   final String ageCategoryId;
-  final String stage;
   const AttendanceInTime({
     super.key,
-    required this.ageCategoryId, required this.stage,
+    required this.ageCategoryId,
   });
 
   @override
@@ -39,7 +38,8 @@ class _AttendanceInTimeState extends State<AttendanceInTime> {
   void initState() {
     super.initState();
     attendanceController.fetchAttendanceForInTime(
-        ageCategoryId: widget.ageCategoryId, stage: widget.stage);
+      ageCategoryId: widget.ageCategoryId,
+    );
   }
 
   @override
@@ -202,7 +202,8 @@ class _AttendanceInTimeState extends State<AttendanceInTime> {
                         attendanceId: attendanceController.attendanceId,
                         playersAttendance: playersAttendance);
                     attendanceController.fetchAttendanceForInTime(
-                        ageCategoryId: widget.ageCategoryId, stage: widget.stage);
+                      ageCategoryId: widget.ageCategoryId,
+                    );
                   },
                   label: "Submit",
                   disabled: attendanceController.attendance.isEmpty,

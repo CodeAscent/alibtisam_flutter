@@ -1,12 +1,12 @@
 import 'dart:io';
 
-import 'package:SNP/core/common/widgets/custom_container_button.dart';
-import 'package:SNP/core/common/widgets/custom_text_field.dart';
-import 'package:SNP/features/bottomNav/controller/teams.dart';
-import 'package:SNP/features/bottomNav/controller/user.dart';
-import 'package:SNP/features/bottomNav/model/user.dart';
-import 'package:SNP/features/bottomNav/presentation/settings/presentation/profile/manageTeamPlayers/viewmodel/update_player_viewmodel.dart';
-import 'package:SNP/features/bottomNav/presentation/userDashboard/presentation/enrollment/external/external_enrollment_form.dart';
+import 'package:alibtisam/core/common/widgets/custom_container_button.dart';
+import 'package:alibtisam/core/common/widgets/custom_text_field.dart';
+import 'package:alibtisam/features/bottomNav/controller/teams.dart';
+import 'package:alibtisam/features/bottomNav/controller/user.dart';
+import 'package:alibtisam/features/bottomNav/model/user.dart';
+import 'package:alibtisam/features/bottomNav/presentation/settings/presentation/profile/manageTeamPlayers/viewmodel/update_player_viewmodel.dart';
+import 'package:alibtisam/features/bottomNav/presentation/userDashboard/presentation/enrollment/external/external_enrollment_form.dart';
 import 'package:flutter/material.dart';
 
 import 'package:get/get.dart';

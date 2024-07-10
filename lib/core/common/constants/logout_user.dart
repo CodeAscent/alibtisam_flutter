@@ -1,8 +1,8 @@
-import 'package:SNP/features/signup&login/presentation/login/login.dart';
-import 'package:SNP/core/localStorage/token_id.dart';
-import 'package:SNP/core/theme/app_colors.dart';
-import 'package:SNP/core/utils/loading_manager.dart';
-import 'package:SNP/network/api_requests.dart';
+import 'package:alibtisam/features/signup&login/presentation/login/login.dart';
+import 'package:alibtisam/core/localStorage/token_id.dart';
+import 'package:alibtisam/core/theme/app_colors.dart';
+import 'package:alibtisam/core/utils/loading_manager.dart';
+import 'package:alibtisam/network/api_requests.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 

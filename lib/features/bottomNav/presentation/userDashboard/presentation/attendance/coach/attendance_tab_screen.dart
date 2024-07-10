@@ -1,15 +1,16 @@
-import 'package:SNP/features/bottomNav/controller/attendance.dart';
-import 'package:SNP/features/bottomNav/presentation/userDashboard/presentation/attendance/coach/presentation/attendance_In_time.dart';
-import 'package:SNP/features/bottomNav/presentation/userDashboard/presentation/attendance/coach/presentation/attendance_out_time.dart';
-import 'package:SNP/core/common/widgets/custom_tab_bar.dart';
+import 'package:alibtisam/features/bottomNav/controller/attendance.dart';
+import 'package:alibtisam/features/bottomNav/presentation/userDashboard/presentation/attendance/coach/presentation/attendance_In_time.dart';
+import 'package:alibtisam/features/bottomNav/presentation/userDashboard/presentation/attendance/coach/presentation/attendance_out_time.dart';
+import 'package:alibtisam/core/common/widgets/custom_tab_bar.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
 class AttendanceTabScreen extends StatefulWidget {
   final String ageCategoryId;
-  final String stage;
-  const AttendanceTabScreen(
-      {super.key, required this.ageCategoryId, required this.stage});
+  const AttendanceTabScreen({
+    super.key,
+    required this.ageCategoryId,
+  });
 
   @override
   State<AttendanceTabScreen> createState() => _AttendanceTabScreenState();
@@ -27,7 +28,7 @@ class _AttendanceTabScreenState extends State<AttendanceTabScreen>
       ..addListener(() {
         if (_tabController.index == 0) {
           attendanceController.fetchAttendanceForInTime(
-              ageCategoryId: widget.ageCategoryId, stage: widget.stage);
+              ageCategoryId: widget.ageCategoryId);
         } else {
           attendanceController.fetchAttendanceForOutTime();
         }
@@ -61,7 +62,6 @@ class _AttendanceTabScreenState extends State<AttendanceTabScreen>
             ], tabViewScreens: [
               AttendanceInTime(
                 ageCategoryId: widget.ageCategoryId,
-                stage: widget.stage,
               ),
               AttendanceOutTime()
             ]),

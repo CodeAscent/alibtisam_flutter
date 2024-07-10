@@ -1,11 +1,11 @@
 import 'dart:convert';
 
-import 'package:SNP/core/error/server_exception.dart';
-import 'package:SNP/core/utils/custom_snackbar.dart';
-import 'package:SNP/core/utils/loading_manager.dart';
-import 'package:SNP/features/bottomNav/model/age_category.dart';
-import 'package:SNP/network/api_urls.dart';
-import 'package:SNP/network/http_wrapper.dart';
+import 'package:alibtisam/core/error/server_exception.dart';
+import 'package:alibtisam/core/utils/custom_snackbar.dart';
+import 'package:alibtisam/core/utils/loading_manager.dart';
+import 'package:alibtisam/features/bottomNav/model/age_category.dart';
+import 'package:alibtisam/network/api_urls.dart';
+import 'package:alibtisam/network/http_wrapper.dart';
 import 'package:fpdart/fpdart.dart';
 
 class AgeCategoryRepo {

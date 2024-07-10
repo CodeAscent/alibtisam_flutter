@@ -1,10 +1,10 @@
-import 'package:SNP/features/bottomNav/model/team.dart';
-import 'package:SNP/features/bottomNav/presentation/settings/presentation/profile/manageTeamPlayers/view/player_data.dart';
-import 'package:SNP/features/bottomNav/presentation/userDashboard/presentation/statistics/controller/monitoring.dart';
-import 'package:SNP/core/common/widgets/custom_empty_icon.dart';
-import 'package:SNP/core/common/widgets/custom_loading.dart';
-import 'package:SNP/core/theme/app_colors.dart';
-import 'package:SNP/features/bottomNav/widgets/player_card.dart';
+import 'package:alibtisam/features/bottomNav/model/team.dart';
+import 'package:alibtisam/features/bottomNav/presentation/settings/presentation/profile/manageTeamPlayers/view/player_data.dart';
+import 'package:alibtisam/features/bottomNav/presentation/userDashboard/presentation/statistics/controller/monitoring.dart';
+import 'package:alibtisam/core/common/widgets/custom_empty_icon.dart';
+import 'package:alibtisam/core/common/widgets/custom_loading.dart';
+import 'package:alibtisam/core/theme/app_colors.dart';
+import 'package:alibtisam/features/bottomNav/widgets/player_card.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
@@ -48,7 +48,6 @@ class _CoachPlayersListForProfileState
                                       player: widget.players[index].playerId))!;
                                 },
                                 child: PlayerCard(
-                                    
                                     name: widget.players[index].playerId.name,
                                     image: widget.players[index].playerId.pic,
                                     playerId: widget.players[index].playerId.pId

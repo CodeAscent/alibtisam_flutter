@@ -1,10 +1,10 @@
-import 'package:SNP/features/bottomNav/controller/attendance.dart';
-import 'package:SNP/features/bottomNav/model/attendance.dart';
-import 'package:SNP/features/bottomNav/model/user.dart';
-import 'package:SNP/core/common/widgets/custom_empty_icon.dart';
-import 'package:SNP/core/common/widgets/custom_loading.dart';
-import 'package:SNP/core/utils/custom_date_formatter.dart';
-import 'package:SNP/features/bottomNav/widgets/player_card.dart';
+import 'package:alibtisam/features/bottomNav/controller/attendance.dart';
+import 'package:alibtisam/features/bottomNav/model/attendance.dart';
+import 'package:alibtisam/features/bottomNav/model/user.dart';
+import 'package:alibtisam/core/common/widgets/custom_empty_icon.dart';
+import 'package:alibtisam/core/common/widgets/custom_loading.dart';
+import 'package:alibtisam/core/utils/custom_date_formatter.dart';
+import 'package:alibtisam/features/bottomNav/widgets/player_card.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 

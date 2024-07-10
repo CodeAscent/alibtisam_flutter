@@ -1,12 +1,14 @@
-import 'package:SNP/core/common/widgets/custom_loading.dart';
-import 'package:SNP/core/theme/app_colors.dart';
-import 'package:SNP/core/utils/loading_manager.dart';
-import 'package:SNP/features/bottomNav/model/age_category.dart';
-import 'package:SNP/features/bottomNav/model/user.dart';
-import 'package:SNP/features/bottomNav/presentation/userDashboard/presentation/statistics/player_statistics.dart';
-import 'package:SNP/features/bottomNav/viewModel/age_category_view_model.dart';
-import 'package:SNP/features/bottomNav/viewModel/players_by_age_and_stage_viewmodel.dart';
-import 'package:SNP/features/bottomNav/widgets/player_card.dart';
+import 'package:alibtisam/core/common/widgets/custom_loading.dart';
+import 'package:alibtisam/core/theme/app_colors.dart';
+import 'package:alibtisam/core/utils/loading_manager.dart';
+import 'package:alibtisam/features/bottomNav/controller/attendance.dart';
+import 'package:alibtisam/features/bottomNav/controller/user.dart';
+import 'package:alibtisam/features/bottomNav/model/age_category.dart';
+import 'package:alibtisam/features/bottomNav/model/user.dart';
+import 'package:alibtisam/features/bottomNav/presentation/userDashboard/presentation/statistics/player_statistics.dart';
+import 'package:alibtisam/features/bottomNav/viewModel/age_category_view_model.dart';
+import 'package:alibtisam/features/bottomNav/viewModel/players_by_age_and_stage_viewmodel.dart';
+import 'package:alibtisam/features/bottomNav/widgets/player_card.dart';
 import 'package:carousel_slider/carousel_slider.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
@@ -25,15 +27,21 @@ class _CoachAgeCategoriesState extends State<CoachAgeCategories> {
   bool schoolVal = true;
   bool academyVal = false;
   String currentAgeCategory = '';
-  String currentStage = 'SCHOOL';
   List<AgeCategoryModel>? ageCategories;
 
   @override
   void initState() {
     super.initState();
     _fetchAgeCategories();
+    if (userController.user!.stage != 'SCHOOL-AND-ACADEMY') {
+      attendanceController.currentStage = userController.user!.stage;
+    } else {
+      attendanceController.currentStage = 'SCHOOL';
+    }
   }
 
+  final userController = Get.find<UserController>();
+  final attendanceController = Get.find<AttendanceController>();
   Future<void> _fetchAgeCategories() async {
     List<AgeCategoryModel> fetchedCategories =
         await AgeCategoryViewModel().fetchAgeCategory();
@@ -149,33 +157,36 @@ class _CoachAgeCategoriesState extends State<CoachAgeCategories> {
                             )
                           ],
                         ),
-                        Row(
-                          children: [
-                            CupertinoCheckbox(
-                                value: schoolVal,
-                                onChanged: (val) {
-                                  setState(() {
-                                    academyVal = false;
-                                    schoolVal = true;
-                                    currentStage = 'SCHOOL';
-                                    LoadingManager.startLoading();
-                                  });
-                                }),
-                            Text('School'),
-                            SizedBox(width: 20),
-                            CupertinoCheckbox(
-                                value: academyVal,
-                                onChanged: (val) {
-                                  setState(() {
-                                    academyVal = !false;
-                                    schoolVal = !true;
-                                    currentStage = 'ACADEMY';
-                                    LoadingManager.startLoading();
-                                  });
-                                }),
-                            Text('Academy'),
-                          ],
-                        ),
+                        if (userController.user!.stage == 'SCHOOL-AND-ACADEMY')
+                          Row(
+                            children: [
+                              CupertinoCheckbox(
+                                  value: schoolVal,
+                                  onChanged: (val) {
+                                    setState(() {
+                                      academyVal = false;
+                                      schoolVal = true;
+                                      attendanceController.currentStage =
+                                          'SCHOOL';
+                                      LoadingManager.startLoading();
+                                    });
+                                  }),
+                              Text('School'),
+                              SizedBox(width: 20),
+                              CupertinoCheckbox(
+                                  value: academyVal,
+                                  onChanged: (val) {
+                                    setState(() {
+                                      academyVal = !false;
+                                      schoolVal = !true;
+                                      attendanceController.currentStage =
+                                          'ACADEMY';
+                                      LoadingManager.startLoading();
+                                    });
+                                  }),
+                              Text('Academy'),
+                            ],
+                          ),
                       ],
                     )
                   : SizedBox(),
@@ -186,7 +197,7 @@ class _CoachAgeCategoriesState extends State<CoachAgeCategories> {
                   ? FutureBuilder<List<UserModel>>(
                       future: PlayersByAgeAndStageViewmodel()
                           .fetchPlayersByAgeAndStage(
-                              stage: currentStage,
+                              stage: attendanceController.currentStage,
                               ageCategoryId: currentAgeCategory),
                       builder: (context, snapshot) {
                         if (snapshot.hasData) {

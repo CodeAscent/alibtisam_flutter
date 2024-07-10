@@ -1,4 +1,4 @@
-import 'package:SNP/core/localStorage/init_shared_pref.dart';
+import 'package:alibtisam/core/localStorage/init_shared_pref.dart';
 
 class FcmToken {
   final prefs = SharedPref.getPref;

@@ -1,5 +1,5 @@
-import 'package:SNP/core/utils/custom_snackbar.dart';
-import 'package:SNP/features/bottomNav/presentation/settings/presentation/profile/manageTeamPlayers/repository/update_player_remote.dart';
+import 'package:alibtisam/core/utils/custom_snackbar.dart';
+import 'package:alibtisam/features/bottomNav/presentation/settings/presentation/profile/manageTeamPlayers/repository/update_player_remote.dart';
 import 'package:fpdart/fpdart.dart';
 import 'package:get/get.dart';
 

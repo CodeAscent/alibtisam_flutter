@@ -1,8 +1,8 @@
 // ignore_for_file: public_member_api_docs, sort_constructors_first
-import 'package:SNP/features/bottomNav/controller/date_range.dart';
-import 'package:SNP/core/utils/custom_date_formatter.dart';
-import 'package:SNP/network/api_requests.dart';
-import 'package:SNP/network/api_urls.dart';
+import 'package:alibtisam/features/bottomNav/controller/date_range.dart';
+import 'package:alibtisam/core/utils/custom_date_formatter.dart';
+import 'package:alibtisam/network/api_requests.dart';
+import 'package:alibtisam/network/api_urls.dart';
 import 'package:calendar_date_picker2/calendar_date_picker2.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
@@ -10,14 +10,14 @@ import 'package:get/get.dart';
 import 'package:logger/web.dart';
 import 'package:path_provider/path_provider.dart';
 
-import 'package:SNP/features/bottomNav/presentation/userDashboard/presentation/events/controller/active_player.dart';
-import 'package:SNP/features/bottomNav/presentation/userDashboard/presentation/events/model/events_model.dart';
-import 'package:SNP/features/bottomNav/presentation/userDashboard/presentation/events/presentation/event_desciption.dart';
-import 'package:SNP/features/bottomNav/presentation/userDashboard/presentation/events/widgets/feedPlayer/feed_player.dart';
-import 'package:SNP/core/common/widgets/custom_pod_player.dart';
-import 'package:SNP/core/theme/app_colors.dart';
-import 'package:SNP/core/theme/controller/theme_controller.dart';
-import 'package:SNP/core/utils/loading_manager.dart';
+import 'package:alibtisam/features/bottomNav/presentation/userDashboard/presentation/events/controller/active_player.dart';
+import 'package:alibtisam/features/bottomNav/presentation/userDashboard/presentation/events/model/events_model.dart';
+import 'package:alibtisam/features/bottomNav/presentation/userDashboard/presentation/events/presentation/event_desciption.dart';
+import 'package:alibtisam/features/bottomNav/presentation/userDashboard/presentation/events/widgets/feedPlayer/feed_player.dart';
+import 'package:alibtisam/core/common/widgets/custom_pod_player.dart';
+import 'package:alibtisam/core/theme/app_colors.dart';
+import 'package:alibtisam/core/theme/controller/theme_controller.dart';
+import 'package:alibtisam/core/utils/loading_manager.dart';
 import 'package:lottie/lottie.dart';
 import 'package:video_thumbnail/video_thumbnail.dart';
 
