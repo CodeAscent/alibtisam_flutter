@@ -1,5 +1,6 @@
 import 'package:alibtisam/Localization/localization.dart';
 import 'package:alibtisam/client/socket_io.dart';
+import 'package:alibtisam/core/error/no_internet.dart';
 import 'package:alibtisam/core/localStorage/fcm_token.dart';
 import 'package:alibtisam/core/localStorage/init_shared_pref.dart';
 import 'package:alibtisam/features/dummySplash/dummy_splash.dart';
@@ -8,6 +9,9 @@ import 'package:alibtisam/core/localStorage/token_id.dart';
 import 'package:alibtisam/core/theme/controller/theme_controller.dart';
 import 'package:alibtisam/init/init_controllers.dart';
 import 'package:alibtisam/routes/app_routes.dart';
+import 'package:connectivity_watcher/core/controller_service.dart';
+import 'package:connectivity_watcher/screens/connection_watcher_wrapper.dart';
+import 'package:connectivity_watcher/screens/custom_no_internet.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:firebase_installations/firebase_installations.dart';
 import 'package:firebase_messaging/firebase_messaging.dart';
@@ -71,19 +75,27 @@ class _MyAppState extends State<MyApp> {
 
   @override
   Widget build(BuildContext context) {
-    return GetBuilder(
-      init: ThemeController(),
-      builder: (controller) {
-        return GetMaterialApp(
-          debugShowCheckedModeBanner: false,
-          translations: AppLocalization(),
-          locale: Locale(savedLocale.split('_')[0], savedLocale.split('_')[1]),
-          fallbackLocale: Locale('ar', 'DZ'),
-          getPages: pages,
-          theme: controller.appTheme(),
-          home: DummySplash(),
-        );
-      },
+    return ConnectivityWatcherWrapper(
+      offlineWidget: CustomNoInternetWrapper(
+        builder: (p0) => NoInternetWidget(),
+      ),
+      connectivityStyle: NoConnectivityStyle.CUSTOM,
+      builder: (context, connectionKey) => GetBuilder(
+        init: ThemeController(),
+        builder: (controller) {
+          return GetMaterialApp(
+            // navigatorKey: connectionKey, // add this key to material app
+            debugShowCheckedModeBanner: false,
+            translations: AppLocalization(),
+            locale:
+                Locale(savedLocale.split('_')[0], savedLocale.split('_')[1]),
+            fallbackLocale: Locale('ar', 'DZ'),
+            getPages: pages,
+            theme: controller.appTheme(),
+            home: DummySplash(),
+          );
+        },
+      ),
     );
   }
 }

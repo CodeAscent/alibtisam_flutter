@@ -76,6 +76,7 @@ dependencies:
     vibration: ^1.9.0
     video_thumbnail: ^0.5.3
     rename: ^3.0.2
+    connectivity_watcher: ^2.0.0
 
 dev_dependencies:
     flutter_test:

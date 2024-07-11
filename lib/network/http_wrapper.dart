@@ -23,6 +23,9 @@ class HttpWrapper {
       final res = await http.get(Uri.parse(url), headers: await header());
       return res;
     } catch (e) {
+      if (e is http.ClientException) {
+        throw ServerException('No Internet Connection');
+      }
       throw ServerException(e.toString());
     } finally {
       await LoadingManager.endLoading();
@@ -35,6 +38,9 @@ class HttpWrapper {
           headers: await header(), body: jsonEncode(body));
       return res;
     } catch (e) {
+      if (e is http.ClientException) {
+        throw ServerException('No Internet Connection');
+      }
       throw ServerException(e.toString());
     } finally {
       await LoadingManager.endLoading();
@@ -46,6 +52,9 @@ class HttpWrapper {
       final res = await http.put(Uri.parse(url), headers: await header());
       return res;
     } catch (e) {
+      if (e is http.ClientException) {
+        throw ServerException('No Internet Connection');
+      }
       throw ServerException(e.toString());
     } finally {
       await LoadingManager.endLoading();
@@ -57,6 +66,9 @@ class HttpWrapper {
       final res = await http.delete(Uri.parse(url), headers: await header());
       return res;
     } catch (e) {
+      if (e is http.ClientException) {
+        throw ServerException('No Internet Connection');
+      }
       throw ServerException(e.toString());
     } finally {
       await LoadingManager.endLoading();
@@ -68,6 +80,9 @@ class HttpWrapper {
       final res = await http.patch(Uri.parse(url), headers: await header());
       return res;
     } catch (e) {
+      if (e is http.ClientException) {
+        throw ServerException('No Internet Connection');
+      }
       throw ServerException(e.toString());
     } finally {
       await LoadingManager.endLoading();
@@ -89,6 +104,9 @@ class HttpWrapper {
 
       return res;
     } catch (e) {
+      if (e is http.ClientException) {
+        throw ServerException('No Internet Connection');
+      }
       throw ServerException(e.toString());
     } finally {
       await LoadingManager.endLoading();
