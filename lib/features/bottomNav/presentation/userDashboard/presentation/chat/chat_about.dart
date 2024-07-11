@@ -1,6 +1,5 @@
 import 'package:alibtisam/features/bottomNav/controller/user.dart';
 import 'package:alibtisam/features/bottomNav/model/chats_list.dart';
-import 'package:alibtisam/features/bottomNav/model/user.dart';
 import 'package:alibtisam/features/bottomNav/presentation/userDashboard/presentation/chat/widgets/view_coach_profile.dart';
 import 'package:alibtisam/features/bottomNav/presentation/userDashboard/presentation/enrollment/view_addmision_form.dart';
 import 'package:alibtisam/core/common/widgets/custom_loading.dart';

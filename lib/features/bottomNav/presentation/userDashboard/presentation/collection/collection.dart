@@ -5,7 +5,6 @@ import 'package:alibtisam/core/common/widgets/custom_loading.dart';
 import 'package:alibtisam/core/common/widgets/custom_tab_bar.dart';
 import 'package:alibtisam/core/theme/app_colors.dart';
 import 'package:alibtisam/network/api_requests.dart';
-import 'package:flick_video_player/flick_video_player.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:flutter_staggered_grid_view/flutter_staggered_grid_view.dart';

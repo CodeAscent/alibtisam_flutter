@@ -3,7 +3,6 @@ import 'package:alibtisam/features/bottomNav/model/attendance_history.dart';
 import 'package:alibtisam/features/bottomNav/model/attendance_statistics.dart';
 import 'package:alibtisam/core/utils/loading_manager.dart';
 import 'package:alibtisam/network/api_requests.dart';
-import 'package:alibtisam/network/api_urls.dart';
 import 'package:get/get.dart';
 
 class AttendanceController extends GetxController {

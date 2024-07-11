@@ -6,12 +6,9 @@ import 'package:alibtisam/core/common/widgets/custom_loading.dart';
 import 'package:alibtisam/core/common/widgets/custom_tab_bar.dart';
 import 'package:alibtisam/core/theme/app_colors.dart';
 import 'package:alibtisam/core/utils/custom_date_formatter.dart';
-import 'package:alibtisam/core/utils/loading_manager.dart';
 import 'package:dashed_circular_progress_bar/dashed_circular_progress_bar.dart';
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:get_storage/get_storage.dart';
 
 class InternalAttendanceTab extends StatefulWidget {
   const InternalAttendanceTab({super.key});

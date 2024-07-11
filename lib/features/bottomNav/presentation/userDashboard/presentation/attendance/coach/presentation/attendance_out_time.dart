@@ -1,8 +1,6 @@
 import 'package:alibtisam/features/bottomNav/controller/attendance.dart';
 import 'package:alibtisam/features/bottomNav/model/attendance.dart';
 import 'package:alibtisam/features/bottomNav/model/user.dart';
-import 'package:alibtisam/features/bottomNav/presentation/userDashboard/presentation/attendance/coach/presentation/attendance_In_time.dart';
-import 'package:alibtisam/features/bottomNav/presentation/userDashboard/presentation/attendance/coach/presentation/attendance_single_history.dart';
 import 'package:alibtisam/core/common/widgets/custom_empty_icon.dart';
 import 'package:alibtisam/core/common/widgets/custom_gradient_button.dart';
 import 'package:alibtisam/core/common/widgets/custom_loading.dart';

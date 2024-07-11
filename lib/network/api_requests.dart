@@ -15,7 +15,6 @@ import 'package:alibtisam/features/bottomNav/model/game.dart';
 import 'package:alibtisam/features/bottomNav/model/team.dart';
 import 'package:alibtisam/features/bottomNav/model/user.dart';
 import 'package:alibtisam/features/bottomNav/presentation/settings/model/about.dart';
-import 'package:alibtisam/features/bottomNav/presentation/userDashboard/presentation/attendance/coach/presentation/attendance_In_time.dart';
 import 'package:alibtisam/features/bottomNav/presentation/userDashboard/presentation/events/model/events_model.dart';
 import 'package:alibtisam/features/bottomNav/presentation/userDashboard/presentation/statistics/model/monitoring.dart';
 import 'package:alibtisam/core/error/server_exception.dart';
@@ -24,7 +23,6 @@ import 'package:alibtisam/core/utils/custom_snackbar.dart';
 import 'package:alibtisam/core/utils/loading_manager.dart';
 import 'package:alibtisam/network/api_urls.dart';
 import 'package:alibtisam/network/http_wrapper.dart';
-import 'package:fpdart/fpdart.dart';
 import 'package:get/get.dart';
 import 'package:http/http.dart' as http;
 import 'package:image_picker/image_picker.dart';
@@ -626,8 +624,8 @@ class ApiRequests {
     try {
       List playersList =
           playersAttendance.map((player) => player.toMap()).toList();
-      final res =
-          await HttpWrapper.postRequest(mark_attendance + attendanceId, {
+
+      await HttpWrapper.postRequest(mark_attendance + attendanceId, {
         "playerIds": playersList,
       });
     } on ServerException catch (e) {

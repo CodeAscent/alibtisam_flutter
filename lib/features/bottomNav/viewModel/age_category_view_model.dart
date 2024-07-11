@@ -1,4 +1,3 @@
-import 'package:alibtisam/core/error/server_exception.dart';
 import 'package:alibtisam/core/utils/custom_snackbar.dart';
 import 'package:alibtisam/core/utils/loading_manager.dart';
 import 'package:alibtisam/features/bottomNav/model/age_category.dart';

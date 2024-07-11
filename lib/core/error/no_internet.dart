@@ -1,7 +1,5 @@
-import 'package:alibtisam/features/bottomNav/bottom_nav.dart';
-import 'package:flutter/cupertino.dart';
+
 import 'package:flutter/material.dart';
-import 'package:get/get.dart';
 import 'package:lottie/lottie.dart';
 
 class NoInternetWidget extends StatefulWidget {

@@ -3,14 +3,9 @@ import 'package:alibtisam/features/bottomNav/controller/chats_list.dart';
 import 'package:alibtisam/features/bottomNav/controller/user.dart';
 import 'package:alibtisam/features/bottomNav/model/chats_list.dart';
 import 'package:alibtisam/features/bottomNav/presentation/userDashboard/presentation/chat/chat.dart';
-import 'package:alibtisam/features/bottomNav/presentation/userDashboard/presentation/chat/presentation/coach/players_list.dart';
-import 'package:alibtisam/features/bottomNav/presentation/userDashboard/presentation/chat/presentation/coach/teams_list.dart';
 import 'package:alibtisam/features/bottomNav/presentation/userDashboard/presentation/chat/widgets/custom_chat_cards.dart';
 import 'package:alibtisam/core/common/widgets/custom_empty_icon.dart';
-import 'package:alibtisam/core/common/widgets/custom_gradient_button.dart';
 import 'package:alibtisam/core/common/widgets/custom_loading.dart';
-import 'package:alibtisam/core/common/widgets/custom_tab_bar.dart';
-import 'package:alibtisam/core/theme/app_colors.dart';
 import 'package:alibtisam/core/utils/custom_date_formatter.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
@@ -24,14 +19,12 @@ class CoachChatTeamList extends StatefulWidget {
 
 class _CoachChatTeamListState extends State<CoachChatTeamList>
     with TickerProviderStateMixin {
-  late TabController _tabController;
   ChatsListController chatsListController = Get.find<ChatsListController>();
   UserController userController = Get.find<UserController>();
 
   @override
   void initState() {
     super.initState();
-    _tabController = TabController(length: 2, vsync: this);
     chatsListController.fetchChatsList();
     SocketConnection.getNewChat();
   }

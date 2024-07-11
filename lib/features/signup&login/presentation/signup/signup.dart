@@ -6,7 +6,6 @@ import 'package:flutter/material.dart';
 import 'package:alibtisam/features/signup&login/widgets/logo_&_arabic_text.dart';
 import 'package:alibtisam/core/common/widgets/custom_text_field.dart';
 import 'package:get/get.dart';
-import 'package:logger/logger.dart';
 
 class SignUpScreen extends StatefulWidget {
   const SignUpScreen({super.key});

@@ -8,7 +8,6 @@ import 'package:alibtisam/features/bottomNav/model/user.dart';
 import 'package:alibtisam/features/bottomNav/presentation/userDashboard/presentation/statistics/player_statistics.dart';
 import 'package:alibtisam/features/bottomNav/viewModel/age_category_view_model.dart';
 import 'package:alibtisam/features/bottomNav/viewModel/players_by_age_and_stage_viewmodel.dart';
-import 'package:alibtisam/features/bottomNav/widgets/player_card.dart';
 import 'package:carousel_slider/carousel_slider.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';

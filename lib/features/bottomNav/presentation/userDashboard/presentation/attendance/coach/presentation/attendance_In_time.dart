@@ -1,18 +1,9 @@
-// ignore_for_file: public_member_api_docs, sort_constructors_first
-import 'dart:convert';
-
 import 'package:alibtisam/features/bottomNav/model/attendance.dart';
-import 'package:alibtisam/features/bottomNav/presentation/userDashboard/presentation/attendance/coach/presentation/attendance_out_time.dart';
 import 'package:alibtisam/features/bottomNav/widgets/player_card.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:lottie/lottie.dart';
-
 import 'package:alibtisam/features/bottomNav/controller/attendance.dart';
-import 'package:alibtisam/features/bottomNav/model/team.dart';
 import 'package:alibtisam/features/bottomNav/model/user.dart';
-import 'package:alibtisam/features/bottomNav/presentation/userDashboard/presentation/statistics/controller/monitoring.dart';
-import 'package:alibtisam/features/bottomNav/presentation/userDashboard/presentation/statistics/player_statistics.dart';
 import 'package:alibtisam/core/common/widgets/custom_empty_icon.dart';
 import 'package:alibtisam/core/common/widgets/custom_gradient_button.dart';
 import 'package:alibtisam/core/common/widgets/custom_loading.dart';
