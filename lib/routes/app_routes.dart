@@ -6,7 +6,7 @@ import 'package:alibtisam/features/bottomNav/presentation/userDashboard/presenta
 import 'package:alibtisam/features/bottomNav/presentation/userDashboard/presentation/loanApplication/loan_application.dart';
 import 'package:alibtisam/features/bottomNav/presentation/userDashboard/presentation/measurementRequest/measurement_tab_bar.dart';
 import 'package:alibtisam/features/bottomNav/presentation/userDashboard/presentation/playerPolarization/player_polarization.dart';
-import 'package:alibtisam/features/bottomNav/presentation/userDashboard/presentation/practice/practice.dart';
+import 'package:alibtisam/features/bottomNav/presentation/userDashboard/presentation/trainingPlan/training_plan_navigation.dart';
 import 'package:alibtisam/features/bottomNav/presentation/userDashboard/presentation/requestPortal/request_portal_navigation.dart';
 import 'package:alibtisam/features/bottomNav/presentation/userDashboard/presentation/sessionAppointment/session_appointment.dart';
 import 'package:alibtisam/features/bottomNav/presentation/userDashboard/presentation/sports/sports_navigation.dart';
@@ -21,7 +21,7 @@ List<GetPage<dynamic>>? pages = [
   GetPage(name: '/sports', page: () => SportsNavigation()),
   GetPage(name: '/statistics', page: () => StatisticsNavigation()),
   GetPage(name: '/attendance', page: () => AttendanceNavigation()),
-  GetPage(name: '/practice', page: () => Practice()),
+  GetPage(name: '/practice', page: () => TrainingPlanNavigation()),
   GetPage(name: '/store', page: () => StoreNavigation()),
   GetPage(name: '/requestPortal', page: () => RequestPortalNavigation()),
   GetPage(name: '/sessionAppointment', page: () => SessionAppointment()),
