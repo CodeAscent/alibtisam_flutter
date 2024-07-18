@@ -68,7 +68,7 @@ class CustomTextField extends StatelessWidget {
             contentPadding: EdgeInsets.all(10),
             isDense: true,
             errorMaxLines: 1,
-            labelStyle: TextStyle(color: Colors.grey.shade700),
+            labelStyle: TextStyle(color: Colors.grey.shade700, fontSize: 11),
             errorStyle: TextStyle(color: Colors.red, height: 1),
             disabledBorder:
                 OutlineInputBorder(borderRadius: BorderRadius.circular(5)),

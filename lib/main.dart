@@ -85,7 +85,7 @@ class _MyAppState extends State<MyApp> {
         init: ThemeController(),
         builder: (controller) {
           return GetMaterialApp(
-            navigatorKey: connectionKey, // add this key to material app
+            // navigatorKey: connectionKey, // add this key to material app
             debugShowCheckedModeBanner: false,
             translations: AppLocalization(),
             locale:

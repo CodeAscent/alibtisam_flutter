@@ -50,6 +50,13 @@ class _ExternalEnrollmentFormState extends State<ExternalEnrollmentForm> {
   TextEditingController motherNameController = TextEditingController();
   TextEditingController sportsController = TextEditingController();
   TextEditingController gameController = TextEditingController();
+  TextEditingController relationshipController = TextEditingController();
+  TextEditingController playerGovtIdController = TextEditingController();
+  TextEditingController playerGovtIdExpirationController =
+      TextEditingController();
+  TextEditingController guardianGovtIdController = TextEditingController();
+  TextEditingController guardianGovtIdExpirationController =
+      TextEditingController();
   XFile? pic;
   XFile? idProofFront;
   XFile? idProofBack;
@@ -141,6 +148,26 @@ class _ExternalEnrollmentFormState extends State<ExternalEnrollmentForm> {
                               relationWithApplicantController.text == 'SELF',
                           controller: nameController,
                           label: "fullName".tr),
+                      SizedBox(height: 10),
+                      Row(
+                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                        children: [
+                          SizedBox(
+                            width: Get.width * 0.44,
+                            child: CustomTextField(
+                              label: 'Player Governmet ID',
+                              controller: playerGovtIdController,
+                            ),
+                          ),
+                          SizedBox(
+                            width: Get.width * 0.44,
+                            child: CustomTextField(
+                              label: 'Expiration Date',
+                              controller: playerGovtIdExpirationController,
+                            ),
+                          ),
+                        ],
+                      ),
                       Visibility(
                         visible: showRelationShipField,
                         child: CustomTextField(
@@ -172,6 +199,38 @@ class _ExternalEnrollmentFormState extends State<ExternalEnrollmentForm> {
                               setState(() {});
                             },
                           ),
+                        ),
+                      ),
+                      Visibility(
+                        visible:
+                            relationWithApplicantController.text == "GUARDIAN",
+                        child: Column(
+                          children: [
+                            CustomTextField(
+                              label: 'Relationship',
+                              controller: relationshipController,
+                            ),
+                            Row(
+                              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                              children: [
+                                SizedBox(
+                                  width: Get.width * 0.44,
+                                  child: CustomTextField(
+                                    label: 'Guardian Governmet ID',
+                                    controller: guardianGovtIdController,
+                                  ),
+                                ),
+                                SizedBox(
+                                  width: Get.width * 0.44,
+                                  child: CustomTextField(
+                                    label: 'Expiration Date',
+                                    controller:
+                                        guardianGovtIdExpirationController,
+                                  ),
+                                ),
+                              ],
+                            )
+                          ],
                         ),
                       ),
                       Row(
