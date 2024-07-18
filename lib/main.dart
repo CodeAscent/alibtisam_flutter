@@ -55,6 +55,7 @@ class _MyAppState extends State<MyApp> {
         await FirebaseInstallations.id ?? 'Unknown installation id';
     String? token = await messaging.getToken();
     String? uid = await getUid();
+
     setState(() {
       _fcmToken = token;
     });

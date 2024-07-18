@@ -25,7 +25,6 @@ class _DummySplashState extends State<DummySplash> {
     super.initState();
     removeSplash();
   }
-
   removeSplash() async {
     await Future.delayed(Duration(seconds: 2));
     FlutterNativeSplash.remove();
