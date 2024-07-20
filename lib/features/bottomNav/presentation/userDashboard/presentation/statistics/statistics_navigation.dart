@@ -1,6 +1,6 @@
 import 'package:alibtisam/features/bottomNav/controller/selected_player.dart';
 import 'package:alibtisam/features/bottomNav/controller/user.dart';
-import 'package:alibtisam/features/bottomNav/widgets/coach_age_categories.dart';
+import 'package:alibtisam/features/bottomNav/presentation/userDashboard/presentation/statistics/coach/stages_tab_bar.dart';
 import 'package:alibtisam/features/bottomNav/presentation/userDashboard/presentation/statistics/player_statistics.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
@@ -21,10 +21,10 @@ class _StatisticsNavigationState extends State<StatisticsNavigation> {
     if (userController.user!.role == "INTERNAL USER") {
       selectedPlayerController.updatePlayerId(userController.user!.id);
       return PlayerStatistics(
-        playerId: userController.user!.id,
+        playerId: userController.user!.id!,
       );
     } else {
-      return CoachAgeCategories();
+      return StagesTabBar();
     }
   }
 

@@ -38,8 +38,8 @@ class MeasurementHistory extends StatelessWidget {
                                   Get.to(() =>
                                       ViewPlayerByUserModel(player: user));
                                 },
-                                title: Text(user.name.capitalize!),
-                                subtitle: Text(user.email),
+                                title: Text(user.name!.capitalize!),
+                                subtitle: Text(user.email!),
                               ),
                             );
                           },

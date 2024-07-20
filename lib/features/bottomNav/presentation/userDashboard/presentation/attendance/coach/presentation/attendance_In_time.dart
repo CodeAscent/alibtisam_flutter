@@ -56,12 +56,12 @@ class _AttendanceInTimeState extends State<AttendanceInTime> {
                               return GestureDetector(
                                 onTap: () {
                                   if (playersAttendance.contains(
-                                      PlayersAttendance(id: player.id))) {
+                                      PlayersAttendance(id: player.id!))) {
                                     playersAttendance.remove(
-                                        PlayersAttendance(id: player.id));
+                                        PlayersAttendance(id: player.id!));
                                   } else {
                                     playersAttendance.add(PlayersAttendance(
-                                      id: player.id,
+                                      id: player.id!,
                                     ));
                                   }
                                   setState(() {});
@@ -69,9 +69,9 @@ class _AttendanceInTimeState extends State<AttendanceInTime> {
                                 child: Stack(
                                   children: [
                                     PlayerCard(
-                                      name: player.name,
-                                      image: player.pic,
-                                      playerId: player.pId,
+                                      name: player.name!,
+                                      image: player.pic!,
+                                      playerId: player.pId!,
                                       showArrow: false,
                                       extraWidget: SizedBox(
                                         child: Visibility(
@@ -79,7 +79,7 @@ class _AttendanceInTimeState extends State<AttendanceInTime> {
                                             height: 30,
                                           ),
                                           visible: playersAttendance.contains(
-                                              PlayersAttendance(id: player.id)),
+                                              PlayersAttendance(id: player.id!)),
                                           child: TextButton(
                                             onPressed: () {
                                               showDialog(
@@ -164,7 +164,7 @@ class _AttendanceInTimeState extends State<AttendanceInTime> {
                                       ),
                                     ),
                                     if (playersAttendance.contains(
-                                        PlayersAttendance(id: player.id)))
+                                        PlayersAttendance(id: player.id!)))
                                       Positioned(
                                         top: 50,
                                         right: 15,

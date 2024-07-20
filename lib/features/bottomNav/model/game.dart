@@ -4,7 +4,7 @@ import 'dart:convert';
 class GameModel {
   final String name;
   final String id;
-  final String stage;
+  final List<dynamic> stage;
 
   GameModel(this.name, this.id, this.stage);
 
@@ -20,7 +20,7 @@ class GameModel {
     return GameModel(
       map['name'] as String,
       map['_id'] as String,
-      map['stage'] as String,
+      map['stage'] ?? map['stage'],
     );
   }
 

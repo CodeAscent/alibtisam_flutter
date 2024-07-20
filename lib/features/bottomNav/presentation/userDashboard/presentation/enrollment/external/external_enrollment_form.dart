@@ -76,7 +76,7 @@ class _ExternalEnrollmentFormState extends State<ExternalEnrollmentForm> {
   void initState() {
     super.initState();
     setRelationshipIfGuardian();
-    gamesController.fetchGames(date: '', stage: stageController.text);
+    gamesController.fetchGames(stage: stageController.text);
   }
 
   bool showRelationShipField = true;
@@ -163,7 +163,23 @@ class _ExternalEnrollmentFormState extends State<ExternalEnrollmentForm> {
                             width: Get.width * 0.44,
                             child: CustomTextField(
                               label: 'Expiration Date',
+                              readOnly: true,
                               controller: playerGovtIdExpirationController,
+                              suffix: IconButton(
+                                  color: primaryColor(),
+                                  onPressed: () async {
+                                    await showDatePicker(
+                                            context: context,
+                                            initialDate: DateTime.now(),
+                                            firstDate: DateTime.now(),
+                                            lastDate: DateTime(2500))
+                                        .then((value) =>
+                                            playerGovtIdExpirationController
+                                                    .text =
+                                                customDateFormat(
+                                                    value.toString()));
+                                  },
+                                  icon: Icon(Icons.date_range)),
                             ),
                           ),
                         ],
@@ -190,11 +206,11 @@ class _ExternalEnrollmentFormState extends State<ExternalEnrollmentForm> {
                             onChanged: (val) {
                               relationWithApplicantController.text = val ?? '';
                               if (val == "SELF") {
-                                nameController.text = userController.user!.name;
+                                nameController.text = userController.user!.name!;
                                 emailController.text =
-                                    userController.user!.email;
+                                    userController.user!.email!;
                                 phoneController.text =
-                                    userController.user!.mobile;
+                                    userController.user!.mobile!;
                               }
                               setState(() {});
                             },
@@ -226,6 +242,22 @@ class _ExternalEnrollmentFormState extends State<ExternalEnrollmentForm> {
                                     label: 'Expiration Date',
                                     controller:
                                         guardianGovtIdExpirationController,
+                                    readOnly: true,
+                                    suffix: IconButton(
+                                        color: primaryColor(),
+                                        onPressed: () async {
+                                          await showDatePicker(
+                                                  context: context,
+                                                  initialDate: DateTime.now(),
+                                                  firstDate: DateTime.now(),
+                                                  lastDate: DateTime(2500))
+                                              .then((value) =>
+                                                  guardianGovtIdExpirationController
+                                                          .text =
+                                                      customDateFormat(
+                                                          value.toString()));
+                                        },
+                                        icon: Icon(Icons.date_range)),
                                   ),
                                 ),
                               ],
@@ -252,11 +284,6 @@ class _ExternalEnrollmentFormState extends State<ExternalEnrollmentForm> {
                                           lastDate: DateTime.now())
                                       .then((value) => dobController.text =
                                           customDateFormat(value.toString()));
-                                  gameController.clear();
-                                  gameId = '';
-                                  gamesController.fetchGames(
-                                      date: dobController.text,
-                                      stage: stageController.text);
                                 },
                                 icon: Icon(Icons.date_range)),
                             controller: dobController,
@@ -305,9 +332,8 @@ class _ExternalEnrollmentFormState extends State<ExternalEnrollmentForm> {
                           onChanged: (val) {
                             stageController.text = val.toString();
                             gamesController.fetchGames(
-                                date: dobController.text,
                                 stage: stageController.text);
-
+                            gameController.text = '';
                             setState(() {});
                           },
                         ),
@@ -403,11 +429,6 @@ class _ExternalEnrollmentFormState extends State<ExternalEnrollmentForm> {
                             maxLength: 10,
                             controller: phoneController,
                           ),
-                          CustomTextField(
-                            label: "country".tr,
-                            width: Get.width * 0.44,
-                            controller: countryController,
-                          ),
                         ],
                       ),
                       Row(
@@ -436,19 +457,6 @@ class _ExternalEnrollmentFormState extends State<ExternalEnrollmentForm> {
                         label: "correspondenceAddress".tr,
                         shouldValidate: false,
                         controller: correspondenceAddressController,
-                      ),
-                      Row(
-                        children: [
-                          CustomTextField(
-                            digitsOnly: true,
-                            keyboardType: TextInputType.number,
-                            label: "postalCode".tr,
-                            width: Get.width * 0.44,
-                            maxLength: 8,
-                            controller: postalCodeController,
-                          ),
-                          Spacer(),
-                        ],
                       ),
                       kDocumentSection(),
                       SizedBox(height: 20),
@@ -481,11 +489,8 @@ class _ExternalEnrollmentFormState extends State<ExternalEnrollmentForm> {
                                     correspondenceAddress:
                                         correspondenceAddressController.text
                                             .trim(),
-                                    postalCode:
-                                        postalCodeController.text.trim(),
                                     city: cityController.text.trim(),
                                     state: stateController.text.trim(),
-                                    country: countryController.text.trim(),
                                     relationWithApplicant:
                                         relationWithApplicantController.text ==
                                                 "SELF"
@@ -498,7 +503,16 @@ class _ExternalEnrollmentFormState extends State<ExternalEnrollmentForm> {
                                     certificate: certificate,
                                     batch: batchController.text.trim(),
                                     gameId: gameId,
-                                    stage: stageController.text.trim());
+                                    stage: stageController.text.trim(),
+                                    relationWithPlayer:
+                                        relationshipController.text,
+                                    playerGovId: playerGovtIdController.text,
+                                    guardianGovId:
+                                        guardianGovtIdController.text,
+                                    guardianGovIdExpiry:
+                                        guardianGovtIdExpirationController.text,
+                                    playerGovIdExpiry:
+                                        playerGovtIdExpirationController.text);
                                 if (relationWithApplicantController.text ==
                                     "SELF") {
                                   saveToken(res['token'], '');

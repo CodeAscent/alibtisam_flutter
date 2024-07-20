@@ -1,6 +1,5 @@
 import 'dart:async';
 import 'dart:convert';
-
 import 'package:alibtisam/core/localStorage/fcm_token.dart';
 import 'package:alibtisam/features/bottomNav/bottom_nav.dart';
 import 'package:alibtisam/features/bottomNav/controller/selected_player.dart';
@@ -111,12 +110,16 @@ class ApiRequests {
       var body = {
         "userName": userName,
         "password": password,
-        "fcmToken": fcmToken
+        "fcmToken": fcmToken,
+        "device": "mobile"
       };
       final res = await HttpWrapper.postRequest(login_user, body);
       final data = jsonDecode(res.body);
       if (res.statusCode == 200) {
-        saveToken(data['token'], data['user']['_id']);
+        saveToken(
+          data['token'],
+          data['user']['_id'],
+        );
         Get.to(() => BottomNav());
       } else {
         customSnackbar(message: data["message"]);
@@ -148,9 +151,10 @@ class ApiRequests {
       final res = await HttpWrapper.getRequest(get_user);
 
       final data = jsonDecode(res.body);
+      Logger().w(data);
       if (res.statusCode == 200) {
         final user = UserModel.fromMap(data["user"]);
-        saveToken(data["token"], user.id);
+        saveToken(data["token"], user.id!);
         return user;
       } else {
         customSnackbar(message: data['message']);
@@ -280,10 +284,8 @@ class ApiRequests {
     required String email,
     required String address,
     required String correspondenceAddress,
-    required String postalCode,
     required String city,
     required String state,
-    required String country,
     required String relationWithApplicant,
     required XFile? idProofFrontPath,
     required XFile? idProofBackPath,
@@ -292,6 +294,11 @@ class ApiRequests {
     required String batch,
     required String gameId,
     required String stage,
+    required String relationWithPlayer,
+    required String playerGovId,
+    required String guardianGovId,
+    required String guardianGovIdExpiry,
+    required String playerGovIdExpiry,
   }) async {
     try {
       LoadingManager.startLoading();
@@ -310,14 +317,17 @@ class ApiRequests {
         "email": email,
         "address": address,
         "correspondenceAddress": correspondenceAddress,
-        "postalCode": postalCode,
         "city": city,
         "state": state,
-        "country": country,
         "relation": relationWithApplicant,
         "batch": batch,
         "gameId": gameId,
         "stage": stage,
+        "playerGovId": playerGovId,
+        "relationWithPlayer": relationWithPlayer,
+        "guardianGovId": guardianGovId,
+        "guardianGovIdExpiry": guardianGovIdExpiry,
+        "playerGovIdExpiry": playerGovIdExpiry
       };
       List<http.MultipartFile> files = [];
       files.addAll([
@@ -498,15 +508,12 @@ class ApiRequests {
     }
   }
 
-  Future<List<GameModel>?> getGames(
-      {required String date, required String stage}) async {
+  Future<List<GameModel>?> getGames({required String stage}) async {
     try {
       List<GameModel> games = [];
       LoadingManager.startLoading();
-      final res = await HttpWrapper.getRequest(
-          get_all_games + "?date=$date&stage=$stage");
+      final res = await HttpWrapper.getRequest(get_all_games + "?stage=$stage");
       final data = jsonDecode(res.body);
-      Logger().w(get_all_games + "?date=$date");
       Logger().w(data);
       for (var game in data['dropdown']) {
         games.add(GameModel.fromMap(game));

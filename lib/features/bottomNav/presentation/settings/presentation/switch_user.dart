@@ -41,7 +41,7 @@ class _SwitchUserState extends State<SwitchUser> {
                               if (userController.user!.id == player.id) {
                                 Get.back();
                               } else {
-                                await ApiRequests().getTokenById(player.id);
+                                await ApiRequests().getTokenById(player.id!);
                                 Get.offAll(() => DummySplash());
                               }
                             },
@@ -54,13 +54,13 @@ class _SwitchUserState extends State<SwitchUser> {
                                   ClipRRect(
                                     borderRadius: BorderRadius.circular(5),
                                     child: Image.network(
-                                      player.pic,
+                                      player.pic!,
                                       width: 120,
                                       height: 120,
                                       fit: BoxFit.cover,
                                     ),
                                   ),
-                                  Text(player.name, maxLines: 1),
+                                  Text(player.name!, maxLines: 1),
                                 ]),
                               ),
                             ),

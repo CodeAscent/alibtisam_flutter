@@ -28,7 +28,7 @@ class ViewCoachProfile extends StatelessWidget {
                 bottomRight: Radius.circular(20),
               ),
               child: Image.network(
-                user.pic,
+                user.pic!,
                 fit: BoxFit.cover,
                 height: 400,
               ),
@@ -43,7 +43,7 @@ class ViewCoachProfile extends StatelessWidget {
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
                       Text(
-                        user.userName,
+                        user.userName!,
                         style: TextStyle(
                             fontWeight: FontWeight.w800, fontSize: 20),
                       ),

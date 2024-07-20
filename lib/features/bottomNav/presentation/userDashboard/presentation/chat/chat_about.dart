@@ -116,7 +116,7 @@ class ViewTeamProfile extends StatelessWidget {
                                               BorderRadius.circular(160),
                                           child: Image.network(
                                             widget
-                                                .chat.participants![index].pic,
+                                                .chat.participants![index].pic!,
                                             height: 70,
                                             width: 70,
                                             fit: BoxFit.cover,
@@ -127,7 +127,7 @@ class ViewTeamProfile extends StatelessWidget {
                                           child: Text(widget
                                               .chat
                                               .participants![index]
-                                              .name
+                                              .name!
                                               .capitalize!),
                                         )
                                       ],

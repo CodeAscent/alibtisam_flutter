@@ -28,7 +28,7 @@ class ProfileScreen extends StatelessWidget {
               background: Stack(
                 children: [
                   Image.network(
-                    user.pic,
+                    user.pic!,
                     fit: BoxFit.cover,
                     height: 400,
                     width: double.infinity,

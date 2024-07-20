@@ -74,7 +74,7 @@ class _SettingScreenState extends State<SettingScreen> {
                           ClipRRect(
                             borderRadius: BorderRadius.circular(160),
                             child: Image.network(
-                              user.pic,
+                              user.pic!,
                               height: 100,
                               width: 100,
                               fit: BoxFit.cover,
@@ -83,7 +83,7 @@ class _SettingScreenState extends State<SettingScreen> {
                           SizedBox(width: 20),
                           Column(
                             children: [
-                              Text(user.userName.capitalize!),
+                              Text(user.userName!.capitalize!),
                             ],
                           )
                         ],

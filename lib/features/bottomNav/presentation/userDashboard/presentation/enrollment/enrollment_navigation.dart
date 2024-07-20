@@ -21,7 +21,7 @@ class _EnrollmentNavigationState extends State<EnrollmentNavigation> {
     Logger().w("----------> ${userController.user!.request}");
     if (userController.user!.role == "EXTERNAL USER" &&
         userController.user!.guardianId == '') {
-      if (userController.user!.request.isNotEmpty) {
+      if (userController.user!.request!.isNotEmpty) {
         print(userController.user!.request);
         return ViewPlayerByUserModel(player: userController.user!);
       } else {

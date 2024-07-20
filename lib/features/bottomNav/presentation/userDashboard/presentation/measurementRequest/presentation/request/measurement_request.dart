@@ -48,8 +48,8 @@ class MeasurementRequest extends StatelessWidget {
                                         .fetchMeasurementRequests());
                                 ;
                               },
-                              title: Text(user.name.capitalize!),
-                              subtitle: Text(user.email),
+                              title: Text(user.name!.capitalize!),
+                              subtitle: Text(user.email!),
                               trailing: IconButton(
                                   onPressed: () {
                                     Get.to(() =>

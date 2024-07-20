@@ -49,7 +49,7 @@ class _CoachPlayersListState extends State<CoachPlayersList> {
                               onTap: () {
                                 Get.to(() => PlayerStatistics(
                                       playerId:
-                                          widget.players[index].playerId.id,
+                                          widget.players[index].playerId.id!,
                                     ));
                               },
                               child: Container(
@@ -63,14 +63,14 @@ class _CoachPlayersListState extends State<CoachPlayersList> {
                                       ClipRRect(
                                         borderRadius: BorderRadius.circular(10),
                                         child: Image.network(
-                                          widget.players[index].playerId.pic,
+                                          widget.players[index].playerId.pic!,
                                           fit: BoxFit.cover,
                                           height: 200,
                                           width: double.infinity,
                                         ),
                                       ),
                                       Spacer(),
-                                      Text(widget.players[index].playerId.name
+                                      Text(widget.players[index].playerId.name!
                                           .capitalize!),
                                       Row(
                                         mainAxisAlignment:
@@ -83,7 +83,7 @@ class _CoachPlayersListState extends State<CoachPlayersList> {
                                                 letterSpacing: 0),
                                           ),
                                           Text(
-                                            widget.players[index].playerId.pId,
+                                            widget.players[index].playerId.pId!,
                                             style: TextStyle(
                                                 fontWeight: FontWeight.w800,
                                                 letterSpacing: 0),

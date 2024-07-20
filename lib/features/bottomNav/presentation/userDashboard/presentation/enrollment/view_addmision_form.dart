@@ -25,7 +25,7 @@ class ViewPlayerByUserModel extends StatelessWidget {
                 bottomRight: Radius.circular(20),
               ),
               child: Image.network(
-                player.pic,
+                player.pic!,
                 fit: BoxFit.cover,
                 height: 400,
               ),
@@ -39,9 +39,9 @@ class ViewPlayerByUserModel extends StatelessWidget {
                   mainAxisAlignment: MainAxisAlignment.start,
                   children: [
                     kCustomListTile(key: "name".tr, value: player.name),
-                    if (player.request["status"] != null)
+                    if (player.request!["status"] != null)
                       kCustomListTile(
-                          key: "status".tr, value: player.request["status"]),
+                          key: "status".tr, value: player.request!["status"]),
                     kCustomListTile(key: "game".tr, value: player.name),
                     kCustomListTile(key: "email".tr, value: player.email),
                     kCustomListTile(key: "mobile".tr, value: player.mobile),
@@ -77,11 +77,10 @@ class ViewPlayerByUserModel extends StatelessWidget {
                         key: "motherName".tr, value: player.motherName),
                     kCustomListTile(
                         key: "dateOfBirth".tr,
-                        value: customDateFormat(player.dateOfBirth)),
+                        value: customDateFormat(player.dateOfBirth!)),
                     kCustomListTile(key: "address".tr, value: player.address),
                     kCustomListTile(key: "city".tr, value: player.city),
                     kCustomListTile(key: "state".tr, value: player.state),
-                    kCustomListTile(key: "country".tr, value: player.country),
                     SizedBox(height: 10),
                     Row(
                       children: [
@@ -89,7 +88,7 @@ class ViewPlayerByUserModel extends StatelessWidget {
                           children: [
                             Text("idProofFront".tr),
                             Image.network(
-                              player.idFrontImage,
+                              player.idFrontImage!,
                               height: 150,
                               width: 150,
                               fit: BoxFit.cover,
@@ -101,7 +100,7 @@ class ViewPlayerByUserModel extends StatelessWidget {
                           children: [
                             Text("idProofBack".tr),
                             Image.network(
-                              player.idBackImage,
+                              player.idBackImage!,
                               height: 150,
                               width: 150,
                               fit: BoxFit.cover,
@@ -119,7 +118,7 @@ class ViewPlayerByUserModel extends StatelessWidget {
                           children: [
                             Text("certificate".tr),
                             Image.network(
-                              player.certificateLink,
+                              player.certificateLink!,
                               height: 150,
                               width: 150,
                               fit: BoxFit.cover,

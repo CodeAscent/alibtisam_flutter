@@ -57,8 +57,8 @@ class _CoachChatTeamListState extends State<CoachChatTeamList>
                                 if (!chat.isGroup!) {
                                   for (var user in chat.participants!) {
                                     if (user.id != userController.user!.id) {
-                                      chatName = user.name;
-                                      profilePic = user.pic;
+                                      chatName = user.name!;
+                                      profilePic = user.pic!;
                                     }
                                   }
                                 } else {

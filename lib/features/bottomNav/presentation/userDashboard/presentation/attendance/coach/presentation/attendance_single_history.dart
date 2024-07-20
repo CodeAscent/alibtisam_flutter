@@ -51,9 +51,9 @@ class _AttendanceSingleHistoryState extends State<AttendanceSingleHistory> {
                               UserModel player = attendanceController
                                   .attendance[index].playerId;
                               return PlayerCard(
-                                name: player.name,
-                                image: player.pic,
-                                playerId: player.pId,
+                                name: player.name!,
+                                image: player.pic!,
+                                playerId: player.pId!,
                                 showArrow: false,
                                 extraWidget: Column(
                                   crossAxisAlignment: CrossAxisAlignment.start,

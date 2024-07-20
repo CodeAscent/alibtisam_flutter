@@ -1,6 +1,5 @@
 import 'package:alibtisam/core/theme/app_colors.dart';
 import 'package:alibtisam/features/bottomNav/model/user.dart';
-import 'package:alibtisam/features/bottomNav/presentation/settings/presentation/profile/manageTeamPlayers/view/coach_teams_list.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
@@ -29,7 +28,7 @@ class CoachProfile extends StatelessWidget {
                 bottomRight: Radius.circular(20),
               ),
               child: Image.network(
-                user.pic,
+                user.pic!,
                 fit: BoxFit.cover,
                 height: 400,
               ),
@@ -44,38 +43,28 @@ class CoachProfile extends StatelessWidget {
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
                       Text(
-                        user.userName,
+                        user.userName!,
                         style: TextStyle(
                             fontWeight: FontWeight.w800, fontSize: 20),
                       ),
                       kCustomListTile(key: "name".tr, value: user.name),
                       kCustomListTile(key: "email".tr, value: user.email),
                       kCustomListTile(key: "gender".tr, value: user.gender),
-                      GestureDetector(
-                        onTap: () {
-                          Get.to(() => CoachTeamsListForProfile());
-                        },
-                        child: Container(
-                            padding: EdgeInsets.all(10),
-                            margin: EdgeInsets.symmetric(vertical: 5),
-                            decoration: BoxDecoration(
-                                color: kAppGreyColor(),
-                                borderRadius: BorderRadius.circular(10)),
-                            child: Row(
-                              children: [
-                                Text(
-                                  "Teams".tr,
-                                  style: TextStyle(
-                                      fontSize: 16,
-                                      fontWeight: FontWeight.w500),
-                                ),
-                                Spacer(),
-                                IconButton(
-                                    onPressed: () {},
-                                    icon: Icon(Icons.navigate_next)),
-                              ],
-                            )),
-                      ),
+                      ListTile(
+                        title: Text('Stages'),
+                        subtitle: Row(
+                          children: [
+                            ...user.stage.map((e) => Row(
+                                  children: [
+                                    Chip(label: Text(e)),
+                                    SizedBox(
+                                      width: 10,
+                                    )
+                                  ],
+                                )),
+                          ],
+                        ),
+                      )
                     ]),
               ),
             ),

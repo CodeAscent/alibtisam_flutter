@@ -146,7 +146,7 @@ class _ChatScreenState extends State<ChatScreen> {
                                                 message.senderId &&
                                             message.senderId !=
                                                 userController.user!.id) {
-                                          name = participant.name;
+                                          name = participant.name!;
                                         }
                                       }
                                     }
@@ -207,7 +207,7 @@ class _ChatScreenState extends State<ChatScreen> {
                               onFieldSubmitted: (value) {
                                 if (messageController.text.trim() != '') {
                                   SocketConnection.sendMessage(
-                                    uid: userController.user!.id,
+                                    uid: userController.user!.id!,
                                     message: messageController.text.trim(),
                                     chatId: widget.chatId,
                                   );
@@ -230,7 +230,7 @@ class _ChatScreenState extends State<ChatScreen> {
                             onPressed: () {
                               if (messageController.text.trim() != '') {
                                 SocketConnection.sendMessage(
-                                  uid: userController.user!.id,
+                                  uid: userController.user!.id!,
                                   message: messageController.text.trim(),
                                   chatId: widget.chatId,
                                 );

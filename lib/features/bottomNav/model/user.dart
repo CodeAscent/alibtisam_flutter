@@ -2,80 +2,86 @@
 import 'dart:convert';
 
 class UserModel {
-  final String id;
-  final String pId;
-  final String name;
-  final String email;
-  final String role;
-  final String pic;
-  final String gender;
-  final String userName;
-  final String mobile;
-  final String dateOfBirth;
-  final String bloodGroup;
-  final String fatherName;
-  final String motherName;
-  final String city;
-  final String state;
-  final String country;
-  final String guardianId;
-  final String idFrontImage;
-  final String idBackImage;
-  final String certificateLink;
-  final num height;
-  final num weight;
-  final num chestSize;
-  final num heartBeatingRate;
-  final num highJump;
-  final num lowJump;
-  final num normalChestSize;
-  final num pulseRate;
-  final num shoeSize;
-  final String tshirtSize;
-  final num waistSize;
-  final String address;
-  final bool isActive;
-  final Map<String, dynamic> request;
-  final String stage;
+  final String? id;
+  final String? pId;
+  final String? name;
+  final String? email;
+  final String? role;
+  final String? pic;
+  final String? gender;
+  final String? userName;
+  final String? mobile;
+  final String? dateOfBirth;
+  final String? bloodGroup;
+  final String? fatherName;
+  final String? motherName;
+  final String? city;
+  final String? state;
+  final String? guardianId;
+  final String? idFrontImage;
+  final String? idBackImage;
+  final String? certificateLink;
+  final num? height;
+  final num? weight;
+  final num? chestSize;
+  final num? heartBeatingRate;
+  final num? highJump;
+  final num? lowJump;
+  final num? normalChestSize;
+  final num? pulseRate;
+  final num? shoeSize;
+  final String? tshirtSize;
+  final num? waistSize;
+  final String? address;
+  final bool? isActive;
+  final Map<String, dynamic>? request;
+  final dynamic stage;
+  final String? guardianGovId;
+  final String? guardianGovIdExpiry;
+  final String? relationWithPlayer;
+  final String? playerGovId;
+  final String? playerGovIdExpiry;
 
   UserModel(
-    this.id,
-    this.pId,
-    this.name,
-    this.email,
-    this.role,
-    this.pic,
-    this.gender,
-    this.userName,
-    this.mobile,
-    this.dateOfBirth,
-    this.bloodGroup,
-    this.fatherName,
-    this.motherName,
-    //   this.gameId,
-    this.city,
-    this.state,
-    this.country,
-    this.guardianId,
-    this.idFrontImage,
-    this.idBackImage,
-    this.certificateLink,
-    this.height,
-    this.weight,
-    this.chestSize,
-    this.heartBeatingRate,
-    this.highJump,
-    this.lowJump,
-    this.normalChestSize,
-    this.pulseRate,
-    this.shoeSize,
-    this.tshirtSize,
-    this.waistSize,
-    this.address,
-    this.isActive,
-    this.request,
-    this.stage,
-  );
+      this.id,
+      this.pId,
+      this.name,
+      this.email,
+      this.role,
+      this.pic,
+      this.gender,
+      this.userName,
+      this.mobile,
+      this.dateOfBirth,
+      this.bloodGroup,
+      this.fatherName,
+      this.motherName,
+      this.city,
+      this.state,
+      this.guardianId,
+      this.idFrontImage,
+      this.idBackImage,
+      this.certificateLink,
+      this.height,
+      this.weight,
+      this.chestSize,
+      this.heartBeatingRate,
+      this.highJump,
+      this.lowJump,
+      this.normalChestSize,
+      this.pulseRate,
+      this.shoeSize,
+      this.tshirtSize,
+      this.waistSize,
+      this.address,
+      this.isActive,
+      this.request,
+      this.stage,
+      this.guardianGovId,
+      this.guardianGovIdExpiry,
+      this.relationWithPlayer,
+      this.playerGovId,
+      this.playerGovIdExpiry);
 
   Map<String, dynamic> toMap() {
     return <String, dynamic>{
@@ -92,10 +98,8 @@ class UserModel {
       'bloodGroup': bloodGroup,
       'fatherName': fatherName,
       'motherName': motherName,
-      //   'gameId': gameId,
       'city': city,
       'state': state,
-      'country': country,
       'guardianId': guardianId,
       'idFrontImage': idFrontImage,
       'idBackImage': idBackImage,
@@ -115,49 +119,64 @@ class UserModel {
       'isActive': isActive,
       'request': request,
       'stage': stage,
+      'guardianGovId': guardianGovId,
+      'guardianGovIdExpiry': guardianGovIdExpiry,
+      'relationWithPlayer': relationWithPlayer,
+      'playerGovId': playerGovId,
+      'playerGovIdExpiry': playerGovIdExpiry,
     };
   }
 
   factory UserModel.fromMap(Map<String, dynamic> map) {
     return UserModel(
-        map['_id'] ?? '',
-        map['pId'].toString(),
-        map['name'] ?? '',
-        map['email'] ?? '',
-        map['role'] ?? '',
-        map['pic'] ?? '',
-        map['gender'] ?? '',
-        map['userName'] ?? '',
-        map['mobile'] ?? '',
-        map['dateOfBirth'] ?? '',
-        map['bloodGroup'] ?? '',
-        map['fatherName'] ?? '',
-        map['motherName'] ?? '',
-        //   map['gameId'] ?? '',
-        map['city'] ?? '',
-        map['state'] ?? '',
-        map['country'] ?? '',
-        map['guardianId'] ?? '',
-        map['idFrontImage'] ?? '',
-        map['idBackImage'] ?? '',
-        map['certificateLink'] ?? '',
-        map['height'] ?? 0,
-        map['weight'] ?? 0,
-        map['chestSize'] ?? 0,
-        map['heartBeatingRate'] ?? 0,
-        map['highJump'] ?? 0,
-        map['lowJump'] ?? 0,
-        map['normalChestSize'] ?? 0,
-        map['pulseRate'] ?? 0,
-        map['shoeSize'] ?? 0,
-        map['tshirtSize'] ?? '',
-        map['waistSize'] ?? 0,
-        map['address'] ?? '',
-        map['isActive'] as bool,
-        map['request'] == null
-            ? {}
-            : Map<String, dynamic>.from(map['request'] ?? {}),
-        map['stage'] ?? '');
+      map['_id'] != null ? map['_id'] as String : null,
+      map['pId'] != null ? map['pId'] as String : null,
+      map['name'] != null ? map['name'] as String : null,
+      map['email'] != null ? map['email'] as String : null,
+      map['role'] != null ? map['role'] as String : null,
+      map['pic'] != null ? map['pic'] as String : null,
+      map['gender'] != null ? map['gender'] as String : null,
+      map['userName'] != null ? map['userName'] as String : null,
+      map['mobile'] != null ? map['mobile'] as String : null,
+      map['dateOfBirth'] != null ? map['dateOfBirth'] as String : null,
+      map['bloodGroup'] != null ? map['bloodGroup'] as String : null,
+      map['fatherName'] != null ? map['fatherName'] as String : null,
+      map['motherName'] != null ? map['motherName'] as String : null,
+      map['city'] != null ? map['city'] as String : null,
+      map['state'] != null ? map['state'] as String : null,
+      map['guardianId'] != null ? map['guardianId'] as String : null,
+      map['idFrontImage'] != null ? map['idFrontImage'] as String : null,
+      map['idBackImage'] != null ? map['idBackImage'] as String : null,
+      map['certificateLink'] != null ? map['certificateLink'] as String : null,
+      map['height'] != null ? map['height'] as num : null,
+      map['weight'] != null ? map['weight'] as num : null,
+      map['chestSize'] != null ? map['chestSize'] as num : null,
+      map['heartBeatingRate'] != null ? map['heartBeatingRate'] as num : null,
+      map['highJump'] != null ? map['highJump'] as num : null,
+      map['lowJump'] != null ? map['lowJump'] as num : null,
+      map['normalChestSize'] != null ? map['normalChestSize'] as num : null,
+      map['pulseRate'] != null ? map['pulseRate'] as num : null,
+      map['shoeSize'] != null ? map['shoeSize'] as num : null,
+      map['tshirtSize'] != null ? map['tshirtSize'] as String : null,
+      map['waistSize'] != null ? map['waistSize'] as num : null,
+      map['address'] != null ? map['address'] as String : null,
+      map['isActive'] != null ? map['isActive'] as bool : null,
+      map['request'] != null
+          ? Map<String, dynamic>.from(map['request'] as Map<String, dynamic>)
+          : null,
+      map['stage'] as dynamic,
+      map['guardianGovId'] != null ? map['guardianGovId'] as String : null,
+      map['guardianGovIdExpiry'] != null
+          ? map['guardianGovIdExpiry'] as String
+          : null,
+      map['relationWithPlayer'] != null
+          ? map['relationWithPlayer'] as String
+          : null,
+      map['playerGovId'] != null ? map['playerGovId'] as String : null,
+      map['playerGovIdExpiry'] != null
+          ? map['playerGovIdExpiry'] as String
+          : null,
+    );
   }
 
   String toJson() => json.encode(toMap());

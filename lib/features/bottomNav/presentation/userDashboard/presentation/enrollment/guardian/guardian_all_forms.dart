@@ -76,7 +76,7 @@ class _GuardianAllFormsState extends State<GuardianAllForms> {
                                             borderRadius:
                                                 BorderRadius.circular(20),
                                             child: Image.network(
-                                              player.pic,
+                                              player.pic!,
                                               width: 120,
                                               height: 120,
                                               fit: BoxFit.cover,
@@ -91,18 +91,18 @@ class _GuardianAllFormsState extends State<GuardianAllForms> {
                                               crossAxisAlignment:
                                                   CrossAxisAlignment.start,
                                               children: [
-                                                Text(player.name, maxLines: 1),
-                                                Text(player.email, maxLines: 1),
+                                                Text(player.name!, maxLines: 1),
+                                                Text(player.email!, maxLines: 1),
                                                 SizedBox(height: 5),
                                                 Container(
                                                   padding: EdgeInsets.symmetric(
                                                       horizontal: 5),
                                                   decoration: BoxDecoration(
-                                                      color: player.request[
+                                                      color: player.request![
                                                                   'status'] ==
                                                               'PENDING'
                                                           ? Colors.orange
-                                                          : player.request[
+                                                          : player.request![
                                                                       'status'] ==
                                                                   'COMPLETED'
                                                               ? Colors.blue
@@ -111,7 +111,7 @@ class _GuardianAllFormsState extends State<GuardianAllForms> {
                                                           BorderRadius.circular(
                                                               10)),
                                                   child: Text(
-                                                    player.request['status'],
+                                                    player.request!['status'],
                                                     style: TextStyle(
                                                         letterSpacing: 2,
                                                         color: Colors.white,

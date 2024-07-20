@@ -76,27 +76,29 @@ class _MyAppState extends State<MyApp> {
 
   @override
   Widget build(BuildContext context) {
-    return ConnectivityWatcherWrapper(
-      offlineWidget: CustomNoInternetWrapper(
-        builder: (p0) => NoInternetWidget(),
-      ),
-      connectivityStyle: NoConnectivityStyle.CUSTOM,
-      builder: (context, connectionKey) => GetBuilder(
-        init: ThemeController(),
-        builder: (controller) {
-          return GetMaterialApp(
-            // navigatorKey: connectionKey, // add this key to material app
-            debugShowCheckedModeBanner: false,
-            translations: AppLocalization(),
-            locale:
-                Locale(savedLocale.split('_')[0], savedLocale.split('_')[1]),
-            fallbackLocale: Locale('ar', 'DZ'),
-            getPages: pages,
-            theme: controller.appTheme(),
-            home: DummySplash(),
-          );
-        },
-      ),
+    return
+        // ConnectivityWatcherWrapper(
+        //   offlineWidget: CustomNoInternetWrapper(
+        //     builder: (p0) => NoInternetWidget(),
+        //   ),
+        //   connectivityStyle: NoConnectivityStyle.CUSTOM,
+        //   builder: (context, connectionKey) =>
+
+        GetBuilder(
+      init: ThemeController(),
+      builder: (controller) {
+        return GetMaterialApp(
+          // navigatorKey: connectionKey, // add this key to material app
+          debugShowCheckedModeBanner: false,
+          translations: AppLocalization(),
+          locale: Locale(savedLocale.split('_')[0], savedLocale.split('_')[1]),
+          fallbackLocale: Locale('ar', 'DZ'),
+          getPages: pages,
+          theme: controller.appTheme(),
+          home: DummySplash(),
+        );
+      },
     );
+    // );
   }
 }
