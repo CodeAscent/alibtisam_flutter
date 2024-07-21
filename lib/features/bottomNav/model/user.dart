@@ -1,6 +1,8 @@
 // ignore_for_file: public_member_api_docs, sort_constructors_first
 import 'dart:convert';
 
+import 'package:alibtisam/features/bottomNav/model/game.dart';
+
 class UserModel {
   final String? id;
   final String? pId;
@@ -34,13 +36,14 @@ class UserModel {
   final num? waistSize;
   final String? address;
   final bool? isActive;
-  final Map<String, dynamic>? request;
+  final dynamic request;
   final dynamic stage;
   final String? guardianGovId;
   final String? guardianGovIdExpiry;
   final String? relationWithPlayer;
   final String? playerGovId;
   final String? playerGovIdExpiry;
+  final GameModel? gameId;
 
   UserModel(
       this.id,
@@ -81,7 +84,8 @@ class UserModel {
       this.guardianGovIdExpiry,
       this.relationWithPlayer,
       this.playerGovId,
-      this.playerGovIdExpiry);
+      this.playerGovIdExpiry,
+      this.gameId);
 
   Map<String, dynamic> toMap() {
     return <String, dynamic>{
@@ -124,6 +128,7 @@ class UserModel {
       'relationWithPlayer': relationWithPlayer,
       'playerGovId': playerGovId,
       'playerGovIdExpiry': playerGovIdExpiry,
+      'gameId': gameId?.toMap(),
     };
   }
 
@@ -161,9 +166,7 @@ class UserModel {
       map['waistSize'] != null ? map['waistSize'] as num : null,
       map['address'] != null ? map['address'] as String : null,
       map['isActive'] != null ? map['isActive'] as bool : null,
-      map['request'] != null
-          ? Map<String, dynamic>.from(map['request'] as Map<String, dynamic>)
-          : null,
+      map['request'] as dynamic,
       map['stage'] as dynamic,
       map['guardianGovId'] != null ? map['guardianGovId'] as String : null,
       map['guardianGovIdExpiry'] != null
@@ -175,6 +178,9 @@ class UserModel {
       map['playerGovId'] != null ? map['playerGovId'] as String : null,
       map['playerGovIdExpiry'] != null
           ? map['playerGovIdExpiry'] as String
+          : null,
+      map['gameId'] != null && map['gameId'].runtimeType != String
+          ? GameModel.fromMap(map['gameId'])
           : null,
     );
   }

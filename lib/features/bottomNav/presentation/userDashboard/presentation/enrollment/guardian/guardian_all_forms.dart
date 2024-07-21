@@ -92,7 +92,8 @@ class _GuardianAllFormsState extends State<GuardianAllForms> {
                                                   CrossAxisAlignment.start,
                                               children: [
                                                 Text(player.name!, maxLines: 1),
-                                                Text(player.email!, maxLines: 1),
+                                                Text(player.email!,
+                                                    maxLines: 1),
                                                 SizedBox(height: 5),
                                                 Container(
                                                   padding: EdgeInsets.symmetric(

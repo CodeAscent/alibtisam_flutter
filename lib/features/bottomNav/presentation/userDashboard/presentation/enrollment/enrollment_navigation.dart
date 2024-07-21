@@ -1,4 +1,3 @@
-
 import 'package:alibtisam/features/bottomNav/controller/user.dart';
 import 'package:alibtisam/features/bottomNav/presentation/userDashboard/presentation/enrollment/external/external_enrollment_form.dart';
 import 'package:alibtisam/features/bottomNav/presentation/userDashboard/presentation/enrollment/guardian/guardian_all_forms.dart';
@@ -20,17 +19,27 @@ class _EnrollmentNavigationState extends State<EnrollmentNavigation> {
   Widget navigate() {
     Logger().w("----------> ${userController.user!.request}");
     if (userController.user!.role == "EXTERNAL USER" &&
-        userController.user!.guardianId == '') {
-      if (userController.user!.request!.isNotEmpty) {
+        userController.user!.guardianId == null) {
+      Logger().w("----------> 1");
+
+      if (userController.user!.request != null) {
         print(userController.user!.request);
+        Logger().w("----------> 2");
+
         return ViewPlayerByUserModel(player: userController.user!);
       } else {
+        Logger().w("----------> 3");
+
         return ExternalEnrollmentForm();
       }
     } else if (userController.user!.role == "EXTERNAL USER" &&
-        userController.user!.guardianId != '') {
+        userController.user!.guardianId != null) {
+      Logger().w("----------> 4");
+
       return ViewPlayerByUserModel(player: userController.user!);
     }
+    Logger().w("----------> 5");
+
     return GuardianAllForms();
   }
 

@@ -181,7 +181,7 @@ class ApiRequests {
     try {
       LoadingManager.startLoading();
       final res = await HttpWrapper.getRequest(
-          get_measurement_requests + "?status=COACH-REQUESTED");
+          get_players_requests + "?status=COACH-REQUESTED");
       final data = jsonDecode(res.body);
       Logger().e(data);
 
@@ -200,7 +200,7 @@ class ApiRequests {
     try {
       LoadingManager.startLoading();
       final res = await HttpWrapper.getRequest(
-          get_measurement_requests + "?status=APPROVED");
+          get_players_requests + "?status=APPROVED");
       final data = jsonDecode(res.body);
       Logger().w(data);
       if (res.statusCode == 200) {
@@ -237,7 +237,7 @@ class ApiRequests {
 
       String? guardianId = await getUid();
       final userController = Get.find<UserController>();
-      if (userController.user!.guardianId != '') {
+      if (userController.user!.guardianId != null) {
         guardianId = userController.user!.guardianId;
       }
       final res =

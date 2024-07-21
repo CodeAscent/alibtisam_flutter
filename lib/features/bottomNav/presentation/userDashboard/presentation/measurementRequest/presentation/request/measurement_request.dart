@@ -46,7 +46,6 @@ class MeasurementRequest extends StatelessWidget {
                                 })!
                                     .then((e) => measurementReqController
                                         .fetchMeasurementRequests());
-                                ;
                               },
                               title: Text(user.name!.capitalize!),
                               subtitle: Text(user.email!),

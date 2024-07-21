@@ -10,6 +10,7 @@ class ViewPlayerByUserModel extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    // print('-------> ${player.request}');
     return Scaffold(
       body: SafeArea(
           child: CustomScrollView(
@@ -39,10 +40,12 @@ class ViewPlayerByUserModel extends StatelessWidget {
                   mainAxisAlignment: MainAxisAlignment.start,
                   children: [
                     kCustomListTile(key: "name".tr, value: player.name),
-                    if (player.request!["status"] != null)
-                      kCustomListTile(
-                          key: "status".tr, value: player.request!["status"]),
-                    kCustomListTile(key: "game".tr, value: player.name),
+                    // if (player.request!["status"] != null)
+                    //   kCustomListTile(
+                    //       key: "status".tr, value: player.request["status"]),
+                    kCustomListTile(
+                        key: "game".tr,
+                        value: player.gameId!.name + " " + "(${player.stage})"),
                     kCustomListTile(key: "email".tr, value: player.email),
                     kCustomListTile(key: "mobile".tr, value: player.mobile),
                     kCustomListTile(
@@ -50,7 +53,7 @@ class ViewPlayerByUserModel extends StatelessWidget {
                     kCustomListTile(key: "gender".tr, value: player.gender),
                     kCustomListTile(key: "height".tr, value: player.height),
                     kCustomListTile(key: "weight".tr, value: player.weight),
-                    if (player.chestSize != 0) ...[
+                    if (player.chestSize != null) ...[
                       kCustomListTile(
                           key: "chestSize".tr, value: player.chestSize),
                       kCustomListTile(
@@ -110,9 +113,8 @@ class ViewPlayerByUserModel extends StatelessWidget {
                       ],
                     ),
                     SizedBox(height: 10),
-                    Visibility(
-                      visible: player.certificateLink != '',
-                      child: Align(
+                    if (player.certificateLink != null)
+                      Align(
                         alignment: Alignment.centerLeft,
                         child: Column(
                           children: [
@@ -126,7 +128,6 @@ class ViewPlayerByUserModel extends StatelessWidget {
                           ],
                         ),
                       ),
-                    ),
                   ],
                 ),
               ),

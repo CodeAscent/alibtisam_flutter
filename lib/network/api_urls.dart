@@ -1,5 +1,5 @@
 // String base_url = "http://52.66.197.219:8000/";
-String base_url = "http://192.168.29.116:8000/";
+String base_url = "http://192.168.1.10:8000/";
 String api_version = "api/v1/";
 String event = "event/";
 String user = "user/";
@@ -44,7 +44,7 @@ String get_player_by_guardian = base_url + api_version + player + "guardian/";
 String get_token_by_id = base_url + api_version + player + "token/";
 
 // GET MESAUREMENT REQUESTS
-String get_measurement_requests =
+String get_players_requests =
     base_url + api_version + request + playerApproval + "get/";
 
 // GET ORGANIZATION DROPDOWN
