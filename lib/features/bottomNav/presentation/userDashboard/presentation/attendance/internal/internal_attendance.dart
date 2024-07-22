@@ -34,34 +34,23 @@ class _InternalAttendanceTabState extends State<InternalAttendanceTab>
       builder: (AttendanceController attendanceController) {
         return CustomLoader(
             child: Scaffold(
-                body: SafeArea(
-          child: Stack(
-            children: [
-              Positioned(
-                top: 35,
-                child: IconButton(
-                    onPressed: () {
-                      Get.back();
-                    },
-                    icon: Icon(
-                      Icons.navigate_before,
-                      size: 35,
-                    )),
-              ),
-              CustomTabBar(tabController: _tabController, customTabs: [
-                Tab(
-                  text: "Attendance",
+                appBar: AppBar(
+                  title: Text('Attendance'),
                 ),
-                Tab(
-                  text: "Statistics",
-                )
-              ], tabViewScreens: [
-                InternalAttendance(),
-                InternalAttendanceStatistics(),
-              ]),
-            ],
-          ),
-        )));
+                body: SafeArea(
+                  child:
+                      CustomTabBar(tabController: _tabController, customTabs: [
+                    Tab(
+                      text: "Attendance",
+                    ),
+                    Tab(
+                      text: "Statistics",
+                    )
+                  ], tabViewScreens: [
+                    InternalAttendance(),
+                    InternalAttendanceStatistics(),
+                  ]),
+                )));
       },
     );
   }
