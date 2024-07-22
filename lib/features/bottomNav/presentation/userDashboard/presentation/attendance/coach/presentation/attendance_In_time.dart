@@ -11,10 +11,10 @@ import 'package:alibtisam/core/theme/app_colors.dart';
 import 'package:alibtisam/network/api_requests.dart';
 
 class AttendanceInTime extends StatefulWidget {
-  final String ageCategoryId;
+  final String groupId;
   const AttendanceInTime({
     super.key,
-    required this.ageCategoryId,
+    required this.groupId,
   });
 
   @override
@@ -29,7 +29,7 @@ class _AttendanceInTimeState extends State<AttendanceInTime> {
   void initState() {
     super.initState();
     attendanceController.fetchAttendanceForInTime(
-      ageCategoryId: widget.ageCategoryId,
+      groupId: widget.groupId,
     );
   }
 
@@ -193,7 +193,7 @@ class _AttendanceInTimeState extends State<AttendanceInTime> {
                         attendanceId: attendanceController.attendanceId,
                         playersAttendance: playersAttendance);
                     attendanceController.fetchAttendanceForInTime(
-                      ageCategoryId: widget.ageCategoryId,
+                      groupId: widget.groupId,
                     );
                   },
                   label: "Submit",

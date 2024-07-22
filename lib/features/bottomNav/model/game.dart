@@ -2,11 +2,12 @@
 import 'dart:convert';
 
 class GameModel {
-  final String name;
-  final String id;
-  final List<dynamic> stage;
+  final String? name;
+  final String? id;
+  final List<dynamic>? stage;
 
   GameModel(this.name, this.id, this.stage);
+
 
   Map<String, dynamic> toMap() {
     return <String, dynamic>{
@@ -18,14 +19,13 @@ class GameModel {
 
   factory GameModel.fromMap(Map<String, dynamic> map) {
     return GameModel(
-      map['name'] as String,
-      map['_id'] as String,
-      map['stage'] ?? map['stage'],
+      map['name'] != null ? map['name'] as String : null,
+      map['_id'] != null ? map['_id'] as String : null,
+      map['stage'] != null ? map['stage']  : null,
     );
   }
 
   String toJson() => json.encode(toMap());
 
-  factory GameModel.fromJson(String source) =>
-      GameModel.fromMap(json.decode(source) as Map<String, dynamic>);
+  factory GameModel.fromJson(String source) => GameModel.fromMap(json.decode(source) as Map<String, dynamic>);
 }

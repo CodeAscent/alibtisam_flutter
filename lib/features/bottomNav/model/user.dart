@@ -181,7 +181,7 @@ class UserModel {
           : null,
       map['gameId'] != null && map['gameId'].runtimeType != String
           ? GameModel.fromMap(map['gameId'])
-          : null,
+          : GameModel.fromMap({}),
     );
   }
 

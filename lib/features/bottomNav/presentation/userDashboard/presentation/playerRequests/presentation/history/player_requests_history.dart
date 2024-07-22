@@ -39,8 +39,8 @@ class PlayersRequestHistory extends StatelessWidget {
                                   borderRadius: BorderRadius.circular(10)),
                               child: ListTile(
                                 onTap: () {
-                                  //   Get.to(() =>
-                                  //       ViewPlayerByUserModel(player: user));
+                                  Get.to(() =>
+                                      ViewPlayerByUserModel(player: user));
                                 },
                                 title: Text(user.name!.capitalize!),
                                 subtitle: Text(user.email!),

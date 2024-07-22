@@ -351,12 +351,12 @@ class _ExternalEnrollmentFormState extends State<ExternalEnrollmentForm> {
                           items: gamesController.games.map((value) {
                             return DropdownMenuItem(
                               value: value,
-                              child: Text(value.name.capitalize!),
+                              child: Text(value.name!.capitalize!),
                             );
                           }).toList(),
                           onChanged: (val) {
-                            gameController.text = val!.name.capitalize!;
-                            gameId = val.id;
+                            gameController.text = val!.name!.capitalize!;
+                            gameId = val.id!;
                             setState(() {});
                           },
                         ),

@@ -10,19 +10,17 @@ class AttendanceController extends GetxController {
   AttendanceStatisticsModel? attendanceStatistics;
   List<AttendanceHistoryModel> attendancesHistory = [];
   String attendanceId = '';
-  String currentStage = '';
 
   clearAttendanceId() {
     attendanceId = '';
     update();
   }
 
-  fetchAttendanceForInTime({required String ageCategoryId}) async {
+  fetchAttendanceForInTime({required String groupId}) async {
     attendance.clear();
     update();
     LoadingManager.startLoading();
-    final res = await ApiRequests().getAttendanceForInTime(
-        ageCategoryId: ageCategoryId, stage: currentStage);
+    final res = await ApiRequests().getAttendanceForInTime(groupId: groupId);
     attendance = res["attendance"];
     attendanceId = res['attendanceId'];
     update();
@@ -50,8 +48,7 @@ class AttendanceController extends GetxController {
 
   fetchAttendanceHistoryListByCoach() async {
     LoadingManager.startLoading();
-    attendancesHistory = (await ApiRequests()
-        .getAttendanceHistoryListByCoach(stage: currentStage))!;
+    attendancesHistory = (await ApiRequests().getAttendanceHistory())!;
     update();
   }
 

@@ -22,11 +22,7 @@ class _AttendanceHistoryListState extends State<AttendanceHistoryList> {
   @override
   void initState() {
     super.initState();
-    if (userController.user!.stage != 'SCHOOL-AND-ACADEMY') {
-      attendanceController.currentStage = userController.user!.stage;
-    } else {
-      attendanceController.currentStage = 'SCHOOL';
-    }
+  
     attendanceController.fetchAttendanceHistoryListByCoach();
   }
 
@@ -55,7 +51,6 @@ class _AttendanceHistoryListState extends State<AttendanceHistoryList> {
                                 setState(() {
                                   academyVal = false;
                                   schoolVal = true;
-                                  attendanceController.currentStage = 'SCHOOL';
                                   attendanceController.clearAttendanceId();
                                   attendanceController
                                       .fetchAttendanceHistoryListByCoach();
@@ -69,7 +64,6 @@ class _AttendanceHistoryListState extends State<AttendanceHistoryList> {
                                 setState(() {
                                   academyVal = !false;
                                   schoolVal = !true;
-                                  attendanceController.currentStage = 'ACADEMY';
                                   attendanceController.clearAttendanceId();
                                   attendanceController
                                       .fetchAttendanceHistoryListByCoach();

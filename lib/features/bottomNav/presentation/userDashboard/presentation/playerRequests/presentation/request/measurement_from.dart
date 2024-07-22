@@ -190,7 +190,7 @@ class MeasurementForm extends StatelessWidget {
                                       initState: (state) {
                                         groupsController.fetchGroups(
                                             stage: user.stage,
-                                            gameId: user.gameId!.id);
+                                            gameId: user.gameId!.id!);
                                       },
                                       builder: (groupsController) {
                                         return Material(
@@ -273,7 +273,7 @@ class MeasurementForm extends StatelessWidget {
                                                     children: [
                                                       SizedBox(height: 20),
                                                       Text(
-                                                        "Game: ${user.gameId!.name.capitalize}",
+                                                        "Game: ${user.gameId!.name!.capitalize}",
                                                         style: TextStyle(
                                                             fontSize: 18,
                                                             fontWeight:
@@ -285,7 +285,7 @@ class MeasurementForm extends StatelessWidget {
                                                           Visibility(
                                                             visible: user
                                                                 .gameId!.stage
-                                                                .contains(
+                                                                !.contains(
                                                                     'SCHOOL'),
                                                             child: Row(
                                                               children: [
@@ -304,7 +304,7 @@ class MeasurementForm extends StatelessWidget {
                                                                               .stage,
                                                                           gameId: user
                                                                               .gameId!
-                                                                              .id);
+                                                                              .id!);
                                                                     }),
                                                                 Text(' SCHOOL')
                                                               ],
@@ -313,7 +313,7 @@ class MeasurementForm extends StatelessWidget {
                                                           Visibility(
                                                             visible: user
                                                                 .gameId!.stage
-                                                                .contains(
+                                                                !.contains(
                                                                     'ACADEMY'),
                                                             child: Row(
                                                               children: [
@@ -330,7 +330,7 @@ class MeasurementForm extends StatelessWidget {
                                                                         groupsController.fetchGroups(
                                                                             stage:
                                                                                 user.stage,
-                                                                            gameId: user.gameId!.id);
+                                                                            gameId: user.gameId!.id!);
                                                                       });
                                                                     }),
                                                                 Text(' ACADEMY')
@@ -384,7 +384,7 @@ class MeasurementForm extends StatelessWidget {
                                                                                           builder: (context, newState) => Row(
                                                                                             children: [
                                                                                               Visibility(
-                                                                                                visible: user.gameId!.stage.contains('SCHOOL'),
+                                                                                                visible: user.gameId!.stage!.contains('SCHOOL'),
                                                                                                 child: Row(
                                                                                                   children: [
                                                                                                     CupertinoCheckbox(
@@ -398,7 +398,7 @@ class MeasurementForm extends StatelessWidget {
                                                                                                 ),
                                                                                               ),
                                                                                               Visibility(
-                                                                                                visible: user.gameId!.stage.contains('ACADEMY'),
+                                                                                                visible: user.gameId!.stage!.contains('ACADEMY'),
                                                                                                 child: Row(
                                                                                                   children: [
                                                                                                     CupertinoCheckbox(
@@ -418,7 +418,7 @@ class MeasurementForm extends StatelessWidget {
                                                                                         CustomContainerButton(
                                                                                             onTap: () async {
                                                                                               if (groupNameController.text.trim() != '' && groupStageController.text != '') {
-                                                                                                groupsController.createGroup(stage: groupStageController.text, gameId: user.gameId!.id, name: groupNameController.text);
+                                                                                                groupsController.createGroup(stage: groupStageController.text, gameId: user.gameId!.id!, name: groupNameController.text);
                                                                                                 setState(() {
                                                                                                   user.stage = groupStageController.text;
                                                                                                 });

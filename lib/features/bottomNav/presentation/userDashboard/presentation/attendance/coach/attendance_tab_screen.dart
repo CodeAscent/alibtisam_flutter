@@ -6,10 +6,10 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
 class AttendanceTabScreen extends StatefulWidget {
-  final String ageCategoryId;
+  final String groupId;
   const AttendanceTabScreen({
     super.key,
-    required this.ageCategoryId,
+    required this.groupId,
   });
 
   @override
@@ -28,7 +28,7 @@ class _AttendanceTabScreenState extends State<AttendanceTabScreen>
       ..addListener(() {
         if (_tabController.index == 0) {
           attendanceController.fetchAttendanceForInTime(
-              ageCategoryId: widget.ageCategoryId);
+              groupId: widget.groupId);
         } else {
           attendanceController.fetchAttendanceForOutTime();
         }
@@ -61,7 +61,7 @@ class _AttendanceTabScreenState extends State<AttendanceTabScreen>
               )
             ], tabViewScreens: [
               AttendanceInTime(
-                ageCategoryId: widget.ageCategoryId,
+                groupId: widget.groupId,
               ),
               AttendanceOutTime()
             ]),

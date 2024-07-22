@@ -51,8 +51,10 @@ class _StagesTabBarState extends State<StagesTabBar>
 
 class PlayersByStage extends StatelessWidget {
   final void Function()? onTap;
+  final bool? externalOnTap;
   final String stage;
-  const PlayersByStage({super.key, required this.stage, this.onTap});
+  const PlayersByStage(
+      {super.key, required this.stage, this.onTap, this.externalOnTap});
   @override
   Widget build(BuildContext context) {
     final groupsController = Get.find<GroupsController>();
@@ -60,7 +62,7 @@ class PlayersByStage extends StatelessWidget {
     return GetBuilder<GroupsController>(
       initState: (state) {
         groupsController.fetchGroups(
-            stage: stage, gameId: userController.user!.gameId!.id);
+            stage: stage, gameId: userController.user!.gameId!.id!);
       },
       builder: (controller) {
         return groupsController.isLoading
@@ -75,10 +77,12 @@ class PlayersByStage extends StatelessWidget {
                   return GestureDetector(
                     onTap: () async {
                       groupsController.selectedGroupId = group.id!;
-                      //  final users=     await groupsController.fetchGroupMembers();
-                      //   Get.to(() => CoachPlayersList(players: users));
 
-                      onTap!();
+                      if (externalOnTap == true) {
+                        onTap!();
+                      } else {
+                        Get.to(() => CoachPlayersList());
+                      }
                     },
                     child: Column(
                       children: [

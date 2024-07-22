@@ -34,8 +34,11 @@ class GroupsController extends GetxController {
   }
 
   Future<List<UserModel>?> fetchGroupMembers() async {
+    isLoading = true;
     List<UserModel>? users = [];
     users = await ApiRequests().getPlayersByGroup(groupId: selectedGroupId);
+    isLoading = false;
+    update();
     return users;
   }
 }
