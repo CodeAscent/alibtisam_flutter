@@ -1,5 +1,6 @@
 import 'package:alibtisam/features/bottomNav/controller/attendance.dart';
 import 'package:alibtisam/features/bottomNav/presentation/userDashboard/presentation/attendance/coach/presentation/attendance_In_time.dart';
+import 'package:alibtisam/features/bottomNav/presentation/userDashboard/presentation/attendance/coach/presentation/attendance_history_list.dart';
 import 'package:alibtisam/features/bottomNav/presentation/userDashboard/presentation/attendance/coach/presentation/attendance_out_time.dart';
 import 'package:alibtisam/core/common/widgets/custom_tab_bar.dart';
 import 'package:flutter/material.dart';
@@ -38,35 +39,37 @@ class _AttendanceTabScreenState extends State<AttendanceTabScreen>
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      appBar: AppBar(
+        title: Text("Attendance"),
+        actions: [
+          IconButton(
+              onPressed: () {
+                Get.to(() => AttendanceHistoryList())!.then((val) {
+                  if (_tabController.index == 0) {
+                    attendanceController.fetchAttendanceForInTime(
+                        groupId: widget.groupId);
+                  } else {
+                    attendanceController.fetchAttendanceForOutTime();
+                  }
+                });
+              },
+              icon: Icon(Icons.history))
+        ],
+      ),
       body: SafeArea(
-        child: Stack(
-          children: [
-            Positioned(
-              top: 35,
-              child: IconButton(
-                  onPressed: () {
-                    Get.back();
-                  },
-                  icon: Icon(
-                    Icons.navigate_before,
-                    size: 35,
-                  )),
-            ),
-            CustomTabBar(tabController: _tabController, customTabs: [
-              Tab(
-                child: Text("IN"),
-              ),
-              Tab(
-                child: Text("OUT"),
-              )
-            ], tabViewScreens: [
-              AttendanceInTime(
-                groupId: widget.groupId,
-              ),
-              AttendanceOutTime()
-            ]),
-          ],
-        ),
+        child: CustomTabBar(tabController: _tabController, customTabs: [
+          Tab(
+            child: Text("IN"),
+          ),
+          Tab(
+            child: Text("OUT"),
+          )
+        ], tabViewScreens: [
+          AttendanceInTime(
+            groupId: widget.groupId,
+          ),
+          AttendanceOutTime()
+        ]),
       ),
     );
   }

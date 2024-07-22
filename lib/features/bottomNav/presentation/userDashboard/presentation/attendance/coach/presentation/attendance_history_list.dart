@@ -1,4 +1,5 @@
 import 'package:alibtisam/features/bottomNav/controller/attendance.dart';
+import 'package:alibtisam/features/bottomNav/controller/groups_controller.dart';
 import 'package:alibtisam/features/bottomNav/controller/user.dart';
 import 'package:alibtisam/features/bottomNav/model/age_category.dart';
 import 'package:alibtisam/features/bottomNav/presentation/userDashboard/presentation/attendance/coach/presentation/attendance_single_history.dart';
@@ -19,11 +20,13 @@ class AttendanceHistoryList extends StatefulWidget {
 class _AttendanceHistoryListState extends State<AttendanceHistoryList> {
   final AttendanceController attendanceController =
       Get.find<AttendanceController>();
+  final groupsController = Get.find<GroupsController>();
   @override
   void initState() {
     super.initState();
-  
-    attendanceController.fetchAttendanceHistoryListByCoach();
+
+    attendanceController.fetchAttendanceHistory(
+        groupId: groupsController.selectedGroupId);
   }
 
   final userController = Get.find<UserController>();
@@ -52,8 +55,9 @@ class _AttendanceHistoryListState extends State<AttendanceHistoryList> {
                                   academyVal = false;
                                   schoolVal = true;
                                   attendanceController.clearAttendanceId();
-                                  attendanceController
-                                      .fetchAttendanceHistoryListByCoach();
+                                  attendanceController.fetchAttendanceHistory(
+                                      groupId:
+                                          groupsController.selectedGroupId);
                                 });
                               }),
                           Text('School'),
@@ -65,8 +69,9 @@ class _AttendanceHistoryListState extends State<AttendanceHistoryList> {
                                   academyVal = !false;
                                   schoolVal = !true;
                                   attendanceController.clearAttendanceId();
-                                  attendanceController
-                                      .fetchAttendanceHistoryListByCoach();
+                                  attendanceController.fetchAttendanceHistory(
+                                      groupId:
+                                          groupsController.selectedGroupId);
                                 });
                               }),
                           Text('Academy'),
@@ -75,8 +80,6 @@ class _AttendanceHistoryListState extends State<AttendanceHistoryList> {
                     ...List.generate(
                         attendanceController.attendancesHistory.length,
                         (int index) {
-                      AgeCategoryModel ageCategory = attendanceController
-                          .attendancesHistory[index].ageCategoryId!;
                       return GestureDetector(
                         onTap: () {
                           attendanceController.attendanceId =
@@ -86,7 +89,7 @@ class _AttendanceHistoryListState extends State<AttendanceHistoryList> {
                         child: CustomContainerButton(
                             flexibleHeight: 100,
                             label:
-                                "${ageCategory.name} \n ${customDateTimeFormat(attendanceController.attendancesHistory[index].createdAt)}"
+                                "  ${customDateTimeFormat(attendanceController.attendancesHistory[index].createdAt)}"
                                     .capitalize!),
                       );
                     })

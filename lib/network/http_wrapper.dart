@@ -22,6 +22,7 @@ class HttpWrapper {
       final res = await http.get(Uri.parse(url), headers: await header());
       return res;
     } catch (e) {
+      print(e);
       if (e is http.ClientException) {
         throw ServerException('No Internet Connection');
       }
@@ -37,6 +38,8 @@ class HttpWrapper {
           headers: await header(), body: jsonEncode(body));
       return res;
     } catch (e) {
+      print(e);
+
       if (e is http.ClientException) {
         throw ServerException('No Internet Connection');
       }

@@ -46,9 +46,9 @@ class AttendanceController extends GetxController {
     update();
   }
 
-  fetchAttendanceHistoryListByCoach() async {
+  fetchAttendanceHistory({required String groupId}) async {
     LoadingManager.startLoading();
-    attendancesHistory = (await ApiRequests().getAttendanceHistory())!;
+    attendancesHistory = (await ApiRequests().getAttendanceHistory(groupId: groupId))!;
     update();
   }
 

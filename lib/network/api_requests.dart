@@ -555,18 +555,15 @@ class ApiRequests {
       {required String groupId}) async {
     List<AttendanceModel> attendance = [];
     try {
-      final res = await HttpWrapper.postRequest(add_attendance, {
-        "groupId": groupId,
-      });
-
-      Logger().w("--------------> ${add_attendance}");
-      Logger().w({
-        "groupId": groupId,
-      });
+      final res = await HttpWrapper.postRequest(
+          add_attendance + "?groupId=$groupId", {});
 
       final data = jsonDecode(res.body);
+      print(data);
       for (var player in data['attendance']['players']) {
-        attendance.add(AttendanceModel.fromMap(player));
+        if (player['playerId'] != null) {
+          attendance.add(AttendanceModel.fromMap(player));
+        }
       }
       return {
         "attendanceId": data['attendance']['_id'],
@@ -615,13 +612,10 @@ class ApiRequests {
     return {};
   }
 
-  Future<List<AttendanceHistoryModel>?> getAttendanceHistory(
-     ) async {
+  Future<List<AttendanceHistoryModel>?> getAttendanceHistory({required String groupId}) async {
     List<AttendanceHistoryModel> attendances = [];
     try {
-      UserController userController = Get.find<UserController>();
-      final res = await HttpWrapper.getRequest(get_all_completed_attendance 
-          );
+      final res = await HttpWrapper.getRequest(get_all_completed_attendance + "?groupId=$groupId");
       final data = jsonDecode(res.body);
       Logger().w(data);
       for (var attendance in data['attendances']) {

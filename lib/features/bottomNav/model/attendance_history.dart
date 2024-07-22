@@ -1,7 +1,6 @@
 // ignore_for_file: public_member_api_docs, sort_constructors_first
 import 'dart:convert';
 
-
 import 'package:alibtisam/features/bottomNav/model/age_category.dart';
 import 'package:alibtisam/features/bottomNav/model/attendance.dart';
 
@@ -9,13 +8,11 @@ class AttendanceHistoryModel {
   final String id;
   final List<AttendanceModel> players;
   final String createdAt;
-  final AgeCategoryModel? ageCategoryId;
 
   AttendanceHistoryModel(
     this.id,
     this.players,
     this.createdAt,
-    this.ageCategoryId,
   );
 
   Map<String, dynamic> toMap() {
@@ -23,7 +20,6 @@ class AttendanceHistoryModel {
       'id': id,
       'players': players.map((x) => x.toMap()).toList(),
       'createdAt': createdAt,
-      'ageCategoryId': ageCategoryId?.toMap(),
     };
   }
 
@@ -36,10 +32,6 @@ class AttendanceHistoryModel {
         ),
       ),
       map['createdAt'] as String,
-      map['ageCategoryId'] != null
-          ? AgeCategoryModel.fromMap(
-              map['ageCategoryId'] as Map<String, dynamic>)
-          : null,
     );
   }
 
