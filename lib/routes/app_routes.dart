@@ -4,10 +4,9 @@ import 'package:alibtisam/features/bottomNav/presentation/userDashboard/presenta
 import 'package:alibtisam/features/bottomNav/presentation/userDashboard/presentation/attendance/attendance_navigation.dart';
 import 'package:alibtisam/features/bottomNav/presentation/userDashboard/presentation/collection/collection.dart';
 import 'package:alibtisam/features/bottomNav/presentation/userDashboard/presentation/loanApplication/loan_application.dart';
-import 'package:alibtisam/features/bottomNav/presentation/userDashboard/presentation/measurementRequest/measurement_tab_bar.dart';
+import 'package:alibtisam/features/bottomNav/presentation/userDashboard/presentation/playerRequests/request_tab_bar.dart';
 import 'package:alibtisam/features/bottomNav/presentation/userDashboard/presentation/playerPolarization/player_polarization.dart';
 import 'package:alibtisam/features/bottomNav/presentation/userDashboard/presentation/trainingPlan/training_plan_navigation.dart';
-import 'package:alibtisam/features/bottomNav/presentation/userDashboard/presentation/requestPortal/request_portal_navigation.dart';
 import 'package:alibtisam/features/bottomNav/presentation/userDashboard/presentation/sessionAppointment/session_appointment.dart';
 import 'package:alibtisam/features/bottomNav/presentation/userDashboard/presentation/sports/sports_navigation.dart';
 import 'package:alibtisam/features/bottomNav/presentation/userDashboard/presentation/statistics/coach/presentation/monitoring/coach_player_monitoring.dart';
@@ -23,12 +22,12 @@ List<GetPage<dynamic>>? pages = [
   GetPage(name: '/attendance', page: () => AttendanceNavigation()),
   GetPage(name: '/practice', page: () => TrainingPlanNavigation()),
   GetPage(name: '/store', page: () => StoreNavigation()),
-  GetPage(name: '/requestPortal', page: () => RequestPortalNavigation()),
+  GetPage(name: '/requestPortal', page: () => PlayerRequestsTabBar()),
   GetPage(name: '/sessionAppointment', page: () => SessionAppointment()),
   GetPage(name: '/loan', page: () => LoanApplication()),
   GetPage(name: '/enroll', page: () => EnrollmentNavigation()),
   GetPage(name: '/collection', page: () => CollectionScreen()),
-  GetPage(name: '/measurementRequest', page: () => MeasurementTabBar()),
+  GetPage(name: '/measurementRequest', page: () => PlayerRequestsTabBar()),
   GetPage(name: '/playerPolarization', page: () => PlayerPolarization()),
   GetPage(name: '/tournamentRequest', page: () => TournamentRequest()),
   GetPage(name: '/coachMonitering', page: () => CoachPlayerMonitering()),

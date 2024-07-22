@@ -5,7 +5,7 @@ import 'package:alibtisam/features/bottomNav/model/game.dart';
 
 class UserModel {
   final String? id;
-  final String? pId;
+  final num? pId;
   final String? name;
   final String? email;
   final String? role;
@@ -37,7 +37,7 @@ class UserModel {
   final String? address;
   final bool? isActive;
   final dynamic request;
-  final dynamic stage;
+  dynamic stage;
   final String? guardianGovId;
   final String? guardianGovIdExpiry;
   final String? relationWithPlayer;
@@ -135,7 +135,7 @@ class UserModel {
   factory UserModel.fromMap(Map<String, dynamic> map) {
     return UserModel(
       map['_id'] != null ? map['_id'] as String : null,
-      map['pId'] != null ? map['pId'] as String : null,
+      map['pId'] != null ? map['pId'] as num : null,
       map['name'] != null ? map['name'] as String : null,
       map['email'] != null ? map['email'] as String : null,
       map['role'] != null ? map['role'] as String : null,

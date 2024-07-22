@@ -20,6 +20,7 @@ class CustomContainerButton extends StatelessWidget {
       child: Container(
         margin: EdgeInsets.symmetric(vertical: 8, horizontal: 8),
         height: flexibleHeight,
+        padding: const EdgeInsets.all(8.0),
         decoration: BoxDecoration(
             boxShadow: isAppThemeDark() ? [] : kBoxShadow(),
             color: primaryColor(),

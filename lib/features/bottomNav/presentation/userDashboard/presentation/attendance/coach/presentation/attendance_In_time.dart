@@ -71,7 +71,7 @@ class _AttendanceInTimeState extends State<AttendanceInTime> {
                                     PlayerCard(
                                       name: player.name!,
                                       image: player.pic!,
-                                      playerId: player.pId!,
+                                      playerId: player.pId.toString(),
                                       showArrow: false,
                                       extraWidget: SizedBox(
                                         child: Visibility(

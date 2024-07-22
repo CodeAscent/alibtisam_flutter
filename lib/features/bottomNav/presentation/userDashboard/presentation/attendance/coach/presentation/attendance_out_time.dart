@@ -66,7 +66,7 @@ class _AttendanceOutTimeState extends State<AttendanceOutTime> {
                                     PlayerCard(
                                       name: player.name!,
                                       image: player.pic!,
-                                      playerId: player.pId!,
+                                      playerId: player.pId!.toString(),
                                       showArrow: false,
                                       extraWidget: Column(
                                         crossAxisAlignment:
@@ -87,7 +87,7 @@ class _AttendanceOutTimeState extends State<AttendanceOutTime> {
                                       ),
                                     ),
                                     if (playersAttendance.contains(
-                                        PlayersAttendance(id: player.id!)))
+                                        PlayersAttendance(id: player.id.toString())))
                                       Positioned(
                                         top: 50,
                                         right: 15,

@@ -11,6 +11,7 @@ import 'package:alibtisam/features/bottomNav/model/chat_message.dart';
 import 'package:alibtisam/features/bottomNav/model/chats_list.dart';
 import 'package:alibtisam/features/bottomNav/model/dashboard.dart';
 import 'package:alibtisam/features/bottomNav/model/game.dart';
+import 'package:alibtisam/features/bottomNav/model/group_model.dart';
 import 'package:alibtisam/features/bottomNav/model/team.dart';
 import 'package:alibtisam/features/bottomNav/model/user.dart';
 import 'package:alibtisam/features/bottomNav/presentation/settings/model/about.dart';
@@ -196,22 +197,25 @@ class ApiRequests {
     }
   }
 
-  Future getMesurementHistory() async {
+  Future<List<UserModel>?> getMesurementHistory() async {
+    List<UserModel> users = [];
+
     try {
       LoadingManager.startLoading();
       final res = await HttpWrapper.getRequest(
           get_players_requests + "?status=APPROVED");
       final data = jsonDecode(res.body);
-      Logger().w(data);
-      if (res.statusCode == 200) {
-        return data['requests'];
-      } else {
-        customSnackbar(message: data['message']);
+
+      for (var item in data['requests']) {
+        users.add(UserModel.fromMap(item['playerId']));
       }
+
+      return users;
     } on ServerException catch (e) {
       await LoadingManager.endLoading();
       customSnackbar(message: e.message);
     }
+    return null;
   }
 
   Future<List<DashboardModel>> getDashboardItems() async {
@@ -367,6 +371,7 @@ class ApiRequests {
     required String waistSize,
     required String shoeSize,
     required String requestId,
+    required String stage,
   }) async {
     try {
       LoadingManager.startLoading();
@@ -383,9 +388,11 @@ class ApiRequests {
         "tshirtSize": tshirtSize,
         "waistSize": num.parse(waistSize),
         "shoeSize": num.parse(shoeSize),
+        "stage": stage,
       };
       final res = await HttpWrapper.postRequest(submit_measurement, body);
       final data = jsonDecode(res.body);
+      Logger().w(res.body);
       if (res.statusCode == 200) {
         Get.back();
       }
@@ -666,6 +673,90 @@ class ApiRequests {
       final data = jsonDecode(res.body);
       Logger().w(data['statistics']);
       return AttendanceStatisticsModel.fromMap(data['statistics']);
+    } on ServerException catch (e) {
+      await LoadingManager.endLoading();
+      customSnackbar(message: e.message);
+    }
+    return null;
+  }
+
+  Future<List<GroupModel>?> getGroups(
+      {required String stage, required String gameId}) async {
+    try {
+      List<GroupModel>? groups = [];
+      final res = await HttpWrapper.getRequest(
+          base_url + "group/all?gameId=$gameId&stage=$stage");
+      Logger().w(res.body);
+      final data = jsonDecode(res.body);
+      if (res.statusCode == 200) {
+        for (var group in data['groups']) {
+          groups.add(GroupModel.fromMap(group));
+        }
+      }
+      return groups;
+    } on ServerException catch (e) {
+      await LoadingManager.endLoading();
+      customSnackbar(message: e.message);
+    }
+    return null;
+  }
+
+  Future<GroupModel?> createGroup(
+      {required String stage,
+      required String gameId,
+      required String name}) async {
+    try {
+      GroupModel? group;
+      final res = await HttpWrapper.postRequest(base_url + "group/add", {
+        "gameId": gameId,
+        "stage": stage,
+        "name": name,
+      });
+      final data = jsonDecode(res.body);
+      Logger().w(data);
+      group = GroupModel.fromMap(data['group']);
+      return group;
+    } on ServerException catch (e) {
+      await LoadingManager.endLoading();
+      customSnackbar(message: e.message);
+    }
+    return null;
+  }
+
+  Future<List<UserModel>?> getPlayersByGroup({
+    required String groupId,
+  }) async {
+    try {
+      List<UserModel>? users = [];
+      final res =
+          await HttpWrapper.getRequest(base_url + "group/members/" + groupId);
+      final data = jsonDecode(res.body);
+      for (var item in data['members']) {
+        users.add(UserModel.fromMap(item['memberId']));
+      }
+      return users;
+    } on ServerException catch (e) {
+      await LoadingManager.endLoading();
+      customSnackbar(message: e.message);
+    }
+    return null;
+  }
+
+  Future addMemberToGroup(
+      {required String memberId, required String groupId}) async {
+    try {
+      final res = await HttpWrapper.postRequest(base_url + "group/member/add", {
+        "groupId": groupId,
+        "memberId": memberId,
+      });
+
+      Logger().e({
+        "groupId": groupId,
+        "memberId": memberId,
+      });
+      Logger().e(base_url + "group/member/add");
+      Logger().e(res.body);
+      //   final data = jsonDecode(res.body);
     } on ServerException catch (e) {
       await LoadingManager.endLoading();
       customSnackbar(message: e.message);

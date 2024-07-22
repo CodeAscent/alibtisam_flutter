@@ -106,7 +106,7 @@ class _SettingScreenState extends State<SettingScreen> {
                           child: CustomSettingsCard(label: "profile".tr)),
                       Visibility(
                         visible:
-                            user.role == "GUARDIAN" || user.guardianId != '',
+                            user.role == "GUARDIAN" || user.guardianId != null,
                         child: GestureDetector(
                             onTap: () {
                               Get.to(() => SwitchUser());

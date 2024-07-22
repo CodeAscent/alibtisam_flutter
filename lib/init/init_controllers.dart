@@ -4,6 +4,7 @@ import 'package:alibtisam/features/bottomNav/controller/chats_list.dart';
 import 'package:alibtisam/features/bottomNav/controller/dashboard.dart';
 import 'package:alibtisam/features/bottomNav/controller/date_range.dart';
 import 'package:alibtisam/features/bottomNav/controller/games.dart';
+import 'package:alibtisam/features/bottomNav/controller/groups_controller.dart';
 import 'package:alibtisam/features/bottomNav/controller/measurement_req.dart';
 import 'package:alibtisam/features/bottomNav/controller/selected_player.dart';
 import 'package:alibtisam/features/bottomNav/controller/teams.dart';
@@ -35,4 +36,5 @@ initControllers() {
   Get.put(SelectedPlayerController());
   Get.put(AttendanceController());
   Get.put(DateRangeController());
+  Get.put(GroupsController());
 }

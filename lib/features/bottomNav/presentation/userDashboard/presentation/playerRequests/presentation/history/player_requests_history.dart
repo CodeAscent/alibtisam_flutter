@@ -5,18 +5,22 @@ import 'package:alibtisam/core/theme/app_colors.dart';
 import 'package:alibtisam/network/api_requests.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:logger/web.dart';
 
-class MeasurementHistory extends StatelessWidget {
-  const MeasurementHistory({super.key});
+class PlayersRequestHistory extends StatelessWidget {
+  const PlayersRequestHistory({super.key});
 
   @override
   Widget build(BuildContext context) {
+    print('-------->haha');
+    print(ApiRequests().getMesurementHistory());
+
     return Scaffold(
-      body: FutureBuilder(
+      body: FutureBuilder<List<UserModel>?>(
         future: ApiRequests().getMesurementHistory(),
         builder: (context, snapshot) {
           if (snapshot.hasData) {
-            return snapshot.data.length == 0
+            return snapshot.data!.length == 0
                 ? CustomEmptyWidget()
                 : SingleChildScrollView(
                     child: Column(
@@ -24,10 +28,10 @@ class MeasurementHistory extends StatelessWidget {
                         ListView.builder(
                           shrinkWrap: true,
                           physics: NeverScrollableScrollPhysics(),
-                          itemCount: snapshot.data.length,
+                          itemCount: snapshot.data!.length,
                           itemBuilder: (context, index) {
-                            UserModel user = UserModel.fromMap(
-                                snapshot.data[index]['playerId']);
+                            print('-----------> ${snapshot.data![index]}');
+                            UserModel user = snapshot.data![index];
                             return Container(
                               margin: EdgeInsets.all(12),
                               decoration: BoxDecoration(
@@ -35,8 +39,8 @@ class MeasurementHistory extends StatelessWidget {
                                   borderRadius: BorderRadius.circular(10)),
                               child: ListTile(
                                 onTap: () {
-                                  Get.to(() =>
-                                      ViewPlayerByUserModel(player: user));
+                                  //   Get.to(() =>
+                                  //       ViewPlayerByUserModel(player: user));
                                 },
                                 title: Text(user.name!.capitalize!),
                                 subtitle: Text(user.email!),

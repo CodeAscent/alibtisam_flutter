@@ -53,7 +53,7 @@ class _AttendanceSingleHistoryState extends State<AttendanceSingleHistory> {
                               return PlayerCard(
                                 name: player.name!,
                                 image: player.pic!,
-                                playerId: player.pId!,
+                                playerId: player.pId.toString(),
                                 showArrow: false,
                                 extraWidget: Column(
                                   crossAxisAlignment: CrossAxisAlignment.start,

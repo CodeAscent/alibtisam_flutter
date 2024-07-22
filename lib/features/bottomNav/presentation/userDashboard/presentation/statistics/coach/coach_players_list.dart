@@ -83,7 +83,8 @@ class _CoachPlayersListState extends State<CoachPlayersList> {
                                                 letterSpacing: 0),
                                           ),
                                           Text(
-                                            widget.players[index].playerId.pId!,
+                                            widget.players[index].playerId.pId!
+                                                .toString(),
                                             style: TextStyle(
                                                 fontWeight: FontWeight.w800,
                                                 letterSpacing: 0),

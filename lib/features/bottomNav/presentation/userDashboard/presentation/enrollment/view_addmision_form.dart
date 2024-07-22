@@ -1,17 +1,44 @@
+import 'package:alibtisam/core/common/constants/custom_listtile_card.dart';
+import 'package:alibtisam/core/common/widgets/custom_container_button.dart';
+import 'package:alibtisam/core/common/widgets/custom_gradient_button.dart';
 import 'package:alibtisam/features/bottomNav/model/user.dart';
 import 'package:alibtisam/core/theme/app_colors.dart';
 import 'package:alibtisam/core/utils/custom_date_formatter.dart';
+import 'package:alibtisam/features/bottomNav/presentation/userDashboard/presentation/playerRequests/presentation/request/measurement_from.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
 class ViewPlayerByUserModel extends StatelessWidget {
   final UserModel player;
-  const ViewPlayerByUserModel({super.key, required this.player});
+  final bool? updatePlayer;
+  final String? measurementId;
+  const ViewPlayerByUserModel(
+      {super.key, required this.player, this.updatePlayer, this.measurementId});
 
   @override
   Widget build(BuildContext context) {
     // print('-------> ${player.request}');
     return Scaffold(
+      bottomNavigationBar: Visibility(
+        visible: updatePlayer ?? false,
+        child: SafeArea(
+          child: Padding(
+            padding: const EdgeInsets.all(8.0),
+            child: SizedBox(
+                height: 70,
+                child: CustomContainerButton(
+                    onTap: () {
+                      Get.to(() {
+                        return MeasurementForm(
+                          user: player,
+                          requestId: measurementId!,
+                        );
+                      });
+                    },
+                    label: 'Next ->')),
+          ),
+        ),
+      ),
       body: SafeArea(
           child: CustomScrollView(
         slivers: [
@@ -135,21 +162,6 @@ class ViewPlayerByUserModel extends StatelessWidget {
           )
         ],
       )),
-    );
-  }
-
-  Container kCustomListTile({required String key, required dynamic value}) {
-    return Container(
-      margin: EdgeInsets.symmetric(vertical: 5),
-      decoration: BoxDecoration(
-          color: kAppGreyColor(), borderRadius: BorderRadius.circular(10)),
-      child: ListTile(
-        title: Text(key),
-        subtitle: Text(
-          value.toString().capitalize!,
-          style: TextStyle(fontWeight: FontWeight.w800),
-        ),
-      ),
     );
   }
 }
