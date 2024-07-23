@@ -69,31 +69,34 @@ class PlayersByStage extends StatelessWidget {
             ? Center(
                 child: CircularProgressIndicator(),
               )
-            : ListView.builder(
-                itemCount: groupsController.groups!.length,
-                shrinkWrap: true,
-                itemBuilder: (context, index) {
-                  GroupModel group = groupsController.groups![index];
-                  return GestureDetector(
-                    onTap: () async {
-                      groupsController.selectedGroupId = group.id!;
+            : groupsController.groups!.length == 0
+                ? Center(child: Text('No Groups found'))
+                : ListView.builder(
+                    itemCount: groupsController.groups!.length,
+                    shrinkWrap: true,
+                    itemBuilder: (context, index) {
+                      GroupModel group = groupsController.groups![index];
+                      return GestureDetector(
+                        onTap: () async {
+                          groupsController.selectedGroupId = group.id!;
+                          groupsController.updateSelectedGroup(group);
 
-                      if (externalOnTap == true) {
-                        onTap!();
-                      } else {
-                        Get.to(() => CoachPlayersList());
-                      }
+                          if (externalOnTap == true) {
+                            onTap!();
+                          } else {
+                            Get.to(() => CoachPlayersList());
+                          }
+                        },
+                        child: Column(
+                          children: [
+                            kCustomListTile(
+                                key: group.name!.capitalize!,
+                                value: "Total members: ${group.totalMembers}"),
+                          ],
+                        ),
+                      );
                     },
-                    child: Column(
-                      children: [
-                        kCustomListTile(
-                            key: group.name!.capitalize!,
-                            value: "Total members: ${group.totalMembers}"),
-                      ],
-                    ),
                   );
-                },
-              );
       },
     );
   }

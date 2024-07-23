@@ -612,10 +612,12 @@ class ApiRequests {
     return {};
   }
 
-  Future<List<AttendanceHistoryModel>?> getAttendanceHistory({required String groupId}) async {
+  Future<List<AttendanceHistoryModel>?> getAttendanceHistory(
+      {required String groupId}) async {
     List<AttendanceHistoryModel> attendances = [];
     try {
-      final res = await HttpWrapper.getRequest(get_all_completed_attendance + "?groupId=$groupId");
+      final res = await HttpWrapper.getRequest(
+          get_all_completed_attendance + "?groupId=$groupId");
       final data = jsonDecode(res.body);
       Logger().w(data);
       for (var attendance in data['attendances']) {
@@ -757,6 +759,46 @@ class ApiRequests {
       Logger().e(base_url + "group/member/add");
       Logger().e(res.body);
       //   final data = jsonDecode(res.body);
+    } on ServerException catch (e) {
+      await LoadingManager.endLoading();
+      customSnackbar(message: e.message);
+    }
+    return null;
+  }
+
+  Future updateGroupMembers(
+      {required List members, required String groupId}) async {
+    try {
+      final res =
+          await HttpWrapper.patchRequest(base_url + "group/members/update", {
+        "groupId": groupId,
+        "members": members,
+      });
+
+      Logger().e(res.body);
+      //   final data = jsonDecode(res.body);
+    } on ServerException catch (e) {
+      await LoadingManager.endLoading();
+      customSnackbar(message: e.message);
+    }
+    return null;
+  }
+
+  Future<List<GroupModel>?> playerGroups() async {
+    try {
+      List<GroupModel>? groups = [];
+
+      final res = await HttpWrapper.getRequest(
+        base_url + "group/me",
+      );
+
+      final data = jsonDecode(res.body);
+      Logger().w(data);
+      for (var group in data['groups']) {
+        groups.add(GroupModel.fromMap(group['groupId']));
+      }
+
+      return groups;
     } on ServerException catch (e) {
       await LoadingManager.endLoading();
       customSnackbar(message: e.message);

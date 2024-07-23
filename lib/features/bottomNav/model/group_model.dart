@@ -23,7 +23,7 @@ class GroupModel {
       map['name'] != null ? map['name'] as String : null,
       map['stage'] != null ? map['stage'] as String : null,
       map['_id'] != null ? map['_id'] as String : null,
-      map['totalMembers'] != null ? map['totalMembers'] as int : null,
+      map['totalMembers'] != null ? map['totalMembers'] as int : 0,
     );
   }
 

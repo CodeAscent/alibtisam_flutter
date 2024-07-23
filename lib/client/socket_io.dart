@@ -1,4 +1,3 @@
-
 import 'package:alibtisam/features/bottomNav/controller/chat_messages.dart';
 import 'package:alibtisam/features/bottomNav/controller/chats_list.dart';
 import 'package:alibtisam/features/bottomNav/controller/user.dart';
@@ -10,7 +9,7 @@ import 'package:socket_io_client/socket_io_client.dart' as IO;
 
 class SocketConnection {
   static final userController = Get.find<UserController>();
-  static IO.Socket socket = IO.io(base_url, <String, dynamic>{
+  static IO.Socket socket = IO.io(socket_base_url, <String, dynamic>{
     'transports': ['websocket'],
     'autoconnect': true,
     'reconnection': true,
@@ -31,10 +30,10 @@ class SocketConnection {
     });
   }
 
-  static joinChat(String chatId, Function scroll) {
+  static joinChat(String groupId, Function scroll) {
     final chatMessagesController = Get.find<ChatMessagesController>();
     chatMessagesController.messages.clear();
-    socket.emit("joinChat", {"chatId": chatId});
+    socket.emit("joinChat", {"groupId": groupId});
     socket.on("allMessages", (res) {
       chatMessagesController.messages.clear();
       for (var message in res) {
@@ -47,12 +46,12 @@ class SocketConnection {
   static sendMessage({
     required String uid,
     required String message,
-    required String chatId,
+    required String groupId,
   }) {
     socket.emit("message", {
       "senderId": uid,
       "content": message,
-      "chatId": chatId,
+      "groupId": groupId,
     });
   }
 

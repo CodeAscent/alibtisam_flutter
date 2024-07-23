@@ -1,7 +1,8 @@
 // String base_url = "http://52.66.197.219:8000/";
 String api_version = "api/v1/";
-
-String base_url = "http://192.168.29.116:8000/" + api_version;
+String BASEURL = "http://192.168.29.116:8000/";
+String socket_base_url = BASEURL;
+String base_url = BASEURL + api_version;
 String event = "event/";
 String user = "user/";
 String coach = "coach/";

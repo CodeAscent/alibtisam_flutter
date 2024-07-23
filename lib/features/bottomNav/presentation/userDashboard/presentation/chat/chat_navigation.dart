@@ -1,5 +1,6 @@
 import 'package:alibtisam/features/bottomNav/controller/user.dart';
-import 'package:alibtisam/features/bottomNav/presentation/userDashboard/presentation/chat/presentation/coach/coach_chat_teams_list.dart';
+import 'package:alibtisam/features/bottomNav/presentation/userDashboard/presentation/chat/presentation/coach/chat_stages.dart';
+import 'package:alibtisam/features/bottomNav/presentation/userDashboard/presentation/chat/presentation/internal/player_chat_groups.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
@@ -10,8 +11,8 @@ class ChatNavigation extends StatelessWidget {
   Widget build(BuildContext context) {
     final userController = Get.find<UserController>();
     return userController.user!.role == "COACH"
-        ? CoachChatTeamList()
-        : CoachChatTeamList();
+        ? ChatStages()
+        : PlayerChatGroups();
   }
 }
 //  : userController.user!.role == "GUARDIAN"

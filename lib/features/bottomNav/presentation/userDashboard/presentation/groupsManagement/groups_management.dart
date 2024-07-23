@@ -141,13 +141,11 @@ class _GroupsManagementState extends State<GroupsManagement>
               externalOnTap: true,
               stage: e,
               onTap: () async {
-                List<UserModel>? users = [];
-                users = await groupsController.fetchGroupMembers();
-
-                setState(() {});
                 Get.to(() => ViewGroupMembers(
-                      players: users!,
-                    ));
+                          canUpdate: true,
+                        ))!
+                    .then((val) => groupsController.fetchGroups(
+                        stage: e, gameId: userController.user!.gameId!.id!));
               },
             )),
       ]),

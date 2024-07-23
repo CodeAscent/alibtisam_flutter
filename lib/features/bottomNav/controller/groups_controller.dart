@@ -2,15 +2,30 @@ import 'package:alibtisam/features/bottomNav/model/group_model.dart';
 import 'package:alibtisam/features/bottomNav/model/user.dart';
 import 'package:alibtisam/network/api_requests.dart';
 import 'package:get/get.dart';
+import 'package:logger/web.dart';
 
 class GroupsController extends GetxController {
   List<GroupModel>? groups = [];
   String selectedGroupId = '';
+  late GroupModel selectedGroup;
   bool isLoading = false;
   Future fetchGroups({required String stage, required String gameId}) async {
     isLoading = true;
     groups = await ApiRequests().getGroups(stage: stage, gameId: gameId);
     isLoading = false;
+    update();
+  }
+
+  Future fetchGroupsForPlayer() async {
+    isLoading = true;
+    groups = await ApiRequests().playerGroups();
+    Logger().w(groups);
+    isLoading = false;
+    update();
+  }
+
+  updateSelectedGroup(GroupModel group) {
+    selectedGroup = group;
     update();
   }
 

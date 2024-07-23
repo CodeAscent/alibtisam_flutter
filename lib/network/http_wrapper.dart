@@ -77,9 +77,11 @@ class HttpWrapper {
     }
   }
 
-  static Future<http.Response> patchRequest(String url) async {
+  static Future<http.Response> patchRequest(String url,Object? body ) async {
     try {
-      final res = await http.patch(Uri.parse(url), headers: await header());
+      final res = await http.patch(Uri.parse(url), 
+      body: jsonEncode(body),
+      headers: await header());
       return res;
     } catch (e) {
       if (e is http.ClientException) {

@@ -1,27 +1,29 @@
 import 'package:alibtisam/features/bottomNav/controller/chat_messages.dart';
+import 'package:alibtisam/features/bottomNav/controller/groups_controller.dart';
 import 'package:alibtisam/features/bottomNav/controller/user.dart';
 import 'package:alibtisam/features/bottomNav/model/chat_message.dart';
 import 'package:alibtisam/features/bottomNav/model/chats_list.dart';
+import 'package:alibtisam/features/bottomNav/model/user.dart';
 import 'package:alibtisam/features/bottomNav/presentation/userDashboard/presentation/chat/chat_about.dart';
 import 'package:alibtisam/core/theme/app_colors.dart';
 import 'package:alibtisam/core/theme/controller/theme_controller.dart';
 import 'package:alibtisam/core/utils/custom_date_formatter.dart';
 import 'package:alibtisam/client/socket_io.dart';
+import 'package:alibtisam/features/bottomNav/presentation/userDashboard/presentation/groupsManagement/view_members.dart';
 import 'package:chat_bubbles/bubbles/bubble_special_three.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:logger/web.dart';
 
 class ChatScreen extends StatefulWidget {
-  final String chatId;
+  final String groupId;
   final String name;
-  final String image;
-  final Chat chatInfo;
-  const ChatScreen(
-      {super.key,
-      required this.chatId,
-      required this.name,
-      required this.image,
-      required this.chatInfo});
+
+  const ChatScreen({
+    super.key,
+    required this.groupId,
+    required this.name,
+  });
 
   @override
   State<ChatScreen> createState() => _ChatScreenState();
@@ -31,12 +33,12 @@ class _ChatScreenState extends State<ChatScreen> {
   final messageController = TextEditingController();
   final themeController = Get.find<ThemeController>();
   final userController = Get.find<UserController>();
+  final groupsController = Get.find<GroupsController>();
   final ScrollController _scrollController = ScrollController();
-
   @override
   void initState() {
     super.initState();
-    SocketConnection.joinChat(widget.chatId, _scrollToBottom);
+    SocketConnection.joinChat(widget.groupId, _scrollToBottom);
     SocketConnection.listenMessages(_scrollToBottom);
   }
 
@@ -69,25 +71,24 @@ class _ChatScreenState extends State<ChatScreen> {
       appBar: AppBar(
         title: GestureDetector(
           onTap: () {
-            Get.to(() => ChatAbout(
-                  image: widget.image,
-                  chat: widget.chatInfo,
-                  name: widget.name,
+            Get.to(() => ViewGroupMembers(
+                  canUpdate:
+                      userController.user!.role == 'COACH' ? true : false,
                 ));
           },
           child: Row(
             children: [
-              ClipRRect(
-                borderRadius: BorderRadius.circular(160),
-                child: Image.network(
-                  widget.image,
-                  height: 40,
-                  width: 40,
-                  fit: BoxFit.cover,
-                ),
-              ),
+              //   ClipRRect(
+              //     borderRadius: BorderRadius.circular(160),
+              //     child: Image.network(
+              //       widget.image,
+              //       height: 40,
+              //       width: 40,
+              //       fit: BoxFit.cover,
+              //     ),
+              //   ),
               SizedBox(width: 10),
-              Expanded(child: Text(widget.name)),
+              Expanded(child: Text(widget.name.capitalize!)),
             ],
           ),
         ),
@@ -139,17 +140,14 @@ class _ChatScreenState extends State<ChatScreen> {
                                 Builder(
                                   builder: (context) {
                                     String name = '';
-                                    if (widget.chatInfo.isGroup!) {
-                                      for (var participant
-                                          in widget.chatInfo.participants!) {
-                                        if (participant.id ==
-                                                message.senderId &&
-                                            message.senderId !=
-                                                userController.user!.id) {
-                                          name = participant.name!;
-                                        }
-                                      }
-                                    }
+                                    // for (var participant
+                                    //     in groupsController.me.) {
+                                    //   if (participant.id == message.senderId &&
+                                    //       message.senderId !=
+                                    //           userController.user!.id) {
+                                    //     name = participant.name!;
+                                    //   }
+                                    // }
                                     return Padding(
                                       padding: const EdgeInsets.symmetric(
                                           horizontal: 15),
@@ -209,7 +207,7 @@ class _ChatScreenState extends State<ChatScreen> {
                                   SocketConnection.sendMessage(
                                     uid: userController.user!.id!,
                                     message: messageController.text.trim(),
-                                    chatId: widget.chatId,
+                                    groupId: widget.groupId,
                                   );
                                 }
                                 _scrollToBottom();
@@ -232,7 +230,7 @@ class _ChatScreenState extends State<ChatScreen> {
                                 SocketConnection.sendMessage(
                                   uid: userController.user!.id!,
                                   message: messageController.text.trim(),
-                                  chatId: widget.chatId,
+                                  groupId: widget.groupId,
                                 );
                               }
                               _scrollToBottom();
