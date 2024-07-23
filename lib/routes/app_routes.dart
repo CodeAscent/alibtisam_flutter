@@ -3,6 +3,7 @@ import 'package:alibtisam/features/bottomNav/presentation/userDashboard/presenta
 import 'package:alibtisam/features/bottomNav/presentation/userDashboard/presentation/events/presentation/events.dart';
 import 'package:alibtisam/features/bottomNav/presentation/userDashboard/presentation/attendance/attendance_navigation.dart';
 import 'package:alibtisam/features/bottomNav/presentation/userDashboard/presentation/collection/collection.dart';
+import 'package:alibtisam/features/bottomNav/presentation/userDashboard/presentation/groupsManagement/groups_management.dart';
 import 'package:alibtisam/features/bottomNav/presentation/userDashboard/presentation/loanApplication/loan_application.dart';
 import 'package:alibtisam/features/bottomNav/presentation/userDashboard/presentation/playerRequests/request_tab_bar.dart';
 import 'package:alibtisam/features/bottomNav/presentation/userDashboard/presentation/playerPolarization/player_polarization.dart';
@@ -27,7 +28,7 @@ List<GetPage<dynamic>>? pages = [
   GetPage(name: '/loan', page: () => LoanApplication()),
   GetPage(name: '/enroll', page: () => EnrollmentNavigation()),
   GetPage(name: '/collection', page: () => CollectionScreen()),
-  GetPage(name: '/measurementRequest', page: () => PlayerRequestsTabBar()),
+  GetPage(name: '/groupManagement', page: () => GroupsManagement()),
   GetPage(name: '/playerPolarization', page: () => PlayerPolarization()),
   GetPage(name: '/tournamentRequest', page: () => TournamentRequest()),
   GetPage(name: '/coachMonitering', page: () => CoachPlayerMonitering()),
