@@ -1,9 +1,10 @@
 import 'package:alibtisam/core/common/widgets/custom_gradient_button.dart';
 import 'package:alibtisam/core/common/widgets/custom_loading.dart';
 import 'package:alibtisam/core/theme/app_colors.dart';
+import 'package:alibtisam/features/auth/widgets/otp_pin.dart';
 import 'package:alibtisam/network/api_requests.dart';
 import 'package:flutter/material.dart';
-import 'package:alibtisam/features/signup&login/widgets/logo_&_arabic_text.dart';
+import 'package:alibtisam/features/auth/widgets/logo_&_arabic_text.dart';
 import 'package:alibtisam/core/common/widgets/custom_text_field.dart';
 import 'package:get/get.dart';
 

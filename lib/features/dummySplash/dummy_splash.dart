@@ -1,5 +1,5 @@
 import 'package:alibtisam/features/bottomNav/presentation/userDashboard/presentation/events/widgets/feedPlayer/feed_player.dart';
-import 'package:alibtisam/features/signup&login/presentation/checkLogin/check_login.dart';
+import 'package:alibtisam/features/auth/widgets/check_login.dart';
 import 'package:alibtisam/features/bottomNav/presentation/userDashboard/presentation/events/controller/active_player.dart';
 import 'package:alibtisam/features/bottomNav/presentation/userDashboard/presentation/events/model/events_model.dart';
 import 'package:alibtisam/features/bottomNav/presentation/userDashboard/presentation/events/presentation/event_desciption.dart';
