@@ -1,3 +1,4 @@
+import 'package:alibtisam/features/auth/controller/otp_resend_count.dart';
 import 'package:alibtisam/features/bottomNav/controller/attendance.dart';
 import 'package:alibtisam/features/bottomNav/controller/chat_messages.dart';
 import 'package:alibtisam/features/bottomNav/controller/chats_list.dart';
@@ -37,4 +38,5 @@ initControllers() {
   Get.put(AttendanceController());
   Get.put(DateRangeController());
   Get.put(GroupsController());
+  Get.put(OtpResendCountController());
 }

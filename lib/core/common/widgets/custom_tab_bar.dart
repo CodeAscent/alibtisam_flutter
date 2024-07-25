@@ -39,6 +39,7 @@ class _CustomTabBarState extends State<CustomTabBar> {
         Padding(
           padding: const EdgeInsets.all(8.0),
           child: TabBar(
+            
             onTap: (value) {},
             labelPadding: EdgeInsets.symmetric(
                 horizontal: widget.tabViewScreens.length <= 2 ? 40 : 20,

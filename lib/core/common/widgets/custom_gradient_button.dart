@@ -33,7 +33,7 @@ class CustomGradientButton extends StatelessWidget {
             borderRadius: BorderRadius.circular(20)),
         child: Center(
           child: Text(
-            label.capitalize!,
+            label!,
             maxLines: 2,
             textAlign: TextAlign.center,
             style: TextStyle(

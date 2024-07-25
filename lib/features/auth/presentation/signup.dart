@@ -1,6 +1,9 @@
 import 'package:alibtisam/core/common/widgets/custom_gradient_button.dart';
 import 'package:alibtisam/core/common/widgets/custom_loading.dart';
 import 'package:alibtisam/core/theme/app_colors.dart';
+import 'package:alibtisam/core/utils/custom_snackbar.dart';
+import 'package:alibtisam/features/auth/controller/otp_resend_count.dart';
+import 'package:alibtisam/features/auth/presentation/otp_validation.dart';
 import 'package:alibtisam/features/auth/widgets/otp_pin.dart';
 import 'package:alibtisam/network/api_requests.dart';
 import 'package:flutter/material.dart';
@@ -25,6 +28,7 @@ class _SignUpScreenState extends State<SignUpScreen> {
   final formKey = GlobalKey<FormState>();
   List<dynamic> clubs = [];
   bool isSecurePassword = true;
+  final otpController = Get.find<OtpResendCountController>();
 
   @override
   void initState() {
@@ -40,8 +44,8 @@ class _SignUpScreenState extends State<SignUpScreen> {
     setState(() {});
   }
 
-//   String alibtisamClubId = '666aa3d2db7dedd02b16a297';
-  String alibtisamClubId = '669b5681b6d525fbb7885f2f';
+  String alibtisamClubId = '666aa3d2db7dedd02b16a297';
+//   String alibtisamClubId = '669b5681b6d525fbb7885f2f';
   @override
   Widget build(BuildContext context) {
     return CustomLoader(
@@ -109,6 +113,7 @@ class _SignUpScreenState extends State<SignUpScreen> {
                       height: 70,
                       child: CustomGradientButton(
                           onTap: () {
+                            // Get.to(() => OtpValidation());
                             if (formKey.currentState!.validate()) {
                               ApiRequests().register(
                                   clubId: alibtisamClubId,

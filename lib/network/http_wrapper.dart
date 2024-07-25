@@ -3,6 +3,7 @@ import 'dart:convert';
 import 'package:alibtisam/core/error/server_exception.dart';
 import 'package:alibtisam/core/localStorage/token_id.dart';
 import 'package:alibtisam/core/utils/loading_manager.dart';
+import 'package:flutter/material.dart';
 import 'package:http/http.dart' as http;
 
 class HttpWrapper {
@@ -77,11 +78,10 @@ class HttpWrapper {
     }
   }
 
-  static Future<http.Response> patchRequest(String url,Object? body ) async {
+  static Future<http.Response> patchRequest(String url, Object? body) async {
     try {
-      final res = await http.patch(Uri.parse(url), 
-      body: jsonEncode(body),
-      headers: await header());
+      final res = await http.patch(Uri.parse(url),
+          body: jsonEncode(body), headers: await header());
       return res;
     } catch (e) {
       if (e is http.ClientException) {
@@ -114,6 +114,34 @@ class HttpWrapper {
       throw ServerException(e.toString());
     } finally {
       await LoadingManager.endLoading();
+    }
+  }
+
+  static Widget networkImageRequest(String src) {
+    try {
+      return ClipRRect(
+        borderRadius: BorderRadius.circular(20),
+        child: Image.network(src,
+            fit: BoxFit.cover,
+            loadingBuilder: (context, child, loadingProgress) {
+              if (loadingProgress == null) {
+                return child;
+              } else {
+                return Center(
+                  child: CircularProgressIndicator(
+                    value: loadingProgress.expectedTotalBytes != null
+                        ? loadingProgress.cumulativeBytesLoaded /
+                            (loadingProgress.expectedTotalBytes ?? 1)
+                        : null,
+                  ),
+                );
+              }
+            },
+            errorBuilder: (context, error, stackTrace) =>
+                Text('Something went wrong!')),
+      );
+    } catch (e) {
+      throw ServerException(e.toString());
     }
   }
 }

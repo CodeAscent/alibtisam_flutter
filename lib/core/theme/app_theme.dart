@@ -76,7 +76,7 @@ ThemeData kAppThemeLight() {
             surfaceTintColor: Colors.white,
             shape: RoundedRectangleBorder(
                 borderRadius: BorderRadius.circular(5)))),
-    colorScheme: ColorScheme.fromSeed(seedColor: primaryColor()),
+    colorScheme: ColorScheme.fromSeed(seedColor: Colors.white),
   );
 }
 

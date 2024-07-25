@@ -744,6 +744,28 @@ class ApiRequests {
     return null;
   }
 
+  Future<List<UserModel>?> getPlayersByStage({
+    required String stage,
+  }) async {
+    try {
+      List<UserModel>? users = [];
+      final res = await HttpWrapper.getRequest(
+          base_url + "player/players?stage=" + stage);
+      final data = jsonDecode(res.body);
+      for (var item in data['players']) {
+        Logger().w(item);
+        if (item != null) {
+          users.add(UserModel.fromMap(item));
+        }
+      }
+      return users;
+    } on ServerException catch (e) {
+      await LoadingManager.endLoading();
+      customSnackbar(message: e.message);
+    }
+    return null;
+  }
+
   Future addMemberToGroup(
       {required String memberId, required String groupId}) async {
     try {
@@ -773,6 +795,24 @@ class ApiRequests {
           await HttpWrapper.patchRequest(base_url + "group/members/update", {
         "groupId": groupId,
         "members": members,
+      });
+
+      Logger().e(res.body);
+      //   final data = jsonDecode(res.body);
+    } on ServerException catch (e) {
+      await LoadingManager.endLoading();
+      customSnackbar(message: e.message);
+    }
+    return null;
+  }
+
+  Future updatePlayerStage(
+      {required String playerId, required String stage}) async {
+    try {
+      final res =
+          await HttpWrapper.postRequest(base_url + "coach/polarize-player", {
+        "playerId": player,
+        "stage": stage,
       });
 
       Logger().e(res.body);

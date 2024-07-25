@@ -1,5 +1,6 @@
 import 'package:alibtisam/Localization/localization.dart';
 import 'package:alibtisam/client/socket_io.dart';
+import 'package:alibtisam/core/autoUpdate/auto_update_config.dart';
 import 'package:alibtisam/core/error/no_internet.dart';
 import 'package:alibtisam/core/localStorage/fcm_token.dart';
 import 'package:alibtisam/core/localStorage/init_shared_pref.dart';
@@ -76,6 +77,7 @@ class _MyAppState extends State<MyApp> {
 
   @override
   Widget build(BuildContext context) {
+    checkForUpdate(context);
     return
         // ConnectivityWatcherWrapper(
         //   offlineWidget: CustomNoInternetWrapper(
@@ -88,6 +90,7 @@ class _MyAppState extends State<MyApp> {
       init: ThemeController(),
       builder: (controller) {
         return GetMaterialApp(
+          defaultTransition: Transition.cupertino,
           // navigatorKey: connectionKey, // add this key to material app
           debugShowCheckedModeBanner: false,
           translations: AppLocalization(),
