@@ -806,19 +806,33 @@ class ApiRequests {
     return null;
   }
 
-  Future updatePlayerStage(
-      {required String playerId, required String stage}) async {
+  Future updatePlayerStage({
+    required String playerId,
+    required String stage,
+    required String groupId,
+  }) async {
     try {
-      final res =
-          await HttpWrapper.postRequest(base_url + "coach/polarize-player", {
-        "playerId": player,
-        "stage": stage,
-      });
-
+      final res = await HttpWrapper.postRequest(
+          base_url + "coach/polarize-player",
+          stage == 'SCHOOL'
+              ? {"playerId": playerId, "stage": stage, "groupId": groupId}
+              : {
+                  "playerId": playerId,
+                  "stage": stage,
+                });
+      Logger().e(base_url + "coach/polarize-player");
+      Logger().e({"playerId": playerId, "stage": stage, "groupId": groupId});
       Logger().e(res.body);
-      //   final data = jsonDecode(res.body);
+      final data = jsonDecode(res.body);
+
+      if (res.statusCode == 200) {
+        Get.back();
+        customSnackbar(message: data['message']);
+      } else {
+        customSnackbar(message: data['error']);
+      }
     } on ServerException catch (e) {
-      await LoadingManager.endLoading();
+      //   await LoadingManager.endLoading();
       customSnackbar(message: e.message);
     }
     return null;

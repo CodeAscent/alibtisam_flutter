@@ -42,7 +42,7 @@ class _ChatStagesState extends State<ChatStages> with TickerProviderStateMixin {
           (e) => Text(e),
         )
       ], tabViewScreens: [
-        ...user.stage.map((e) => PlayersByStage(
+        ...user.stage.map((e) => GroupsByStage(
               externalOnTap: true,
               stage: e,
               onTap: () async {

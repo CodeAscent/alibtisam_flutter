@@ -12,6 +12,7 @@ import 'package:alibtisam/features/bottomNav/controller/teams.dart';
 import 'package:alibtisam/features/bottomNav/controller/user.dart';
 import 'package:alibtisam/features/bottomNav/presentation/settings/controller/organization.dart';
 import 'package:alibtisam/features/bottomNav/presentation/userDashboard/presentation/events/controller/active_player.dart';
+import 'package:alibtisam/features/bottomNav/presentation/userDashboard/presentation/playerPolarization/controller/fetch_players.dart';
 import 'package:alibtisam/features/bottomNav/presentation/userDashboard/presentation/statistics/controller/monitoring.dart';
 import 'package:alibtisam/features/bottomNav/presentation/userDashboard/presentation/statistics/controller/reports.dart';
 import 'package:alibtisam/core/theme/controller/theme_controller.dart';
@@ -39,4 +40,5 @@ initControllers() {
   Get.put(DateRangeController());
   Get.put(GroupsController());
   Get.put(OtpResendCountController());
+  Get.put(PlayerPolarizationController());
 }

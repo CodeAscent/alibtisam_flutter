@@ -47,11 +47,12 @@ class _CoachAttendanceStagesState extends State<CoachAttendanceStages>
           (e) => Text(e),
         )
       ], tabViewScreens: [
-        ...user.stage.map((e) => PlayersByStage(
+        ...user.stage.map((e) => GroupsByStage(
               externalOnTap: true,
               stage: e,
               onTap: () {
-                Get.to(()=>AttendanceTabScreen(groupId:groupsController.selectedGroupId ));
+                Get.to(() => AttendanceTabScreen(
+                    groupId: groupsController.selectedGroupId));
               },
             )),
       ]),

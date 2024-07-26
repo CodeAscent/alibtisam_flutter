@@ -40,7 +40,7 @@ class _StagesTabBarState extends State<StagesTabBar>
           (e) => Text(e),
         )
       ], tabViewScreens: [
-        ...user.stage.map((e) => PlayersByStage(
+        ...user.stage.map((e) => GroupsByStage(
               stage: e,
               onTap: () {},
             )),
@@ -49,12 +49,18 @@ class _StagesTabBarState extends State<StagesTabBar>
   }
 }
 
-class PlayersByStage extends StatelessWidget {
+class GroupsByStage extends StatelessWidget {
   final void Function()? onTap;
   final bool? externalOnTap;
   final String stage;
-  const PlayersByStage(
-      {super.key, required this.stage, this.onTap, this.externalOnTap});
+  final bool? showSelected;
+
+  const GroupsByStage(
+      {super.key,
+      required this.stage,
+      this.onTap,
+      this.externalOnTap,
+      this.showSelected = false});
   @override
   Widget build(BuildContext context) {
     final groupsController = Get.find<GroupsController>();
@@ -89,9 +95,17 @@ class PlayersByStage extends StatelessWidget {
                         },
                         child: Column(
                           children: [
-                            kCustomListTile(
-                                key: group.name!.capitalize!,
-                                value: "Total members: ${group.totalMembers}"),
+                            Container(
+                              color: showSelected == true &&
+                                      groupsController.selectedGroupId ==
+                                          group.id
+                                  ? Colors.blue.shade100
+                                  : null,
+                              child: kCustomListTile(
+                                  key: group.name!.capitalize!,
+                                  value:
+                                      "Total members: ${group.totalMembers}"),
+                            ),
                           ],
                         ),
                       );
