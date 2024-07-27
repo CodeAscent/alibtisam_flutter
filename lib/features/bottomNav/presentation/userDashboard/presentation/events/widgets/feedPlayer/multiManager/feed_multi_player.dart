@@ -1,21 +1,24 @@
 import 'package:alibtisam/features/bottomNav/presentation/userDashboard/presentation/events/widgets/feedPlayer/multiManager/feed_multi_manager.dart';
 import 'package:alibtisam/features/bottomNav/presentation/userDashboard/presentation/events/widgets/feedPlayer/multiManager/feed_player_potrait_controls.dart';
+
 import 'package:flick_video_player/flick_video_player.dart';
-import 'package:visibility_detector/visibility_detector.dart';
 
 import 'package:flutter/material.dart';
+import 'package:visibility_detector/visibility_detector.dart';
 import 'package:video_player/video_player.dart';
 
 class FlickMultiPlayer extends StatefulWidget {
-  final bool? showControls;
+  final String type;
   const FlickMultiPlayer(
       {Key? key,
       required this.url,
+      this.image,
       required this.flickMultiManager,
-      this.showControls = false})
+      required this.type})
       : super(key: key);
 
   final String url;
+  final String? image;
   final FlickMultiManager flickMultiManager;
 
   @override
@@ -54,9 +57,10 @@ class _FlickMultiPlayerState extends State<FlickMultiPlayer> {
         }
       },
       child: Container(
-        child: widget.showControls!
-            ? FlickVideoPlayer(
-                flickManager: flickManager,
+        child: widget.type == 'image'
+            ? Image.network(
+                widget.url,
+                fit: BoxFit.cover,
               )
             : FlickVideoPlayer(
                 flickManager: flickManager,
@@ -64,12 +68,16 @@ class _FlickMultiPlayerState extends State<FlickMultiPlayer> {
                   playerLoadingFallback: Positioned.fill(
                     child: Stack(
                       children: <Widget>[
-                        // Positioned.fill(
-                        //   child: Image.network(
-                        //     widget.image!,
-                        //     fit: BoxFit.cover,
-                        //   ),
-                        // ),
+                        Center(
+                          child: Positioned(
+                            child: Image.asset(
+                              widget.image!,
+                              fit: BoxFit.cover,
+                              height: 60,
+                              width: 60,
+                            ),
+                          ),
+                        ),
                         Positioned(
                           right: 10,
                           top: 10,
@@ -91,8 +99,12 @@ class _FlickMultiPlayerState extends State<FlickMultiPlayer> {
                   ),
                 ),
                 flickVideoWithControlsFullscreen: FlickVideoWithControls(
-                  playerLoadingFallback: Center(child: Icon(Icons.error)),
-                  controls: FlickPortraitControls(),
+                  playerLoadingFallback: Center(
+                      child: Image.network(
+                    widget.image!,
+                    fit: BoxFit.fitWidth,
+                  )),
+                  controls: FlickLandscapeControls(),
                   iconThemeData: IconThemeData(
                     size: 40,
                     color: Colors.white,

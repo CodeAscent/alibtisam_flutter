@@ -78,6 +78,7 @@ class GroupsByStage extends StatelessWidget {
             : groupsController.groups!.length == 0
                 ? Center(child: Text('No Groups found'))
                 : ListView.builder(
+                    physics: NeverScrollableScrollPhysics(),
                     itemCount: groupsController.groups!.length,
                     shrinkWrap: true,
                     itemBuilder: (context, index) {
@@ -96,11 +97,14 @@ class GroupsByStage extends StatelessWidget {
                         child: Column(
                           children: [
                             Container(
-                              color: showSelected == true &&
-                                      groupsController.selectedGroupId ==
-                                          group.id
-                                  ? Colors.blue.shade100
-                                  : null,
+                              decoration: BoxDecoration(
+                                borderRadius: BorderRadius.circular(10),
+                                color: showSelected == true &&
+                                        groupsController.selectedGroupId ==
+                                            group.id
+                                    ? Colors.blue.shade100
+                                    : null,
+                              ),
                               child: kCustomListTile(
                                   key: group.name!.capitalize!,
                                   value:

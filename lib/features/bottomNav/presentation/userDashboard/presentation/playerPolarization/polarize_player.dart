@@ -108,7 +108,8 @@ class _PolarizePlayerState extends State<PolarizePlayer> {
                       ],
                     ),
                     SizedBox(height: 20),
-                    kCustomListTile(() {}, 'Current Game', widget.player.name!),
+                    kCustomListTile(
+                        () {}, 'Current Game', widget.player.gameId!.name!),
                     kCustomListTile(
                         () {}, 'Current Stage', widget.player.stage!),
                     kCustomListTile(() {}, 'Upgradable To',
@@ -129,7 +130,7 @@ class _PolarizePlayerState extends State<PolarizePlayer> {
                           ),
                         ],
                       ),
-                    )
+                    ),
                   ],
                 ),
               ),

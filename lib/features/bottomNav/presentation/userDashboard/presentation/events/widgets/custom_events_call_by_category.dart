@@ -82,83 +82,92 @@ class _CustomEventsCallByCategoryState
                         ));
                   },
                   child: Container(
-                    constraints: BoxConstraints(maxWidth: 220),
+                    constraints: BoxConstraints(
+                      maxWidth: 250,
+                    ),
                     child: Card(
                       elevation: 0.2,
                       child: Padding(
-                        padding: const EdgeInsets.all(8.0),
+                        padding: const EdgeInsets.all(16.0),
                         child: Stack(
                           children: [
                             Column(
+                              crossAxisAlignment: CrossAxisAlignment.start,
                               children: [
                                 Text(
                                   event.name,
                                   maxLines: 1,
                                   style: TextStyle(
                                       fontSize: 16,
-                                      fontWeight: FontWeight.w500),
+                                      fontWeight: FontWeight.w800),
                                 ),
                                 SizedBox(height: 20),
                                 if (event.media[0].type == "image")
-                                  Image.network(
-                                    event.media[0].url,
-                                    height: 100,
-                                    width: double.infinity,
-                                    fit: BoxFit.cover,
+                                  Center(
+                                    child: Image.network(
+                                      event.media[0].url,
+                                      height: 100,
+                                      width: double.infinity,
+                                      fit: BoxFit.cover,
+                                    ),
                                   ),
                                 if (event.media[0].type == "video") ...[
-                                  FutureBuilder(
-                                    future:
-                                        generateThumbnail(event.media[0].url),
-                                    builder: (context, thumbnailSnapshot) {
-                                      if (thumbnailSnapshot.hasData) {
-                                        return Stack(
-                                          children: [
-                                            Image.asset(
-                                              thumbnailSnapshot.data.toString(),
-                                              height: 100,
-                                              width: double.infinity,
-                                              fit: BoxFit.cover,
-                                            ),
-                                            SizedBox(
-                                              height: 100,
-                                              child: Center(
-                                                child: IconButton.filled(
-                                                    onPressed: () {},
-                                                    icon: Icon(
-                                                      Icons.play_circle_fill,
-                                                    )),
+                                  Center(
+                                    child: FutureBuilder(
+                                      future:
+                                          generateThumbnail(event.media[0].url),
+                                      builder: (context, thumbnailSnapshot) {
+                                        if (thumbnailSnapshot.hasData) {
+                                          return Stack(
+                                            children: [
+                                              Image.asset(
+                                                thumbnailSnapshot.data
+                                                    .toString(),
+                                                height: 100,
+                                                width: double.infinity,
+                                                fit: BoxFit.cover,
                                               ),
-                                            )
-                                          ],
-                                        );
-                                      }
-                                      return SizedBox(
-                                          height: 100,
-                                          child: Center(
-                                              child:
-                                                  CircularProgressIndicator()));
-                                    },
+                                              SizedBox(
+                                                height: 100,
+                                                child: Center(
+                                                  child: IconButton.filled(
+                                                      onPressed: () {},
+                                                      icon: Icon(
+                                                        Icons.play_circle_fill,
+                                                      )),
+                                                ),
+                                              )
+                                            ],
+                                          );
+                                        }
+                                        return SizedBox(
+                                            height: 100,
+                                            child: Center(
+                                                child:
+                                                    CircularProgressIndicator()));
+                                      },
+                                    ),
                                   )
                                 ],
                                 SizedBox(height: 10),
                                 Text(
                                   event.description,
-                                  maxLines: 2,
+                                  maxLines: 1,
                                   overflow: TextOverflow.ellipsis,
                                 )
                               ],
                             ),
                             Positioned(
-                                top: 5,
-                                right: 0,
-                                child: Visibility(
-                                  visible: event.isNew,
-                                  child: LottieBuilder.asset(
-                                    'assets/lottie/new_event.json',
-                                    height: 50,
-                                  ),
-                                ))
+                              top: 5,
+                              right: 0,
+                              child: Visibility(
+                                visible: event.isNew,
+                                child: LottieBuilder.asset(
+                                  'assets/lottie/new_event.json',
+                                  height: 50,
+                                ),
+                              ),
+                            )
                           ],
                         ),
                       ),

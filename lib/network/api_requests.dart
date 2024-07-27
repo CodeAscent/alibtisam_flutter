@@ -821,7 +821,7 @@ class ApiRequests {
                   "stage": stage,
                 });
       Logger().e(base_url + "coach/polarize-player");
-      Logger().e({"playerId": playerId, "stage": stage, "groupId": groupId});
+      Logger().e({"playerId": playerId, "stage": stage});
       Logger().e(res.body);
       final data = jsonDecode(res.body);
 

@@ -4,9 +4,14 @@ import 'package:flutter/material.dart';
 import 'package:visibility_detector/visibility_detector.dart';
 
 class FeedPlayer extends StatefulWidget {
+  final String type;
   final String url;
   final bool? showControls;
-  FeedPlayer({Key? key, required this.url, this.showControls = false})
+  FeedPlayer(
+      {Key? key,
+      required this.url,
+      this.showControls = false,
+      required this.type})
       : super(key: key);
 
   @override
@@ -34,7 +39,7 @@ class _FeedPlayerState extends State<FeedPlayer> {
       child: FlickMultiPlayer(
         url: widget.url,
         flickMultiManager: flickMultiManager,
-        showControls: widget.showControls,
+        type: widget.type,
       ),
     );
   }
