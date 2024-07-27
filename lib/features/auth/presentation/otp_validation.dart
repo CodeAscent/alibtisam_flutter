@@ -9,7 +9,15 @@ import 'package:get/get.dart';
 import 'package:get_storage/get_storage.dart';
 
 class OtpValidation extends StatefulWidget {
-  const OtpValidation({super.key});
+  final String email;
+  final String phone;
+  final String name;
+
+  const OtpValidation(
+      {super.key,
+      required this.email,
+      required this.phone,
+      required this.name});
 
   @override
   State<OtpValidation> createState() => _OtpValidationState();
@@ -25,6 +33,7 @@ class _OtpValidationState extends State<OtpValidation> {
       customSnackbar(
           message: '6-digit OTP has been sent on your mobile number');
     }
+    sendOtp();
     otpController.start();
   }
 
@@ -32,6 +41,25 @@ class _OtpValidationState extends State<OtpValidation> {
   void dispose() {
     otpController.stop();
     super.dispose();
+  }
+
+  sendOtp() async {
+    await FirebaseAuth.instance.verifyPhoneNumber(
+        phoneNumber: '+91 ' + '8959752763',
+        verificationCompleted: (val) {
+          print('----------> ${val}');
+        },
+        verificationFailed: (val) {
+          print('----------> ${val}');
+        },
+        codeSent: (val, id) {
+          print('----------> ${val}');
+          print('----------> ${id}');
+        },
+        codeAutoRetrievalTimeout: (val) {
+          print('----------> ${val}');
+        });
+        
   }
 
   @override
@@ -76,8 +104,13 @@ class _OtpValidationState extends State<OtpValidation> {
               SizedBox(
                 height: 70,
                 child: CustomGradientButton(
-                    onTap: () async{
-                    // await  FirebaseAuth.instance.signinWith(phoneNumber)
+                    onTap: () async {
+                      //   ApiRequests().register(
+                      //       clubId: orgId,
+                      //       email: emailController.text.trim(),
+                      //       mobile: phoneController.text.trim(),
+                      //       password: passwordController.text.trim(),
+                      //       name: nameController.text.trim());
                     },
                     label: 'Validate OTP'),
               )

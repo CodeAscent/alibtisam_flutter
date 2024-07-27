@@ -57,27 +57,26 @@ class _FlickMultiPlayerState extends State<FlickMultiPlayer> {
           widget.flickMultiManager.play(flickManager);
         }
       },
-      child: Container(
-        child: widget.type == 'image'
-            ? Image.network(
-                widget.url,
-                fit: BoxFit.cover,
-                height: Get.height,
-              )
-            : FlickVideoPlayer(
+      child: widget.type == 'image'
+          ? Image.network(
+              widget.url,
+              fit: BoxFit.cover,
+              height: Get.height,
+            )
+          : Container(
+              child: FlickVideoPlayer(
                 flickManager: flickManager,
                 flickVideoWithControls: FlickVideoWithControls(
                   playerLoadingFallback: Positioned.fill(
                     child: Stack(
                       children: <Widget>[
-                        Center(
-                          child: Positioned(
-                            child: Image.asset(
-                              widget.image!,
-                              fit: BoxFit.cover,
-                              height: 60,
-                              width: 60,
-                            ),
+                        Align(
+                          alignment: Alignment.center,
+                          child: Image.asset(
+                            widget.image!,
+                            fit: BoxFit.cover,
+                            height: 60,
+                            width: 60,
                           ),
                         ),
                         Positioned(
@@ -114,7 +113,7 @@ class _FlickMultiPlayerState extends State<FlickMultiPlayer> {
                   textStyle: TextStyle(fontSize: 16, color: Colors.white),
                 ),
               ),
-      ),
+            ),
     );
   }
 }

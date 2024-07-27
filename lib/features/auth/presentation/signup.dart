@@ -112,14 +112,12 @@ class _SignUpScreenState extends State<SignUpScreen> {
                       height: 70,
                       child: CustomGradientButton(
                           onTap: () {
-                            // Get.to(() => OtpValidation());
                             if (formKey.currentState!.validate()) {
-                              ApiRequests().register(
-                                  clubId: orgId,
-                                  email: emailController.text.trim(),
-                                  mobile: phoneController.text.trim(),
-                                  password: passwordController.text.trim(),
-                                  name: nameController.text.trim());
+                              Get.to(() => OtpValidation(
+                                    email: emailController.text,
+                                    phone: phoneController.text,
+                                    name: nameController.text,
+                                  ));
                             }
                           },
                           label: 'signUp'.tr),
