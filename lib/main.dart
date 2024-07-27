@@ -77,7 +77,7 @@ class _MyAppState extends State<MyApp> {
 
   @override
   Widget build(BuildContext context) {
-    checkForUpdate(context);
+    // checkForUpdate(context);
     return
         // ConnectivityWatcherWrapper(
         //   offlineWidget: CustomNoInternetWrapper(

@@ -4,6 +4,7 @@ import 'package:alibtisam/features/bottomNav/presentation/userDashboard/presenta
 import 'package:flick_video_player/flick_video_player.dart';
 
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 import 'package:visibility_detector/visibility_detector.dart';
 import 'package:video_player/video_player.dart';
 
@@ -61,6 +62,7 @@ class _FlickMultiPlayerState extends State<FlickMultiPlayer> {
             ? Image.network(
                 widget.url,
                 fit: BoxFit.cover,
+                height: Get.height,
               )
             : FlickVideoPlayer(
                 flickManager: flickManager,

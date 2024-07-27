@@ -10,6 +10,7 @@ import 'package:alibtisam/features/bottomNav/presentation/userDashboard/presenta
 import 'package:alibtisam/features/bottomNav/presentation/userDashboard/presentation/events/widgets/feedPlayer/multiManager/feed_multi_player.dart';
 import 'package:alibtisam/network/api_requests.dart';
 import 'package:carousel_slider/carousel_slider.dart';
+import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_native_splash/flutter_native_splash.dart';
 import 'package:get/get.dart';
@@ -61,10 +62,6 @@ class _DummySplashState extends State<DummySplash> {
                   child: Center(
                     child: Stack(
                       children: [
-                        // ...List.generate(snapshot.data!.length, (int index) {
-                        //   return FeedPlayer(
-                        //       url: snapshot.data![index].media[0].url);
-                        // }),
                         VisibilityDetector(
                           key: ObjectKey(flickMultiManager),
                           onVisibilityChanged: (visibility) {
@@ -76,20 +73,92 @@ class _DummySplashState extends State<DummySplash> {
                             scrollDirection: Axis.vertical,
                             itemCount: snapshot.data!.length,
                             itemBuilder: (context, index) {
-                              return GestureDetector(
-                                child: Container(
-                                  height: 800,
-                                  margin: const EdgeInsets.all(2),
-                                  child: ClipRRect(
-                                    borderRadius: BorderRadius.circular(5),
-                                    child: FlickMultiPlayer(
-                                      url: snapshot.data![index].media[0].url,
-                                      flickMultiManager: flickMultiManager,
-                                      image: 'assets/images/loading.gif',
-                                      type: snapshot.data![index].media[0].type,
+                              Events event = snapshot.data![index];
+                              return Stack(
+                                children: [
+                                  Container(
+                                    //   height: 800,
+                                    //   margin: const EdgeInsets.all(2),
+                                    child: ClipRRect(
+                                      borderRadius: BorderRadius.circular(5),
+                                      child: FlickMultiPlayer(
+                                        url: event.media[0].url,
+                                        flickMultiManager: flickMultiManager,
+                                        image: 'assets/images/loading.gif',
+                                        type: event.media[0].type,
+                                      ),
                                     ),
                                   ),
-                                ),
+                                  Positioned(
+                                    bottom: 100,
+                                    child: Container(
+                                      decoration: BoxDecoration(boxShadow: [
+                                        BoxShadow(
+                                          color: Colors.black45,
+                                          blurRadius: 130,
+                                        ),
+                                        // BoxShadow(
+                                        //   color: Colors.black,
+                                        //   blurRadius: 20,
+                                        // )
+                                      ]),
+                                      padding: const EdgeInsets.all(8.0),
+                                      child: Column(
+                                        crossAxisAlignment:
+                                            CrossAxisAlignment.start,
+                                        children: [
+                                          Row(
+                                            children: [
+                                              CircleAvatar(
+                                                child: Image.asset(
+                                                  'assets/images/announcement.png',
+                                                  height: 40,
+                                                  width: 40,
+                                                ),
+                                              ),
+                                              SizedBox(width: 20),
+                                              Text(
+                                                event.category.toUpperCase(),
+                                                style: TextStyle(
+                                                    color: Colors.white,
+                                                    fontSize: 22,
+                                                    fontWeight:
+                                                        FontWeight.w800),
+                                              ),
+                                            ],
+                                          ),
+                                          SizedBox(height: 10),
+                                          Text(
+                                            event.description,
+                                            maxLines: 2,
+                                            style: TextStyle(
+                                              color: Colors.white,
+                                              fontWeight: FontWeight.w800,
+                                              fontSize: 16,
+                                            ),
+                                          ),
+                                          GestureDetector(
+                                            onTap: () {
+                                              LoadingManager.dummyLoading();
+                                              eventNavigationController
+                                                  .navigatingFromSplash(true);
+                                              Get.to(() => EventDescription(
+                                                  event: event));
+                                            },
+                                            child: Text(
+                                              '\nView details',
+                                              style: TextStyle(
+                                                color: Colors.white,
+                                                fontWeight: FontWeight.w800,
+                                                fontSize: 16,
+                                              ),
+                                            ),
+                                          ),
+                                        ],
+                                      ),
+                                    ),
+                                  ),
+                                ],
                               );
                             },
                           ),
@@ -136,16 +205,17 @@ class _DummySplashState extends State<DummySplash> {
                     ),
                   ),
                 ),
-                Align(
-                    alignment: Alignment.bottomLeft,
-                    child: Padding(
-                      padding: const EdgeInsets.all(25.0),
-                      child: ElevatedButton(
-                          onPressed: () {
-                            Get.to(() => CheckLogin());
-                          },
-                          child: Text("skip")),
-                    ))
+                Positioned(
+                  top: 30,
+                  right: 20,
+                  child: SafeArea(
+                    child: ElevatedButton(
+                        onPressed: () {
+                          Get.to(() => CheckLogin());
+                        },
+                        child: Text("skip")),
+                  ),
+                ),
               ],
             );
           }

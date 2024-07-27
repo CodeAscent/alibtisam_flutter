@@ -6,6 +6,7 @@ import 'package:alibtisam/features/auth/controller/otp_resend_count.dart';
 import 'package:alibtisam/features/auth/presentation/otp_validation.dart';
 import 'package:alibtisam/features/auth/widgets/otp_pin.dart';
 import 'package:alibtisam/network/api_requests.dart';
+import 'package:alibtisam/network/org_id.dart';
 import 'package:flutter/material.dart';
 import 'package:alibtisam/features/auth/widgets/logo_&_arabic_text.dart';
 import 'package:alibtisam/core/common/widgets/custom_text_field.dart';
@@ -43,11 +44,7 @@ class _SignUpScreenState extends State<SignUpScreen> {
     }
     setState(() {});
   }
-//real
-//   String alibtisamClubId = '666aa3d2db7dedd02b16a297';
 
-//fake
-  String alibtisamClubId = '669b5681b6d525fbb7885f2f';
   @override
   Widget build(BuildContext context) {
     return CustomLoader(
@@ -118,7 +115,7 @@ class _SignUpScreenState extends State<SignUpScreen> {
                             // Get.to(() => OtpValidation());
                             if (formKey.currentState!.validate()) {
                               ApiRequests().register(
-                                  clubId: alibtisamClubId,
+                                  clubId: orgId,
                                   email: emailController.text.trim(),
                                   mobile: phoneController.text.trim(),
                                   password: passwordController.text.trim(),
