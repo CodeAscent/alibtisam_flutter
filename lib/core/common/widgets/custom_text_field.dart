@@ -18,6 +18,7 @@ class CustomTextField extends StatelessWidget {
   final String? initial;
   final String? hintText;
   final bool? obscureText;
+  final Widget? prefix;
   const CustomTextField(
       {super.key,
       required this.label,
@@ -34,7 +35,8 @@ class CustomTextField extends StatelessWidget {
       this.maxLength,
       this.initial,
       this.obscureText,
-      this.hintText});
+      this.hintText,
+      this.prefix});
 
   @override
   Widget build(BuildContext context) {
@@ -61,6 +63,7 @@ class CustomTextField extends StatelessWidget {
             : null,
         maxLines: maxLines,
         decoration: InputDecoration(
+            prefixIcon: prefix,
             hintText: hintText,
             counterText: "",
             suffixIcon: suffix,

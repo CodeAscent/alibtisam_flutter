@@ -1,5 +1,5 @@
-import 'package:alibtisam/features/auth/presentation/signup.dart';
-import 'package:alibtisam/features/auth/widgets/logo_&_arabic_text.dart';
+import 'package:alibtisam/features/auth/view/screens/signup.dart';
+import 'package:alibtisam/features/auth/view/widgets/logo_&_arabic_text.dart';
 import 'package:alibtisam/core/common/widgets/custom_gradient_button.dart';
 import 'package:alibtisam/core/common/widgets/custom_loading.dart';
 import 'package:alibtisam/core/common/widgets/custom_text_field.dart';

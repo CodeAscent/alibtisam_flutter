@@ -88,6 +88,8 @@ ThemeData kAppThemeDark() {
     ),
     bottomSheetTheme: BottomSheetThemeData(backgroundColor: Colors.black),
     dropdownMenuTheme: DropdownMenuThemeData(
+               inputDecorationTheme: InputDecorationTheme(),             
+
         menuStyle:
             MenuStyle(backgroundColor: WidgetStatePropertyAll(Colors.black)),
         textStyle: TextStyle(

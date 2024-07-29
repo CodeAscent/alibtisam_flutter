@@ -3,7 +3,8 @@ import 'package:flutter/material.dart';
 import 'package:pinput/pinput.dart';
 
 class OtpPinBox extends StatefulWidget {
-  const OtpPinBox({super.key});
+    final TextEditingController controller;
+  const OtpPinBox({super.key, required this.controller});
 
   @override
   State<OtpPinBox> createState() => _OtpPinBoxState();
@@ -34,6 +35,7 @@ class _OtpPinBoxState extends State<OtpPinBox> {
       ),
     );
     return Pinput(
+        controller: widget.controller,
       length: 6,
       defaultPinTheme: defaultPinTheme,
       focusedPinTheme: focusedPinTheme,

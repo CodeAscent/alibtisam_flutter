@@ -10,11 +10,13 @@ class CustomGradientButton extends StatelessWidget {
     this.onTap,
     this.icon,
     this.disabled = false,
+    this.loading = false,
   });
   final String label;
   final void Function()? onTap;
   final bool? disabled;
   final IconData? icon;
+  final bool? loading;
   @override
   Widget build(BuildContext context) {
     return GestureDetector(
@@ -32,16 +34,20 @@ class CustomGradientButton extends StatelessWidget {
             gradient: !disabled! ? kGradientColor() : null,
             borderRadius: BorderRadius.circular(20)),
         child: Center(
-          child: Text(
-            label!,
-            maxLines: 2,
-            textAlign: TextAlign.center,
-            style: TextStyle(
-              fontSize: 18,
-              color: disabled! ? Colors.grey : Colors.white,
-              fontWeight: FontWeight.w800,
-            ),
-          ),
+          child: loading!
+              ? CircularProgressIndicator(
+                  color: Colors.white,
+                )
+              : Text(
+                  label!,
+                  maxLines: 2,
+                  textAlign: TextAlign.center,
+                  style: TextStyle(
+                    fontSize: 18,
+                    color: disabled! ? Colors.grey : Colors.white,
+                    fontWeight: FontWeight.w800,
+                  ),
+                ),
         ),
       ),
     );

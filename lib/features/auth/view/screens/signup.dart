@@ -3,14 +3,17 @@ import 'package:alibtisam/core/common/widgets/custom_loading.dart';
 import 'package:alibtisam/core/theme/app_colors.dart';
 import 'package:alibtisam/core/utils/custom_snackbar.dart';
 import 'package:alibtisam/features/auth/controller/otp_resend_count.dart';
-import 'package:alibtisam/features/auth/presentation/otp_validation.dart';
-import 'package:alibtisam/features/auth/widgets/otp_pin.dart';
+import 'package:alibtisam/features/auth/view/screens/otp_validation.dart';
+import 'package:alibtisam/features/auth/view/widgets/otp_pin.dart';
+import 'package:alibtisam/features/auth/viewmodel/sign_up_viewmodel.dart';
 import 'package:alibtisam/network/api_requests.dart';
 import 'package:alibtisam/network/org_id.dart';
+import 'package:country_code_picker/country_code_picker.dart';
 import 'package:flutter/material.dart';
-import 'package:alibtisam/features/auth/widgets/logo_&_arabic_text.dart';
+import 'package:alibtisam/features/auth/view/widgets/logo_&_arabic_text.dart';
 import 'package:alibtisam/core/common/widgets/custom_text_field.dart';
 import 'package:get/get.dart';
+import 'package:logger/web.dart';
 
 class SignUpScreen extends StatefulWidget {
   const SignUpScreen({super.key});
@@ -30,7 +33,8 @@ class _SignUpScreenState extends State<SignUpScreen> {
   List<dynamic> clubs = [];
   bool isSecurePassword = true;
   final otpController = Get.find<OtpResendCountController>();
-
+  final signUpViewmodel = Get.find<SignUpViewmodel>();
+  String selectedCountryCode = '+966';
   @override
   void initState() {
     super.initState();
@@ -95,6 +99,23 @@ class _SignUpScreenState extends State<SignUpScreen> {
                     ),
                     SizedBox(height: 10),
                     CustomTextField(
+                      prefix: CountryCodePicker(
+                        onChanged: (val) {
+                          setState(() {
+                            selectedCountryCode = val.dialCode!;
+                          });
+                        },
+
+                        // Initial selection and favorite can be one of code ('IT') OR dial_code('+39')
+                        initialSelection: '+966',
+                        favorite: ['+91', 'IN', '+966'],
+                        // optional. Shows only country name and flag
+                        showCountryOnly: false,
+                        // optional. Shows only country name and flag when popup is closed.
+                        showOnlyCountryWhenClosed: false,
+                        // optional. aligns the flag and the Text left
+                        alignLeft: false,
+                      ),
                       maxLength: 10,
                       controller: phoneController,
                       label: "phone".tr,
@@ -110,17 +131,21 @@ class _SignUpScreenState extends State<SignUpScreen> {
                     SizedBox(height: 10),
                     SizedBox(
                       height: 70,
-                      child: CustomGradientButton(
-                          onTap: () {
-                            if (formKey.currentState!.validate()) {
-                              Get.to(() => OtpValidation(
+                      child: Obx(
+                        () => CustomGradientButton(
+                            loading: signUpViewmodel.loading.value,
+                            onTap: () {
+                              if (formKey.currentState!.validate()) {
+                                signUpViewmodel.checkUserExist(
                                     email: emailController.text,
-                                    phone: phoneController.text,
+                                    mobile: selectedCountryCode +
+                                        phoneController.text,
                                     name: nameController.text,
-                                  ));
-                            }
-                          },
-                          label: 'signUp'.tr),
+                                    password: passwordController.text);
+                              }
+                            },
+                            label: 'signUp'.tr),
+                      ),
                     ),
                     SizedBox(height: 40),
                     Divider(),

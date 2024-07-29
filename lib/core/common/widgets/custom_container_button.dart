@@ -9,10 +9,12 @@ class CustomContainerButton extends StatelessWidget {
     required this.label,
     this.onTap,
     this.flexibleHeight,
+    this.loading = false,
   });
   final String label;
   final void Function()? onTap;
   final double? flexibleHeight;
+  final bool? loading;
   @override
   Widget build(BuildContext context) {
     return GestureDetector(
@@ -26,15 +28,19 @@ class CustomContainerButton extends StatelessWidget {
             color: primaryColor(),
             borderRadius: BorderRadius.circular(20)),
         child: Center(
-          child: Text(
-            label.capitalize!,
-            textAlign: TextAlign.center,
-            style: TextStyle(
-              fontSize: 18,
-              color: Colors.white,
-              fontWeight: FontWeight.w800,
-            ),
-          ),
+          child: loading!
+              ? CircularProgressIndicator(
+                  color: Colors.white,
+                )
+              : Text(
+                  label.capitalize!,
+                  textAlign: TextAlign.center,
+                  style: TextStyle(
+                    fontSize: 18,
+                    color: Colors.white,
+                    fontWeight: FontWeight.w800,
+                  ),
+                ),
         ),
       ),
     );

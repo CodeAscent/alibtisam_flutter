@@ -5,6 +5,7 @@ import 'package:alibtisam/core/localStorage/token_id.dart';
 import 'package:alibtisam/core/utils/loading_manager.dart';
 import 'package:flutter/material.dart';
 import 'package:http/http.dart' as http;
+import 'package:logger/logger.dart';
 
 class HttpWrapper {
   static Future<Map<String, String>> header() async {
@@ -37,6 +38,7 @@ class HttpWrapper {
     try {
       final res = await http.post(Uri.parse(url),
           headers: await header(), body: jsonEncode(body));
+      Logger().w(body);
       return res;
     } catch (e) {
       print(e);

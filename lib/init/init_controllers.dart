@@ -1,4 +1,5 @@
 import 'package:alibtisam/features/auth/controller/otp_resend_count.dart';
+import 'package:alibtisam/features/auth/viewmodel/sign_up_viewmodel.dart';
 import 'package:alibtisam/features/bottomNav/controller/attendance.dart';
 import 'package:alibtisam/features/bottomNav/controller/chat_messages.dart';
 import 'package:alibtisam/features/bottomNav/controller/chats_list.dart';
@@ -18,6 +19,7 @@ import 'package:alibtisam/features/bottomNav/presentation/userDashboard/presenta
 import 'package:alibtisam/core/theme/controller/theme_controller.dart';
 import 'package:alibtisam/core/common/controller/custom_loading_controller.dart';
 import 'package:alibtisam/features/bottomNav/presentation/userDashboard/presentation/events/controller/event_navigation.dart';
+import 'package:alibtisam/features/bottomNav/presentation/userDashboard/presentation/tournamentRequest/viewmodel/tournament_request_viewmodel.dart';
 import 'package:get/get.dart';
 
 initControllers() {
@@ -41,4 +43,6 @@ initControllers() {
   Get.put(GroupsController());
   Get.put(OtpResendCountController());
   Get.put(PlayerPolarizationController());
+  Get.put(SignUpViewmodel());
+  Get.put(TournamentRequestViewmodel());
 }

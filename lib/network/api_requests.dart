@@ -1,6 +1,7 @@
 import 'dart:async';
 import 'dart:convert';
 import 'package:alibtisam/core/localStorage/fcm_token.dart';
+import 'package:alibtisam/features/auth/view/screens/login.dart';
 import 'package:alibtisam/features/bottomNav/bottom_nav.dart';
 import 'package:alibtisam/features/bottomNav/controller/selected_player.dart';
 import 'package:alibtisam/features/bottomNav/controller/user.dart';
@@ -94,7 +95,7 @@ class ApiRequests {
       final res = await HttpWrapper.postRequest(register_user, body);
       final data = jsonDecode(res.body);
       if (res.statusCode == 200) {
-        Get.back();
+        Get.offAll(() => LoginScreen());
       }
       customSnackbar(message: data["message"]);
     } on ServerException catch (e) {
@@ -759,6 +760,28 @@ class ApiRequests {
           users.add(UserModel.fromMap(item));
         }
       }
+      return users;
+    } on ServerException catch (e) {
+      await LoadingManager.endLoading();
+      customSnackbar(message: e.message);
+    }
+    return null;
+  }
+
+  Future<List<UserModel>?> getCoachesByGame({
+    required String stage,
+  }) async {
+    try {
+      List<UserModel>? users = [];
+      //   final res = await HttpWrapper.getRequest(
+      //       base_url + "player/players?stage=" + stage);
+      //   final data = jsonDecode(res.body);
+      //   for (var item in data['players']) {
+      //     Logger().w(item);
+      //     if (item != null) {
+      //       users.add(UserModel.fromMap(item));
+      //     }
+      //   }
       return users;
     } on ServerException catch (e) {
       await LoadingManager.endLoading();

@@ -1,8 +1,8 @@
 import 'dart:async';
 
 import 'package:alibtisam/features/bottomNav/bottom_nav.dart';
-import 'package:alibtisam/features/auth/widgets/logo_&_arabic_text.dart';
-import 'package:alibtisam/features/auth/presentation/login.dart';
+import 'package:alibtisam/features/auth/view/widgets/logo_&_arabic_text.dart';
+import 'package:alibtisam/features/auth/view/screens/login.dart';
 import 'package:alibtisam/core/localStorage/token_id.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';

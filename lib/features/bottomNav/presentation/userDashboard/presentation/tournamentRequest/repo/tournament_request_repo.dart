@@ -1,0 +1,48 @@
+import 'package:alibtisam/core/error/server_exception.dart';
+import 'package:alibtisam/network/api_urls.dart';
+import 'package:alibtisam/network/http_wrapper.dart';
+
+class TournamentRequestRepo {
+  Future requestTorunament(
+      {required String name,
+      required String startDate,
+      required String endDate,
+      required String type,
+      required String location,
+      required String description,
+      required String travelDate,
+      required String transportMedium,
+      required String expectedDeparture,
+      required String expectedArrival,
+      required String from,
+      required String to,
+      required String teamName,
+      required List<String> playerIds,
+      required List<String> coachIds,
+      required int requestedAmount}) async {
+    try {
+      final res =
+          await HttpWrapper.postRequest(base_url + 'request/tournament', {
+        "name": name,
+        "startDate": startDate,
+        "endDate": endDate,
+        "type": type,
+        "location": location,
+        "description": description,
+        "travelDate": travelDate,
+        "transportMedium": transportMedium,
+        "expectedDeparture": expectedDeparture,
+        "expectedArrival": expectedArrival,
+        "from": from,
+        "to": to,
+        "teamName": teamName,
+        "playerIds": playerIds,
+        "coachIds": coachIds,
+        "requestedAmount": requestedAmount
+      });
+      return res;
+    } catch (e) {
+      throw ServerException(e.toString());
+    }
+  }
+}
