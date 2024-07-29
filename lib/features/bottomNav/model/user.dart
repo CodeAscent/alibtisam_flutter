@@ -149,7 +149,9 @@ class UserModel {
       map['motherName'] != null ? map['motherName'] as String : null,
       map['city'] != null ? map['city'] as String : null,
       map['state'] != null ? map['state'] as String : null,
-      map['guardianId'] != null ? map['guardianId'] as String : null,
+      map['guardianId'] == null || map['guardianId'].runtimeType != String
+          ? null
+          : map['guardianId'],
       map['idFrontImage'] != null ? map['idFrontImage'] as String : null,
       map['idBackImage'] != null ? map['idBackImage'] as String : null,
       map['certificateLink'] != null ? map['certificateLink'] as String : null,

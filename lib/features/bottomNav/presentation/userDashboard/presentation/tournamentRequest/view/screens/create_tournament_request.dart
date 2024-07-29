@@ -68,12 +68,10 @@ class _CreateTournamentRequestScreenState
                   if (selectedPlayerIds.isEmpty) {
                     return customSnackbar(
                         message: 'Please select players for the tournament');
-                  }
-                  // else if (selectedCoachIds.isEmpty) {
-                  //   return customSnackbar(
-                  //       message: 'Please select coaches for the tournament');
-                  // }
-                  else if (formKey.currentState!.validate()) {
+                  } else if (selectedCoachIds.isEmpty) {
+                    return customSnackbar(
+                        message: 'Please select coaches for the tournament');
+                  } else if (formKey.currentState!.validate()) {
                     await tournamentRequestViewmodel.createTournamentRequest(
                         name: name.text,
                         startDate: startDate.text,
@@ -101,6 +99,7 @@ class _CreateTournamentRequestScreenState
           body: GetBuilder<TournamentRequestViewmodel>(
             initState: (state) {
               tournamentRequestViewmodel.fetchPlayers();
+              tournamentRequestViewmodel.fetchCoaches();
               type.text = tournamentTypeEnum[0];
             },
             builder: (controller) {
@@ -230,38 +229,38 @@ class _CreateTournamentRequestScreenState
                                                       SizedBox(height: 30),
                                                       ...List.generate(
                                                           controller
-                                                              .players.length,
+                                                              .coaches.length,
                                                           (int index) {
-                                                        UserModel player =
+                                                        UserModel coach =
                                                             controller
-                                                                .players[index];
+                                                                .coaches[index];
                                                         return GestureDetector(
                                                           onTap: () {
                                                             setState(() {
-                                                              if (!selectedPlayerIds
-                                                                  .contains(
-                                                                      player
-                                                                          .id)) {
-                                                                selectedPlayerIds
-                                                                    .add(player
+                                                              if (!selectedCoachIds
+                                                                  .contains(coach
+                                                                      .id)) {
+                                                                selectedCoachIds
+                                                                    .add(coach
                                                                         .id!);
                                                               } else {
-                                                                selectedPlayerIds
-                                                                    .remove(player
+                                                                selectedCoachIds
+                                                                    .remove(coach
                                                                         .id!);
                                                               }
                                                             });
                                                           },
                                                           child: PlayerCard(
+                                                            isCoach: true,
                                                             selected:
-                                                                selectedPlayerIds
+                                                                selectedCoachIds
                                                                     .contains(
-                                                                        player
+                                                                        coach
                                                                             .id),
-                                                            name: player.name!,
-                                                            image: player.pic!,
-                                                            playerId: player.pId
-                                                                .toString(),
+                                                            name: coach.name!,
+                                                            image: coach.pic!,
+                                                            playerId:
+                                                                ''.toString(),
                                                           ),
                                                         );
                                                       }),

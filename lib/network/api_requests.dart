@@ -767,6 +767,28 @@ class ApiRequests {
     }
     return null;
   }
+  Future<List<UserModel>?> getCoachesByStage({
+    required String stage,
+  }) async {
+    try {
+      List<UserModel>? users = [];
+    final  userController = Get.find<UserController>();
+      final res = await HttpWrapper.getRequest(
+          base_url + "coach/all?stage=$stage&gameId=${userController.user!.gameId!.id}" );
+      final data = jsonDecode(res.body);
+      for (var item in data['coaches']) {
+        Logger().w(item);
+        if (item != null) {
+          users.add(UserModel.fromMap(item));
+        }
+      }
+      return users;
+    } on ServerException catch (e) {
+      await LoadingManager.endLoading();
+      customSnackbar(message: e.message);
+    }
+    return null;
+  }
 
   Future<List<UserModel>?> getCoachesByGame({
     required String stage,

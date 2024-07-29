@@ -3,6 +3,7 @@ import 'dart:convert';
 import 'package:alibtisam/core/error/server_exception.dart';
 import 'package:alibtisam/core/utils/custom_snackbar.dart';
 import 'package:alibtisam/features/bottomNav/model/user.dart';
+import 'package:alibtisam/features/bottomNav/presentation/userDashboard/presentation/tournamentRequest/models/tournament_model.dart';
 import 'package:alibtisam/features/bottomNav/presentation/userDashboard/presentation/tournamentRequest/repo/tournament_request_repo.dart';
 import 'package:alibtisam/network/api_requests.dart';
 import 'package:get/get.dart';
@@ -12,6 +13,9 @@ class TournamentRequestViewmodel extends GetxController {
   TournamentRequestRepo tournamentRequestRepo = TournamentRequestRepo();
   List<UserModel> players = [];
   List<UserModel> coaches = [];
+  late TournamentModel tournament;
+  List<dynamic> requestedTournaments = [];
+
   createTournamentRequest(
       {required String name,
       required String startDate,
@@ -71,8 +75,52 @@ class TournamentRequestViewmodel extends GetxController {
   fetchCoaches() async {
     loading.value = true;
     coaches = [];
-    coaches = (await ApiRequests().getPlayersByStage(stage: 'PROFESSIONAL'))!;
+    coaches = (await ApiRequests().getCoachesByStage(stage: 'PROFESSIONAL'))!;
     loading.value = false;
     update();
+  }
+
+  fetchTournamentRequests() async {
+    try {
+      loading.value = true;
+      final res = await tournamentRequestRepo.fetchTournamentsRequests();
+
+      loading.value = false;
+      update();
+      final data = jsonDecode(res.body);
+
+      if (res.statusCode == 200) {
+        requestedTournaments = data['requests'];
+        return requestedTournaments;
+      }
+
+      return customSnackbar(message: data['message']);
+    } on ServerException catch (e) {
+      customSnackbar(message: e.message);
+      loading.value = false;
+      customSnackbar(message: e.message);
+    }
+  }
+
+  viewTournamentRequests({required String id}) async {
+    try {
+      loading.value = true;
+      final res = await tournamentRequestRepo.fetchTournamentDataById(id: id);
+
+      loading.value = false;
+      update();
+      final data = jsonDecode(res.body);
+      if (res.statusCode == 200) {
+        tournament = TournamentModel.fromMap(data['request']);
+        update();
+        return tournament;
+      }
+
+      return customSnackbar(message: data['message']);
+    } on ServerException catch (e) {
+      customSnackbar(message: e.message);
+      loading.value = false;
+      customSnackbar(message: e.message);
+    }
   }
 }

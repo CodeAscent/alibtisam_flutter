@@ -9,13 +9,15 @@ class PlayerCard extends StatelessWidget {
   final bool? showArrow;
   final Widget? extraWidget;
   final bool? selected;
+  final bool? isCoach;
   const PlayerCard(
       {required this.name,
       required this.image,
       required this.playerId,
       this.showArrow = true,
       this.extraWidget,
-      this.selected = false});
+      this.selected = false,
+      this.isCoach = false});
 
   @override
   Widget build(BuildContext context) {
@@ -51,7 +53,7 @@ class PlayerCard extends StatelessWidget {
                   name.capitalize!,
                   style: TextStyle(fontSize: 18, fontWeight: FontWeight.w600),
                 ),
-                Text('Player Id: $playerId'),
+                if (!isCoach!) Text('Player Id: $playerId'),
                 if (extraWidget != null) extraWidget!,
               ],
             ),

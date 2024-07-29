@@ -45,4 +45,25 @@ class TournamentRequestRepo {
       throw ServerException(e.toString());
     }
   }
+
+  fetchTournamentsRequests() async {
+    try {
+      final res = await HttpWrapper.getRequest(
+          base_url + 'request/by-status/all?kind=tournamentRequest');
+
+      return res;
+    } catch (e) {
+      throw ServerException(e.toString());
+    }
+  }
+
+  fetchTournamentDataById({required String id})async{
+    try {
+      final res = await HttpWrapper.getRequest(base_url + 'request/get/$id');
+      return res;
+    } catch (e) {
+      throw ServerException(e.toString());
+      
+    }
+  }
 }
