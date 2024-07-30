@@ -1,5 +1,6 @@
 import 'dart:io';
 
+import 'package:age_calculator/age_calculator.dart';
 import 'package:alibtisam/features/bottomNav/controller/games.dart';
 import 'package:alibtisam/features/bottomNav/controller/user.dart';
 import 'package:alibtisam/features/bottomNav/model/user.dart';
@@ -206,7 +207,8 @@ class _ExternalEnrollmentFormState extends State<ExternalEnrollmentForm> {
                             onChanged: (val) {
                               relationWithApplicantController.text = val ?? '';
                               if (val == "SELF") {
-                                nameController.text = userController.user!.name!;
+                                nameController.text =
+                                    userController.user!.name!;
                                 emailController.text =
                                     userController.user!.email!;
                                 phoneController.text =
@@ -270,7 +272,9 @@ class _ExternalEnrollmentFormState extends State<ExternalEnrollmentForm> {
                         children: [
                           CustomTextField(
                             hintText: "YYYY-MM-DD",
-                            label: "DOB*",
+                            label: dobController.text == ''
+                                ? "DOB*"
+                                : "DOB* (Age : ${AgeCalculator.age(DateTime.parse(dobController.text)).years})",
                             width: Get.width * 0.44,
                             height: 60,
                             readOnly: true,
@@ -284,6 +288,7 @@ class _ExternalEnrollmentFormState extends State<ExternalEnrollmentForm> {
                                           lastDate: DateTime.now())
                                       .then((value) => dobController.text =
                                           customDateFormat(value.toString()));
+                                  setState(() {});
                                 },
                                 icon: Icon(Icons.date_range)),
                             controller: dobController,

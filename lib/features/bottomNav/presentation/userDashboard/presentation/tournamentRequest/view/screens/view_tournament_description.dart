@@ -1,16 +1,30 @@
+// ignore_for_file: public_member_api_docs, sort_constructors_first
+import 'package:age_calculator/age_calculator.dart';
+import 'package:flutter/material.dart';
+import 'package:get/get.dart';
+
+import 'package:alibtisam/core/common/widgets/custom_tab_bar.dart';
 import 'package:alibtisam/core/theme/app_colors.dart';
 import 'package:alibtisam/core/utils/custom_date_formatter.dart';
 import 'package:alibtisam/features/bottomNav/model/user.dart';
 import 'package:alibtisam/features/bottomNav/presentation/userDashboard/presentation/tournamentRequest/models/tournament_model.dart';
 import 'package:alibtisam/features/bottomNav/presentation/userDashboard/presentation/tournamentRequest/viewmodel/tournament_request_viewmodel.dart';
 import 'package:alibtisam/features/bottomNav/widgets/player_card.dart';
-import 'package:flutter/material.dart';
-import 'package:get/get.dart';
 
-class ViewTournamentDescription extends StatelessWidget {
+class ViewTournamentDescription extends StatefulWidget {
   final String id;
-  const ViewTournamentDescription({super.key, required this.id});
+  const ViewTournamentDescription({
+    Key? key,
+    required this.id,
+  }) : super(key: key);
 
+  @override
+  State<ViewTournamentDescription> createState() =>
+      _ViewTournamentDescriptionState();
+}
+
+class _ViewTournamentDescriptionState extends State<ViewTournamentDescription> {
+  bool showPlayers = true;
   @override
   Widget build(BuildContext context) {
     final tournamentRequestViewmodel = Get.find<TournamentRequestViewmodel>();
@@ -19,7 +33,7 @@ class ViewTournamentDescription extends StatelessWidget {
         title: Text('View Tournament'),
       ),
       body: GetBuilder<TournamentRequestViewmodel>(initState: (state) {
-        tournamentRequestViewmodel.viewTournamentRequests(id: id);
+        tournamentRequestViewmodel.viewTournamentRequests(id: widget.id);
       }, builder: (controller) {
         final tournament = tournamentRequestViewmodel.tournament;
         return controller.loading.value
@@ -32,7 +46,7 @@ class ViewTournamentDescription extends StatelessWidget {
                   child: Column(
                     children: [
                       customLabelAndText(
-                          'Team Name', tournament.tournamentId!.teamName!),
+                          'Team Name', tournament!.tournamentId!.teamName!),
                       customLabelAndText(
                           'Start Date',
                           customDateFormat(
@@ -68,39 +82,75 @@ class ViewTournamentDescription extends StatelessWidget {
                       customLabelAndText('To', tournament.tournamentId!.to!),
                       customLabelAndText(
                           'Location', tournament.tournamentId!.name!),
-                      Text(
-                        'Players',
-                        style: TextStyle(
-                            fontWeight: FontWeight.w800, fontSize: 22),
+                      Row(
+                        mainAxisAlignment: MainAxisAlignment.center,
+                        children: [
+                          ElevatedButton(
+                            onPressed: () {
+                              setState(() {
+                                showPlayers = true;
+                              });
+                            },
+                            child: Text(
+                              'Players',
+                              style: TextStyle(
+                                  fontWeight: FontWeight.w800, fontSize: 22),
+                            ),
+                          ),
+                          SizedBox(width: 40),
+                          ElevatedButton(
+                            onPressed: () {
+                              setState(() {
+                                showPlayers = false;
+                              });
+                            },
+                            child: Text(
+                              'Coaches',
+                              style: TextStyle(
+                                  fontWeight: FontWeight.w800, fontSize: 22),
+                            ),
+                          ),
+                        ],
                       ),
-                      ...List.generate(
-                          tournament.tournamentId!.playerIds!.length,
-                          (int index) {
-                        UserModel player =
-                            tournament.tournamentId!.playerIds![index];
-                        return PlayerCard(
-                            name: player.name!,
-                            image: player.pic!,
-                            playerId: player.pId.toString());
-                      }),
+                      Visibility(
+                        visible: showPlayers,
+                        child: Column(
+                          children: [
+                            ...List.generate(
+                                tournament.tournamentId!.playerIds!.length,
+                                (int index) {
+                              UserModel player =
+                                  tournament.tournamentId!.playerIds![index];
+                              return PlayerCard(
+                                  extraWidget: Text(
+                                      'Age ${AgeCalculator.age(DateTime.parse(player.dateOfBirth!)).years}'),
+                                  name: player.name!,
+                                  image: player.pic!,
+                                  playerId: player.pId.toString());
+                            }),
+                          ],
+                        ),
+                      ),
                       SizedBox(height: 30),
-                      Text(
-                        'Coaches',
-                        style: TextStyle(
-                            fontWeight: FontWeight.w800, fontSize: 22),
+                      Visibility(
+                        visible: !showPlayers,
+                        child: Column(
+                          children: [
+                            ...List.generate(
+                                tournament.tournamentId!.coachIds!.length,
+                                (int index) {
+                              UserModel coach =
+                                  tournament.tournamentId!.coachIds![index];
+                              return PlayerCard(
+                                isCoach: true,
+                                name: coach.name!,
+                                image: coach.pic!,
+                                playerId: '',
+                              );
+                            }),
+                          ],
+                        ),
                       ),
-                      ...List.generate(
-                          tournament.tournamentId!.coachIds!.length,
-                          (int index) {
-                        UserModel coach =
-                            tournament.tournamentId!.coachIds![index];
-                        return PlayerCard(
-                          isCoach: true,
-                          name: coach.name!,
-                          image: coach.pic!,
-                          playerId: '',
-                        );
-                      }),
                       SizedBox(height: 60)
                     ],
                   ),

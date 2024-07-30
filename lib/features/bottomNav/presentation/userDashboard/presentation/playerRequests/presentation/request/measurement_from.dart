@@ -135,6 +135,7 @@ class MeasurementForm extends StatelessWidget {
                     CustomTextField(
                         readOnly: true,
                         suffix: DropdownButton(
+                            underline: SizedBox(),
                             items: tshirtSize
                                 .map((e) =>
                                     DropdownMenuItem(value: e, child: Text(e)))
@@ -284,8 +285,8 @@ class MeasurementForm extends StatelessWidget {
                                                         children: [
                                                           Visibility(
                                                             visible: user
-                                                                .gameId!.stage
-                                                                !.contains(
+                                                                .gameId!.stage!
+                                                                .contains(
                                                                     'SCHOOL'),
                                                             child: Row(
                                                               children: [
@@ -312,8 +313,8 @@ class MeasurementForm extends StatelessWidget {
                                                           ),
                                                           Visibility(
                                                             visible: user
-                                                                .gameId!.stage
-                                                                !.contains(
+                                                                .gameId!.stage!
+                                                                .contains(
                                                                     'ACADEMY'),
                                                             child: Row(
                                                               children: [

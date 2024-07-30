@@ -162,6 +162,22 @@ class ReportView extends StatelessWidget {
               },
             ),
             CustomSlider(
+              value: report.trainingLoad.friday,
+              label: "friday".tr,
+              canChange: canUpdate,
+              onChanged: (val) {
+                report.trainingLoad.friday = val;
+              },
+            ),
+            CustomSlider(
+              value: report.trainingLoad.saturday,
+              label: "saturday".tr,
+              canChange: canUpdate,
+              onChanged: (val) {
+                report.trainingLoad.saturday = val;
+              },
+            ),
+            CustomSlider(
               value: report.trainingLoad.sunday,
               label: "sunday".tr,
               canChange: canUpdate,

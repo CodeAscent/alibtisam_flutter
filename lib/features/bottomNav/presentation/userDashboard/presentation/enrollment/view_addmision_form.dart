@@ -1,3 +1,4 @@
+import 'package:age_calculator/age_calculator.dart';
 import 'package:alibtisam/core/common/constants/custom_listtile_card.dart';
 import 'package:alibtisam/core/common/widgets/custom_container_button.dart';
 import 'package:alibtisam/core/common/widgets/custom_gradient_button.dart';
@@ -35,7 +36,7 @@ class ViewPlayerByUserModel extends StatelessWidget {
                         );
                       });
                     },
-                    label: 'Next ->')),
+                    label: 'Next ')),
           ),
         ),
       ),
@@ -67,12 +68,18 @@ class ViewPlayerByUserModel extends StatelessWidget {
                   mainAxisAlignment: MainAxisAlignment.start,
                   children: [
                     kCustomListTile(key: "name".tr, value: player.name),
+                    kCustomListTile(
+                        key: "age".tr,
+                        value: AgeCalculator.age(
+                                DateTime.parse(player.dateOfBirth.toString()))
+                            .years),
                     // if (player.request!["status"] != null)
                     //   kCustomListTile(
                     //       key: "status".tr, value: player.request["status"]),
                     kCustomListTile(
                         key: "game".tr,
-                        value: player.gameId!.name! + " " + "(${player.stage})"),
+                        value:
+                            player.gameId!.name! + " " + "(${player.stage})"),
                     kCustomListTile(key: "email".tr, value: player.email),
                     kCustomListTile(key: "mobile".tr, value: player.mobile),
                     kCustomListTile(

@@ -105,6 +105,30 @@ class _TrainingLoadState extends State<TrainingLoad> {
                     ),
                     CustomSlider(
                       value:
+                          monitoringController.monitoring!.trainingLoad.friday,
+                      label: "friday".tr,
+                      canChange: canUpdate,
+                      onChanged: (val) {
+                        monitoringController.monitoring!.trainingLoad.friday =
+                            val;
+
+                        setState(() {});
+                      },
+                    ),
+                    CustomSlider(
+                      value: monitoringController
+                          .monitoring!.trainingLoad.saturday,
+                      label: "saturday".tr,
+                      canChange: canUpdate,
+                      onChanged: (val) {
+                        monitoringController.monitoring!.trainingLoad.saturday =
+                            val;
+
+                        setState(() {});
+                      },
+                    ),
+                    CustomSlider(
+                      value:
                           monitoringController.monitoring!.trainingLoad.sunday,
                       label: "sunday".tr,
                       canChange: canUpdate,
@@ -156,6 +180,10 @@ class _TrainingLoadState extends State<TrainingLoad> {
                                         .monitoring!.trainingLoad.wednesday,
                                     "thursday": monitoringController
                                         .monitoring!.trainingLoad.thursday,
+                                    "friday": monitoringController
+                                        .monitoring!.trainingLoad.friday,
+                                    "saturday": monitoringController
+                                        .monitoring!.trainingLoad.saturday,
                                     "sunday": monitoringController
                                         .monitoring!.trainingLoad.sunday
                                   },

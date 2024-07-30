@@ -13,7 +13,7 @@ class TournamentRequestViewmodel extends GetxController {
   TournamentRequestRepo tournamentRequestRepo = TournamentRequestRepo();
   List<UserModel> players = [];
   List<UserModel> coaches = [];
-  late TournamentModel tournament;
+  TournamentModel? tournament;
   List<dynamic> requestedTournaments = [];
 
   createTournamentRequest(

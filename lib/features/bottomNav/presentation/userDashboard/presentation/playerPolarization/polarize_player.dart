@@ -1,3 +1,4 @@
+import 'package:age_calculator/age_calculator.dart';
 import 'package:alibtisam/core/common/widgets/custom_container_button.dart';
 import 'package:alibtisam/core/theme/app_colors.dart';
 import 'package:alibtisam/core/utils/custom_snackbar.dart';
@@ -114,6 +115,13 @@ class _PolarizePlayerState extends State<PolarizePlayer> {
                         () {}, 'Current Stage', widget.player.stage!),
                     kCustomListTile(() {}, 'Upgradable To',
                         "${widget.player.stage == 'ACADEMY' ? 'SCHOOL' : 'PROFESSIONAL'}"),
+                    kCustomListTile(
+                        () {},
+                        'Age : ',
+                        AgeCalculator.age(
+                                DateTime.parse(widget.player.dateOfBirth!))
+                            .years
+                            .toString()),
                     Visibility(
                       visible: widget.player.stage == 'ACADEMY',
                       child: Column(

@@ -142,7 +142,7 @@ class _GroupsManagementState extends State<GroupsManagement>
               stage: e,
               onTap: () async {
                 Get.to(() => ViewGroupMembers(
-                          canUpdate: true,
+                          canUpdate: e == 'PROFESSIONAL' ? false : true,
                         ))!
                     .then((val) => groupsController.fetchGroups(
                         stage: e, gameId: userController.user!.gameId!.id!));

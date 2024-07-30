@@ -45,6 +45,7 @@ class CustomTextField extends StatelessWidget {
       width: width,
       height: height,
       child: TextFormField(
+        
         obscureText: obscureText ?? false,
         initialValue: initial,
         keyboardType: keyboardType,

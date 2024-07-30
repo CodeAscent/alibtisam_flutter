@@ -1,3 +1,4 @@
+import 'package:age_calculator/age_calculator.dart';
 import 'package:alibtisam/core/common/widgets/custom_container_button.dart';
 import 'package:alibtisam/core/common/widgets/custom_text_field.dart';
 import 'package:alibtisam/features/bottomNav/controller/groups_controller.dart';
@@ -14,8 +15,8 @@ import 'package:flutter/widgets.dart';
 import 'package:get/get.dart';
 
 class ViewGroupMembers extends StatefulWidget {
-    final bool canUpdate;
-  const ViewGroupMembers({super.key,required this.canUpdate});
+  final bool canUpdate;
+  const ViewGroupMembers({super.key, required this.canUpdate});
 
   @override
   State<ViewGroupMembers> createState() => _ViewGroupMembersState();
@@ -152,14 +153,13 @@ class _ViewGroupMembersState extends State<ViewGroupMembers> {
                       final UserModel player = players[index];
                       return GestureDetector(
                         onLongPress: () {
-
-                         if (widget.canUpdate) {
+                          if (widget.canUpdate) {
                             setState(() {
-                            isSelecting = true;
-                            selectedMembers.clear();
-                            selectedMembers.add(player.id!);
-                          });
-                         }
+                              isSelecting = true;
+                              selectedMembers.clear();
+                              selectedMembers.add(player.id!);
+                            });
+                          }
                         },
                         onTap: () {
                           if (!isSelecting) {
@@ -178,6 +178,11 @@ class _ViewGroupMembersState extends State<ViewGroupMembers> {
                           setState(() {});
                         },
                         child: PlayerCard(
+                          extraWidget: Text('Age ' +
+                              AgeCalculator.age(
+                                      DateTime.parse(player.dateOfBirth!))
+                                  .years
+                                  .toString()),
                           selected: selectedMembers.contains(player.id),
                           name: player.name!,
                           image: player.pic!,

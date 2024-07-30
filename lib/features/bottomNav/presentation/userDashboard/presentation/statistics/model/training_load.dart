@@ -6,10 +6,18 @@ class TrainingLoadModel {
   num tuesday;
   num wednesday;
   num thursday;
+  num friday;
+  num saturday;
   num sunday;
-
-  TrainingLoadModel(
-      this.monday, this.tuesday, this.wednesday, this.thursday, this.sunday);
+  TrainingLoadModel({
+    required this.monday,
+    required this.tuesday,
+    required this.wednesday,
+    required this.thursday,
+    required this.friday,
+    required this.saturday,
+    required this.sunday,
+  });
 
   Map<String, dynamic> toMap() {
     return <String, dynamic>{
@@ -17,17 +25,21 @@ class TrainingLoadModel {
       'tuesday': tuesday,
       'wednesday': wednesday,
       'thursday': thursday,
+      'friday': friday,
+      'saturday': saturday,
       'sunday': sunday,
     };
   }
 
   factory TrainingLoadModel.fromMap(Map<String, dynamic> map) {
     return TrainingLoadModel(
-      map['monday'] as num,
-      map['tuesday'] as num,
-      map['wednesday'] as num,
-      map['thursday'] as num,
-      map['sunday'] as num,
+      monday: map['monday'] as num,
+      tuesday: map['tuesday'] as num,
+      wednesday: map['wednesday'] as num,
+      thursday: map['thursday'] as num,
+      friday: map['friday'] as num,
+      saturday: map['saturday'] as num,
+      sunday: map['sunday'] as num,
     );
   }
 

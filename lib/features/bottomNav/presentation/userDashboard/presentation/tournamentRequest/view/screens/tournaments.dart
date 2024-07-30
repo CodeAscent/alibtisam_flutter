@@ -62,11 +62,21 @@ class _TournamentsScreenState extends State<TournamentsScreen> {
                                       Text(data['tournamentId']['name']),
                                       Text('Requested By: ' +
                                           data['requestedBy']['name']),
-                                      Text(
-                                        'Status : ' + data['status'],
-                                        style: TextStyle(
-                                            fontWeight: FontWeight.w800),
-                                      ),
+                                      RichText(
+                                          text: TextSpan(
+                                              text: 'Status : ',
+                                              style: TextStyle(
+                                                  color: Colors.black),
+                                              children: [
+                                            TextSpan(
+                                                text: data['status'],
+                                                style: TextStyle(
+                                                    fontWeight: FontWeight.w800,
+                                                    color: data['status'] ==
+                                                            'APPROVED'
+                                                        ? Colors.green
+                                                        : Colors.orange))
+                                          ]))
                                     ],
                                   ),
                                 ),
