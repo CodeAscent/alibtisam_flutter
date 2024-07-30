@@ -164,8 +164,16 @@ class _CreateTournamentRequestScreenState
                                               child: SingleChildScrollView(
                                                 child: SafeArea(
                                                   child: Column(
+                                                    crossAxisAlignment:
+                                                        CrossAxisAlignment.end,
                                                     children: [
                                                       SizedBox(height: 30),
+                                                      ElevatedButton(
+                                                          onPressed: () {
+                                                            Get.back();
+                                                          },
+                                                          child: Text('Done')),
+                                                      SizedBox(height: 10),
                                                       ...List.generate(
                                                           controller
                                                               .players.length,
@@ -214,7 +222,6 @@ class _CreateTournamentRequestScreenState
                                                   BorderRadius.circular(20)));
                                     },
                                     child: Text('Select Players')),
-                                SizedBox(width: 20),
                                 TextButton(
                                     onPressed: () {
                                       Get.bottomSheet(
@@ -225,8 +232,16 @@ class _CreateTournamentRequestScreenState
                                               child: SingleChildScrollView(
                                                 child: SafeArea(
                                                   child: Column(
+                                                    crossAxisAlignment:
+                                                        CrossAxisAlignment.end,
                                                     children: [
                                                       SizedBox(height: 30),
+                                                      ElevatedButton(
+                                                          onPressed: () {
+                                                            Get.back();
+                                                          },
+                                                          child: Text('Done')),
+                                                      SizedBox(height: 10),
                                                       ...List.generate(
                                                           controller
                                                               .coaches.length,
