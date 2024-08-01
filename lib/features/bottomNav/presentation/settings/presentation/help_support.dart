@@ -98,7 +98,7 @@ class HelpSupportPage extends StatelessWidget {
                 },
                 child: _buildSupportCard(
                   icon: Icons.emoji_nature,
-                  title: "Delete Account".tr,
+                  title: "deleteAccount".tr,
                 ),
               ),
             ],

@@ -40,7 +40,7 @@ class _AttendanceTabScreenState extends State<AttendanceTabScreen>
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text("Attendance"),
+        title: Text("attendance".tr),
         actions: [
           IconButton(
               onPressed: () {
@@ -59,10 +59,10 @@ class _AttendanceTabScreenState extends State<AttendanceTabScreen>
       body: SafeArea(
         child: CustomTabBar(tabController: _tabController, customTabs: [
           Tab(
-            child: Text("IN"),
+            child: Text("in".tr),
           ),
           Tab(
-            child: Text("OUT"),
+            child: Text("out".tr),
           )
         ], tabViewScreens: [
           AttendanceInTime(

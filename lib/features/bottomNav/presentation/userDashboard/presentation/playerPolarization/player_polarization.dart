@@ -40,7 +40,7 @@ class _PlayerPolarizationState extends State<PlayerPolarization>
     return GetBuilder<UserController>(builder: (controller) {
       return Scaffold(
         appBar: AppBar(
-          title: Text('Player Polarization'),
+          title: Text('Player Polarization'.tr),
         ),
         body: CustomTabBar(tabController: _tabController, customTabs: [
           ...userController.user!.stage.where((e) => e != 'PROFESSIONAL').map(

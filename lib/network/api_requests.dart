@@ -27,7 +27,6 @@ import 'package:alibtisam/network/http_wrapper.dart';
 import 'package:get/get.dart';
 import 'package:http/http.dart' as http;
 import 'package:image_picker/image_picker.dart';
-import 'package:logger/web.dart';
 
 class ApiRequests {
   Future<List<Events>> allEvents(String filter) async {
@@ -154,7 +153,6 @@ class ApiRequests {
       final res = await HttpWrapper.getRequest(get_user);
 
       final data = jsonDecode(res.body);
-      Logger().w(data);
       if (res.statusCode == 200) {
         final user = UserModel.fromMap(data["user"]);
         saveToken(data["token"], user.id!);
@@ -186,7 +184,6 @@ class ApiRequests {
       final res = await HttpWrapper.getRequest(
           get_players_requests + "?status=COACH-REQUESTED");
       final data = jsonDecode(res.body);
-      Logger().e(data);
 
       if (res.statusCode == 200) {
         return data['requests'];
@@ -394,7 +391,6 @@ class ApiRequests {
       };
       final res = await HttpWrapper.postRequest(submit_measurement, body);
       final data = jsonDecode(res.body);
-      Logger().w(res.body);
       if (res.statusCode == 200) {
         Get.back();
       }
@@ -456,7 +452,6 @@ class ApiRequests {
       final res =
           await HttpWrapper.getRequest(get_monitoring_by_playerId + playerId);
       final data = jsonDecode(res.body);
-      Logger().e(data);
       if (res.statusCode == 200) {
         MonitoringModel monitoring =
             MonitoringModel.fromMap(data['monitoring']);
@@ -523,7 +518,6 @@ class ApiRequests {
       LoadingManager.startLoading();
       final res = await HttpWrapper.getRequest(get_all_games + "?stage=$stage");
       final data = jsonDecode(res.body);
-      Logger().w(data);
       for (var game in data['dropdown']) {
         games.add(GameModel.fromMap(game));
       }
@@ -621,7 +615,6 @@ class ApiRequests {
       final res = await HttpWrapper.getRequest(
           get_all_completed_attendance + "?groupId=$groupId");
       final data = jsonDecode(res.body);
-      Logger().w(data);
       for (var attendance in data['attendances']) {
         attendances.add(AttendanceHistoryModel.fromMap(attendance));
       }
@@ -658,7 +651,6 @@ class ApiRequests {
       for (var attendance in data['attendances']) {
         playerAttendances.add(AttendanceHistoryModel.fromMap(attendance));
       }
-      Logger().w(playerAttendances);
       return playerAttendances;
     } on ServerException catch (e) {
       await LoadingManager.endLoading();
@@ -672,7 +664,6 @@ class ApiRequests {
       final res =
           await HttpWrapper.getRequest(get_player_attendance_statistics);
       final data = jsonDecode(res.body);
-      Logger().w(data['statistics']);
       return AttendanceStatisticsModel.fromMap(data['statistics']);
     } on ServerException catch (e) {
       await LoadingManager.endLoading();
@@ -686,8 +677,7 @@ class ApiRequests {
     try {
       List<GroupModel>? groups = [];
       final res = await HttpWrapper.getRequest(
-          base_url + "group/all?gameId=$gameId&stage=$stage");
-      Logger().w(res.body);
+          base_url + "group/coach-all?gameId=$gameId&stage=$stage");
       final data = jsonDecode(res.body);
       if (res.statusCode == 200) {
         for (var group in data['groups']) {
@@ -714,7 +704,6 @@ class ApiRequests {
         "name": name,
       });
       final data = jsonDecode(res.body);
-      Logger().w(data);
       group = GroupModel.fromMap(data['group']);
       return group;
     } on ServerException catch (e) {
@@ -733,7 +722,6 @@ class ApiRequests {
           await HttpWrapper.getRequest(base_url + "group/members/" + groupId);
       final data = jsonDecode(res.body);
       for (var item in data['members']) {
-        Logger().w(item);
         if (item['memberId'] != null) {
           users.add(UserModel.fromMap(item['memberId']));
         }
@@ -755,7 +743,6 @@ class ApiRequests {
           base_url + "player/players?stage=" + stage);
       final data = jsonDecode(res.body);
       for (var item in data['players']) {
-        Logger().w(item);
         if (item != null) {
           users.add(UserModel.fromMap(item));
         }
@@ -767,17 +754,17 @@ class ApiRequests {
     }
     return null;
   }
+
   Future<List<UserModel>?> getCoachesByStage({
     required String stage,
   }) async {
     try {
       List<UserModel>? users = [];
-    final  userController = Get.find<UserController>();
-      final res = await HttpWrapper.getRequest(
-          base_url + "coach/all?stage=$stage&gameId=${userController.user!.gameId!.id}" );
+      final userController = Get.find<UserController>();
+      final res = await HttpWrapper.getRequest(base_url +
+          "coach/all?stage=$stage&gameId=${userController.user!.gameId!.id}");
       final data = jsonDecode(res.body);
       for (var item in data['coaches']) {
-        Logger().w(item);
         if (item != null) {
           users.add(UserModel.fromMap(item));
         }
@@ -795,15 +782,7 @@ class ApiRequests {
   }) async {
     try {
       List<UserModel>? users = [];
-      //   final res = await HttpWrapper.getRequest(
-      //       base_url + "player/players?stage=" + stage);
-      //   final data = jsonDecode(res.body);
-      //   for (var item in data['players']) {
-      //     Logger().w(item);
-      //     if (item != null) {
-      //       users.add(UserModel.fromMap(item));
-      //     }
-      //   }
+
       return users;
     } on ServerException catch (e) {
       await LoadingManager.endLoading();
@@ -820,12 +799,6 @@ class ApiRequests {
         "memberId": memberId,
       });
 
-      Logger().e({
-        "groupId": groupId,
-        "memberId": memberId,
-      });
-      Logger().e(base_url + "group/member/add");
-      Logger().e(res.body);
       //   final data = jsonDecode(res.body);
     } on ServerException catch (e) {
       await LoadingManager.endLoading();
@@ -843,7 +816,6 @@ class ApiRequests {
         "members": members,
       });
 
-      Logger().e(res.body);
       //   final data = jsonDecode(res.body);
     } on ServerException catch (e) {
       await LoadingManager.endLoading();
@@ -866,9 +838,7 @@ class ApiRequests {
                   "playerId": playerId,
                   "stage": stage,
                 });
-      Logger().e(base_url + "coach/polarize-player");
-      Logger().e({"playerId": playerId, "stage": stage});
-      Logger().e(res.body);
+
       final data = jsonDecode(res.body);
 
       if (res.statusCode == 200) {
@@ -893,7 +863,6 @@ class ApiRequests {
       );
 
       final data = jsonDecode(res.body);
-      Logger().w(data);
       for (var group in data['groups']) {
         groups.add(GroupModel.fromMap(group['groupId']));
       }

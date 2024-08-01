@@ -58,7 +58,7 @@ class _CreateTournamentRequestScreenState
       key: formKey,
       child: Scaffold(
           appBar: AppBar(
-            title: Text('Create Request'),
+            title: Text('createRequest'.tr),
           ),
           bottomNavigationBar: SafeArea(
             child: Obx(
@@ -110,27 +110,34 @@ class _CreateTournamentRequestScreenState
                         padding: const EdgeInsets.all(16.0),
                         child: Column(
                           children: [
-                            Row(
+                            Wrap(
                               children: [
-                                CupertinoRadio(
-                                    value: tournamentTypeEnum[0],
-                                    groupValue: type.text,
-                                    onChanged: (dynamic val) {
-                                      setState(() {
-                                        type.text = val;
-                                      });
-                                    }),
-                                Text(' Internal Tournament'),
-                                SizedBox(width: 20),
-                                CupertinoRadio(
-                                    value: tournamentTypeEnum[1],
-                                    groupValue: type.text,
-                                    onChanged: (dynamic val) {
-                                      setState(() {
-                                        type.text = val;
-                                      });
-                                    }),
-                                Text(' External Tournament')
+                                Row(
+                                  children: [
+                                    CupertinoRadio(
+                                        value: tournamentTypeEnum[0],
+                                        groupValue: type.text,
+                                        onChanged: (dynamic val) {
+                                          setState(() {
+                                            type.text = val;
+                                          });
+                                        }),
+                                    Text('internalTournament'.tr),
+                                  ],
+                                ),
+                                Row(
+                                  children: [
+                                    CupertinoRadio(
+                                        value: tournamentTypeEnum[1],
+                                        groupValue: type.text,
+                                        onChanged: (dynamic val) {
+                                          setState(() {
+                                            type.text = val;
+                                          });
+                                        }),
+                                    Text('externalTournament'.tr),
+                                  ],
+                                )
                               ],
                             ),
                             SizedBox(height: 20),
@@ -172,7 +179,8 @@ class _CreateTournamentRequestScreenState
                                                           onPressed: () {
                                                             Get.back();
                                                           },
-                                                          child: Text('Done')),
+                                                          child:
+                                                              Text('Done'.tr)),
                                                       SizedBox(height: 10),
                                                       ...List.generate(
                                                           controller
@@ -221,7 +229,7 @@ class _CreateTournamentRequestScreenState
                                               borderRadius:
                                                   BorderRadius.circular(20)));
                                     },
-                                    child: Text('Select Players')),
+                                    child: Text('Select Players'.tr)),
                                 TextButton(
                                     onPressed: () {
                                       Get.bottomSheet(
@@ -240,7 +248,8 @@ class _CreateTournamentRequestScreenState
                                                           onPressed: () {
                                                             Get.back();
                                                           },
-                                                          child: Text('Done')),
+                                                          child:
+                                                              Text('Done'.tr)),
                                                       SizedBox(height: 10),
                                                       ...List.generate(
                                                           controller
@@ -301,7 +310,7 @@ class _CreateTournamentRequestScreenState
                             CustomTextField(
                               readOnly: true,
                               controller: selectedStartDateAndEndDate,
-                              label: 'StartDate & EndDate'.tr,
+                              label: 'Start Date & End Date'.tr,
                               suffix: IconButton(
                                   onPressed: () async {
                                     var results =
@@ -325,7 +334,7 @@ class _CreateTournamentRequestScreenState
                                         endDate.text =
                                             selectedDateRange![1].toString();
                                         selectedStartDateAndEndDate.text =
-                                            'From ${customDateFormat(selectedDateRange![0].toString())} To ${customDateFormat(selectedDateRange![1].toString())}';
+                                            '${'From'.tr} ${customDateFormat(selectedDateRange![0].toString())} ${'To'.tr} ${customDateFormat(selectedDateRange![1].toString())}';
                                       }
                                     });
                                   },

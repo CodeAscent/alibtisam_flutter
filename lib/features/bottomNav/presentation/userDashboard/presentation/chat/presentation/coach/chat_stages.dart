@@ -35,7 +35,7 @@ class _ChatStagesState extends State<ChatStages> with TickerProviderStateMixin {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text('Select Stage'),
+        title: Text('selectstage'.tr),
       ),
       body: CustomTabBar(tabController: _tabController, customTabs: [
         ...user.stage.map(

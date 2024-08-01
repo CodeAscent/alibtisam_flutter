@@ -21,7 +21,13 @@ class HttpWrapper {
 
   static Future<http.Response> getRequest(String url) async {
     try {
+      Logger().w(url);
+      print('-------------------');
+
+      Logger().w(await header());
+      print('-------------------');
       final res = await http.get(Uri.parse(url), headers: await header());
+
       return res;
     } catch (e) {
       print(e);
@@ -36,9 +42,15 @@ class HttpWrapper {
 
   static Future<http.Response> postRequest(String url, Object? body) async {
     try {
+      Logger().w(url);
+      print('-------------------');
+
+      Logger().w(await header());
+      print('-------------------');
+      Logger().w(body);
       final res = await http.post(Uri.parse(url),
           headers: await header(), body: jsonEncode(body));
-      Logger().w(body);
+
       return res;
     } catch (e) {
       print(e);
@@ -131,6 +143,7 @@ class HttpWrapper {
               } else {
                 return Center(
                   child: CircularProgressIndicator(
+                    color: Colors.white,
                     value: loadingProgress.expectedTotalBytes != null
                         ? loadingProgress.cumulativeBytesLoaded /
                             (loadingProgress.expectedTotalBytes ?? 1)

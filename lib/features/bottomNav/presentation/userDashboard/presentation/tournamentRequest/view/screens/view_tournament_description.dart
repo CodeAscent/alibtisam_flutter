@@ -30,7 +30,7 @@ class _ViewTournamentDescriptionState extends State<ViewTournamentDescription> {
     final tournamentRequestViewmodel = Get.find<TournamentRequestViewmodel>();
     return Scaffold(
       appBar: AppBar(
-        title: Text('View Tournament'),
+        title: Text('View Tournament'.tr),
       ),
       body: GetBuilder<TournamentRequestViewmodel>(initState: (state) {
         tournamentRequestViewmodel.viewTournamentRequests(id: widget.id);
@@ -46,42 +46,42 @@ class _ViewTournamentDescriptionState extends State<ViewTournamentDescription> {
                   child: Column(
                     children: [
                       customLabelAndText(
-                          'Team Name', tournament!.tournamentId!.teamName!),
+                          'Team Name'.tr, tournament!.tournamentId!.teamName!),
                       customLabelAndText(
-                          'Start Date',
+                          'Start Date'.tr,
                           customDateFormat(
                               tournament.tournamentId!.startDate!)),
-                      customLabelAndText('End Date',
+                      customLabelAndText('End Date'.tr,
                           customDateFormat(tournament.tournamentId!.endDate!)),
                       customLabelAndText(
-                          'Statuc', tournament.tournamentId!.status!),
+                          'Status'.tr, tournament.tournamentId!.status!),
                       customLabelAndText(
-                          'Type',
+                          'Type'.tr,
                           tournament.tournamentId!.type! +
-                              ' Tournament'.toUpperCase()),
+                              'Tournament'.tr.toUpperCase()),
                       customLabelAndText(
-                          'Location', tournament.tournamentId!.location!),
+                          'Location'.tr, tournament.tournamentId!.location!),
+                      customLabelAndText('Description'.tr,
+                          tournament.tournamentId!.description!),
                       customLabelAndText(
-                          'Description', tournament.tournamentId!.description!),
-                      customLabelAndText(
-                          'Travel Date',
+                          'Travel Date'.tr,
                           customDateFormat(
                               tournament.tournamentId!.travelDate!)),
-                      customLabelAndText('Transport Medium',
+                      customLabelAndText('Transport Medium'.tr,
                           tournament.tournamentId!.transportMedium!),
                       customLabelAndText(
-                          'Expected Departure',
+                          'Expected Departure'.tr,
                           customDateFormat(
                               tournament.tournamentId!.expectedDeparture!)),
                       customLabelAndText(
-                          'Expected Arrival',
+                          'Expected Arrival'.tr,
                           customDateFormat(
                               tournament.tournamentId!.expectedArrival!)),
                       customLabelAndText(
-                          'From', tournament.tournamentId!.from!),
-                      customLabelAndText('To', tournament.tournamentId!.to!),
+                          'From'.tr, tournament.tournamentId!.from!),
+                      customLabelAndText('To'.tr, tournament.tournamentId!.to!),
                       customLabelAndText(
-                          'Location', tournament.tournamentId!.name!),
+                          'Location'.tr, tournament.tournamentId!.name!),
                       Row(
                         mainAxisAlignment: MainAxisAlignment.center,
                         children: [
@@ -92,7 +92,7 @@ class _ViewTournamentDescriptionState extends State<ViewTournamentDescription> {
                               });
                             },
                             child: Text(
-                              'Players',
+                              'Players'.tr,
                               style: TextStyle(
                                   fontWeight: FontWeight.w800, fontSize: 22),
                             ),
@@ -105,7 +105,7 @@ class _ViewTournamentDescriptionState extends State<ViewTournamentDescription> {
                               });
                             },
                             child: Text(
-                              'Coaches',
+                              'Coaches'.tr,
                               style: TextStyle(
                                   fontWeight: FontWeight.w800, fontSize: 22),
                             ),
@@ -123,7 +123,7 @@ class _ViewTournamentDescriptionState extends State<ViewTournamentDescription> {
                                   tournament.tournamentId!.playerIds![index];
                               return PlayerCard(
                                   extraWidget: Text(
-                                      'Age ${AgeCalculator.age(DateTime.parse(player.dateOfBirth!)).years}'),
+                                      '${'Age'.tr} ${AgeCalculator.age(DateTime.parse(player.dateOfBirth!)).years}'),
                                   name: player.name!,
                                   image: player.pic!,
                                   playerId: player.pId.toString());

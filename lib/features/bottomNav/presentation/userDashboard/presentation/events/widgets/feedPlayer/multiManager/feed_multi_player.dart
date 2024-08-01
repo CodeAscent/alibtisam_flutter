@@ -62,6 +62,24 @@ class _FlickMultiPlayerState extends State<FlickMultiPlayer> {
               widget.url,
               fit: BoxFit.cover,
               height: Get.height,
+              width: Get.width,
+              loadingBuilder: (context, child, loadingProgress) {
+                if (loadingProgress == null) {
+                  return child;
+                } else {
+                  return Material(
+                    color: Colors.black,
+                    child: Center(
+                      child: Image.asset(
+                        widget.image!,
+                        fit: BoxFit.cover,
+                        height: 60,
+                        width: 60,
+                      ),
+                    ),
+                  );
+                }
+              },
             )
           : Container(
               child: FlickVideoPlayer(

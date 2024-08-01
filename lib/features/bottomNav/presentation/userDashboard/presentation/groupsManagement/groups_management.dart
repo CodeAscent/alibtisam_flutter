@@ -130,7 +130,7 @@ class _GroupsManagementState extends State<GroupsManagement>
         ),
       ),
       appBar: AppBar(
-        title: Text('Select Stage'),
+        title: Text('selectstage'.tr),
       ),
       body: CustomTabBar(tabController: _tabController, customTabs: [
         ...user.stage.map(

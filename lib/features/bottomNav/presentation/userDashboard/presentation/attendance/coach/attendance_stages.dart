@@ -40,7 +40,7 @@ class _CoachAttendanceStagesState extends State<CoachAttendanceStages>
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text('Select Stage'),
+        title: Text('selectstage'.tr),
       ),
       body: CustomTabBar(tabController: _tabController, customTabs: [
         ...user.stage.map(

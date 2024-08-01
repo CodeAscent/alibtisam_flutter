@@ -5,7 +5,6 @@ import 'package:alibtisam/core/theme/app_colors.dart';
 import 'package:alibtisam/network/api_requests.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:logger/web.dart';
 
 class PlayersRequestHistory extends StatelessWidget {
   const PlayersRequestHistory({super.key});

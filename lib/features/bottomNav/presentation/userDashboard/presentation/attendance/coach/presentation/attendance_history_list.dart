@@ -45,38 +45,6 @@ class _AttendanceHistoryListState extends State<AttendanceHistoryList> {
                   builder: (AttendanceController attendanceController) {
                 return Column(
                   children: [
-                    if (userController.user!.stage == 'SCHOOL-AND-ACADEMY')
-                      Row(
-                        children: [
-                          CupertinoCheckbox(
-                              value: schoolVal,
-                              onChanged: (val) {
-                                setState(() {
-                                  academyVal = false;
-                                  schoolVal = true;
-                                  attendanceController.clearAttendanceId();
-                                  attendanceController.fetchAttendanceHistory(
-                                      groupId:
-                                          groupsController.selectedGroupId);
-                                });
-                              }),
-                          Text('School'),
-                          SizedBox(width: 20),
-                          CupertinoCheckbox(
-                              value: academyVal,
-                              onChanged: (val) {
-                                setState(() {
-                                  academyVal = !false;
-                                  schoolVal = !true;
-                                  attendanceController.clearAttendanceId();
-                                  attendanceController.fetchAttendanceHistory(
-                                      groupId:
-                                          groupsController.selectedGroupId);
-                                });
-                              }),
-                          Text('Academy'),
-                        ],
-                      ),
                     ...List.generate(
                         attendanceController.attendancesHistory.length,
                         (int index) {

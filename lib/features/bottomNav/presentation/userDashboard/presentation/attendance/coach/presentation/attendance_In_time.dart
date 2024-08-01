@@ -102,7 +102,7 @@ class _AttendanceInTimeState extends State<AttendanceInTime> {
                                                     }
                                                     return AlertDialog(
                                                       title: Text(
-                                                          "Write your remark.."),
+                                                          "Write your remark..".tr),
                                                       content: TextFormField(
                                                         controller:
                                                             remarkController,
@@ -145,7 +145,7 @@ class _AttendanceInTimeState extends State<AttendanceInTime> {
                                                     in playersAttendance) {
                                                   if (players.id == player.id) {
                                                     if (players.remark == '') {
-                                                      text = "ADD REMARK";
+                                                      text = "ADD REMARK".tr;
                                                     } else {
                                                       text = players.remark!;
                                                     }

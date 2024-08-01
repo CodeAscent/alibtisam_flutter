@@ -80,7 +80,7 @@ class _AllEventsState extends State<AllEvents> with TickerProviderStateMixin {
                                 ),
                               if (snapshot.data![2].length != 0)
                                 CustomEventsCallByCategory(
-                                  label: 'GENERAL EVENT'.tr,
+                                  label: 'globalEvents'.tr,
                                   snapshot: snapshot.data![2],
                                 ),
                             ],

@@ -4,7 +4,7 @@ import 'package:alibtisam/features/auth/controller/otp_resend_count.dart';
 import 'package:alibtisam/features/auth/repo/firebase_otp_validation.dart';
 import 'package:alibtisam/features/auth/view/widgets/logo_&_arabic_text.dart';
 import 'package:alibtisam/features/auth/view/widgets/otp_pin.dart';
-import 'package:firebase_auth/firebase_auth.dart';
+// import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:get_storage/get_storage.dart';

@@ -49,7 +49,7 @@ class ViewCoachProfile extends StatelessWidget {
                       ),
                       kCustomListTile(key: "name".tr, value: user.name),
                       kCustomListTile(key: "email".tr, value: user.email),
-                      kCustomListTile(key: "gender".tr, value: user.gender),
+                      kCustomListTile(key: "game".tr, value: user.gameId!.name),
                     ]),
               ),
             ),

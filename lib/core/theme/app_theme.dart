@@ -11,6 +11,9 @@ isAppThemeDark() {
 
 ThemeData kAppThemeLight() {
   return ThemeData(
+    colorScheme: ColorScheme.fromSeed(
+      seedColor: primaryColor(),
+    ),
     textTheme: GoogleFonts.poppinsTextTheme(),
     textButtonTheme: TextButtonThemeData(
         style: ElevatedButton.styleFrom(
@@ -76,20 +79,21 @@ ThemeData kAppThemeLight() {
             surfaceTintColor: Colors.white,
             shape: RoundedRectangleBorder(
                 borderRadius: BorderRadius.circular(5)))),
-    colorScheme: ColorScheme.fromSeed(seedColor: Colors.white),
   );
 }
 
 ThemeData kAppThemeDark() {
   return ThemeData.dark().copyWith(
+    colorScheme: ColorScheme.fromSeed(
+      seedColor: primaryColor(),
+    ),
     textTheme: GoogleFonts.poppinsTextTheme().apply(
       bodyColor: Colors.white,
       displayColor: Colors.white,
     ),
     bottomSheetTheme: BottomSheetThemeData(backgroundColor: Colors.black),
     dropdownMenuTheme: DropdownMenuThemeData(
-               inputDecorationTheme: InputDecorationTheme(),             
-
+        inputDecorationTheme: InputDecorationTheme(),
         menuStyle:
             MenuStyle(backgroundColor: WidgetStatePropertyAll(Colors.black)),
         textStyle: TextStyle(
@@ -158,6 +162,5 @@ ThemeData kAppThemeDark() {
             surfaceTintColor: Colors.black,
             shape: RoundedRectangleBorder(
                 borderRadius: BorderRadius.circular(5)))),
-    colorScheme: ColorScheme.fromSeed(seedColor: primaryColor()),
   );
 }

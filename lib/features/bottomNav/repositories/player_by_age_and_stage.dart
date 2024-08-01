@@ -18,9 +18,7 @@ class PlayerByAgeAndStageRepo {
       final data = jsonDecode(res.body);
       List<UserModel> players = [];
 
-      Logger().w(players_by_age_and_stage +
-          'players?stage=$stage&ageCategoryId=$ageCategoryId');
-
+    
       if (res.statusCode == 200) {
         for (var p in data['players']) {
           players.add(UserModel.fromMap(p));

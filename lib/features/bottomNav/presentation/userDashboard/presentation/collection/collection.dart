@@ -29,7 +29,7 @@ class _CollectionScreenState extends State<CollectionScreen>
   }
 
   fetchData() async {
-    await gamesController.fetchGames( stage: '');
+    await gamesController.fetchGames(stage: '');
     _tabController =
         TabController(length: gamesController.games.length, vsync: this);
   }
@@ -48,14 +48,14 @@ class _CollectionScreenState extends State<CollectionScreen>
                 tabController: _tabController!,
                 customTabs: gamesController.games
                     .map((tab) => Text(
-                          "${tab.name!.capitalize}\n${tab.stage}",
+                          "${tab.name!.capitalize}",
                           textAlign: TextAlign.center,
                         ))
                     .toList(),
                 tabViewScreens: gamesController.games
                     .map((game) => FutureBuilder(
-                          future:
-                              ApiRequests().getCollectionsByGameFilter(game.id!),
+                          future: ApiRequests()
+                              .getCollectionsByGameFilter(game.id!),
                           builder: (context, snapshot) {
                             if (snapshot.hasData) {
                               return snapshot.data.length == 0

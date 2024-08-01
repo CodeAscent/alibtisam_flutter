@@ -33,7 +33,7 @@ class _StagesTabBarState extends State<StagesTabBar>
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text('Select Stage'),
+        title: Text('selectstage'.tr),
       ),
       body: CustomTabBar(tabController: _tabController, customTabs: [
         ...user.stage.map(
@@ -76,44 +76,46 @@ class GroupsByStage extends StatelessWidget {
                 child: CircularProgressIndicator(),
               )
             : groupsController.groups!.length == 0
-                ? Center(child: Text('No Groups found'))
-                : ListView.builder(
-                    physics: NeverScrollableScrollPhysics(),
-                    itemCount: groupsController.groups!.length,
-                    shrinkWrap: true,
-                    itemBuilder: (context, index) {
-                      GroupModel group = groupsController.groups![index];
-                      return GestureDetector(
-                        onTap: () async {
-                          groupsController.selectedGroupId = group.id!;
-                          groupsController.updateSelectedGroup(group);
+                ? Center(child: Text('noGroupsFound'.tr))
+                : SingleChildScrollView(
+                    child: ListView.builder(
+                      physics: NeverScrollableScrollPhysics(),
+                      itemCount: groupsController.groups!.length,
+                      shrinkWrap: true,
+                      itemBuilder: (context, index) {
+                        GroupModel group = groupsController.groups![index];
+                        return GestureDetector(
+                          onTap: () async {
+                            groupsController.selectedGroupId = group.id!;
+                            groupsController.updateSelectedGroup(group);
 
-                          if (externalOnTap == true) {
-                            onTap!();
-                          } else {
-                            Get.to(() => CoachPlayersList());
-                          }
-                        },
-                        child: Column(
-                          children: [
-                            Container(
-                              decoration: BoxDecoration(
-                                borderRadius: BorderRadius.circular(10),
-                                color: showSelected == true &&
-                                        groupsController.selectedGroupId ==
-                                            group.id
-                                    ? Colors.blue.shade100
-                                    : null,
+                            if (externalOnTap == true) {
+                              onTap!();
+                            } else {
+                              Get.to(() => CoachPlayersList());
+                            }
+                          },
+                          child: Column(
+                            children: [
+                              Container(
+                                decoration: BoxDecoration(
+                                  borderRadius: BorderRadius.circular(10),
+                                  color: showSelected == true &&
+                                          groupsController.selectedGroupId ==
+                                              group.id
+                                      ? Colors.blue.shade100
+                                      : null,
+                                ),
+                                child: kCustomListTile(
+                                    key: group.name!.capitalize!,
+                                    value:
+                                        "Total members: ${group.totalMembers}"),
                               ),
-                              child: kCustomListTile(
-                                  key: group.name!.capitalize!,
-                                  value:
-                                      "Total members: ${group.totalMembers}"),
-                            ),
-                          ],
-                        ),
-                      );
-                    },
+                            ],
+                          ),
+                        );
+                      },
+                    ),
                   );
       },
     );

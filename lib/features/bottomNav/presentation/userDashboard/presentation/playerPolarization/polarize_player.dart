@@ -57,15 +57,15 @@ class _PolarizePlayerState extends State<PolarizePlayer> {
                 onTap: () {
                   if (groupsManagement.selectedGroupId == '' &&
                       widget.player.stage == 'ACADEMY') {
-                    customSnackbar(message: 'Please Select a group');
+                    customSnackbar(message: 'Please Select a group'.tr);
                   } else {
                     Get.defaultDialog(
                         titleStyle: TextStyle(fontSize: 12),
                         title:
-                            "Are you sure you want update \n${widget.player.name}'s stage?",
+                            "${'Are you sure you want update'.tr} \n${widget.player.name}'s ${'stage'.tr}?",
                         content: Column(
                           children: [
-                            Text('Update Stage From  '),
+                            Text('Update Stage From'.tr),
                             Text(
                               '${widget.player.stage} --> ${widget.player.stage == 'ACADEMY' ? 'SCHOOL' : 'PROFESSIONAL'}',
                               style: TextStyle(
@@ -78,11 +78,11 @@ class _PolarizePlayerState extends State<PolarizePlayer> {
                             onPressed: () async {
                               updatePlayer();
                             },
-                            child: Text('Confirm')));
+                            child: Text('Confirm'.tr)));
                   }
                 },
                 flexibleHeight: 60,
-                label: 'Update Stage',
+                label: 'Update Stage'.tr,
               ),
             ),
       body: loading
@@ -105,19 +105,19 @@ class _PolarizePlayerState extends State<PolarizePlayer> {
                                   Get.to(() => ViewPlayerByUserModel(
                                       player: widget.player));
                                 },
-                                child: Text('VIEW DETAILS')))
+                                child: Text('VIEW DETAILS'.tr)))
                       ],
                     ),
                     SizedBox(height: 20),
                     kCustomListTile(
-                        () {}, 'Current Game', widget.player.gameId!.name!),
+                        () {}, 'Current Game'.tr, widget.player.gameId!.name!),
                     kCustomListTile(
-                        () {}, 'Current Stage', widget.player.stage!),
+                        () {}, 'Current Stage'.tr, widget.player.stage!),
                     kCustomListTile(() {}, 'Upgradable To',
                         "${widget.player.stage == 'ACADEMY' ? 'SCHOOL' : 'PROFESSIONAL'}"),
                     kCustomListTile(
                         () {},
-                        'Age : ',
+                        '${'Age'.tr} : ',
                         AgeCalculator.age(
                                 DateTime.parse(widget.player.dateOfBirth!))
                             .years
@@ -130,7 +130,7 @@ class _PolarizePlayerState extends State<PolarizePlayer> {
                               onPressed: () {
                                 Get.to(() => GroupsManagement());
                               },
-                              child: Text('Manage Groups')),
+                              child: Text('Manage Groups'.tr)),
                           GroupsByStage(
                             showSelected: true,
                             stage: 'SCHOOL',

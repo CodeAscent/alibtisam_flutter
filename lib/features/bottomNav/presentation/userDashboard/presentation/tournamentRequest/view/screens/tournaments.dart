@@ -18,7 +18,7 @@ class _TournamentsScreenState extends State<TournamentsScreen> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text('Tournament Request'),
+        title: Text('Tournament Request'.tr),
       ),
       body: GetBuilder<TournamentRequestViewmodel>(
         initState: (state) {

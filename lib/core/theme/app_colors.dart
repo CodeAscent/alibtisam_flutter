@@ -21,8 +21,9 @@ dynamic kGradientColor() => LinearGradient(
     );
 List<BoxShadow> kBoxShadow() => [
       BoxShadow(
-        color: Colors.grey.shade700,
-        blurRadius: 8,
+        color: Colors.grey.shade400,
+        blurRadius: 10,
+        spreadRadius: 5,
         offset: Offset(0, 6),
       ),
     ];
