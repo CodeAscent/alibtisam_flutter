@@ -8,7 +8,7 @@ import 'package:alibtisam/features/bottomNav/presentation/userDashboard/presenta
 import 'package:alibtisam/core/utils/loading_manager.dart';
 import 'package:alibtisam/features/bottomNav/presentation/userDashboard/presentation/events/widgets/feedPlayer/multiManager/feed_multi_manager.dart';
 import 'package:alibtisam/features/bottomNav/presentation/userDashboard/presentation/events/widgets/feedPlayer/multiManager/feed_multi_player.dart';
-import 'package:alibtisam/network/api_requests.dart';
+import 'package:alibtisam/core/services/api_requests.dart';
 import 'package:carousel_slider/carousel_slider.dart';
 import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';

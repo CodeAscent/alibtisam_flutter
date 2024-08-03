@@ -1,6 +1,6 @@
 import 'package:alibtisam/core/error/server_exception.dart';
-import 'package:alibtisam/network/api_urls.dart';
-import 'package:alibtisam/network/http_wrapper.dart';
+import 'package:alibtisam/core/services/api_urls.dart';
+import 'package:alibtisam/core/services/http_wrapper.dart';
 
 class SignUpRepo {
   checkUserExist({required String mobile, required String email}) async {

@@ -5,7 +5,7 @@ import 'package:alibtisam/core/common/widgets/custom_gradient_button.dart';
 import 'package:alibtisam/core/common/widgets/custom_loading.dart';
 import 'package:alibtisam/core/common/widgets/custom_slider.dart';
 import 'package:alibtisam/core/utils/loading_manager.dart';
-import 'package:alibtisam/network/api_requests.dart';
+import 'package:alibtisam/core/services/api_requests.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 

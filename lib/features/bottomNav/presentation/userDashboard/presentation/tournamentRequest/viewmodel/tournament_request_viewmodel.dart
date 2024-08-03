@@ -5,7 +5,7 @@ import 'package:alibtisam/core/utils/custom_snackbar.dart';
 import 'package:alibtisam/features/bottomNav/model/user.dart';
 import 'package:alibtisam/features/bottomNav/presentation/userDashboard/presentation/tournamentRequest/models/tournament_model.dart';
 import 'package:alibtisam/features/bottomNav/presentation/userDashboard/presentation/tournamentRequest/repo/tournament_request_repo.dart';
-import 'package:alibtisam/network/api_requests.dart';
+import 'package:alibtisam/core/services/api_requests.dart';
 import 'package:get/get.dart';
 
 class TournamentRequestViewmodel extends GetxController {

@@ -13,7 +13,7 @@ import 'package:alibtisam/core/localStorage/token_id.dart';
 import 'package:alibtisam/core/theme/app_colors.dart';
 import 'package:alibtisam/core/utils/custom_date_formatter.dart';
 import 'package:alibtisam/core/utils/custom_snackbar.dart';
-import 'package:alibtisam/network/api_requests.dart';
+import 'package:alibtisam/core/services/api_requests.dart';
 import 'package:flutter/material.dart';
 import 'package:gender_picker/source/enums.dart';
 import 'package:gender_picker/source/gender_picker.dart';
@@ -194,7 +194,7 @@ class _ExternalEnrollmentFormState extends State<ExternalEnrollmentForm> {
                           readOnly: true,
                           controller: relationWithApplicantController,
                           suffix: DropdownButton(
-                            dropdownColor: Colors.white,
+                            // dropdownColor: Colors.white,
                             iconSize: 40,
                             isDense: true,
                             items:
@@ -325,7 +325,7 @@ class _ExternalEnrollmentFormState extends State<ExternalEnrollmentForm> {
                         readOnly: true,
                         controller: stageController,
                         suffix: DropdownButton(
-                          dropdownColor: Colors.white,
+                        //   dropdownColor: Colors.white,
                           iconSize: 40,
                           isDense: true,
                           items: selectStage.map((value) {
@@ -350,7 +350,7 @@ class _ExternalEnrollmentFormState extends State<ExternalEnrollmentForm> {
                         readOnly: true,
                         controller: gameController,
                         suffix: DropdownButton(
-                          dropdownColor: Colors.white,
+                        //   dropdownColor: Colors.white,
                           iconSize: 40,
                           isDense: true,
                           items: gamesController.games.map((value) {

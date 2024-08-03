@@ -9,7 +9,7 @@ import 'package:alibtisam/features/bottomNav/presentation/userDashboard/presenta
 import 'package:alibtisam/features/bottomNav/presentation/userDashboard/presentation/groupsManagement/view_members.dart';
 import 'package:alibtisam/features/bottomNav/presentation/userDashboard/presentation/tournamentRequest/viewmodel/tournament_request_viewmodel.dart';
 import 'package:alibtisam/features/bottomNav/widgets/player_card.dart';
-import 'package:alibtisam/network/api_urls.dart';
+import 'package:alibtisam/core/services/api_urls.dart';
 import 'package:calendar_date_picker2/calendar_date_picker2.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';

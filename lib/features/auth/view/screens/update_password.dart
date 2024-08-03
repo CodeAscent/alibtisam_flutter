@@ -1,21 +1,19 @@
 import 'package:alibtisam/core/common/widgets/custom_gradient_button.dart';
 import 'package:alibtisam/core/common/widgets/custom_text_field.dart';
-import 'package:alibtisam/features/auth/view/screens/update_password.dart';
 import 'package:alibtisam/features/auth/view/widgets/logo_&_arabic_text.dart';
 import 'package:alibtisam/features/auth/view/widgets/otp_pin.dart';
 import 'package:flutter/material.dart';
-import 'package:get/get.dart';
 
-class ForgetPasswordScreen extends StatefulWidget {
-  const ForgetPasswordScreen({super.key});
+class UpdatePasswordScreen extends StatefulWidget {
+  const UpdatePasswordScreen({super.key});
 
   @override
-  State<ForgetPasswordScreen> createState() => _ForgetPasswordScreenState();
+  State<UpdatePasswordScreen> createState() => _UpdatePasswordScreenState();
 }
 
-class _ForgetPasswordScreenState extends State<ForgetPasswordScreen> {
-  final otpController = TextEditingController();
-  bool showOtpBox = false;
+class _UpdatePasswordScreenState extends State<UpdatePasswordScreen> {
+  final newPassword = TextEditingController();
+  final confirmPassword = TextEditingController();
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -28,26 +26,15 @@ class _ForgetPasswordScreenState extends State<ForgetPasswordScreen> {
                 child: LogoAndArabicText(),
               ),
               SizedBox(height: 50),
-              CustomTextField(label: 'Email or phone number'),
+              CustomTextField(label: 'New Password'),
               SizedBox(height: 20),
-              Visibility(
-                  visible: showOtpBox,
-                  child: OtpPinBox(controller: otpController)),
-              SizedBox(height: 10),
-              Row(
-                mainAxisAlignment: MainAxisAlignment.end,
-                children: [
-                  TextButton(onPressed: () {}, child: Text('Resend OTP'))
-                ],
-              ),
+              CustomTextField(label: 'Confirm New Password'),
               SizedBox(height: 50),
               SizedBox(
                 height: 70,
                 child: CustomGradientButton(
-                  label: showOtpBox ? 'Submit' : 'Continue',
+                  label: 'Submit',
                   onTap: () {
-                    showOtpBox = true;
-                    Get.to(() => UpdatePasswordScreen());
                     setState(() {});
                   },
                 ),

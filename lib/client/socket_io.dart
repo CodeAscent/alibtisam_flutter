@@ -3,7 +3,7 @@ import 'package:alibtisam/features/bottomNav/controller/chats_list.dart';
 import 'package:alibtisam/features/bottomNav/controller/user.dart';
 import 'package:alibtisam/features/bottomNav/model/chat_message.dart';
 import 'package:alibtisam/core/localStorage/token_id.dart';
-import 'package:alibtisam/network/api_urls.dart';
+import 'package:alibtisam/core/services/api_urls.dart';
 import 'package:get/get.dart';
 import 'package:socket_io_client/socket_io_client.dart' as IO;
 

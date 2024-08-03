@@ -1,5 +1,5 @@
 import 'package:alibtisam/core/utils/loading_manager.dart';
-import 'package:alibtisam/network/api_requests.dart';
+import 'package:alibtisam/core/services/api_requests.dart';
 import 'package:get/get.dart';
 
 class MeasurementReqController extends GetxController {

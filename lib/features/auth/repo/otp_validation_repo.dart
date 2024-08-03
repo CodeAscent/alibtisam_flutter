@@ -1,10 +1,10 @@
 import 'dart:convert';
 
 import 'package:alibtisam/core/utils/custom_snackbar.dart';
-import 'package:alibtisam/network/api_requests.dart';
-import 'package:alibtisam/network/api_urls.dart';
-import 'package:alibtisam/network/http_wrapper.dart';
-import 'package:alibtisam/network/org_id.dart';
+import 'package:alibtisam/core/services/api_requests.dart';
+import 'package:alibtisam/core/services/api_urls.dart';
+import 'package:alibtisam/core/services/http_wrapper.dart';
+import 'package:alibtisam/core/services/org_id.dart';
 // import 'package:firebase_auth/firebase_auth.dart';
 
 import 'package:logger/logger.dart';

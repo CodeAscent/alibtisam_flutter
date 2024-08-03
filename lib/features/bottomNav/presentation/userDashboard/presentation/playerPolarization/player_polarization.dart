@@ -7,7 +7,7 @@ import 'package:alibtisam/features/bottomNav/presentation/userDashboard/presenta
 import 'package:alibtisam/features/bottomNav/presentation/userDashboard/presentation/playerPolarization/polarize_player.dart';
 import 'package:alibtisam/features/bottomNav/presentation/userDashboard/presentation/statistics/coach/stages_tab_bar.dart';
 import 'package:alibtisam/features/bottomNav/widgets/player_card.dart';
-import 'package:alibtisam/network/api_requests.dart';
+import 'package:alibtisam/core/services/api_requests.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
