@@ -2,7 +2,7 @@ import 'dart:convert';
 
 import 'package:alibtisam/core/error/server_exception.dart';
 import 'package:alibtisam/core/utils/custom_snackbar.dart';
-import 'package:alibtisam/features/auth/repo/firebase_otp_validation.dart';
+import 'package:alibtisam/features/auth/repo/otp_validation_repo.dart';
 import 'package:alibtisam/features/auth/repo/sign_up_repo.dart';
 import 'package:alibtisam/features/auth/view/screens/otp_validation.dart';
 import 'package:get/get.dart';
@@ -23,8 +23,13 @@ class SignUpViewmodel {
       loading.value = false;
       final data = jsonDecode(res.body);
       if (res.statusCode == 200) {
-        FirebaseOtpValidation.verifyPhoneNumber(mobile);
-        Get.to(() => OtpValidation(email: email, phone: mobile, name: name, password: password,));
+        OtpValidationRepo.sendOTP(mobile);
+        Get.to(() => OtpValidation(
+              email: email,
+              phone: mobile,
+              name: name,
+              password: password,
+            ));
       } else {
         customSnackbar(message: data['message']);
       }

@@ -1,7 +1,7 @@
 import 'package:alibtisam/core/common/widgets/custom_gradient_button.dart';
 import 'package:alibtisam/core/utils/custom_snackbar.dart';
 import 'package:alibtisam/features/auth/controller/otp_resend_count.dart';
-import 'package:alibtisam/features/auth/repo/firebase_otp_validation.dart';
+import 'package:alibtisam/features/auth/repo/otp_validation_repo.dart';
 import 'package:alibtisam/features/auth/view/widgets/logo_&_arabic_text.dart';
 import 'package:alibtisam/features/auth/view/widgets/otp_pin.dart';
 // import 'package:firebase_auth/firebase_auth.dart';
@@ -78,7 +78,7 @@ class _OtpValidationState extends State<OtpValidation> {
                   //   ),
                   TextButton(
                       onPressed: () {
-                        FirebaseOtpValidation.verifyPhoneNumber(widget.phone);
+                        OtpValidationRepo.sendOTP(widget.phone);
                         // print(otpController.count.value);
                         // if (otpController.count.value == 0) {
                         //   otpController.reset();
@@ -101,7 +101,7 @@ class _OtpValidationState extends State<OtpValidation> {
                       setState(() {
                         isLoading = true;
                       });
-                      await FirebaseOtpValidation.validateOTP(
+                      await OtpValidationRepo.validateOTP(
                           otp: controller.text,
                           email: widget.email,
                           password: widget.password,
