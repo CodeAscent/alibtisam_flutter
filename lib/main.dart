@@ -101,7 +101,9 @@ class _MyAppState extends State<MyApp> {
           // navigatorKey: connectionKey, // add this key to material app
           debugShowCheckedModeBanner: false,
           translations: AppLocalization(),
-          locale: Locale(locale!.substring(0, 2)),
+          locale: locale!.substring(0, 2) == 'ar'
+              ? Locale(locale!.substring(0, 2) + '_DZ')
+              : Locale(locale!.substring(0, 2) + '_US'),
 
           //   Locale(savedLocale.split('_')[0], savedLocale.split('_')[1]),
           fallbackLocale: Locale('ar', 'DZ'),

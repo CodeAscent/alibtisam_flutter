@@ -6,7 +6,6 @@ import 'package:alibtisam/features/auth/repo/otp_validation_repo.dart';
 import 'package:alibtisam/features/auth/repo/sign_up_repo.dart';
 import 'package:alibtisam/features/auth/view/screens/otp_validation.dart';
 import 'package:get/get.dart';
-import 'package:get/get_rx/get_rx.dart';
 
 class SignUpViewmodel {
   RxBool loading = false.obs;

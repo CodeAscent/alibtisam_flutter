@@ -5,6 +5,8 @@ import 'package:alibtisam/core/services/api_requests.dart';
 import 'package:alibtisam/core/services/api_urls.dart';
 import 'package:alibtisam/core/services/http_wrapper.dart';
 import 'package:alibtisam/core/services/org_id.dart';
+import 'package:alibtisam/features/auth/view/screens/update_password.dart';
+import 'package:get/get.dart';
 // import 'package:firebase_auth/firebase_auth.dart';
 
 import 'package:logger/logger.dart';
@@ -39,6 +41,29 @@ class OtpValidationRepo {
           clubId: orgId,
           mobile: mobile,
           name: name);
+    } else {
+      customSnackbar(message: data['message']);
+    }
+
+    // User is signed in, you can access user information here
+  }
+
+  static Future<void> validateOTPForgotPassword({
+    required String otp,
+    required String mobile,
+  }) async {
+    final res = await HttpWrapper.postRequest(
+      base_url + 'user/verify-otp',
+      {
+        "to": mobile,
+        "code": otp,
+      },
+    );
+    final data = jsonDecode(res.body);
+    if (res.statusCode == 200) {
+      Get.to(() => UpdatePasswordScreen(
+            username: mobile,
+          ));
     } else {
       customSnackbar(message: data['message']);
     }

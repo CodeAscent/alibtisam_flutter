@@ -1,7 +1,6 @@
 import 'package:alibtisam/core/theme/app_colors.dart';
 import 'package:alibtisam/core/theme/app_theme.dart';
 import 'package:flutter/material.dart';
-import 'package:get/get.dart';
 
 class CustomGradientButton extends StatelessWidget {
   const CustomGradientButton({

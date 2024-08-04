@@ -5,7 +5,6 @@ import 'package:alibtisam/features/bottomNav/controller/user.dart';
 import 'package:alibtisam/features/bottomNav/model/group_model.dart';
 import 'package:alibtisam/features/bottomNav/model/user.dart';
 import 'package:alibtisam/features/bottomNav/presentation/userDashboard/presentation/statistics/coach/coach_players_list.dart';
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';

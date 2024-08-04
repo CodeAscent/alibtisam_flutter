@@ -7,6 +7,7 @@ import 'package:alibtisam/core/common/widgets/custom_loading.dart';
 import 'package:alibtisam/core/theme/app_colors.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:logger/logger.dart';
 
 class UserDashboard extends StatefulWidget {
   const UserDashboard({super.key});
@@ -54,6 +55,7 @@ class _UserDashboardState extends State<UserDashboard> {
                         itemBuilder: (context, index) {
                           DashboardModel dashboard =
                               controller.dashboard[index];
+                          Logger().w("---------> " + "${Get.locale}");
                           return GestureDetector(
                             onTap: () {
                               if (dashboard.name == "Events") {
@@ -65,10 +67,15 @@ class _UserDashboardState extends State<UserDashboard> {
                                 dashboardController.fetchDashboardItems();
                               });
                             },
-                            child: CustomDashboardCard(
-                              label: dashboard.name,
-                              icon: dashboard.icon,
-                            ),
+                            child: Get.locale.toString() == 'en_US'
+                                ? CustomDashboardCard(
+                                    label: dashboard.name,
+                                    icon: dashboard.icon,
+                                  )
+                                : CustomDashboardCard(
+                                    label: dashboard.arabicName!,
+                                    icon: dashboard.icon,
+                                  ),
                           );
                         },
                       );

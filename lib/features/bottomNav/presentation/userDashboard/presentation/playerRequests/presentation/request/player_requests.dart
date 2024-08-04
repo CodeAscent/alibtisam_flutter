@@ -8,7 +8,6 @@ import 'package:alibtisam/features/bottomNav/presentation/userDashboard/presenta
 import 'package:alibtisam/core/common/widgets/custom_empty_icon.dart';
 import 'package:alibtisam/core/common/widgets/custom_loading.dart';
 import 'package:alibtisam/core/theme/app_colors.dart';
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
@@ -23,7 +22,10 @@ class PlayerRequests extends StatelessWidget {
       body: CustomLoader(
         child: SafeArea(child: GetBuilder(
           builder: (MeasurementReqController controller) {
-            return measurementReqController.measurementRequests.length == 0
+            print('-------------->' +
+                '${measurementReqController.measurementRequests!}');
+            return measurementReqController.measurementRequests == null ||
+                    measurementReqController.measurementRequests!.length == 0
                 ? CustomEmptyWidget()
                 : Padding(
                     padding: const EdgeInsets.all(8.0),
@@ -31,10 +33,10 @@ class PlayerRequests extends StatelessWidget {
                       children: [
                         ListView.builder(
                             shrinkWrap: true,
-                            itemCount: controller.measurementRequests.length,
+                            itemCount: controller.measurementRequests!.length,
                             itemBuilder: (context, index) {
                               UserModel user = UserModel.fromMap(controller
-                                  .measurementRequests[index]['playerId']);
+                                  .measurementRequests![index]['playerId']);
 
                               return GestureDetector(
                                 onTap: () {
@@ -42,7 +44,7 @@ class PlayerRequests extends StatelessWidget {
                                         player: user,
                                         updatePlayer: true,
                                         measurementId: controller
-                                            .measurementRequests[index]['_id'],
+                                            .measurementRequests![index]['_id'],
                                       ));
                                 },
                                 child: kCustomListTile(

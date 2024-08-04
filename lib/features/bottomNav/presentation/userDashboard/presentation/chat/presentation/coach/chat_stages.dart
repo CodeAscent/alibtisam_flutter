@@ -8,7 +8,6 @@ import 'package:alibtisam/features/bottomNav/model/user.dart';
 import 'package:alibtisam/features/bottomNav/presentation/userDashboard/presentation/chat/chat.dart';
 import 'package:alibtisam/features/bottomNav/presentation/userDashboard/presentation/groupsManagement/view_members.dart';
 import 'package:alibtisam/features/bottomNav/presentation/userDashboard/presentation/statistics/coach/stages_tab_bar.dart';
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 

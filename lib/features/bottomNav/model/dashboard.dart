@@ -7,8 +7,10 @@ class DashboardModel {
   final String name;
   final String icon;
   final String route;
+  final String? arabicName;
 
-  DashboardModel(this.active, this.access, this.name, this.icon, this.route);
+  DashboardModel(this.active, this.access, this.name, this.icon, this.route,
+      this.arabicName);
 
   Map<String, dynamic> toMap() {
     return <String, dynamic>{
@@ -17,6 +19,7 @@ class DashboardModel {
       'name': name,
       'icon': icon,
       'route': route,
+      'arabicName': arabicName,
     };
   }
 
@@ -27,6 +30,7 @@ class DashboardModel {
       map['name'] as String,
       map['icon'] as String,
       map['route'] as String,
+      map['arabicName'] ?? '',
     );
   }
 

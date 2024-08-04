@@ -19,6 +19,7 @@ class CustomTextField extends StatelessWidget {
   final String? hintText;
   final bool? obscureText;
   final Widget? prefix;
+  final String? Function(String?)? validator;
   const CustomTextField(
       {super.key,
       required this.label,
@@ -36,7 +37,7 @@ class CustomTextField extends StatelessWidget {
       this.initial,
       this.obscureText,
       this.hintText,
-      this.prefix});
+      this.prefix, this.validator});
 
   @override
   Widget build(BuildContext context) {
@@ -53,7 +54,7 @@ class CustomTextField extends StatelessWidget {
         readOnly: readOnly ?? false,
         controller: controller,
         maxLength: maxLength,
-        validator: (val) {
+        validator:validator != null ?validator: (val) {
           if (shouldValidate != false && controller!.text == '') {
             return "pleaseinputavalid $label".tr;
           }

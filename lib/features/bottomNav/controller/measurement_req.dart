@@ -8,7 +8,9 @@ class MeasurementReqController extends GetxController {
   Future fetchMeasurementRequests() async {
     measurementRequests = [];
     LoadingManager.startLoading();
-    measurementRequests = await ApiRequests().getMesurementRequests();
+    List data = await ApiRequests().getMesurementRequests();
+    measurementRequests =
+        data.where((request) => request['playerId'] != null).toList();
     update();
   }
 }

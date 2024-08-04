@@ -27,6 +27,7 @@ import 'package:alibtisam/core/services/http_wrapper.dart';
 import 'package:get/get.dart';
 import 'package:http/http.dart' as http;
 import 'package:image_picker/image_picker.dart';
+import 'package:logger/logger.dart';
 
 class ApiRequests {
   Future<List<Events>> allEvents(String filter) async {
@@ -184,7 +185,7 @@ class ApiRequests {
       final res = await HttpWrapper.getRequest(
           get_players_requests + "?status=COACH-REQUESTED");
       final data = jsonDecode(res.body);
-
+      Logger().w(data);
       if (res.statusCode == 200) {
         return data['requests'];
       } else {
@@ -223,6 +224,7 @@ class ApiRequests {
       LoadingManager.startLoading();
       final res = await HttpWrapper.getRequest(get_dashboard_services);
       final data = jsonDecode(res.body);
+      Logger().f(data);
       for (var item in data['services']) {
         dashboardItems.add(DashboardModel.fromMap(item));
       }
@@ -740,8 +742,9 @@ class ApiRequests {
     try {
       List<UserModel>? users = [];
       final res = await HttpWrapper.getRequest(
-          base_url + "player/players?stage=" + stage);
+          base_url + "player/players?stage=$stage&role=INTERNAL USER");
       final data = jsonDecode(res.body);
+      Logger().w(data);
       for (var item in data['players']) {
         if (item != null) {
           users.add(UserModel.fromMap(item));
