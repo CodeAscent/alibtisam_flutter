@@ -118,7 +118,7 @@ class _CollectionScreenState extends State<CollectionScreen>
                                                         builder: (context) =>
                                                             Dialog(
                                                               child: Container(
-                                                                height: 200,
+                                                                height: 0,
                                                                 width: 200,
                                                                 color:
                                                                     primaryColor(),
@@ -135,8 +135,8 @@ class _CollectionScreenState extends State<CollectionScreen>
                                                         builder: (context) =>
                                                             Dialog(
                                                               child: Container(
-                                                                height: 200,
-                                                                width: 200,
+                                                                height: 300,
+                                                                width: 300,
                                                                 color:
                                                                     primaryColor(),
                                                                 child: Image
