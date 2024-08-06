@@ -21,7 +21,7 @@ class PlayerChatGroups extends StatelessWidget {
       builder: (controller) {
         return Scaffold(
             appBar: AppBar(
-              title: Text('Chat Groups'),
+              title: Text('Chat Groups'.tr),
             ),
             body: groupsController.isLoading
                 ? Center(
@@ -47,8 +47,8 @@ class PlayerChatGroups extends StatelessWidget {
                             children: [
                               kCustomListTile(
                                   key: group.name!.capitalize!,
-                                  value:
-                                      "Total members: ${group.totalMembers}"),
+                                  value: "Total members:".tr +
+                                      " ${group.totalMembers}"),
                             ],
                           ),
                         );

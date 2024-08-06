@@ -58,7 +58,7 @@ class _ViewGroupMembersState extends State<ViewGroupMembers> {
                       });
                     },
                     child: Text(
-                      'Cancel',
+                      'cancel'.tr,
                       style: TextStyle(color: Colors.black),
                     )),
                 SizedBox(width: 50),
@@ -72,13 +72,13 @@ class _ViewGroupMembersState extends State<ViewGroupMembers> {
                             child: CupertinoActionSheet(
                               title: Row(
                                 children: [
-                                  Text("Select Group"),
+                                  Text("selectGroup".tr),
                                   Spacer(),
                                   TextButton(
                                       onPressed: () {
                                         Get.back();
                                       },
-                                      child: Text("Cancel")),
+                                      child: Text("cancel".tr)),
                                 ],
                               ),
                               message: Container(
@@ -88,7 +88,7 @@ class _ViewGroupMembersState extends State<ViewGroupMembers> {
                                       builder: (context, newState) =>
                                           CustomTextField(
                                         controller: selectedGroupController,
-                                        label: 'Group',
+                                        label: 'group'.tr,
                                         suffix: DropdownButton(
                                             items: groupsController.groups!
                                                 .where((i) =>
@@ -121,7 +121,7 @@ class _ViewGroupMembersState extends State<ViewGroupMembers> {
                                           selectedMembers.clear();
                                           setState(() {});
                                         },
-                                        label: 'Submit')
+                                        label: 'submit')
                                   ],
                                 ),
                               ),
@@ -129,7 +129,7 @@ class _ViewGroupMembersState extends State<ViewGroupMembers> {
                       ).then((val) => groupsController.isLoading = true);
                     },
                     child: Text(
-                      'Move',
+                      'move'.tr,
                       style: TextStyle(color: Colors.black),
                     ))
               ],

@@ -46,13 +46,13 @@ class _GroupsManagementState extends State<GroupsManagement>
                 child: CupertinoActionSheet(
                   title: Row(
                     children: [
-                      Text("Create Group"),
+                      Text("createGroup".tr),
                       Spacer(),
                       TextButton(
                           onPressed: () {
                             Get.back();
                           },
-                          child: Text("Cancel")),
+                          child: Text("cancel".tr)),
                     ],
                   ),
                   message: Container(
@@ -60,7 +60,7 @@ class _GroupsManagementState extends State<GroupsManagement>
                       children: [
                         CustomTextField(
                             controller: groupNameController,
-                            label: 'GroupName'),
+                            label: 'groupName'.tr),
                         StatefulBuilder(
                           builder: (context, newState) => Row(
                             children: [
@@ -75,7 +75,7 @@ class _GroupsManagementState extends State<GroupsManagement>
                                           groupStageController.text = 'SCHOOL';
                                           newState(() {});
                                         }),
-                                    Text(' SCHOOL')
+                                    Text('school'.tr)
                                   ],
                                 ),
                               ),
@@ -93,7 +93,7 @@ class _GroupsManagementState extends State<GroupsManagement>
                                                 'ACADEMY';
                                           });
                                         }),
-                                    Text(' ACADEMY')
+                                    Text('academy'.tr)
                                   ],
                                 ),
                               ),
@@ -117,7 +117,7 @@ class _GroupsManagementState extends State<GroupsManagement>
                                 Get.back();
                               }
                             },
-                            label: 'Submit')
+                            label: 'submit'.tr)
                       ],
                     ),
                   ),

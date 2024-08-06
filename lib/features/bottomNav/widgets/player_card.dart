@@ -53,7 +53,7 @@ class PlayerCard extends StatelessWidget {
                   name.capitalize!,
                   style: TextStyle(fontSize: 18, fontWeight: FontWeight.w600),
                 ),
-                if (!isCoach!) Text('Player Id: $playerId'),
+                if (!isCoach!) Text('playerId'.tr + ' $playerId'),
                 if (extraWidget != null) extraWidget!,
               ],
             ),

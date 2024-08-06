@@ -35,16 +35,16 @@ class _InternalAttendanceTabState extends State<InternalAttendanceTab>
         return CustomLoader(
             child: Scaffold(
                 appBar: AppBar(
-                  title: Text('Attendance'),
+                  title: Text('attendance'.tr),
                 ),
                 body: SafeArea(
                   child:
                       CustomTabBar(tabController: _tabController, customTabs: [
                     Tab(
-                      text: "Attendance",
+                      text: "attendance".tr,
                     ),
                     Tab(
-                      text: "Statistics",
+                      text: "statistics".tr,
                     )
                   ], tabViewScreens: [
                     InternalAttendance(),
@@ -90,7 +90,8 @@ class _InternalAttendanceStatisticsState
               children: [
                 SizedBox(height: 20),
                 Text(
-                  "Total Present Days: ${attendanceController.attendanceStatistics!.presentDays}",
+                  "Total Present Days:".tr +
+                      " ${attendanceController.attendanceStatistics!.presentDays}",
                   style: TextStyle(fontWeight: FontWeight.w600, fontSize: 22),
                 ),
                 SizedBox(height: 20),
@@ -98,7 +99,7 @@ class _InternalAttendanceStatisticsState
                   mainAxisAlignment: MainAxisAlignment.end,
                   children: [
                     Text(
-                      'Monthly Stats  ',
+                      'Monthly Stats'.tr,
                       style: TextStyle(fontSize: 16),
                     ),
                     Spacer(),
@@ -141,7 +142,7 @@ class _InternalAttendanceStatisticsState
                     child: ValueListenableBuilder(
                       valueListenable: _valueNotifierMonth,
                       builder: (_, double value, __) => Text(
-                        '${value.toInt()}\nDays',
+                        '${value.toInt()}\n' + 'days'.tr,
                         textAlign: TextAlign.center,
                         style: const TextStyle(
                             fontWeight: FontWeight.w500, fontSize: 20),
@@ -154,7 +155,7 @@ class _InternalAttendanceStatisticsState
                   mainAxisAlignment: MainAxisAlignment.end,
                   children: [
                     Text(
-                      'Yearly Stats  ',
+                      'Yearly Stats'.tr,
                       style: TextStyle(fontSize: 16),
                     ),
                     Spacer(),
@@ -197,7 +198,7 @@ class _InternalAttendanceStatisticsState
                     child: ValueListenableBuilder(
                       valueListenable: _valueNotifierYear,
                       builder: (_, double value, __) => Text(
-                        '${value.toInt()}\nDays',
+                        '${value.toInt()}\n' + 'days'.tr,
                         textAlign: TextAlign.center,
                         style: const TextStyle(
                             fontWeight: FontWeight.w500, fontSize: 20),
@@ -240,8 +241,15 @@ class InternalAttendance extends StatelessWidget {
                         attendanceController.attendancesHistory[index];
                     return CustomContainerButton(
                         flexibleHeight: null,
-                        label:
-                            '\n Marked ${customDateTimeFormat(attendanceHistory.createdAt)} \n In-Time: ${customTimeFormat(attendanceHistory.players[0].inTime)} \n Out-Time: ${attendanceHistory.players[0].outTime == '' ? '??' : customTimeFormat(attendanceHistory.players[0].outTime)}, \n Remarks: ${attendanceHistory.players[0].remark}\n');
+                        label: '\n' +
+                            'markedOn'.tr +
+                            ' ${customDateTimeFormat(attendanceHistory.createdAt)} \n' +
+                            'In-Time:'.tr +
+                            ' ${customTimeFormat(attendanceHistory.players[0].inTime)} \n ' +
+                            'Out-Time:'.tr +
+                            ' ${attendanceHistory.players[0].outTime == '' ? '??' : customTimeFormat(attendanceHistory.players[0].outTime)}, \n' +
+                            'remark'.tr +
+                            ' ${attendanceHistory.players[0].remark}\n');
                   })
                 ],
               ),

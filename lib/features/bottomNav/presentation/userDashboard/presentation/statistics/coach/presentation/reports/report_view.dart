@@ -22,7 +22,7 @@ class ReportView extends StatelessWidget {
     return Scaffold(
       appBar: AppBar(
         title: Text(
-          "Player Report on \n${customDateTimeFormat(report.updatedAt)}",
+          "Player Report on".tr+" \n${customDateTimeFormat(report.updatedAt)}",
           textAlign: TextAlign.center,
         ),
       ),

@@ -113,7 +113,7 @@ class _PolarizePlayerState extends State<PolarizePlayer> {
                         () {}, 'Current Game'.tr, widget.player.gameId!.name!),
                     kCustomListTile(
                         () {}, 'Current Stage'.tr, widget.player.stage!),
-                    kCustomListTile(() {}, 'Upgradable To',
+                    kCustomListTile(() {}, 'upgradableTo'.tr,
                         "${widget.player.stage == 'ACADEMY' ? 'SCHOOL' : 'PROFESSIONAL'}"),
                     kCustomListTile(
                         () {},

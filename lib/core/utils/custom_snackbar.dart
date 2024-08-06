@@ -11,7 +11,7 @@ customSnackbar({required String message}) {
         titleText: Row(
           children: [
             Text(
-              "Message",
+              "message".tr,
               style: TextStyle(fontWeight: FontWeight.w900, fontSize: 16),
             ),
           ],

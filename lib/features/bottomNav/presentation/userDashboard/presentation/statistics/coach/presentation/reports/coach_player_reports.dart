@@ -37,8 +37,8 @@ class _CoachPlayerReportsState extends State<CoachPlayerReports> {
                             report: report,
                           ));
                     },
-                    label:
-                        "Reported on \n${customDateTimeFormat(report.updatedAt)}");
+                    label: "Reported on".tr +
+                        "\n${customDateTimeFormat(report.updatedAt)}");
               })
             ],
           ),

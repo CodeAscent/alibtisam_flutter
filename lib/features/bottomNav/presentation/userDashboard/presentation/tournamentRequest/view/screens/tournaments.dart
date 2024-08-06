@@ -60,11 +60,11 @@ class _TournamentsScreenState extends State<TournamentsScreen> {
                                         CrossAxisAlignment.start,
                                     children: [
                                       Text(data['tournamentId']['name']),
-                                      Text('Requested By: ' +
+                                      Text('requestedBy'.tr +
                                           data['requestedBy']['name']),
                                       RichText(
                                           text: TextSpan(
-                                              text: 'Status : ',
+                                              text: 'status'.tr,
                                               style: TextStyle(
                                                   color: Colors.black),
                                               children: [

@@ -37,7 +37,8 @@ class CustomTextField extends StatelessWidget {
       this.initial,
       this.obscureText,
       this.hintText,
-      this.prefix, this.validator});
+      this.prefix,
+      this.validator});
 
   @override
   Widget build(BuildContext context) {
@@ -46,7 +47,6 @@ class CustomTextField extends StatelessWidget {
       width: width,
       height: height,
       child: TextFormField(
-        
         obscureText: obscureText ?? false,
         initialValue: initial,
         keyboardType: keyboardType,
@@ -54,12 +54,14 @@ class CustomTextField extends StatelessWidget {
         readOnly: readOnly ?? false,
         controller: controller,
         maxLength: maxLength,
-        validator:validator != null ?validator: (val) {
-          if (shouldValidate != false && controller!.text == '') {
-            return "pleaseinputavalid $label".tr;
-          }
-          return null;
-        },
+        validator: validator != null
+            ? validator
+            : (val) {
+                if (shouldValidate != false && controller!.text == '') {
+                  return "pleaseInputaValid".tr + " $label".tr;
+                }
+                return null;
+              },
         inputFormatters: digitsOnly ?? false
             ? [FilteringTextInputFormatter.allow(RegExp(r'^\d*\.?\d*'))]
             : null,

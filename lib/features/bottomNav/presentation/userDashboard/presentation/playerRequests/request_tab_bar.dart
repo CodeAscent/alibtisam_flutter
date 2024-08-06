@@ -40,7 +40,7 @@ class _PlayerRequestsTabBarState extends State<PlayerRequestsTabBar>
                   size: 32,
                 )),
             automaticallyImplyLeading: false,
-            title: Text("Player Requests".tr),
+            title: Text("playerRequests".tr),
           ),
           body: CustomTabBar(
             tabController: _tabController,

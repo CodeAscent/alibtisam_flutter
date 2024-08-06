@@ -87,7 +87,8 @@ class _AttendanceOutTimeState extends State<AttendanceOutTime> {
                                       ),
                                     ),
                                     if (playersAttendance.contains(
-                                        PlayersAttendance(id: player.id.toString())))
+                                        PlayersAttendance(
+                                            id: player.id.toString())))
                                       Positioned(
                                         top: 50,
                                         right: 15,
@@ -202,7 +203,7 @@ class _AttendanceOutTimeState extends State<AttendanceOutTime> {
                         playersAttendance: playersAttendance);
                     attendanceController.fetchAttendanceForOutTime();
                   },
-                  label: "Submit",
+                  label: "submit".tr,
                   disabled: attendanceController.attendance.isEmpty,
                 )),
           ),

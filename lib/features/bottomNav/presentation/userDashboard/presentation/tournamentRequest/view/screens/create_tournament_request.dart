@@ -66,10 +66,10 @@ class _CreateTournamentRequestScreenState
                 onTap: () async {
                   if (selectedPlayerIds.isEmpty) {
                     return customSnackbar(
-                        message: 'Please select players for the tournament');
+                        message: 'Please select players for the tournament'.tr);
                   } else if (selectedCoachIds.isEmpty) {
                     return customSnackbar(
-                        message: 'Please select coaches for the tournament');
+                        message: 'Please select coaches for the tournament'.tr);
                   } else if (formKey.currentState!.validate()) {
                     await tournamentRequestViewmodel.createTournamentRequest(
                         name: name.text,
@@ -91,7 +91,7 @@ class _CreateTournamentRequestScreenState
                   }
                 },
                 flexibleHeight: 50,
-                label: 'Submit',
+                label: 'submit'.tr,
               ),
             ),
           ),

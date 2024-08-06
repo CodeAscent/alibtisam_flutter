@@ -79,7 +79,8 @@ class _AttendanceInTimeState extends State<AttendanceInTime> {
                                             height: 30,
                                           ),
                                           visible: playersAttendance.contains(
-                                              PlayersAttendance(id: player.id!)),
+                                              PlayersAttendance(
+                                                  id: player.id!)),
                                           child: TextButton(
                                             onPressed: () {
                                               showDialog(
@@ -102,7 +103,8 @@ class _AttendanceInTimeState extends State<AttendanceInTime> {
                                                     }
                                                     return AlertDialog(
                                                       title: Text(
-                                                          "Write your remark..".tr),
+                                                          "Write your remark.."
+                                                              .tr),
                                                       content: TextFormField(
                                                         controller:
                                                             remarkController,
@@ -196,7 +198,7 @@ class _AttendanceInTimeState extends State<AttendanceInTime> {
                       groupId: widget.groupId,
                     );
                   },
-                  label: "Submit",
+                  label: "submit".tr,
                   disabled: attendanceController.attendance.isEmpty,
                 )),
           ),

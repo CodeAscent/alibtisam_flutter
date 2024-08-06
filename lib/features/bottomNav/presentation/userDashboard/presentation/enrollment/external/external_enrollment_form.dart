@@ -156,14 +156,14 @@ class _ExternalEnrollmentFormState extends State<ExternalEnrollmentForm> {
                           SizedBox(
                             width: Get.width * 0.44,
                             child: CustomTextField(
-                              label: 'Player Governmet ID',
+                              label: 'playerGovernmetID'.tr,
                               controller: playerGovtIdController,
                             ),
                           ),
                           SizedBox(
                             width: Get.width * 0.44,
                             child: CustomTextField(
-                              label: 'Expiration Date',
+                              label: 'expirationDate'.tr,
                               readOnly: true,
                               controller: playerGovtIdExpirationController,
                               suffix: IconButton(
@@ -225,7 +225,7 @@ class _ExternalEnrollmentFormState extends State<ExternalEnrollmentForm> {
                         child: Column(
                           children: [
                             CustomTextField(
-                              label: 'Relationship',
+                              label: 'relationship'.tr,
                               controller: relationshipController,
                             ),
                             Row(
@@ -234,14 +234,14 @@ class _ExternalEnrollmentFormState extends State<ExternalEnrollmentForm> {
                                 SizedBox(
                                   width: Get.width * 0.44,
                                   child: CustomTextField(
-                                    label: 'Guardian Governmet ID',
+                                    label: 'guardianGovernmetId'.tr,
                                     controller: guardianGovtIdController,
                                   ),
                                 ),
                                 SizedBox(
                                   width: Get.width * 0.44,
                                   child: CustomTextField(
-                                    label: 'Expiration Date',
+                                    label: 'expirationDate'.tr,
                                     controller:
                                         guardianGovtIdExpirationController,
                                     readOnly: true,
@@ -273,7 +273,7 @@ class _ExternalEnrollmentFormState extends State<ExternalEnrollmentForm> {
                           CustomTextField(
                             hintText: "YYYY-MM-DD",
                             label: dobController.text == ''
-                                ? "DOB*"
+                                ? "dateOfBirth".tr
                                 : "DOB* (Age : ${AgeCalculator.age(DateTime.parse(dobController.text)).years})",
                             width: Get.width * 0.44,
                             height: 60,
@@ -325,7 +325,7 @@ class _ExternalEnrollmentFormState extends State<ExternalEnrollmentForm> {
                         readOnly: true,
                         controller: stageController,
                         suffix: DropdownButton(
-                        //   dropdownColor: Colors.white,
+                          //   dropdownColor: Colors.white,
                           iconSize: 40,
                           isDense: true,
                           items: selectStage.map((value) {
@@ -350,7 +350,7 @@ class _ExternalEnrollmentFormState extends State<ExternalEnrollmentForm> {
                         readOnly: true,
                         controller: gameController,
                         suffix: DropdownButton(
-                        //   dropdownColor: Colors.white,
+                          //   dropdownColor: Colors.white,
                           iconSize: 40,
                           isDense: true,
                           items: gamesController.games.map((value) {
@@ -406,14 +406,14 @@ class _ExternalEnrollmentFormState extends State<ExternalEnrollmentForm> {
                         mainAxisAlignment: MainAxisAlignment.spaceBetween,
                         children: [
                           CustomTextField(
-                            label: "Height (ft)*",
+                            label: "height".tr,
                             width: Get.width * 0.44,
                             digitsOnly: true,
                             keyboardType: TextInputType.number,
                             controller: heightController,
                           ),
                           CustomTextField(
-                            label: "Weight (kg)*",
+                            label: "weight".tr,
                             width: Get.width * 0.44,
                             digitsOnly: true,
                             keyboardType: TextInputType.number,
@@ -560,7 +560,7 @@ class _ExternalEnrollmentFormState extends State<ExternalEnrollmentForm> {
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
         Text(
-          "Upload Id Proof",
+          "uploadIdProof".tr,
           style: TextStyle(fontSize: 18, fontWeight: FontWeight.w800),
         ),
         SizedBox(height: 10),
@@ -573,7 +573,7 @@ class _ExternalEnrollmentFormState extends State<ExternalEnrollmentForm> {
                   setState(() {});
                 },
                 child: kRepeatedImageBox(
-                    image: idProofFront?.path ?? '', label: "Front")),
+                    image: idProofFront?.path ?? '', label: "front".tr)),
             SizedBox(width: 30),
             GestureDetector(
                 onTap: () async {
@@ -581,12 +581,12 @@ class _ExternalEnrollmentFormState extends State<ExternalEnrollmentForm> {
                   setState(() {});
                 },
                 child: kRepeatedImageBox(
-                    image: idProofBack?.path ?? '', label: "Back")),
+                    image: idProofBack?.path ?? '', label: "back".tr)),
           ],
         ),
         SizedBox(height: 10),
         Text(
-          "Upload Certificate",
+          "uploadCertificate".tr,
           style: TextStyle(fontSize: 18, fontWeight: FontWeight.w800),
         ),
         SizedBox(height: 10),
@@ -596,7 +596,7 @@ class _ExternalEnrollmentFormState extends State<ExternalEnrollmentForm> {
             setState(() {});
           },
           child: kRepeatedImageBox(
-              image: certificate?.path ?? '', label: "(Optional)"),
+              image: certificate?.path ?? '', label: "optional".tr),
         ),
       ],
     );

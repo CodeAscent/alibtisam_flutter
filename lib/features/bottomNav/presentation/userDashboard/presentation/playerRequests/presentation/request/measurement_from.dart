@@ -205,7 +205,8 @@ class MeasurementForm extends StatelessWidget {
                                                       if (selectedGroup == '') {
                                                         return customSnackbar(
                                                             message:
-                                                                "Please select a group first");
+                                                                "Please select a group first"
+                                                                    .tr);
                                                       } else {
                                                         groupsController
                                                             .isLoading = true;
@@ -255,7 +256,7 @@ class MeasurementForm extends StatelessWidget {
                                                             PlayerRequestsTabBar());
                                                       }
                                                     },
-                                                    label: 'Submit'),
+                                                    label: 'submit'.tr),
                                               ),
                                             ],
                                             title: Text(

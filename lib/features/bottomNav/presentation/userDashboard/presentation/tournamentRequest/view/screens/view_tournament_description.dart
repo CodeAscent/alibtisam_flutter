@@ -54,7 +54,7 @@ class _ViewTournamentDescriptionState extends State<ViewTournamentDescription> {
                       customLabelAndText('End Date'.tr,
                           customDateFormat(tournament.tournamentId!.endDate!)),
                       customLabelAndText(
-                          'Status'.tr, tournament.tournamentId!.status!),
+                          'status'.tr, tournament.tournamentId!.status!),
                       customLabelAndText(
                           'Type'.tr,
                           tournament.tournamentId!.type! +

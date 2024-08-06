@@ -34,7 +34,7 @@ class ViewPlayerByUserModel extends StatelessWidget {
                         );
                       });
                     },
-                    label: 'Next ')),
+                    label: 'next'.tr)),
           ),
         ),
       ),

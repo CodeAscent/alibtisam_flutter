@@ -107,8 +107,8 @@ class GroupsByStage extends StatelessWidget {
                                 ),
                                 child: kCustomListTile(
                                     key: group.name!.capitalize!,
-                                    value:
-                                        "Total members: ${group.totalMembers}"),
+                                    value: "totalMembers".tr +
+                                        "${group.totalMembers}"),
                               ),
                             ],
                           ),
