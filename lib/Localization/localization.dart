@@ -482,6 +482,9 @@ class AppLocalization extends Translations {
           "Monthly Stats": "Monthly Stats  ",
           'Yearly Stats': 'Yearly Stats  ',
           'Out-Time:': 'Out-Time:',
+          'Change password': 'Change password',
+          'Old password': 'Old password',
+          'New password': 'New password',
         },
         'ar_DZ': {
           "enterUsername": "أدخل اسم المستخدم",
@@ -952,6 +955,9 @@ class AppLocalization extends Translations {
           "Monthly Stats": "الإحصائيات الشهرية",
           'Yearly Stats': 'إحصائيات سنوية',
           'Out-Time:': 'وقت خروج :  ',
+          'Change password': 'تغيير كلمة المرور',
+          'Old password': 'كلمة المرور القديمة',
+          'New password': 'كلمة المرور الجديدة',
         },
       };
 }

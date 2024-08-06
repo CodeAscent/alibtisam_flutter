@@ -19,7 +19,7 @@ class Collection {
   factory Collection.fromMap(Map<String, dynamic> map) {
     return Collection(
       media: map['type'] == 'video'
-          ? VideoPlayerController.networkUrl(Uri.parse(map['media']))
+          ? VideoPlayerController.networkUrl(Uri.parse(map['media']),)
           : map['media'],
       type: map['type'] as String,
     );

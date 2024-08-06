@@ -118,8 +118,8 @@ class _CollectionScreenState extends State<CollectionScreen>
                                                         builder: (context) =>
                                                             Dialog(
                                                               child: Container(
-                                                                height: 0,
-                                                                width: 200,
+                                                                width: 300,
+                                                                height: 300,
                                                                 color:
                                                                     primaryColor(),
                                                                 child: VideoPlayer(

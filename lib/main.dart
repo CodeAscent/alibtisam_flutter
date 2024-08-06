@@ -102,8 +102,8 @@ class _MyAppState extends State<MyApp> {
           debugShowCheckedModeBanner: false,
           translations: AppLocalization(),
           locale: locale!.substring(0, 2) == 'ar'
-              ? Locale(locale!.substring(0, 2) + '_DZ')
-              : Locale(locale!.substring(0, 2) + '_US'),
+              ? Locale(locale!.substring(0, 2))
+              : Locale(locale!.substring(0, 2)),
 
           //   Locale(savedLocale.split('_')[0], savedLocale.split('_')[1]),
           fallbackLocale: Locale('ar', 'DZ'),

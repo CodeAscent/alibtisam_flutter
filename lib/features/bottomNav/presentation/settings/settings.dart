@@ -1,5 +1,8 @@
 import 'package:alibtisam/Localization/switch.dart';
+import 'package:alibtisam/core/common/widgets/custom_container_button.dart';
+import 'package:alibtisam/core/common/widgets/custom_text_field.dart';
 import 'package:alibtisam/features/bottomNav/controller/user.dart';
+import 'package:alibtisam/features/bottomNav/presentation/settings/controller/change_password_viewmodel.dart';
 import 'package:alibtisam/features/bottomNav/presentation/settings/presentation/about.dart';
 import 'package:alibtisam/features/bottomNav/presentation/settings/presentation/help_support.dart';
 import 'package:alibtisam/features/bottomNav/presentation/settings/presentation/switch_user.dart';
@@ -29,6 +32,8 @@ class _SettingScreenState extends State<SettingScreen> {
   }
 
   final userController = Get.find<UserController>()..user;
+  final changePasswordController = Get.find<ChangePasswordViewmodel>();
+  final formKey = GlobalKey<FormState>();
   @override
   Widget build(BuildContext context) {
     final user = userController.user;
@@ -104,6 +109,50 @@ class _SettingScreenState extends State<SettingScreen> {
                             }
                           },
                           child: CustomSettingsCard(label: "profile".tr)),
+                      GestureDetector(
+                          onTap: () {
+                            final oldPassword = TextEditingController();
+                            final newPassword = TextEditingController();
+                            Get.defaultDialog(
+                                title: 'Change password'.tr,
+                                backgroundColor: Colors.white,
+                                confirm: Obx(
+                                  () => CustomContainerButton(
+                                      onTap: () {
+                                        if (formKey.currentState!.validate()) {
+                                          changePasswordController
+                                              .updatePassword(
+                                                  newPassword: newPassword.text,
+                                                  oldPassword:
+                                                      oldPassword.text);
+                                        }
+                                      },
+                                      loading: changePasswordController
+                                          .loading.value,
+                                      label: 'Confirm'.tr),
+                                ),
+                                content: Form(
+                                  key: formKey,
+                                  child: Container(
+                                    color: Colors.white,
+                                    // height: 200,
+                                    child: Column(
+                                      children: [
+                                        SizedBox(height: 20),
+                                        CustomTextField(
+                                            controller: oldPassword,
+                                            label: 'Old password'.tr),
+                                        CustomTextField(
+                                            controller: newPassword,
+                                            label: 'New password'.tr),
+                                        SizedBox(height: 20),
+                                      ],
+                                    ),
+                                  ),
+                                ));
+                          },
+                          child:
+                              CustomSettingsCard(label: "Change password".tr)),
                       Visibility(
                         visible:
                             user.role == "GUARDIAN" || user.guardianId != null,

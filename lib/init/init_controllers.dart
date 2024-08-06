@@ -11,6 +11,7 @@ import 'package:alibtisam/features/bottomNav/controller/measurement_req.dart';
 import 'package:alibtisam/features/bottomNav/controller/selected_player.dart';
 import 'package:alibtisam/features/bottomNav/controller/teams.dart';
 import 'package:alibtisam/features/bottomNav/controller/user.dart';
+import 'package:alibtisam/features/bottomNav/presentation/settings/controller/change_password_viewmodel.dart';
 import 'package:alibtisam/features/bottomNav/presentation/settings/controller/organization.dart';
 import 'package:alibtisam/features/bottomNav/presentation/userDashboard/presentation/events/controller/active_player.dart';
 import 'package:alibtisam/features/bottomNav/presentation/userDashboard/presentation/playerPolarization/controller/fetch_players.dart';
@@ -45,4 +46,5 @@ initControllers() {
   Get.put(PlayerPolarizationController());
   Get.put(SignUpViewmodel());
   Get.put(TournamentRequestViewmodel());
+  Get.put(ChangePasswordViewmodel());
 }

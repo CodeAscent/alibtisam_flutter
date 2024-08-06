@@ -67,7 +67,8 @@ class _UserDashboardState extends State<UserDashboard> {
                                 dashboardController.fetchDashboardItems();
                               });
                             },
-                            child: Get.locale.toString() == 'en_US'
+                            child: Get.locale.toString() == 'en_US' ||
+                                    Get.locale.toString() == 'en'
                                 ? CustomDashboardCard(
                                     label: dashboard.name,
                                     icon: dashboard.icon,
