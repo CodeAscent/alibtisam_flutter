@@ -89,10 +89,10 @@ class ViewPlayerByUserModel extends StatelessWidget {
                       kCustomListTile(
                           key: "chestSize".tr, value: player.chestSize),
                       kCustomListTile(
-                          key: "normalChestSize".tr,
+                          key: "normal chest size".tr,
                           value: player.normalChestSize),
                       kCustomListTile(
-                          key: "heartbeatingRate".tr,
+                          key: "heartBeatingRate".tr,
                           value: player.heartBeatingRate),
                       kCustomListTile(
                           key: "highJump".tr, value: player.highJump),
@@ -102,7 +102,7 @@ class ViewPlayerByUserModel extends StatelessWidget {
                       kCustomListTile(
                           key: "shoeSize".tr, value: player.shoeSize),
                       kCustomListTile(
-                          key: "tshirtSize".tr, value: player.tshirtSize),
+                          key: "tShirtSize".tr, value: player.tshirtSize),
                       kCustomListTile(
                           key: "waistSize".tr, value: player.waistSize),
                     ],
