@@ -1,6 +1,5 @@
 import 'package:alibtisam/Localization/localization.dart';
 import 'package:alibtisam/client/socket_io.dart';
-import 'package:alibtisam/core/error/no_internet.dart';
 import 'package:alibtisam/core/localStorage/fcm_token.dart';
 import 'package:alibtisam/core/localStorage/init_shared_pref.dart';
 import 'package:alibtisam/features/dummySplash/dummy_splash.dart';
@@ -24,9 +23,10 @@ String? locale;
 void main() async {
   // WidgetsBinding widgetsBinding =
   WidgetsFlutterBinding.ensureInitialized();
+  await initControllers();
+
   locale = await Devicelocale.defaultLocale;
 
-  initControllers();
   await SharedPref.initSharedPrefrences();
   SocketConnection.connectSocket();
   await Firebase.initializeApp(

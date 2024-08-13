@@ -108,7 +108,7 @@ class _LoginScreenState extends State<LoginScreen> {
                             children: [
                               GestureDetector(
                                 onTap: () {
-                                  Get.to(() => StoreScreen());
+                                  //   Get.to(() => StoreScreen());
                                 },
                                 child: LottieBuilder.asset(
                                   'assets/lottie/store.json',

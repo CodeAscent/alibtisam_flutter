@@ -17,30 +17,32 @@ class CustomContainerButton extends StatelessWidget {
   final bool? loading;
   @override
   Widget build(BuildContext context) {
-    return GestureDetector(
-      onTap: onTap,
-      child: Container(
-        margin: EdgeInsets.symmetric(vertical: 8, horizontal: 8),
-        height: flexibleHeight,
-        padding: const EdgeInsets.all(8.0),
-        decoration: BoxDecoration(
-            boxShadow: isAppThemeDark() ? [] : kBoxShadow(),
-            color: primaryColor(),
-            borderRadius: BorderRadius.circular(20)),
-        child: Center(
-          child: loading!
-              ? CircularProgressIndicator(
-                  color: Colors.white,
-                )
-              : Text(
-                  label.capitalize!,
-                  textAlign: TextAlign.center,
-                  style: TextStyle(
-                    fontSize: 18,
+    return SafeArea(
+      child: GestureDetector(
+        onTap: onTap,
+        child: Container(
+          margin: EdgeInsets.symmetric(vertical: 8, horizontal: 8),
+          height: flexibleHeight,
+          padding: const EdgeInsets.all(8.0),
+          decoration: BoxDecoration(
+              boxShadow: isAppThemeDark() ? [] : kBoxShadow(),
+              color: primaryColor(),
+              borderRadius: BorderRadius.circular(20)),
+          child: Center(
+            child: loading!
+                ? CircularProgressIndicator(
                     color: Colors.white,
-                    fontWeight: FontWeight.w800,
+                  )
+                : Text(
+                    label.capitalize!,
+                    textAlign: TextAlign.center,
+                    style: TextStyle(
+                      fontSize: 18,
+                      color: Colors.white,
+                      fontWeight: FontWeight.w800,
+                    ),
                   ),
-                ),
+          ),
         ),
       ),
     );

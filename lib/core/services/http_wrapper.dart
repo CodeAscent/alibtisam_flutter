@@ -47,7 +47,7 @@ class HttpWrapper {
 
       Logger().w(await header());
       print('-------------------');
-      Logger().w(body);
+
       final res = await http.post(Uri.parse(url),
           headers: await header(), body: jsonEncode(body));
 
