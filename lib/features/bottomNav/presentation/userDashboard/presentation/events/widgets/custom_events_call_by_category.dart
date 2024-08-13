@@ -1,4 +1,6 @@
 // ignore_for_file: public_member_api_docs, sort_constructors_first
+import 'dart:io';
+
 import 'package:alibtisam/core/utils/custom_date_formatter.dart';
 import 'package:alibtisam/core/services/api_requests.dart';
 import 'package:calendar_date_picker2/calendar_date_picker2.dart';
@@ -120,9 +122,9 @@ class _CustomEventsCallByCategoryState
                                         if (thumbnailSnapshot.hasData) {
                                           return Stack(
                                             children: [
-                                              Image.asset(
-                                                thumbnailSnapshot.data
-                                                    .toString(),
+                                              Image.file(
+                                                File(thumbnailSnapshot.data
+                                                    .toString()),
                                                 height: 100,
                                                 width: double.infinity,
                                                 fit: BoxFit.cover,

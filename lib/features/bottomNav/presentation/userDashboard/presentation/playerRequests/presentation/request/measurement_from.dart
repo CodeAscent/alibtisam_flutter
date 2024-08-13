@@ -39,7 +39,7 @@ class MeasurementForm extends StatelessWidget {
     final groupStageController = TextEditingController();
 
     final formKey = GlobalKey<FormState>();
-    List tshirtSize = ['S', 'M', 'L'];
+    List tshirtSize = ['S', 'M', 'L', 'XL', '2XL'];
     return Form(
       key: formKey,
       child: CustomLoader(

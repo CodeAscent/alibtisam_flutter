@@ -48,37 +48,38 @@ class _UserDashboardState extends State<UserDashboard> {
                   GetBuilder(
                     init: DashboardController(),
                     builder: (controller) {
-                      return ListView.builder(
-                        shrinkWrap: true,
-                        itemCount: controller.dashboard.length,
-                        physics: NeverScrollableScrollPhysics(),
-                        itemBuilder: (context, index) {
-                          DashboardModel dashboard =
-                              controller.dashboard[index];
-                          Logger().w("---------> " + "${Get.locale}");
-                          return GestureDetector(
-                            onTap: () {
-                              if (dashboard.name == "Events") {
-                                eventNavigationController
-                                    .navigatingFromSplash(false);
-                              }
-                              Get.toNamed(dashboard.route)!.then((_) {
-                                userController.fetchUser();
-                                dashboardController.fetchDashboardItems();
-                              });
-                            },
-                            child: Get.locale.toString() == 'en_US' ||
-                                    Get.locale.toString() == 'en'
-                                ? CustomDashboardCard(
-                                    label: dashboard.name,
-                                    icon: dashboard.icon,
-                                  )
-                                : CustomDashboardCard(
-                                    label: dashboard.arabicName!,
+                      return Center(
+                        child: Wrap(
+                          children: [
+                            ...List.generate(
+                              controller.dashboard.length,
+                              (int index) {
+                                DashboardModel dashboard =
+                                    controller.dashboard[index];
+                                Logger().w("---------> " + "${Get.locale}");
+                                return GestureDetector(
+                                  onTap: () {
+                                    if (dashboard.name == "Events") {
+                                      eventNavigationController
+                                          .navigatingFromSplash(false);
+                                    }
+                                    Get.toNamed(dashboard.route)!.then((_) {
+                                      userController.fetchUser();
+                                      dashboardController.fetchDashboardItems();
+                                    });
+                                  },
+                                  child: CustomDashboardCard(
+                                    label: Get.locale.toString() == 'en_US' ||
+                                            Get.locale.toString() == 'en'
+                                        ? dashboard.name
+                                        : dashboard.arabicName!,
                                     icon: dashboard.icon,
                                   ),
-                          );
-                        },
+                                );
+                              },
+                            ),
+                          ],
+                        ),
                       );
                     },
                   ),
