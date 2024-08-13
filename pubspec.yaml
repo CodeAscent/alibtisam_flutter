@@ -83,7 +83,8 @@ dependencies:
     age_calculator: ^1.0.0
     webview_flutter: ^4.8.0
     devicelocale: ^0.7.1
-
+    day_picker: ^2.2.0
+    
 dev_dependencies:
     flutter_test:
         sdk: flutter
