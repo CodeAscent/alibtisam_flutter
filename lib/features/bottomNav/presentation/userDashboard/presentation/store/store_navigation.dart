@@ -1,4 +1,3 @@
-
 import 'package:alibtisam/features/bottomNav/controller/user.dart';
 import 'package:alibtisam/features/bottomNav/presentation/userDashboard/presentation/store/view/screens/coach_store.dart';
 import 'package:alibtisam/features/bottomNav/presentation/userDashboard/presentation/store/view/screens/external_store.dart';
@@ -17,8 +16,6 @@ class _StoreNavigationState extends State<StoreNavigation> {
 
   @override
   Widget build(BuildContext context) {
-    return userController.user!.role == "EXTERNAL USER"
-        ? ExternalStore()
-        : CoachStore();
+    return ProductsTabBar();
   }
 }

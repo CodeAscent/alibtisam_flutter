@@ -47,4 +47,26 @@ class ProductsViewmodel extends GetxController {
       customSnackbar(message: e.message);
     }
   }
+
+  orderProductForExternalUser(
+      {required List<dynamic> product,
+      required num price,
+      required String deliveryAddress}) async {
+    try {
+      loading.value = true;
+      final res = await productsRepo.orderProductForExternal(
+          productIds: product, price: price, deliveryAddress: deliveryAddress);
+
+      Get.back();
+      Get.back();
+      customSnackbar(message: res['message']);
+      return products;
+    } on ServerException catch (e) {
+      customSnackbar(message: e.message);
+    } finally {
+      loading.value = false;
+
+      update();
+    }
+  }
 }

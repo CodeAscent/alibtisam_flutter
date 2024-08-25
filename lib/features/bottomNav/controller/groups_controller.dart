@@ -19,7 +19,6 @@ class GroupsController extends GetxController {
   Future fetchGroupsForPlayer() async {
     isLoading = true;
     groups = await ApiRequests().playerGroups();
-    Logger().w(groups);
     isLoading = false;
     update();
   }

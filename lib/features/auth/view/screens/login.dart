@@ -7,6 +7,7 @@ import 'package:alibtisam/core/common/widgets/custom_text_field.dart';
 import 'package:alibtisam/core/theme/app_colors.dart';
 import 'package:alibtisam/features/bottomNav/presentation/userDashboard/presentation/store/store_navigation.dart';
 import 'package:alibtisam/core/services/api_requests.dart';
+import 'package:alibtisam/features/bottomNav/presentation/userDashboard/presentation/store/view/screens/coach_store.dart';
 import 'package:cupertino_will_pop_scope/cupertino_will_pop_scope.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
@@ -108,7 +109,7 @@ class _LoginScreenState extends State<LoginScreen> {
                             children: [
                               GestureDetector(
                                 onTap: () {
-                                  //   Get.to(() => StoreScreen());
+                                  Get.to(() => ProductsTabBar());
                                 },
                                 child: LottieBuilder.asset(
                                   'assets/lottie/store.json',

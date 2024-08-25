@@ -132,7 +132,8 @@ class _GroupsManagementState extends State<GroupsManagement>
       appBar: AppBar(
         title: Text('selectstage'.tr),
       ),
-      body: CustomTabBar(tabController: _tabController, customTabs: [
+      body: 
+      CustomTabBar(tabController: _tabController, customTabs: [
         ...user.stage.map(
           (e) => Text(e),
         )

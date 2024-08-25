@@ -48,4 +48,27 @@ class ProductsRepo {
       throw ServerException(e.toString());
     }
   }
+
+  orderProductForExternal(
+      {required List<dynamic> productIds,
+      required num price,
+      required String deliveryAddress}) async {
+    try {
+      final res =
+          await HttpWrapper.postRequest(base_url + 'request/order-product', {
+        "productIds": productIds,
+        "deliveryAddress": deliveryAddress,
+        "totalAmount": price,
+      });
+      final data = jsonDecode(res.body);
+      Logger().f(data);
+      if (res.statusCode == 200) {
+        return data;
+      } else {
+        throw ServerException(data['message']);
+      }
+    } catch (e) {
+      throw ServerException(e.toString());
+    }
+  }
 }

@@ -1,7 +1,7 @@
-// String BASEURL = "https://alibtisam.club/api/v1/";
+String BASEURL = "https://alibtisam.club/api/v1/";
 String SOCKETBASEURL = "http://52.66.197.219:8000";
-//String BASEURL = "http://192.168.1.10:8000/";
-String BASEURL = "http://192.168.29.116:8000/api/v1/";
+// String BASEURL = "http://192.168.1.10:8000/";
+// String BASEURL = "http://192.168.1.10:8000/api/v1/";
 String socket_base_url = SOCKETBASEURL;
 String base_url = BASEURL;
 String event = "event/";
@@ -113,4 +113,5 @@ String get_player_attendance_statistics =
 String update_user_by_id = base_url + user + "update/";
 // UPDATE USER BY ID
 String age_category = base_url + coach + "age-categories";
+
 String players_by_age_and_stage = base_url + coach;

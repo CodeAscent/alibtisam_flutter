@@ -11,6 +11,10 @@ Color kAppGreyColor() {
   return themeController.liveGreyColor.value;
 }
 
+List<Color> kColorsArray() => [
+      kAlibtisamPrimary(),
+      kAlibtisamSecondary(),
+    ];
 dynamic kGradientColor() => LinearGradient(
       colors: [
         kAlibtisamPrimary(),

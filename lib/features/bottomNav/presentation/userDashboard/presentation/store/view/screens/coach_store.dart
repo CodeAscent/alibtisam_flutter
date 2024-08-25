@@ -8,14 +8,14 @@ import 'package:alibtisam/features/bottomNav/presentation/userDashboard/presenta
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
-class CoachStore extends StatefulWidget {
-  const CoachStore({super.key});
+class ProductsTabBar extends StatefulWidget {
+  const ProductsTabBar({super.key});
 
   @override
-  State<CoachStore> createState() => _CoachStoreState();
+  State<ProductsTabBar> createState() => _ProductsTabBarState();
 }
 
-class _CoachStoreState extends State<CoachStore>
+class _ProductsTabBarState extends State<ProductsTabBar>
     with SingleTickerProviderStateMixin {
   late TabController _tabController;
 
@@ -48,8 +48,7 @@ class _CoachStoreState extends State<CoachStore>
                           .toList(),
                       tabViewScreens: controller.categories
                           .map((e) => ProductsFilterByCategory(
-                                categoryId:
-                                 e.id,
+                                categoryId: e.id,
                               ))
                           .toList());
                 });
