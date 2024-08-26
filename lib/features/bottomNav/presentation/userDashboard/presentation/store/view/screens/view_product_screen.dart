@@ -27,7 +27,7 @@ class ViewProductScreen extends StatelessWidget {
         child: CustomContainerButton(
             onTap: () async {
               String? token = await getToken();
-
+              print(userController.user!.role);
               if (token == null ||
                   userController.user!.role == 'EXTERNAL USER') {
                 Get.to(() => BuyForExternalUser(
