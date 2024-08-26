@@ -43,7 +43,8 @@ class _TournamentsScreenState extends State<TournamentsScreen> {
                                   id: data['_id'],
                                 ));
                           },
-                          child: Container(
+                          child: 
+                          Container(
                             width: double.infinity,
                             margin: EdgeInsets.all(10),
                             padding: EdgeInsets.all(16),

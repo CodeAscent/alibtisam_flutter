@@ -10,6 +10,7 @@ class ProductsViewmodel extends GetxController {
   RxBool loading = false.obs;
   ProductsRepo productsRepo = ProductsRepo();
   List<ProductModel> products = [];
+  List<dynamic> orderRequests = [];
   RxString selectedProductId = ''.obs;
   Future fetchProducts(String categoryId) async {
     try {
@@ -18,12 +19,45 @@ class ProductsViewmodel extends GetxController {
       Logger().w(res);
       products = List<ProductModel>.from(
           res['data'].map((e) => ProductModel.fromJson(e)));
-      loading.value = false;
 
-      update();
       return products;
     } on ServerException catch (e) {
       customSnackbar(message: e.message);
+    } finally {
+      loading.value = false;
+      update();
+    }
+  }
+
+  Future<ProductModel?> fetchProductById(String id) async {
+    try {
+      loading.value = true;
+      final res = await productsRepo.fetchProductById(id);
+      ProductModel product = ProductModel.fromJson(res['data']);
+      return product;
+    } on ServerException catch (e) {
+      customSnackbar(message: e.message);
+    } finally {
+      loading.value = false;
+      update();
+    }
+    return null;
+  }
+
+  Future fetchOrderHistory() async {
+    try {
+      loading.value = true;
+      final res = await productsRepo.orderHistory();
+      loading.value = false;
+      update();
+      orderRequests = res['requests'];
+
+      return orderRequests;
+    } on ServerException catch (e) {
+      customSnackbar(message: e.message);
+    } finally {
+      loading.value = false;
+      update();
     }
   }
 
@@ -36,15 +70,16 @@ class ProductsViewmodel extends GetxController {
     try {
       loading.value = true;
       final res = await productsRepo.orderProduct(playerIds: playerIds);
-      loading.value = false;
 
-      update();
       Get.back();
       Get.back();
       customSnackbar(message: res['message']);
       return products;
     } on ServerException catch (e) {
       customSnackbar(message: e.message);
+    } finally {
+      loading.value = false;
+      update();
     }
   }
 

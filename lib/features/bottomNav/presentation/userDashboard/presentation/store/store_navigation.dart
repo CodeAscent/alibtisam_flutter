@@ -1,5 +1,5 @@
 import 'package:alibtisam/features/bottomNav/controller/user.dart';
-import 'package:alibtisam/features/bottomNav/presentation/userDashboard/presentation/store/view/screens/coach_store.dart';
+import 'package:alibtisam/features/bottomNav/presentation/userDashboard/presentation/store/view/screens/products_tabbar.dart';
 import 'package:alibtisam/features/bottomNav/presentation/userDashboard/presentation/store/view/screens/external_store.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';

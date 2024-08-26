@@ -33,7 +33,6 @@ class TrainingPlanViewmodel extends GetxController {
           trainingTime: trainingTime,
           trainingDuration: trainingDuration,
           additionalNotes: additionalNotes);
-      loading.value = false;
       Get.back();
 
       update();
@@ -42,6 +41,9 @@ class TrainingPlanViewmodel extends GetxController {
       }
     } on ServerException catch (e) {
       customSnackbar(message: e.message);
+    } finally {
+      loading.value = false;
+      update();
     }
   }
 

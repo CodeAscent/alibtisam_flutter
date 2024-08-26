@@ -30,7 +30,9 @@ class ViewProductScreen extends StatelessWidget {
 
               if (token == null ||
                   userController.user!.role == 'EXTERNAL USER') {
-                Get.to(() => BuyForExternalUser(product: product!,));
+                Get.to(() => BuyForExternalUser(
+                      product: product,
+                    ));
               } else {
                 Get.to(() => SelectGroupsScreen());
               }

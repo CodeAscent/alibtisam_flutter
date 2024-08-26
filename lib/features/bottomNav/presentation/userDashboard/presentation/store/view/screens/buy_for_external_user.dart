@@ -3,10 +3,12 @@ import 'package:alibtisam/core/common/widgets/custom_gradient_button.dart';
 import 'package:alibtisam/core/common/widgets/custom_text_field.dart';
 import 'package:alibtisam/core/localStorage/token_id.dart';
 import 'package:alibtisam/core/utils/custom_snackbar.dart';
+import 'package:alibtisam/features/auth/view/screens/login.dart';
 import 'package:alibtisam/features/bottomNav/presentation/userDashboard/presentation/store/models/product_model.dart';
 import 'package:alibtisam/features/bottomNav/presentation/userDashboard/presentation/store/viewmodel/products_viewmodel.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:logger/logger.dart';
 
 class BuyForExternalUser extends StatefulWidget {
   final ProductModel product;
@@ -37,6 +39,8 @@ class _BuyForExternalUserState extends State<BuyForExternalUser> {
   final formkey = GlobalKey<FormState>();
   @override
   Widget build(BuildContext context) {
+    List<dynamic> sizes = widget.product.sizes;
+    sizes.sort();
     return Form(
       key: formkey,
       child: Scaffold(
@@ -57,6 +61,7 @@ class _BuyForExternalUserState extends State<BuyForExternalUser> {
                 ];
                 String? token = await getToken();
                 if (token == null) {
+                  Get.to(() => LoginScreen());
                   customSnackbar(
                       message: 'Please login to order this product.');
                 } else {
@@ -95,6 +100,18 @@ class _BuyForExternalUserState extends State<BuyForExternalUser> {
                 CustomTextField(
                   controller: size,
                   label: 'Size',
+                  readOnly: true,
+                  suffix: DropdownButton(
+                      underline: SizedBox(),
+                      items: sizes
+                          .map((e) => DropdownMenuItem(
+                                value: e,
+                                child: Text(e.toString()),
+                              ))
+                          .toList(),
+                      onChanged: (dynamic val) {
+                        size.text = val;
+                      }),
                 ),
                 SizedBox(height: 10),
                 Text(
@@ -131,7 +148,7 @@ class _BuyForExternalUserState extends State<BuyForExternalUser> {
                   'Total price',
                   style: TextStyle(fontSize: 18, fontWeight: FontWeight.w800),
                 ),
-                Text(price.toString()),
+                Text(price.toString() + " SAR"),
               ],
             ),
           ),

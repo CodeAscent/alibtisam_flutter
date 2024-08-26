@@ -9,6 +9,7 @@ import 'package:get/get.dart';
 import 'package:logger/web.dart';
 
 class ProductsRepo {
+  final userController = Get.find<UserController>();
   fetchProducts(String categoryId) async {
     try {
       String endpoint = 'product/all';
@@ -18,6 +19,24 @@ class ProductsRepo {
       final res = await HttpWrapper.getRequest(base_url + endpoint);
       final data = jsonDecode(res.body);
       if (res.statusCode == 200) {
+        return data;
+      } else {
+        throw ServerException(data['message']);
+      }
+    } catch (e) {
+      throw ServerException(e.toString());
+    }
+  }
+
+  fetchProductById(String id) async {
+    try {
+      String endpoint = 'product/get/66c87b1edfd99015192a9956';
+
+      final res = await HttpWrapper.getRequest(base_url + endpoint);
+      final data = jsonDecode(res.body);
+      if (res.statusCode == 200) {
+        Logger().f(data);
+
         return data;
       } else {
         throw ServerException(data['message']);
@@ -70,5 +89,21 @@ class ProductsRepo {
     } catch (e) {
       throw ServerException(e.toString());
     }
+  }
+
+  orderHistory() async {
+    try {
+      String endpoint = userController.user!.role == 'COACH'
+          ? "request/by-status/all?kind=buyPlayerProductRequest"
+          : "request/by-status/all?kind=externalUserOrderRequest";
+      final res = await HttpWrapper.getRequest(base_url + endpoint);
+      final data = jsonDecode(res.body);
+      Logger().f(data);
+      if (res.statusCode == 200) {
+        return data;
+      } else {
+        throw ServerException(data['message']);
+      }
+    } catch (e) {}
   }
 }

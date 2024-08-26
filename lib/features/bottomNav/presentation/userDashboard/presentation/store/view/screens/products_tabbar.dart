@@ -1,10 +1,15 @@
 import 'package:alibtisam/core/common/widgets/custom_tab_bar.dart';
+import 'package:alibtisam/core/localStorage/token_id.dart';
 import 'package:alibtisam/core/services/http_wrapper.dart';
 import 'package:alibtisam/core/theme/app_colors.dart';
+import 'package:alibtisam/core/utils/custom_snackbar.dart';
 import 'package:alibtisam/features/bottomNav/presentation/userDashboard/presentation/store/models/product_model.dart';
+import 'package:alibtisam/features/bottomNav/presentation/userDashboard/presentation/store/view/screens/order_history_page.dart';
 import 'package:alibtisam/features/bottomNav/presentation/userDashboard/presentation/store/view/screens/view_product_screen.dart';
+import 'package:alibtisam/features/bottomNav/presentation/userDashboard/presentation/store/view/widgets/product_card.dart';
 import 'package:alibtisam/features/bottomNav/presentation/userDashboard/presentation/store/viewmodel/category_viewmodel.dart';
 import 'package:alibtisam/features/bottomNav/presentation/userDashboard/presentation/store/viewmodel/products_viewmodel.dart';
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
@@ -31,6 +36,19 @@ class _ProductsTabBarState extends State<ProductsTabBar>
     return Scaffold(
         appBar: AppBar(
           title: Text('Alibtisam Store'),
+          actions: [
+            IconButton(
+                onPressed: () async {
+                  final token = await getToken();
+                  if (token == null) {
+                    customSnackbar(
+                        message: 'Please login to fetch your order history');
+                  } else {
+                    Get.to(() => OrderHistoryPage());
+                  }
+                },
+                icon: Icon(Icons.history))
+          ],
         ),
         body: GetBuilder<CategoryViewmodel>(builder: (controller) {
           return categoryViewmodel.loading.value
@@ -79,56 +97,7 @@ class ProductsFilterByCategory extends StatelessWidget {
               itemCount: controller.products.length,
               itemBuilder: (context, index) {
                 ProductModel product = controller.products[index];
-                return GestureDetector(
-                  onTap: () {
-                    controller.updateSelectedProductId(product.id);
-                    Get.to(() => ViewProductScreen(
-                          product: product,
-                        ));
-                  },
-                  child: Container(
-                    margin: EdgeInsets.all(16),
-                    padding: EdgeInsets.all(10),
-                    height: 280,
-                    decoration: BoxDecoration(
-                      color: kAppGreyColor(),
-                      borderRadius: BorderRadius.circular(10),
-                    ),
-                    child: Row(
-                      children: [
-                        SizedBox(
-                            width: Get.width * 0.4,
-                            height: 280,
-                            child: HttpWrapper.networkImageRequest(
-                                product.images.first)),
-                        SizedBox(width: 10),
-                        Expanded(
-                            child: Column(
-                          crossAxisAlignment: CrossAxisAlignment.start,
-                          children: [
-                            Text(
-                              product.name.capitalize!,
-                              style: TextStyle(
-                                fontWeight: FontWeight.w800,
-                                fontSize: 18,
-                              ),
-                            ),
-                            SizedBox(height: 10),
-                            Text(
-                              product.description,
-                              maxLines: 3,
-                              overflow: TextOverflow.ellipsis,
-                            ),
-                            SizedBox(height: 10),
-                            Text('Category: ' + product.category),
-                            SizedBox(height: 10),
-                            Text('Price: ' + product.price.toString()),
-                          ],
-                        ))
-                      ],
-                    ),
-                  ),
-                );
+                return ProductCard(product: product);
               },
             );
     });
