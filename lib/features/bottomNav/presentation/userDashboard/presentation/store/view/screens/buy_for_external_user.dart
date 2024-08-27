@@ -11,8 +11,11 @@ import 'package:get/get.dart';
 import 'package:logger/logger.dart';
 
 class BuyForExternalUser extends StatefulWidget {
-  final ProductModel product;
-  const BuyForExternalUser({super.key, required this.product});
+  final List product;
+  const BuyForExternalUser({
+    super.key,
+    required this.product,
+  });
 
   @override
   State<BuyForExternalUser> createState() => _BuyForExternalUserState();
@@ -24,23 +27,29 @@ class _BuyForExternalUserState extends State<BuyForExternalUser> {
   @override
   void initState() {
     super.initState();
-    setPrice();
+    calculateTotalPrice();
   }
 
-  setPrice() {
-    setState(() {
-      price = widget.product.price * quantity;
-    });
+//   setPrice() {
+//     setState(() {
+//       price = widget.product.price * quantity;
+//     });
+//   }
+  calculateTotalPrice() {
+    num totalPrice = 0.0;
+    for (var item in widget.product) {
+      totalPrice += item['price'] * item['quantity'];
+    }
+    total = totalPrice;
+    setState(() {});
   }
 
-  final size = TextEditingController();
+  num total = 0;
   final address = TextEditingController();
   final productsViewmodel = Get.find<ProductsViewmodel>();
   final formkey = GlobalKey<FormState>();
   @override
   Widget build(BuildContext context) {
-    List<dynamic> sizes = widget.product.sizes;
-    sizes.sort();
     return Form(
       key: formkey,
       child: Scaffold(
@@ -52,13 +61,7 @@ class _BuyForExternalUserState extends State<BuyForExternalUser> {
             loading: productsViewmodel.loading.value,
             onTap: () async {
               if (formkey.currentState!.validate()) {
-                List product = [
-                  {
-                    "productId": widget.product.id,
-                    "quantity": quantity,
-                    "size": size.text
-                  }
-                ];
+                Logger().w(widget.product);
                 String? token = await getToken();
                 if (token == null) {
                   Get.to(() => LoginScreen());
@@ -66,7 +69,7 @@ class _BuyForExternalUserState extends State<BuyForExternalUser> {
                       message: 'Please login to order this product.');
                 } else {
                   await productsViewmodel.orderProductForExternalUser(
-                    product: product,
+                    product: widget.product,
                     price: price,
                     deliveryAddress: address.text,
                   );
@@ -92,63 +95,11 @@ class _BuyForExternalUserState extends State<BuyForExternalUser> {
                   label: 'Enter Your address',
                   maxLines: 3,
                 ),
-                SizedBox(height: 10),
-                Text(
-                  'Preferred Size',
-                  style: TextStyle(fontSize: 18, fontWeight: FontWeight.w800),
-                ),
-                CustomTextField(
-                  controller: size,
-                  label: 'Size',
-                  readOnly: true,
-                  suffix: DropdownButton(
-                      underline: SizedBox(),
-                      items: sizes
-                          .map((e) => DropdownMenuItem(
-                                value: e,
-                                child: Text(e.toString()),
-                              ))
-                          .toList(),
-                      onChanged: (dynamic val) {
-                        size.text = val;
-                      }),
-                ),
-                SizedBox(height: 10),
-                Text(
-                  'Quantity',
-                  style: TextStyle(fontSize: 18, fontWeight: FontWeight.w800),
-                ),
-                Row(
-                  children: [
-                    IconButton(
-                      onPressed: quantity != 1
-                          ? () {
-                              setState(() {
-                                quantity--;
-                                setPrice();
-                              });
-                            }
-                          : () {},
-                      icon: Icon(Icons.remove),
-                    ),
-                    Text(quantity.toString()),
-                    IconButton(
-                      onPressed: () {
-                        setState(() {
-                          quantity++;
-                          setPrice();
-                        });
-                      },
-                      icon: Icon(Icons.add),
-                    ),
-                  ],
-                ),
-                SizedBox(height: 10),
                 Text(
                   'Total price',
                   style: TextStyle(fontSize: 18, fontWeight: FontWeight.w800),
                 ),
-                Text(price.toString() + " SAR"),
+                Text(total.toString() + " SAR"),
               ],
             ),
           ),

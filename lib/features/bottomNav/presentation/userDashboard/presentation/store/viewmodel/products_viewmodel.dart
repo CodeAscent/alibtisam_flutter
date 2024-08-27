@@ -1,5 +1,6 @@
 import 'package:alibtisam/core/error/server_exception.dart';
 import 'package:alibtisam/core/utils/custom_snackbar.dart';
+import 'package:alibtisam/features/bottomNav/presentation/userDashboard/presentation/store/local/database_helper.dart';
 import 'package:alibtisam/features/bottomNav/presentation/userDashboard/presentation/store/models/product_model.dart';
 import 'package:alibtisam/features/bottomNav/presentation/userDashboard/presentation/store/repo/products_repo.dart';
 import 'package:get/get.dart';
@@ -12,6 +13,7 @@ class ProductsViewmodel extends GetxController {
   List<ProductModel> products = [];
   List<dynamic> orderRequests = [];
   RxString selectedProductId = ''.obs;
+  List selectedProducts = [];
   Future fetchProducts(String categoryId) async {
     try {
       loading.value = true;
@@ -70,7 +72,9 @@ class ProductsViewmodel extends GetxController {
     try {
       loading.value = true;
       final res = await productsRepo.orderProduct(playerIds: playerIds);
-
+      DatabaseHelper().clearCart();
+      selectedProducts.clear();
+      Get.back();
       Get.back();
       Get.back();
       customSnackbar(message: res['message']);
@@ -91,7 +95,7 @@ class ProductsViewmodel extends GetxController {
       loading.value = true;
       final res = await productsRepo.orderProductForExternal(
           productIds: product, price: price, deliveryAddress: deliveryAddress);
-
+      await DatabaseHelper().clearCart();
       Get.back();
       Get.back();
       customSnackbar(message: res['message']);

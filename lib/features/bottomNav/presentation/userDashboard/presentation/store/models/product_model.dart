@@ -16,14 +16,32 @@ class ProductModel {
 
   factory ProductModel.fromJson(Map<String, dynamic> json) {
     return ProductModel(
-      json['_id'],
-      json['name'],
-      json['images'] ?? [],
-      json['sizes'] == null ? [] : json['sizes'] ?? [],
-      json['availableStock'],
-      json['price'] ?? 0,
-      json['category'],
+      json['_id'] ?? '',
+      json['name'] ?? '',
+      json['images'] is String
+          ? jsonDecode(json['images'])
+          : json['images'] as List<dynamic>,
+      json['sizes'] == null
+          ? []
+          : json['sizes'] is String
+              ? jsonDecode(json['sizes'])
+              : json['sizes'],
+      json['availableStock'] ?? '',
+      json['price'] ?? '0',
+      json['category'] ?? '',
       json['description'] ?? '',
     );
+  }
+  Map<String, dynamic> toMap() {
+    return {
+      '_id': id,
+      'name': name,
+      'images': jsonEncode(images),
+      'sizes': jsonEncode(sizes),
+      'availableStock': availableStock,
+      'price': price,
+      'category': category,
+      'description': description,
+    };
   }
 }

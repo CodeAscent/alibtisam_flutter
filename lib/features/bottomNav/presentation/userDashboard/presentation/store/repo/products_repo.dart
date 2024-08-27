@@ -53,7 +53,7 @@ class ProductsRepo {
       final res = await HttpWrapper.postRequest(
           base_url + 'request/buy-product-for-player', {
         "playerIds": playerIds,
-        "productIds": [productsViewmodel.selectedProductId.value],
+        "productIds": productsViewmodel.selectedProducts,
         "coachId": userController.user!.id
       });
       final data = jsonDecode(res.body);
