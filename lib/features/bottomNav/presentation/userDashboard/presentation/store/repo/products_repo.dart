@@ -3,7 +3,9 @@ import 'dart:convert';
 import 'package:alibtisam/core/error/server_exception.dart';
 import 'package:alibtisam/core/services/api_urls.dart';
 import 'package:alibtisam/core/services/http_wrapper.dart';
+import 'package:alibtisam/core/utils/custom_snackbar.dart';
 import 'package:alibtisam/features/bottomNav/controller/user.dart';
+import 'package:alibtisam/features/bottomNav/presentation/userDashboard/presentation/store/local/database_helper.dart';
 import 'package:alibtisam/features/bottomNav/presentation/userDashboard/presentation/store/viewmodel/products_viewmodel.dart';
 import 'package:get/get.dart';
 import 'package:logger/web.dart';
@@ -82,9 +84,12 @@ class ProductsRepo {
       final data = jsonDecode(res.body);
       Logger().f(data);
       if (res.statusCode == 200) {
+        await DatabaseHelper().clearCart();
+        Get.back();
+        Get.back();
         return data;
       } else {
-        throw ServerException(data['message']);
+        customSnackbar(message: data['message']);
       }
     } catch (e) {
       throw ServerException(e.toString());

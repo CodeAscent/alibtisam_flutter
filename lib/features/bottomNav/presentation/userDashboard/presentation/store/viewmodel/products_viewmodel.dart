@@ -95,9 +95,7 @@ class ProductsViewmodel extends GetxController {
       loading.value = true;
       final res = await productsRepo.orderProductForExternal(
           productIds: product, price: price, deliveryAddress: deliveryAddress);
-      await DatabaseHelper().clearCart();
-      Get.back();
-      Get.back();
+     
       customSnackbar(message: res['message']);
       return products;
     } on ServerException catch (e) {
