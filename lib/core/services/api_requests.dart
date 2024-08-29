@@ -145,6 +145,7 @@ class ApiRequests {
       final res =
           await HttpWrapper.getRequest(get_player_by_guardian + "$guardianId");
       final data = jsonDecode(res.body);
+      Logger().w(data);
       List<UserModel> players = [];
       for (var item in data['players']) {
         players.add(UserModel.fromMap(item));
@@ -169,7 +170,6 @@ class ApiRequests {
       customSnackbar(e.message, ContentType.failure);
     }
   }
-
 
   Future submitMeasurementRequest({
     required String height,

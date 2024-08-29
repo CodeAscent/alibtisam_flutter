@@ -74,10 +74,10 @@ class ViewPlayerByUserModel extends StatelessWidget {
                     // if (player.request!["status"] != null)
                     //   kCustomListTile(
                     //       key: "status".tr, value: player.request["status"]),
-                    kCustomListTile(
-                        key: "game".tr,
-                        value:
-                            player.gameId!.name! + " " + "(${player.stage})"),
+                    // kCustomListTile(
+                    //     key: "game".tr,
+                    //     value:
+                    //         player.gameId!.name! + " " + "(${player.stage})"),
                     kCustomListTile(key: "email".tr, value: player.email),
                     kCustomListTile(key: "mobile".tr, value: player.mobile),
                     kCustomListTile(
