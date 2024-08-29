@@ -2,7 +2,6 @@ import 'dart:convert';
 
 import 'package:alibtisam/core/error/server_exception.dart';
 import 'package:alibtisam/core/localStorage/token_id.dart';
-import 'package:alibtisam/core/utils/loading_manager.dart';
 import 'package:flutter/material.dart';
 import 'package:http/http.dart' as http;
 import 'package:logger/logger.dart';
@@ -35,9 +34,7 @@ class HttpWrapper {
         throw ServerException('No Internet Connection');
       }
       throw ServerException(e.toString());
-    } finally {
-      await LoadingManager.endLoading();
-    }
+    } finally {}
   }
 
   static Future<http.Response> postRequest(String url, Object? body) async {
@@ -59,9 +56,7 @@ class HttpWrapper {
         throw ServerException('No Internet Connection');
       }
       throw ServerException(e.toString());
-    } finally {
-      await LoadingManager.endLoading();
-    }
+    } finally {}
   }
 
   static Future<http.Response> putRequest(String url) async {
@@ -73,9 +68,7 @@ class HttpWrapper {
         throw ServerException('No Internet Connection');
       }
       throw ServerException(e.toString());
-    } finally {
-      await LoadingManager.endLoading();
-    }
+    } finally {}
   }
 
   static Future<http.Response> deleteRequest(String url) async {
@@ -87,9 +80,7 @@ class HttpWrapper {
         throw ServerException('No Internet Connection');
       }
       throw ServerException(e.toString());
-    } finally {
-      await LoadingManager.endLoading();
-    }
+    } finally {}
   }
 
   static Future<http.Response> patchRequest(String url, Object? body) async {
@@ -102,9 +93,7 @@ class HttpWrapper {
         throw ServerException('No Internet Connection');
       }
       throw ServerException(e.toString());
-    } finally {
-      await LoadingManager.endLoading();
-    }
+    } finally {}
   }
 
   static Future multipartRequest(String url, List<http.MultipartFile> files,
@@ -126,9 +115,7 @@ class HttpWrapper {
         throw ServerException('No Internet Connection');
       }
       throw ServerException(e.toString());
-    } finally {
-      await LoadingManager.endLoading();
-    }
+    } finally {}
   }
 
   static Widget networkImageRequest(String src) {

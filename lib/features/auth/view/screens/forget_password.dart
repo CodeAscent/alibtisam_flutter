@@ -1,9 +1,9 @@
 import 'package:alibtisam/core/common/widgets/custom_gradient_button.dart';
 import 'package:alibtisam/core/common/widgets/custom_text_field.dart';
-import 'package:alibtisam/features/auth/repo/otp_validation_repo.dart';
 import 'package:alibtisam/features/auth/view/screens/update_password.dart';
 import 'package:alibtisam/features/auth/view/widgets/logo_&_arabic_text.dart';
 import 'package:alibtisam/features/auth/view/widgets/otp_pin.dart';
+import 'package:alibtisam/features/auth/viewmodel/auth_viewmodel.dart';
 import 'package:country_code_picker/country_code_picker.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
@@ -21,6 +21,7 @@ class _ForgetPasswordScreenState extends State<ForgetPasswordScreen> {
   bool showOtpBox = false;
 
   String selectedCountryCode = '+966';
+  final authViewmodel = Get.find<AuthViewmodel>();
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -66,7 +67,7 @@ class _ForgetPasswordScreenState extends State<ForgetPasswordScreen> {
                   children: [
                     TextButton(
                         onPressed: () {
-                          OtpValidationRepo.sendOTP(
+                          authViewmodel.sendOTP(
                               selectedCountryCode + phoneController.text);
                         },
                         child: Text('Resend OTP'))
@@ -80,7 +81,7 @@ class _ForgetPasswordScreenState extends State<ForgetPasswordScreen> {
                   onTap: showOtpBox == true
                       ? () {
                           if (otpController.text != '') {
-                            OtpValidationRepo.validateOTPForgotPassword(
+                            authViewmodel.validateOTPForgotPassword(
                               otp: otpController.text,
                               mobile:
                                   selectedCountryCode + phoneController.text,
@@ -92,7 +93,7 @@ class _ForgetPasswordScreenState extends State<ForgetPasswordScreen> {
                             setState(() {
                               showOtpBox = true;
                             });
-                            OtpValidationRepo.sendOTP(
+                            authViewmodel.sendOTP(
                                 selectedCountryCode + phoneController.text);
                           }
                         },

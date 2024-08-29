@@ -5,25 +5,25 @@ import 'package:alibtisam/features/auth/view/screens/login.dart';
 import 'package:alibtisam/features/bottomNav/bottom_nav.dart';
 import 'package:alibtisam/features/bottomNav/controller/selected_player.dart';
 import 'package:alibtisam/features/bottomNav/controller/user.dart';
-import 'package:alibtisam/features/bottomNav/model/attendance.dart';
-import 'package:alibtisam/features/bottomNav/model/attendance_history.dart';
-import 'package:alibtisam/features/bottomNav/model/attendance_statistics.dart';
+import 'package:alibtisam/features/attendance/models/attendance.dart';
+import 'package:alibtisam/features/attendance/models/attendance_history.dart';
+import 'package:alibtisam/features/attendance/models/attendance_statistics.dart';
 import 'package:alibtisam/features/bottomNav/model/chat_message.dart';
 import 'package:alibtisam/features/bottomNav/model/chats_list.dart';
-import 'package:alibtisam/features/bottomNav/model/dashboard.dart';
+import 'package:alibtisam/features/userDashboard/models/dashboard.dart';
 import 'package:alibtisam/features/bottomNav/model/game.dart';
 import 'package:alibtisam/features/bottomNav/model/group_model.dart';
 import 'package:alibtisam/features/bottomNav/model/team.dart';
 import 'package:alibtisam/features/bottomNav/model/user.dart';
-import 'package:alibtisam/features/bottomNav/presentation/settings/model/about.dart';
-import 'package:alibtisam/features/bottomNav/presentation/userDashboard/presentation/events/model/events_model.dart';
-import 'package:alibtisam/features/bottomNav/presentation/userDashboard/presentation/statistics/model/monitoring.dart';
+import 'package:alibtisam/features/settings/model/about.dart';
+import 'package:alibtisam/features/events/model/events_model.dart';
+import 'package:alibtisam/features/statistics/model/monitoring.dart';
 import 'package:alibtisam/core/error/server_exception.dart';
 import 'package:alibtisam/core/localStorage/token_id.dart';
 import 'package:alibtisam/core/utils/custom_snackbar.dart';
-import 'package:alibtisam/core/utils/loading_manager.dart';
 import 'package:alibtisam/core/services/api_urls.dart';
 import 'package:alibtisam/core/services/http_wrapper.dart';
+import 'package:awesome_snackbar_content/awesome_snackbar_content.dart';
 import 'package:get/get.dart';
 import 'package:http/http.dart' as http;
 import 'package:image_picker/image_picker.dart';
@@ -32,8 +32,6 @@ import 'package:logger/logger.dart';
 class ApiRequests {
   Future<List<Events>> allEvents(String filter) async {
     try {
-      LoadingManager.startLoading();
-
       List<Events> events = [];
       final res =
           await HttpWrapper.getRequest(all_events + "?category=$filter");
@@ -47,8 +45,7 @@ class ApiRequests {
 
       return events;
     } on ServerException catch (e) {
-      await LoadingManager.endLoading();
-      customSnackbar(message: e.message);
+      customSnackbar(e.message, ContentType.failure);
     }
     return [];
   }
@@ -56,8 +53,6 @@ class ApiRequests {
   Future<List<Events>> allEventsWithDateFilter(
       String filter, String startDate, String endDate) async {
     try {
-      LoadingManager.startLoading();
-
       List<Events> events = [];
       final res = await HttpWrapper.getRequest(all_events +
           "?category=$filter&startDate=$startDate&endDate=$endDate");
@@ -70,87 +65,14 @@ class ApiRequests {
 
       return events;
     } on ServerException catch (e) {
-      await LoadingManager.endLoading();
-      customSnackbar(message: e.message);
+      customSnackbar(e.message, ContentType.failure);
     }
     return [];
   }
 
-  Future<void> register(
-      {required String email,
-      required String password,
-      required String clubId,
-      required String mobile,
-      required String name}) async {
-    try {
-      LoadingManager.startLoading();
-      var body = {
-        "role": "EXTERNAL USER",
-        "email": email,
-        "organizationId": clubId,
-        "password": password,
-        "mobile": num.parse(mobile),
-        "name": name
-      };
-      final res = await HttpWrapper.postRequest(register_user, body);
-      final data = jsonDecode(res.body);
-      if (res.statusCode == 200) {
-        Get.offAll(() => LoginScreen());
-      }
-      customSnackbar(message: data["message"]);
-    } on ServerException catch (e) {
-      await LoadingManager.endLoading();
-
-      customSnackbar(message: e.message);
-    }
-  }
-
-  Future<void> login(
-      {required String userName, required String password}) async {
-    try {
-      LoadingManager.startLoading();
-      final fcmToken = await FcmToken().getFcmToken();
-      var body = {
-        "userName": userName,
-        "password": password,
-        "fcmToken": fcmToken,
-        "device": "mobile"
-      };
-      final res = await HttpWrapper.postRequest(login_user, body);
-      final data = jsonDecode(res.body);
-      if (res.statusCode == 200) {
-        saveToken(
-          data['token'],
-          data['user']['_id'],
-        );
-        Get.to(() => BottomNav());
-      } else {
-        customSnackbar(message: data["message"]);
-      }
-    } on ServerException catch (e) {
-      await LoadingManager.endLoading();
-
-      customSnackbar(message: e.message);
-    }
-  }
-
-  Future<void> logout() async {
-    try {
-      LoadingManager.startLoading();
-      final fcmToken = await FcmToken().getFcmToken();
-      var body = {"fcmToken": fcmToken};
-      await HttpWrapper.postRequest(logout_user, body);
-    } on ServerException catch (e) {
-      await LoadingManager.endLoading();
-
-      customSnackbar(message: e.message);
-    }
-  }
 
   Future<UserModel?> getUser() async {
     try {
-      LoadingManager.startLoading();
-
       final res = await HttpWrapper.getRequest(get_user);
 
       final data = jsonDecode(res.body);
@@ -159,11 +81,10 @@ class ApiRequests {
         saveToken(data["token"], user.id!);
         return user;
       } else {
-        customSnackbar(message: data['message']);
+        customSnackbar(data['message'], ContentType.failure);
       }
     } on ServerException catch (e) {
-      await LoadingManager.endLoading();
-      customSnackbar(message: e.message);
+      customSnackbar(e.message, ContentType.failure);
     }
     return null;
   }
@@ -174,26 +95,25 @@ class ApiRequests {
       final data = jsonDecode(res.body);
       saveToken(data['token'], id);
     } on ServerException catch (e) {
-      await LoadingManager.endLoading();
-      customSnackbar(message: e.message);
+      customSnackbar(e.message, ContentType.failure);
     }
   }
 
   Future getMesurementRequests() async {
     try {
-      LoadingManager.startLoading();
       final res = await HttpWrapper.getRequest(
           get_players_requests + "?status=COACH-REQUESTED");
       final data = jsonDecode(res.body);
       Logger().w(data);
       if (res.statusCode == 200) {
+        customSnackbar(data['message'], ContentType.success);
+
         return data['requests'];
       } else {
-        customSnackbar(message: data['message']);
+        customSnackbar(data['message'], ContentType.failure);
       }
     } on ServerException catch (e) {
-      await LoadingManager.endLoading();
-      customSnackbar(message: e.message);
+      customSnackbar(e.message, ContentType.failure);
     }
   }
 
@@ -201,7 +121,6 @@ class ApiRequests {
     List<UserModel> users = [];
 
     try {
-      LoadingManager.startLoading();
       final res = await HttpWrapper.getRequest(
           get_players_requests + "?status=APPROVED");
       final data = jsonDecode(res.body);
@@ -212,34 +131,13 @@ class ApiRequests {
 
       return users;
     } on ServerException catch (e) {
-      await LoadingManager.endLoading();
-      customSnackbar(message: e.message);
+      customSnackbar(e.message, ContentType.failure);
     }
     return null;
   }
 
-  Future<List<DashboardModel>> getDashboardItems() async {
-    try {
-      List<DashboardModel> dashboardItems = [];
-      LoadingManager.startLoading();
-      final res = await HttpWrapper.getRequest(get_dashboard_services);
-      final data = jsonDecode(res.body);
-      Logger().f(data);
-      for (var item in data['services']) {
-        dashboardItems.add(DashboardModel.fromMap(item));
-      }
-      return dashboardItems;
-    } on ServerException catch (e) {
-      await LoadingManager.endLoading();
-      customSnackbar(message: e.message);
-    }
-    return [];
-  }
-
   Future<List<UserModel>> getUsersByGuardian() async {
     try {
-      LoadingManager.startLoading();
-
       String? guardianId = await getUid();
       final userController = Get.find<UserController>();
       if (userController.user!.guardianId != null) {
@@ -254,25 +152,22 @@ class ApiRequests {
       }
       return players;
     } on ServerException catch (e) {
-      await LoadingManager.endLoading();
-      customSnackbar(message: e.message);
+      customSnackbar(e.message, ContentType.failure);
     }
     return [];
   }
 
   Future getClubs() async {
     try {
-      LoadingManager.startLoading();
       final res = await HttpWrapper.getRequest(get_organization_dropdown);
       final data = jsonDecode(res.body);
       if (res.statusCode == 200) {
         return data['dropdown'];
       } else {
-        customSnackbar(message: data['message']);
+        customSnackbar(data['message'], ContentType.failure);
       }
     } on ServerException catch (e) {
-      await LoadingManager.endLoading();
-      customSnackbar(message: e.message);
+      customSnackbar(e.message, ContentType.failure);
     }
   }
 
@@ -306,8 +201,6 @@ class ApiRequests {
     required String playerGovIdExpiry,
   }) async {
     try {
-      LoadingManager.startLoading();
-
       String url = create_player;
       Map<String, String>? fields = {
         "name": name,
@@ -350,12 +243,11 @@ class ApiRequests {
       final response = await res.stream.bytesToString();
       final data = jsonDecode(response);
       if (data["success"] == false) {
-        customSnackbar(message: data["error"]);
+        customSnackbar(data["error"], ContentType.failure);
       }
       return data;
     } on ServerException catch (e) {
-      await LoadingManager.endLoading();
-      customSnackbar(message: e.message);
+      customSnackbar(e.message, ContentType.failure);
     }
   }
 
@@ -375,7 +267,6 @@ class ApiRequests {
     required String stage,
   }) async {
     try {
-      LoadingManager.startLoading();
       var body = {
         "requestId": requestId,
         "height": num.parse(height),
@@ -395,11 +286,12 @@ class ApiRequests {
       final data = jsonDecode(res.body);
       if (res.statusCode == 200) {
         Get.back();
+        customSnackbar(data['message'], ContentType.success);
+      } else {
+        customSnackbar(data['message'], ContentType.failure);
       }
-      customSnackbar(message: data['message']);
     } on ServerException catch (e) {
-      await LoadingManager.endLoading();
-      customSnackbar(message: e.message);
+      customSnackbar(e.message, ContentType.failure);
     }
   }
 
@@ -415,7 +307,7 @@ class ApiRequests {
         return messages;
       }
     } on ServerException catch (e) {
-      customSnackbar(message: e.message);
+      customSnackbar(e.message, ContentType.failure);
     }
     return null;
   }
@@ -432,7 +324,7 @@ class ApiRequests {
         return chats;
       }
     } on ServerException catch (e) {
-      customSnackbar(message: e.message);
+      customSnackbar(e.message, ContentType.failure);
     }
     return null;
   }
@@ -443,8 +335,7 @@ class ApiRequests {
       final data = jsonDecode(res.body);
       return About.fromMap(data['organization']);
     } on ServerException catch (e) {
-      await LoadingManager.endLoading();
-      customSnackbar(message: e.message);
+      customSnackbar(e.message, ContentType.failure);
     }
     return null;
   }
@@ -460,8 +351,7 @@ class ApiRequests {
         return monitoring;
       }
     } on ServerException catch (e) {
-      await LoadingManager.endLoading();
-      customSnackbar(message: e.message);
+      customSnackbar(e.message, ContentType.failure);
     }
     return null;
   }
@@ -482,42 +372,40 @@ class ApiRequests {
         return reports;
       }
     } on ServerException catch (e) {
-      await LoadingManager.endLoading();
-      customSnackbar(message: e.message);
+      customSnackbar(e.message, ContentType.failure);
     }
     return [];
   }
 
   Future<void> updateMonitoringByPlayerId(String playerId, Object body) async {
     try {
-      LoadingManager.startLoading();
       final res = await HttpWrapper.postRequest(
           update_monitoring_by_playerId + playerId, body);
       final data = jsonDecode(res.body);
-      customSnackbar(message: data['message']);
+      if (res.statusCode == 200) {
+        customSnackbar(data['message'], ContentType.success);
+      } else {
+        customSnackbar(data['message'], ContentType.failure);
+      }
     } on ServerException catch (e) {
-      await LoadingManager.endLoading();
-      customSnackbar(message: e.message);
+      customSnackbar(e.message, ContentType.failure);
     }
   }
 
   Future getCollectionsByGameFilter(String gameId) async {
     try {
-      LoadingManager.startLoading();
       final res = await HttpWrapper.getRequest(
           get_collection_by_game_filter + "?gameId=$gameId");
       final data = jsonDecode(res.body);
       return data['collection'];
     } on ServerException catch (e) {
-      await LoadingManager.endLoading();
-      customSnackbar(message: e.message);
+      customSnackbar(e.message, ContentType.failure);
     }
   }
 
   Future<List<GameModel>?> getGames({required String stage}) async {
     try {
       List<GameModel> games = [];
-      LoadingManager.startLoading();
       final res = await HttpWrapper.getRequest(get_all_games + "?stage=$stage");
       final data = jsonDecode(res.body);
       for (var game in data['dropdown']) {
@@ -525,8 +413,7 @@ class ApiRequests {
       }
       return games;
     } on ServerException catch (e) {
-      await LoadingManager.endLoading();
-      customSnackbar(message: e.message);
+      customSnackbar(e.message, ContentType.failure);
     }
     return [];
   }
@@ -543,8 +430,7 @@ class ApiRequests {
       }
       return teams;
     } on ServerException catch (e) {
-      await LoadingManager.endLoading();
-      customSnackbar(message: e.message);
+      customSnackbar(e.message, ContentType.failure);
     }
     return [];
   }
@@ -568,8 +454,7 @@ class ApiRequests {
         "attendance": attendance
       };
     } on ServerException catch (e) {
-      await LoadingManager.endLoading();
-      customSnackbar(message: e.message);
+      customSnackbar(e.message, ContentType.failure);
     }
     return {};
   }
@@ -586,8 +471,7 @@ class ApiRequests {
       }
       return {"attendanceId": attendanceId, "attendance": attendance};
     } on ServerException catch (e) {
-      await LoadingManager.endLoading();
-      customSnackbar(message: e.message);
+      customSnackbar(e.message, ContentType.failure);
     }
     return {};
   }
@@ -604,8 +488,7 @@ class ApiRequests {
       }
       return {"attendanceId": attendanceId, "attendance": attendance};
     } on ServerException catch (e) {
-      await LoadingManager.endLoading();
-      customSnackbar(message: e.message);
+      customSnackbar(e.message, ContentType.failure);
     }
     return {};
   }
@@ -622,8 +505,7 @@ class ApiRequests {
       }
       return attendances;
     } on ServerException catch (e) {
-      await LoadingManager.endLoading();
-      customSnackbar(message: e.message);
+      customSnackbar(e.message, ContentType.failure);
     }
     return null;
   }
@@ -639,8 +521,7 @@ class ApiRequests {
         "playerIds": playersList,
       });
     } on ServerException catch (e) {
-      await LoadingManager.endLoading();
-      customSnackbar(message: e.message);
+      customSnackbar(e.message, ContentType.failure);
     }
   }
 
@@ -655,8 +536,7 @@ class ApiRequests {
       }
       return playerAttendances;
     } on ServerException catch (e) {
-      await LoadingManager.endLoading();
-      customSnackbar(message: e.message);
+      customSnackbar(e.message, ContentType.failure);
     }
     return playerAttendances;
   }
@@ -668,8 +548,7 @@ class ApiRequests {
       final data = jsonDecode(res.body);
       return AttendanceStatisticsModel.fromMap(data['statistics']);
     } on ServerException catch (e) {
-      await LoadingManager.endLoading();
-      customSnackbar(message: e.message);
+      customSnackbar(e.message, ContentType.failure);
     }
     return null;
   }
@@ -688,8 +567,7 @@ class ApiRequests {
       }
       return groups;
     } on ServerException catch (e) {
-      await LoadingManager.endLoading();
-      customSnackbar(message: e.message);
+      customSnackbar(e.message, ContentType.failure);
     }
     return null;
   }
@@ -709,8 +587,7 @@ class ApiRequests {
       group = GroupModel.fromMap(data['group']);
       return group;
     } on ServerException catch (e) {
-      await LoadingManager.endLoading();
-      customSnackbar(message: e.message);
+      customSnackbar(e.message, ContentType.failure);
     }
     return null;
   }
@@ -730,8 +607,7 @@ class ApiRequests {
       }
       return users;
     } on ServerException catch (e) {
-      await LoadingManager.endLoading();
-      customSnackbar(message: e.message);
+      customSnackbar(e.message, ContentType.failure);
     }
     return null;
   }
@@ -752,8 +628,7 @@ class ApiRequests {
       }
       return users;
     } on ServerException catch (e) {
-      await LoadingManager.endLoading();
-      customSnackbar(message: e.message);
+      customSnackbar(e.message, ContentType.failure);
     }
     return null;
   }
@@ -774,8 +649,7 @@ class ApiRequests {
       }
       return users;
     } on ServerException catch (e) {
-      await LoadingManager.endLoading();
-      customSnackbar(message: e.message);
+      customSnackbar(e.message, ContentType.failure);
     }
     return null;
   }
@@ -788,8 +662,7 @@ class ApiRequests {
 
       return users;
     } on ServerException catch (e) {
-      await LoadingManager.endLoading();
-      customSnackbar(message: e.message);
+      customSnackbar(e.message, ContentType.failure);
     }
     return null;
   }
@@ -804,8 +677,7 @@ class ApiRequests {
 
       //   final data = jsonDecode(res.body);
     } on ServerException catch (e) {
-      await LoadingManager.endLoading();
-      customSnackbar(message: e.message);
+      customSnackbar(e.message, ContentType.failure);
     }
     return null;
   }
@@ -821,8 +693,7 @@ class ApiRequests {
 
       //   final data = jsonDecode(res.body);
     } on ServerException catch (e) {
-      await LoadingManager.endLoading();
-      customSnackbar(message: e.message);
+      customSnackbar(e.message, ContentType.failure);
     }
     return null;
   }
@@ -846,13 +717,13 @@ class ApiRequests {
 
       if (res.statusCode == 200) {
         Get.back();
-        customSnackbar(message: data['message']);
+        customSnackbar(data['message'], ContentType.success);
       } else {
-        customSnackbar(message: data['error']);
+        customSnackbar(data['error'], ContentType.failure);
       }
     } on ServerException catch (e) {
       //   await LoadingManager.endLoading();
-      customSnackbar(message: e.message);
+      customSnackbar(e.message, ContentType.failure);
     }
     return null;
   }
@@ -872,8 +743,7 @@ class ApiRequests {
 
       return groups;
     } on ServerException catch (e) {
-      await LoadingManager.endLoading();
-      customSnackbar(message: e.message);
+      customSnackbar(e.message, ContentType.failure);
     }
     return null;
   }

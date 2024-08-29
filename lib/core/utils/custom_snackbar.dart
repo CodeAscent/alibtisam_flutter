@@ -1,20 +1,18 @@
-import 'package:alibtisam/core/theme/app_colors.dart';
+import 'package:awesome_snackbar_content/awesome_snackbar_content.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
-customSnackbar({required String message}) {
-  if (!Get.isSnackbarOpen)
-    Get.snackbar("Message", message,
-        backgroundColor: kAppGreyColor(),
-        duration: Duration(seconds: 2),
-        snackPosition: SnackPosition.BOTTOM,
-        titleText: Row(
-          children: [
-            Text(
-              "message".tr,
-              style: TextStyle(fontWeight: FontWeight.w900, fontSize: 16),
-            ),
-          ],
-        ),
-        margin: EdgeInsets.symmetric(vertical: 20, horizontal: 10));
+customSnackbar(String message, ContentType type) {
+//   Get.closeCurrentSnackbar();
+  final snackbar = SnackBar(
+    elevation: 0,
+    behavior: SnackBarBehavior.floating,
+    backgroundColor: Colors.transparent,
+    content: AwesomeSnackbarContent(
+      title: 'Message',
+      message: message,
+      contentType: type,
+    ),
+  );
+  ScaffoldMessenger.of(Get.context!).showSnackBar(snackbar);
 }

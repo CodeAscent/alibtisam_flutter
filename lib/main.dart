@@ -1,4 +1,4 @@
-import 'package:alibtisam/Localization/localization.dart';
+import 'package:alibtisam/core/Localization/localization.dart';
 import 'package:alibtisam/client/socket_io.dart';
 import 'package:alibtisam/core/localStorage/fcm_token.dart';
 import 'package:alibtisam/core/localStorage/init_shared_pref.dart';
@@ -6,8 +6,9 @@ import 'package:alibtisam/features/dummySplash/dummy_splash.dart';
 import 'package:alibtisam/firebase_options.dart';
 import 'package:alibtisam/core/localStorage/token_id.dart';
 import 'package:alibtisam/core/theme/controller/theme_controller.dart';
-import 'package:alibtisam/init/init_controllers.dart';
-import 'package:alibtisam/routes/app_routes.dart';
+import 'package:alibtisam/init_controllers.dart';
+import 'package:alibtisam/core/routes/app_routes.dart';
+import 'package:alibtisam/service_locator.dart';
 import 'package:devicelocale/devicelocale.dart';
 
 import 'package:firebase_core/firebase_core.dart';
@@ -23,6 +24,7 @@ String? locale;
 void main() async {
   // WidgetsBinding widgetsBinding =
   WidgetsFlutterBinding.ensureInitialized();
+  await initServiceLocator();
   await initControllers();
 
   locale = await Devicelocale.defaultLocale;
