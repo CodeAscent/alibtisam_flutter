@@ -9,11 +9,7 @@ class CustomEmptyWidget extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: Center(
-        child: LottieBuilder.asset(
-          'assets/lottie/empty.json',
-        ),
-      ),
+      body: Center(child: Text('')),
     );
   }
 }

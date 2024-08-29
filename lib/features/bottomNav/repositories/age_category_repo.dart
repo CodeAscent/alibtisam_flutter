@@ -2,10 +2,10 @@ import 'dart:convert';
 
 import 'package:alibtisam/core/error/server_exception.dart';
 import 'package:alibtisam/core/utils/custom_snackbar.dart';
-import 'package:alibtisam/core/utils/loading_manager.dart';
 import 'package:alibtisam/features/bottomNav/model/age_category.dart';
 import 'package:alibtisam/core/services/api_urls.dart';
 import 'package:alibtisam/core/services/http_wrapper.dart';
+import 'package:awesome_snackbar_content/awesome_snackbar_content.dart';
 import 'package:fpdart/fpdart.dart';
 
 class AgeCategoryRepo {
@@ -25,8 +25,7 @@ class AgeCategoryRepo {
         return Left(ServerException(data['message']));
       }
     } on ServerException catch (e) {
-      await LoadingManager.endLoading();
-      customSnackbar(message: e.message);
+      customSnackbar(e.message, ContentType.failure);
     }
     return Left(ServerException());
   }

@@ -1,7 +1,6 @@
-import 'package:alibtisam/features/bottomNav/model/attendance.dart';
-import 'package:alibtisam/features/bottomNav/model/attendance_history.dart';
-import 'package:alibtisam/features/bottomNav/model/attendance_statistics.dart';
-import 'package:alibtisam/core/utils/loading_manager.dart';
+import 'package:alibtisam/features/attendance/models/attendance.dart';
+import 'package:alibtisam/features/attendance/models/attendance_history.dart';
+import 'package:alibtisam/features/attendance/models/attendance_statistics.dart';
 import 'package:alibtisam/core/services/api_requests.dart';
 import 'package:get/get.dart';
 
@@ -19,7 +18,6 @@ class AttendanceController extends GetxController {
   fetchAttendanceForInTime({required String groupId}) async {
     attendance.clear();
     update();
-    LoadingManager.startLoading();
     final res = await ApiRequests().getAttendanceForInTime(groupId: groupId);
     attendance = res["attendance"];
     attendanceId = res['attendanceId'];
@@ -29,7 +27,6 @@ class AttendanceController extends GetxController {
   fetchAttendanceForOutTime() async {
     attendance.clear();
 
-    LoadingManager.startLoading();
     final res = await ApiRequests().getAttendanceForOutTime(
       attendanceId: attendanceId,
     );
@@ -39,7 +36,6 @@ class AttendanceController extends GetxController {
 
   fetchSingleAttendanceById() async {
     attendance.clear();
-    LoadingManager.startLoading();
     final res =
         await ApiRequests().getSingleAttendanceById(attendanceId: attendanceId);
     attendance = res["attendance"];
@@ -47,21 +43,19 @@ class AttendanceController extends GetxController {
   }
 
   fetchAttendanceHistory({required String groupId}) async {
-    LoadingManager.startLoading();
-    attendancesHistory = (await ApiRequests().getAttendanceHistory(groupId: groupId))!;
+    attendancesHistory =
+        (await ApiRequests().getAttendanceHistory(groupId: groupId))!;
     update();
   }
 
   fetchAttendanceHistoryByPlayer() async {
     attendancesHistory.clear();
     print('--------------> here');
-    LoadingManager.startLoading();
     attendancesHistory = await ApiRequests().getPlayerAttendanceHistory();
     update();
   }
 
   fetchPlayerAttendanceStatistics() async {
-    LoadingManager.startLoading();
     attendanceStatistics =
         (await ApiRequests().getPlayerAttendanceStatistics())!;
     update();

@@ -2,8 +2,8 @@ import 'package:alibtisam/core/common/constants/confirm_exit.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
-import 'package:alibtisam/features/bottomNav/presentation/userDashboard/user_dashboard.dart';
-import 'package:alibtisam/features/bottomNav/presentation/settings/settings.dart';
+import 'package:alibtisam/features/userDashboard/views/pages/user_dashboard.dart';
+import 'package:alibtisam/features/settings/settings.dart';
 import 'package:cupertino_will_pop_scope/cupertino_will_pop_scope.dart';
 import 'package:alibtisam/core/theme/app_colors.dart';
 import 'package:get/get.dart';
