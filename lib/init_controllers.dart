@@ -2,6 +2,7 @@ import 'package:alibtisam/features/auth/viewmodel/auth_viewmodel.dart';
 import 'package:alibtisam/features/bottomNav/controller/attendance.dart';
 import 'package:alibtisam/features/bottomNav/controller/chat_messages.dart';
 import 'package:alibtisam/features/bottomNav/controller/chats_list.dart';
+import 'package:alibtisam/features/enrollment/viewmodel/enrollment_viewmodel.dart';
 import 'package:alibtisam/features/userDashboard/viewmodel/dashboard.dart';
 import 'package:alibtisam/features/bottomNav/controller/date_range.dart';
 import 'package:alibtisam/features/bottomNav/controller/games.dart';
@@ -31,6 +32,7 @@ initControllers() {
   Get.put(ThemeController());
   Get.put(UserController());
   Get.put(serviceLocator<DashboardViewModel>());
+  Get.put(serviceLocator<EnrollmentViewmodel>());
   Get.put(MeasurementReqController());
   Get.put(ChatMessagesController());
   Get.put(ChatsListController());

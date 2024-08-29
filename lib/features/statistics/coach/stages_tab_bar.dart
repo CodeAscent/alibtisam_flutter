@@ -3,7 +3,7 @@ import 'package:alibtisam/core/common/widgets/custom_tab_bar.dart';
 import 'package:alibtisam/features/bottomNav/controller/groups_controller.dart';
 import 'package:alibtisam/features/bottomNav/controller/user.dart';
 import 'package:alibtisam/features/bottomNav/model/group_model.dart';
-import 'package:alibtisam/features/bottomNav/model/user.dart';
+import 'package:alibtisam/features/enrollment/models/user.dart';
 import 'package:alibtisam/features/statistics/coach/coach_players_list.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';

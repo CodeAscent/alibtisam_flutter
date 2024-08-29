@@ -1,7 +1,7 @@
 import 'package:alibtisam/features/bottomNav/controller/user.dart';
-import 'package:alibtisam/features/enrollment/external/external_enrollment_form.dart';
-import 'package:alibtisam/features/enrollment/guardian/guardian_all_forms.dart';
-import 'package:alibtisam/features/enrollment/view_addmision_form.dart';
+import 'package:alibtisam/features/enrollment/views/pages/external_enrollment_form.dart';
+import 'package:alibtisam/features/enrollment/views/pages/guardian_all_forms.dart';
+import 'package:alibtisam/features/enrollment/views/pages/view_addmision_form.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:get/get.dart';
 import 'package:logger/web.dart';

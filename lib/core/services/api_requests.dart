@@ -14,7 +14,7 @@ import 'package:alibtisam/features/userDashboard/models/dashboard.dart';
 import 'package:alibtisam/features/bottomNav/model/game.dart';
 import 'package:alibtisam/features/bottomNav/model/group_model.dart';
 import 'package:alibtisam/features/bottomNav/model/team.dart';
-import 'package:alibtisam/features/bottomNav/model/user.dart';
+import 'package:alibtisam/features/enrollment/models/user.dart';
 import 'package:alibtisam/features/settings/model/about.dart';
 import 'package:alibtisam/features/events/model/events_model.dart';
 import 'package:alibtisam/features/statistics/model/monitoring.dart';
@@ -69,7 +69,6 @@ class ApiRequests {
     }
     return [];
   }
-
 
   Future<UserModel?> getUser() async {
     try {
@@ -171,85 +170,6 @@ class ApiRequests {
     }
   }
 
-  Future createPlayerForm({
-    required String name,
-    required String fatherName,
-    required String motherName,
-    required String gender,
-    required String dateOfBirth,
-    required String bloodGroup,
-    required String height,
-    required String weight,
-    required String phoneNumber,
-    required String email,
-    required String address,
-    required String correspondenceAddress,
-    required String city,
-    required String state,
-    required String relationWithApplicant,
-    required XFile? idProofFrontPath,
-    required XFile? idProofBackPath,
-    required XFile? pic,
-    required XFile? certificate,
-    required String batch,
-    required String gameId,
-    required String stage,
-    required String relationWithPlayer,
-    required String playerGovId,
-    required String guardianGovId,
-    required String guardianGovIdExpiry,
-    required String playerGovIdExpiry,
-  }) async {
-    try {
-      String url = create_player;
-      Map<String, String>? fields = {
-        "name": name,
-        "fatherName": fatherName,
-        "motherName": motherName,
-        "gender": gender,
-        "dateOfBirth": dateOfBirth,
-        "bloodGroup": bloodGroup,
-        "height": height,
-        "weight": weight,
-        "mobile": phoneNumber,
-        "email": email,
-        "address": address,
-        "correspondenceAddress": correspondenceAddress,
-        "city": city,
-        "state": state,
-        "relation": relationWithApplicant,
-        "batch": batch,
-        "gameId": gameId,
-        "stage": stage,
-        "playerGovId": playerGovId,
-        "relationWithPlayer": relationWithPlayer,
-        "guardianGovId": guardianGovId,
-        "guardianGovIdExpiry": guardianGovIdExpiry,
-        "playerGovIdExpiry": playerGovIdExpiry
-      };
-      List<http.MultipartFile> files = [];
-      files.addAll([
-        await http.MultipartFile.fromPath("pic", pic!.path),
-        await http.MultipartFile.fromPath(
-            "idFrontImage", idProofFrontPath!.path),
-        await http.MultipartFile.fromPath("idBackImage", idProofBackPath!.path),
-      ]);
-      if (certificate != null) {
-        files.add(await http.MultipartFile.fromPath(
-            "certificateLink", certificate.path));
-      }
-      final res =
-          await HttpWrapper.multipartRequest(url, files, fields: fields);
-      final response = await res.stream.bytesToString();
-      final data = jsonDecode(response);
-      if (data["success"] == false) {
-        customSnackbar(data["error"], ContentType.failure);
-      }
-      return data;
-    } on ServerException catch (e) {
-      customSnackbar(e.message, ContentType.failure);
-    }
-  }
 
   Future submitMeasurementRequest({
     required String height,

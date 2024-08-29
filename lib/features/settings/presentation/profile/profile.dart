@@ -1,4 +1,4 @@
-import 'package:alibtisam/features/bottomNav/model/user.dart';
+import 'package:alibtisam/features/enrollment/models/user.dart';
 
 import 'package:alibtisam/core/common/widgets/custom_loading.dart';
 import 'package:alibtisam/core/common/widgets/custom_text_field.dart';

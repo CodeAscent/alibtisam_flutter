@@ -4,7 +4,7 @@ import 'package:alibtisam/core/common/widgets/custom_text_field.dart';
 import 'package:alibtisam/core/theme/app_colors.dart';
 import 'package:alibtisam/features/bottomNav/controller/groups_controller.dart';
 import 'package:alibtisam/features/bottomNav/controller/user.dart';
-import 'package:alibtisam/features/bottomNav/model/user.dart';
+import 'package:alibtisam/features/enrollment/models/user.dart';
 import 'package:alibtisam/features/groupsManagement/view_members.dart';
 import 'package:alibtisam/features/statistics/coach/stages_tab_bar.dart';
 import 'package:flutter/cupertino.dart';

@@ -1,5 +1,5 @@
 import 'package:alibtisam/features/bottomNav/controller/groups_controller.dart';
-import 'package:alibtisam/features/bottomNav/model/user.dart';
+import 'package:alibtisam/features/enrollment/models/user.dart';
 import 'package:alibtisam/features/statistics/controller/monitoring.dart';
 import 'package:alibtisam/features/statistics/player_statistics.dart';
 import 'package:alibtisam/core/common/widgets/custom_empty_icon.dart';

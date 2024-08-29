@@ -1,5 +1,5 @@
-import 'package:alibtisam/features/bottomNav/model/user.dart';
-import 'package:alibtisam/features/enrollment/view_addmision_form.dart';
+import 'package:alibtisam/features/enrollment/models/user.dart';
+import 'package:alibtisam/features/enrollment/views/pages/view_addmision_form.dart';
 import 'package:alibtisam/core/common/widgets/custom_empty_icon.dart';
 import 'package:alibtisam/core/theme/app_colors.dart';
 import 'package:alibtisam/core/services/api_requests.dart';

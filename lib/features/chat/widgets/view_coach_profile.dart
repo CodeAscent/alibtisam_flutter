@@ -1,5 +1,5 @@
 import 'package:alibtisam/core/theme/app_colors.dart';
-import 'package:alibtisam/features/bottomNav/model/user.dart';
+import 'package:alibtisam/features/enrollment/models/user.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 

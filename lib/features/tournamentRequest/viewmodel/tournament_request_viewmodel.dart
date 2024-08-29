@@ -2,7 +2,7 @@ import 'dart:convert';
 
 import 'package:alibtisam/core/error/server_exception.dart';
 import 'package:alibtisam/core/utils/custom_snackbar.dart';
-import 'package:alibtisam/features/bottomNav/model/user.dart';
+import 'package:alibtisam/features/enrollment/models/user.dart';
 import 'package:alibtisam/features/tournamentRequest/models/tournament_model.dart';
 import 'package:alibtisam/features/tournamentRequest/repo/tournament_request_repo.dart';
 import 'package:alibtisam/core/services/api_requests.dart';

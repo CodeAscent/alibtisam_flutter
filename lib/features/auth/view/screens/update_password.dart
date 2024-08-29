@@ -50,15 +50,18 @@ class _UpdatePasswordScreenState extends State<UpdatePasswordScreen> {
                 SizedBox(height: 50),
                 SizedBox(
                   height: 70,
-                  child: CustomGradientButton(
-                    label: 'Submit',
-                    onTap: () {
-                      if (formKey.currentState!.validate()) {
-                        authViewmodel.updatePassword(
-                            username: widget.username,
-                            newPassword: newPassword.text);
-                      }
-                    },
+                  child: Obx(
+                    () => CustomGradientButton(
+                      loading: authViewmodel.isLoading.value,
+                      label: 'Submit',
+                      onTap: () {
+                        if (formKey.currentState!.validate()) {
+                          authViewmodel.updatePassword(
+                              username: widget.username,
+                              newPassword: newPassword.text);
+                        }
+                      },
+                    ),
                   ),
                 )
               ],

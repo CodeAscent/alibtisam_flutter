@@ -1,7 +1,7 @@
 import 'package:alibtisam/features/bottomNav/bottom_nav.dart';
-import 'package:alibtisam/features/bottomNav/model/user.dart';
-import 'package:alibtisam/features/enrollment/external/external_enrollment_form.dart';
-import 'package:alibtisam/features/enrollment/view_addmision_form.dart';
+import 'package:alibtisam/features/enrollment/models/user.dart';
+import 'package:alibtisam/features/enrollment/views/pages/external_enrollment_form.dart';
+import 'package:alibtisam/features/enrollment/views/pages/view_addmision_form.dart';
 import 'package:alibtisam/core/common/widgets/custom_container_button.dart';
 import 'package:alibtisam/core/common/widgets/custom_loading.dart';
 import 'package:alibtisam/core/theme/app_colors.dart';

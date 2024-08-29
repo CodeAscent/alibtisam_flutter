@@ -7,7 +7,7 @@ import 'package:alibtisam/features/settings/presentation/about.dart';
 import 'package:alibtisam/features/settings/presentation/help_support.dart';
 import 'package:alibtisam/features/settings/presentation/switch_user.dart';
 import 'package:alibtisam/features/settings/widgets/coach_profile.dart';
-import 'package:alibtisam/features/enrollment/view_addmision_form.dart';
+import 'package:alibtisam/features/enrollment/views/pages/view_addmision_form.dart';
 import 'package:alibtisam/core/common/constants/switch_theme_dialog.dart';
 import 'package:alibtisam/features/settings/presentation/profile/profile.dart';
 import 'package:alibtisam/features/settings/widgets/custom_settings_card.dart';

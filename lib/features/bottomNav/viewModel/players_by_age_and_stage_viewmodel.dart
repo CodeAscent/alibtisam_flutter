@@ -1,5 +1,5 @@
 import 'package:alibtisam/core/utils/custom_snackbar.dart';
-import 'package:alibtisam/features/bottomNav/model/user.dart';
+import 'package:alibtisam/features/enrollment/models/user.dart';
 import 'package:alibtisam/features/bottomNav/repositories/player_by_age_and_stage.dart';
 import 'package:awesome_snackbar_content/awesome_snackbar_content.dart';
 import 'package:fpdart/fpdart.dart';

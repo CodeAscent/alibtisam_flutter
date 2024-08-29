@@ -1,7 +1,7 @@
 import 'package:alibtisam/features/bottomNav/controller/user.dart';
 import 'package:alibtisam/features/bottomNav/model/chats_list.dart';
 import 'package:alibtisam/features/chat/widgets/view_coach_profile.dart';
-import 'package:alibtisam/features/enrollment/view_addmision_form.dart';
+import 'package:alibtisam/features/enrollment/views/pages/view_addmision_form.dart';
 import 'package:alibtisam/core/common/widgets/custom_loading.dart';
 import 'package:alibtisam/core/theme/app_colors.dart';
 

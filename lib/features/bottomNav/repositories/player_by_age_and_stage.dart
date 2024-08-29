@@ -2,7 +2,7 @@ import 'dart:convert';
 
 import 'package:alibtisam/core/error/server_exception.dart';
 import 'package:alibtisam/core/utils/custom_snackbar.dart';
-import 'package:alibtisam/features/bottomNav/model/user.dart';
+import 'package:alibtisam/features/enrollment/models/user.dart';
 import 'package:alibtisam/core/services/api_urls.dart';
 import 'package:alibtisam/core/services/http_wrapper.dart';
 import 'package:awesome_snackbar_content/awesome_snackbar_content.dart';

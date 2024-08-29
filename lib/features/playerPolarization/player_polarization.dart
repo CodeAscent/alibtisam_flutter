@@ -1,7 +1,7 @@
 import 'package:alibtisam/core/common/widgets/custom_tab_bar.dart';
 import 'package:alibtisam/features/bottomNav/controller/groups_controller.dart';
 import 'package:alibtisam/features/bottomNav/controller/user.dart';
-import 'package:alibtisam/features/bottomNav/model/user.dart';
+import 'package:alibtisam/features/enrollment/models/user.dart';
 import 'package:alibtisam/features/groupsManagement/view_members.dart';
 import 'package:alibtisam/features/playerPolarization/controller/fetch_players.dart';
 import 'package:alibtisam/features/playerPolarization/polarize_player.dart';

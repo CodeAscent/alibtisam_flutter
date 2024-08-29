@@ -2,8 +2,8 @@ import 'dart:convert';
 
 import 'package:alibtisam/core/common/constants/custom_listtile_card.dart';
 import 'package:alibtisam/features/bottomNav/controller/measurement_req.dart';
-import 'package:alibtisam/features/bottomNav/model/user.dart';
-import 'package:alibtisam/features/enrollment/view_addmision_form.dart';
+import 'package:alibtisam/features/enrollment/models/user.dart';
+import 'package:alibtisam/features/enrollment/views/pages/view_addmision_form.dart';
 import 'package:alibtisam/features/playerRequests/presentation/request/measurement_from.dart';
 import 'package:alibtisam/core/common/widgets/custom_empty_icon.dart';
 import 'package:alibtisam/core/common/widgets/custom_loading.dart';

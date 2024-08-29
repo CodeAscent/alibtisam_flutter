@@ -3,7 +3,7 @@ import 'package:alibtisam/core/common/widgets/player_card.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:alibtisam/features/bottomNav/controller/attendance.dart';
-import 'package:alibtisam/features/bottomNav/model/user.dart';
+import 'package:alibtisam/features/enrollment/models/user.dart';
 import 'package:alibtisam/core/common/widgets/custom_empty_icon.dart';
 import 'package:alibtisam/core/common/widgets/custom_gradient_button.dart';
 import 'package:alibtisam/core/common/widgets/custom_loading.dart';

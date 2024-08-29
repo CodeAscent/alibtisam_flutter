@@ -3,7 +3,7 @@ import 'package:alibtisam/features/bottomNav/controller/groups_controller.dart';
 import 'package:alibtisam/features/bottomNav/controller/user.dart';
 import 'package:alibtisam/features/bottomNav/model/chat_message.dart';
 import 'package:alibtisam/features/bottomNav/model/chats_list.dart';
-import 'package:alibtisam/features/bottomNav/model/user.dart';
+import 'package:alibtisam/features/enrollment/models/user.dart';
 import 'package:alibtisam/features/chat/chat_about.dart';
 import 'package:alibtisam/core/theme/app_colors.dart';
 import 'package:alibtisam/core/theme/controller/theme_controller.dart';

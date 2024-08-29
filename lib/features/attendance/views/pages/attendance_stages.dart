@@ -3,7 +3,7 @@ import 'package:alibtisam/features/bottomNav/controller/attendance.dart';
 import 'package:alibtisam/features/bottomNav/controller/groups_controller.dart';
 import 'package:alibtisam/features/bottomNav/controller/user.dart';
 import 'package:alibtisam/features/bottomNav/model/age_category.dart';
-import 'package:alibtisam/features/bottomNav/model/user.dart';
+import 'package:alibtisam/features/enrollment/models/user.dart';
 import 'package:alibtisam/features/attendance/views/pages/attendance_history_list.dart';
 import 'package:alibtisam/features/attendance/views/pages/attendance_tab_screen.dart';
 import 'package:alibtisam/core/common/widgets/custom_empty_icon.dart';

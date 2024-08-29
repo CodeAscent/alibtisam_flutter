@@ -76,27 +76,30 @@ class _ForgetPasswordScreenState extends State<ForgetPasswordScreen> {
               SizedBox(height: 50),
               SizedBox(
                 height: 70,
-                child: CustomGradientButton(
-                  label: showOtpBox ? 'Submit' : 'Continue',
-                  onTap: showOtpBox == true
-                      ? () {
-                          if (otpController.text != '') {
-                            authViewmodel.validateOTPForgotPassword(
-                              otp: otpController.text,
-                              mobile:
-                                  selectedCountryCode + phoneController.text,
-                            );
+                child: Obx(
+                  () => CustomGradientButton(
+                    loading: authViewmodel.isLoading.value,
+                    label: showOtpBox ? 'Submit' : 'Continue',
+                    onTap: showOtpBox == true
+                        ? () {
+                            if (otpController.text != '') {
+                              authViewmodel.validateOTPForgotPassword(
+                                otp: otpController.text,
+                                mobile:
+                                    selectedCountryCode + phoneController.text,
+                              );
+                            }
                           }
-                        }
-                      : () {
-                          if (phoneController.text != '') {
-                            setState(() {
-                              showOtpBox = true;
-                            });
-                            authViewmodel.sendOTP(
-                                selectedCountryCode + phoneController.text);
-                          }
-                        },
+                        : () {
+                            if (phoneController.text != '') {
+                              setState(() {
+                                showOtpBox = true;
+                              });
+                              authViewmodel.sendOTP(
+                                  selectedCountryCode + phoneController.text);
+                            }
+                          },
+                  ),
                 ),
               )
             ],
