@@ -12,6 +12,7 @@ import 'package:awesome_snackbar_content/awesome_snackbar_content.dart';
 import 'package:carousel_slider/carousel_slider.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:hexcolor/hexcolor.dart';
 
 class ViewProductScreen extends StatelessWidget {
   final ProductModel product;
@@ -35,9 +36,9 @@ class ViewProductScreen extends StatelessWidget {
               width: Get.width * 0.45,
               child: CustomContainerButton(
                   onTap: () async {
-                    await dbHelper.insertProduct(product);
-                    customSnackbar(
-                         'Product added successfully in your cart', ContentType.success);
+                    await dbHelper.insertOrUpdateProduct(product);
+                    customSnackbar('Product added successfully in your cart',
+                        ContentType.success);
 
                     //
                     // String? token = await getToken();
@@ -97,6 +98,36 @@ class ViewProductScreen extends StatelessWidget {
               Text(
                 product.price.toString() + " SAR",
                 style: TextStyle(fontWeight: FontWeight.w600, fontSize: 18),
+              ),
+              SizedBox(height: 10),
+              Wrap(
+                spacing: 5,
+                runSpacing: 5,
+                children: [
+                  ...product.colors.map((e) {
+                    return Container(
+                      height: 20,
+                      width: 20,
+                      color: HexColor(e),
+                    );
+                  }),
+                ],
+              ),
+              Wrap(
+                spacing: 5,
+                runSpacing: 5,
+                children: [
+                  ...product.sizes.map((e) {
+                    return Container(
+                      height: 20,
+                      width: 20,
+                      child: Text(
+                        e,
+                        textAlign: TextAlign.center,
+                      ),
+                    );
+                  }),
+                ],
               ),
               SizedBox(height: 10),
               Text(

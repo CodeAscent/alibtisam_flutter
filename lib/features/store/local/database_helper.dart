@@ -23,7 +23,7 @@ class DatabaseHelper {
     String path = join(await getDatabasesPath(), 'cart.db');
     return await openDatabase(
       path,
-      version: 2,
+      version: 7,
       onCreate: _onCreate,
       onUpgrade: _onUpgrade,
     );
@@ -43,23 +43,52 @@ class DatabaseHelper {
         name TEXT,
         images TEXT,
         sizes TEXT,
+        colors TEXT,
+        customizable TEXT,
         availableStock INTEGER,
         price REAL,
         category TEXT,
-        description TEXT
+        description TEXT,
+        colorsAndSizes TEXT
       )
     ''');
   }
 
   // CRUD Operations
-  Future<void> insertProduct(ProductModel product) async {
-    final db = await database;
+Future<void> insertOrUpdateProduct(ProductModel product) async {
+  final db = await database;
+  
+  // Check if product already exists
+  bool exists = await doesProductExist(product.id);
+
+  if (exists) {
+    // If it exists, update the quantity
+    await db.update(
+      'cart',
+      product.toMap(), // Ensure `toMap` includes quantity update logic
+      where: '_id = ?',
+      whereArgs: [product.id],
+    );
+  } else {
+    // If it does not exist, insert it
     await db.insert(
       'cart',
       product.toMap(),
       conflictAlgorithm: ConflictAlgorithm.replace,
     );
   }
+}
+
+  Future<bool> doesProductExist(String id) async {
+  final db = await database;
+  final List<Map<String, dynamic>> maps = await db.query(
+    'cart',
+    where: '_id = ?',
+    whereArgs: [id],
+  );
+  return maps.isNotEmpty;
+}
+
 
   Future<List<ProductModel>> getProducts() async {
     final db = await database;

@@ -61,13 +61,14 @@ class _BuyForExternalUserState extends State<BuyForExternalUser> {
           () => CustomContainerButton(
             loading: productsViewmodel.loading.value,
             onTap: () async {
+              Logger().w(widget.product);
+
               if (formkey.currentState!.validate()) {
-                Logger().w(widget.product);
                 String? token = await getToken();
                 if (token == null) {
                   Get.to(() => LoginScreen());
-                  customSnackbar(
-                       'Please login to order this product.', ContentType.warning);
+                  customSnackbar('Please login to order this product.',
+                      ContentType.warning);
                 } else {
                   await productsViewmodel.orderProductForExternalUser(
                     product: widget.product,

@@ -25,11 +25,16 @@ class ProductsViewmodel extends GetxController {
 
       return products;
     } on ServerException catch (e) {
-      customSnackbar( e.message, ContentType.failure);
+      customSnackbar(e.message, ContentType.failure);
     } finally {
       loading.value = false;
       update();
     }
+  }
+
+  clearSelectedProducts() {
+    selectedProducts.clear();
+    update();
   }
 
   Future<ProductModel?> fetchProductById(String id) async {
@@ -39,7 +44,7 @@ class ProductsViewmodel extends GetxController {
       ProductModel product = ProductModel.fromJson(res['data']);
       return product;
     } on ServerException catch (e) {
-      customSnackbar( e.message, ContentType.failure);
+      customSnackbar(e.message, ContentType.failure);
     } finally {
       loading.value = false;
       update();
@@ -57,7 +62,7 @@ class ProductsViewmodel extends GetxController {
 
       return orderRequests;
     } on ServerException catch (e) {
-      customSnackbar( e.message, ContentType.failure);
+      customSnackbar(e.message, ContentType.failure);
     } finally {
       loading.value = false;
       update();
@@ -73,15 +78,15 @@ class ProductsViewmodel extends GetxController {
     try {
       loading.value = true;
       final res = await productsRepo.orderProduct(playerIds: playerIds);
-      DatabaseHelper().clearCart();
-      selectedProducts.clear();
+      await DatabaseHelper().clearCart();
+
       Get.back();
       Get.back();
       Get.back();
-      customSnackbar( res['message'], ContentType.success);
+      customSnackbar(res['message'], ContentType.success);
       return products;
     } on ServerException catch (e) {
-      customSnackbar( e.message, ContentType.failure);
+      customSnackbar(e.message, ContentType.failure);
     } finally {
       loading.value = false;
       update();
@@ -96,11 +101,11 @@ class ProductsViewmodel extends GetxController {
       loading.value = true;
       final res = await productsRepo.orderProductForExternal(
           productIds: product, price: price, deliveryAddress: deliveryAddress);
-     
-      customSnackbar( res['message'], ContentType.failure);
+
+      customSnackbar(res['message'], ContentType.failure);
       return products;
     } on ServerException catch (e) {
-      customSnackbar( e.message, ContentType.failure);
+      customSnackbar(e.message, ContentType.failure);
     } finally {
       loading.value = false;
 

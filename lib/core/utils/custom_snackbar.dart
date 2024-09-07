@@ -7,6 +7,7 @@ customSnackbar(String message, ContentType type) {
   final snackbar = SnackBar(
     elevation: 0,
     behavior: SnackBarBehavior.floating,
+    // margin: EdgeInsets.only(bottom: Get.height * 0.68),
     backgroundColor: Colors.transparent,
     content: AwesomeSnackbarContent(
       title: 'Message',

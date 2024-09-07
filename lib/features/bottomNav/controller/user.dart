@@ -5,7 +5,7 @@ import 'package:awesome_snackbar_content/awesome_snackbar_content.dart';
 import 'package:get/get.dart';
 
 class UserController extends GetxController {
-  late UserModel? user;
+  UserModel? user;
 
   Future fetchUser() async {
     try {
@@ -13,7 +13,7 @@ class UserController extends GetxController {
 
       update();
     } catch (e) {
-      customSnackbar( e.toString(), ContentType.failure);
+      customSnackbar(e.toString(), ContentType.failure);
     }
   }
 }

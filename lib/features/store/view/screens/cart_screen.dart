@@ -11,6 +11,7 @@ import 'package:alibtisam/features/store/view/widgets/product_card.dart';
 import 'package:alibtisam/features/store/viewmodel/products_viewmodel.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:hexcolor/hexcolor.dart';
 import 'package:logger/logger.dart';
 
 class CartScreen extends StatefulWidget {
@@ -26,6 +27,7 @@ class _CartScreenState extends State<CartScreen> {
   String? token;
   List<int> quantities = [];
   List<TextEditingController> sizeController = [];
+  List<TextEditingController> colorsController = [];
   List<Map<String, dynamic>> cartItems = []; // Cart items
   final productsViewmodel = Get.find<ProductsViewmodel>();
   @override
@@ -48,6 +50,10 @@ class _CartScreenState extends State<CartScreen> {
         products.length,
         (int index) => TextEditingController(),
       );
+      colorsController = List.generate(
+        products.length,
+        (int index) => TextEditingController(),
+      );
       // Initialize cart items list with default values
 
       cartItems = List.generate(
@@ -64,13 +70,14 @@ class _CartScreenState extends State<CartScreen> {
     });
   }
 
-  void updateCartItem(
-      int index, String productId, int quantity, String size, num price) {
+  void updateCartItem(int index, String productId, int quantity, String size,
+      num price, String color) {
     setState(() {
       cartItems[index] = {
         "productId": productId,
         "quantity": quantity,
         "size": size,
+        "color": color,
         "price": price,
       };
     });
@@ -91,6 +98,7 @@ class _CartScreenState extends State<CartScreen> {
   }
 
   final formKey = GlobalKey<FormState>();
+
   @override
   Widget build(BuildContext context) {
     return Form(
@@ -127,8 +135,7 @@ class _CartScreenState extends State<CartScreen> {
                       itemCount: snapshot.data!.length,
                       itemBuilder: (context, index) {
                         ProductModel product = snapshot.data![index];
-                        List<dynamic> sizes = product.sizes;
-                        sizes.sort();
+                        List<dynamic> colorAndSizes = product.colorsAndSizes;
 
                         return Padding(
                           padding: const EdgeInsets.all(8.0),
@@ -152,25 +159,55 @@ class _CartScreenState extends State<CartScreen> {
                                   readOnly: true,
                                   suffix: DropdownButton(
                                     underline: SizedBox(),
-                                    items: sizes
-                                        .map((e) => DropdownMenuItem(
+                                    items: colorAndSizes
+                                        .map((dynamic e) =>
+                                            DropdownMenuItem<dynamic>(
                                               value: e,
-                                              child: Text(e.toString()),
+                                              child: Container(
+                                                  height: 25,
+                                                  width: 60,
+                                                  color: HexColor(e['color']),
+                                                  child: Text(
+                                                    e['size'].toString(),
+                                                    style: TextStyle(
+                                                      color: Colors.white,
+                                                    ),
+                                                    textAlign: TextAlign.center,
+                                                  )),
                                             ))
                                         .toList(),
                                     onChanged: (dynamic val) {
                                       setState(() {
-                                        sizeController[index].text = val;
+                                        sizeController[index].text =
+                                            val['size'];
+                                        colorsController[index].text =
+                                            val['color'];
+
                                         updateCartItem(
                                             index,
                                             product.id,
                                             quantities[index],
-                                            val,
-                                            product.price);
+                                            sizeController[index].text,
+                                            product.price,
+                                            colorsController[index].text);
                                       });
                                     },
                                   ),
                                 ),
+                                if (colorsController[index].text != '') ...[
+                                  Text(
+                                    'Color',
+                                    style: TextStyle(
+                                        fontSize: 18,
+                                        fontWeight: FontWeight.w800),
+                                  ),
+                                  Container(
+                                    height: 30,
+                                    width: 30,
+                                    color:
+                                        HexColor(colorsController[index].text),
+                                  ),
+                                ],
                                 SizedBox(height: 10),
                                 Text(
                                   'Quantity',
@@ -190,7 +227,9 @@ class _CartScreenState extends State<CartScreen> {
                                                     product.id,
                                                     quantities[index],
                                                     sizeController[index].text,
-                                                    product.price);
+                                                    product.price,
+                                                    colorsController[index]
+                                                        .text);
                                               });
                                             }
                                           : () async {
@@ -209,7 +248,8 @@ class _CartScreenState extends State<CartScreen> {
                                               product.id,
                                               quantities[index],
                                               sizeController[index].text,
-                                              product.price);
+                                              product.price,
+                                              colorsController[index].text);
                                         });
                                       },
                                       icon: Icon(Icons.add),
@@ -226,7 +266,12 @@ class _CartScreenState extends State<CartScreen> {
                               ] else ...[
                                 Row(
                                   children: [
-                                    Text('Remove from cart'),
+                                    SizedBox(width: 20),
+                                    Text(
+                                      'Remove from cart',
+                                      style: TextStyle(
+                                          fontWeight: FontWeight.w800),
+                                    ),
                                     IconButton(
                                         onPressed: () async {
                                           await removeItemFromCart(

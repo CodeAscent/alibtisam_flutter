@@ -15,9 +15,13 @@ class ProductsRepo {
   final userController = Get.find<UserController>();
   fetchProducts(String categoryId) async {
     try {
-      String endpoint = 'product/all';
+      final role = userController.user == null ||
+              userController.user!.role == 'EXTERNAL USER'
+          ? 'EXTERNAL'
+          : 'INTERNAL';
+      String endpoint = 'product/all?role=$role';
       if (categoryId != '1') {
-        endpoint = 'product/all?categoryId=$categoryId';
+        endpoint = 'product/all?role=$role&categoryId=$categoryId';
       }
       final res = await HttpWrapper.getRequest(base_url + endpoint);
       final data = jsonDecode(res.body);
@@ -53,12 +57,16 @@ class ProductsRepo {
     try {
       final productsViewmodel = Get.find<ProductsViewmodel>();
       final userController = Get.find<UserController>();
+      Logger().w(productsViewmodel.selectedProducts);
       final res = await HttpWrapper.postRequest(
           base_url + 'request/buy-product-for-player', {
         "playerIds": playerIds,
         "productIds": productsViewmodel.selectedProducts,
         "coachId": userController.user!.id
       });
+      productsViewmodel.clearSelectedProducts();
+      Logger().w(productsViewmodel.selectedProducts);
+
       final data = jsonDecode(res.body);
       Logger().f(data);
       if (res.statusCode == 200) {
@@ -84,13 +92,14 @@ class ProductsRepo {
       });
       final data = jsonDecode(res.body);
       Logger().f(data);
+      await DatabaseHelper().clearCart();
+
       if (res.statusCode == 200) {
-        await DatabaseHelper().clearCart();
         Get.back();
         Get.back();
         return data;
       } else {
-        customSnackbar( data['message'], ContentType.failure);
+        customSnackbar(data['message'], ContentType.failure);
       }
     } catch (e) {
       throw ServerException(e.toString());
