@@ -6,8 +6,8 @@ class ProductModel {
   final String name;
   final List<dynamic> images;
   final List<dynamic> sizes;
-  final num availableStock;
-  final num price;
+  final dynamic availableStock;
+  final dynamic price;
   final String category;
   final String description;
   final List<dynamic> colors;
@@ -39,6 +39,8 @@ class ProductModel {
         colors =
             (json['colors'] as List<dynamic>).where((e) => e != null).toList();
       }
+    } else {
+      colors = [];
     }
     return ProductModel(
       json['_id'] ?? '',
