@@ -28,6 +28,7 @@ class _CartScreenState extends State<CartScreen> {
   List<int> quantities = [];
   List<TextEditingController> sizeController = [];
   List<TextEditingController> colorsController = [];
+  List<TextEditingController> customizeController = [];
   List<Map<String, dynamic>> cartItems = []; // Cart items
   final productsViewmodel = Get.find<ProductsViewmodel>();
   @override
@@ -54,6 +55,10 @@ class _CartScreenState extends State<CartScreen> {
         products.length,
         (int index) => TextEditingController(),
       );
+      customizeController = List.generate(
+        products.length,
+        (int index) => TextEditingController(),
+      );
       // Initialize cart items list with default values
 
       cartItems = List.generate(
@@ -71,7 +76,7 @@ class _CartScreenState extends State<CartScreen> {
   }
 
   void updateCartItem(int index, String productId, int quantity, String size,
-      num price, String color) {
+      num price, String color, String customization) {
     setState(() {
       cartItems[index] = {
         "productId": productId,
@@ -79,6 +84,7 @@ class _CartScreenState extends State<CartScreen> {
         "size": size,
         "color": color,
         "price": price,
+        "customization": customization
       };
     });
   }
@@ -163,25 +169,35 @@ class _CartScreenState extends State<CartScreen> {
                                         .map((dynamic e) =>
                                             DropdownMenuItem<dynamic>(
                                               value: e,
-                                              child: Container(
-                                                  height: 25,
-                                                  width: 60,
-                                                  color: HexColor(e['color']),
-                                                  child: Text(
+                                              child: Row(
+                                                children: [
+                                                  Container(
+                                                    height: 25,
+                                                    width: 60,
+                                                    color: e['color'] != null
+                                                        ? HexColor(e['color'])
+                                                        : null,
+                                                  ),
+                                                  SizedBox(width: 10),
+                                                  Text(
                                                     e['size'].toString(),
-                                                    style: TextStyle(
-                                                      color: Colors.white,
-                                                    ),
+                                                    style: TextStyle(),
                                                     textAlign: TextAlign.center,
-                                                  )),
+                                                  )
+                                                ],
+                                              ),
                                             ))
                                         .toList(),
                                     onChanged: (dynamic val) {
                                       setState(() {
                                         sizeController[index].text =
                                             val['size'];
-                                        colorsController[index].text =
-                                            val['color'];
+                                        if (val['color'] == null) {
+                                          colorsController[index].text == '';
+                                        } else {
+                                          colorsController[index].text =
+                                              val['color'];
+                                        }
 
                                         updateCartItem(
                                             index,
@@ -189,11 +205,26 @@ class _CartScreenState extends State<CartScreen> {
                                             quantities[index],
                                             sizeController[index].text,
                                             product.price,
-                                            colorsController[index].text);
+                                            colorsController[index].text,
+                                            customizeController[index].text);
                                       });
                                     },
                                   ),
                                 ),
+                                SizedBox(height: 10),
+                                if (product.customizable == 'true') ...[
+                                  Text(
+                                    'Customize? ',
+                                    style: TextStyle(
+                                        fontSize: 18,
+                                        fontWeight: FontWeight.w800),
+                                  ),
+                                  CustomTextField(
+                                      validator: (p0) {},
+                                      controller: customizeController[index],
+                                      label: 'Description(Optional)'),
+                                  SizedBox(height: 10),
+                                ],
                                 if (colorsController[index].text != '') ...[
                                   Text(
                                     'Color',
@@ -229,6 +260,8 @@ class _CartScreenState extends State<CartScreen> {
                                                     sizeController[index].text,
                                                     product.price,
                                                     colorsController[index]
+                                                        .text,
+                                                    customizeController[index]
                                                         .text);
                                               });
                                             }
@@ -249,7 +282,8 @@ class _CartScreenState extends State<CartScreen> {
                                               quantities[index],
                                               sizeController[index].text,
                                               product.price,
-                                              colorsController[index].text);
+                                              colorsController[index].text,
+                                              customizeController[index].text);
                                         });
                                       },
                                       icon: Icon(Icons.add),
