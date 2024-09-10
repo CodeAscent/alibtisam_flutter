@@ -406,10 +406,10 @@ class _ViewEventsSheetButtonState extends State<ViewEventsSheetButton> {
                                                             .hasData) {
                                                           return Stack(
                                                             children: [
-                                                              Image.asset(
-                                                                thumbnailSnapshot
+                                                              Image.file(
+                                                                File(thumbnailSnapshot
                                                                     .data
-                                                                    .toString(),
+                                                                    .toString()),
                                                                 height: 100,
                                                                 width: double
                                                                     .infinity,

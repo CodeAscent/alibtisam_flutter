@@ -13,20 +13,21 @@ class ProductModel {
   final List<dynamic> colors;
   final String customizable;
   final List<dynamic> colorsAndSizes;
+  final dynamic customizationCost;
 
   ProductModel(
-    this.id,
-    this.name,
-    this.images,
-    this.sizes,
-    this.availableStock,
-    this.price,
-    this.category,
-    this.description,
-    this.colors,
-    this.customizable,
-    this.colorsAndSizes,
-  );
+      this.id,
+      this.name,
+      this.images,
+      this.sizes,
+      this.availableStock,
+      this.price,
+      this.category,
+      this.description,
+      this.colors,
+      this.customizable,
+      this.colorsAndSizes,
+      this.customizationCost);
 
   factory ProductModel.fromJson(Map<String, dynamic> json) {
     List<dynamic> colors = [];
@@ -66,6 +67,7 @@ class ProductModel {
           : json['colorsAndSizes'] is String
               ? jsonDecode(json['colorsAndSizes'])
               : json['colorsAndSizes'],
+      json['customizationCost'] ?? 0,
     );
   }
   Map<String, dynamic> toMap() {
@@ -81,6 +83,7 @@ class ProductModel {
       'customizable': customizable.toString(),
       'colors': jsonEncode(colors),
       'colorsAndSizes': jsonEncode(colorsAndSizes),
+      'customizationCost': customizationCost,
     };
   }
 }

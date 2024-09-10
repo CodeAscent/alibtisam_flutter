@@ -68,6 +68,7 @@ class _CartScreenState extends State<CartScreen> {
                 "quantity": 1,
                 "size": "",
                 "price": products[index].price,
+                "customizationCost": products[index].customizationCost,
               });
       for (var items in cartItems) {
         productsViewmodel.selectedProducts.add(items['productId']);
@@ -76,7 +77,7 @@ class _CartScreenState extends State<CartScreen> {
   }
 
   void updateCartItem(int index, String productId, int quantity, String size,
-      num price, String color, String customization) {
+      num price, String color, String customization, num customizationCost) {
     setState(() {
       cartItems[index] = {
         "productId": productId,
@@ -84,7 +85,8 @@ class _CartScreenState extends State<CartScreen> {
         "size": size,
         "color": color,
         "price": price,
-        "customization": customization
+        "customization": customization,
+        "customizationCost": customizationCost
       };
     });
   }
@@ -200,13 +202,15 @@ class _CartScreenState extends State<CartScreen> {
                                         }
 
                                         updateCartItem(
-                                            index,
-                                            product.id,
-                                            quantities[index],
-                                            sizeController[index].text,
-                                            product.price,
-                                            colorsController[index].text,
-                                            customizeController[index].text);
+                                          index,
+                                          product.id,
+                                          quantities[index],
+                                          sizeController[index].text,
+                                          product.price,
+                                          colorsController[index].text,
+                                          customizeController[index].text,
+                                          product.customizationCost,
+                                        );
                                       });
                                     },
                                   ),
@@ -220,9 +224,41 @@ class _CartScreenState extends State<CartScreen> {
                                         fontWeight: FontWeight.w800),
                                   ),
                                   CustomTextField(
-                                      validator: (p0) {},
-                                      controller: customizeController[index],
-                                      label: 'Description(Optional)'),
+                                    suffix: IconButton(
+                                        onPressed: () {
+                                          setState(() {
+                                            customizeController[index].clear();
+                                          });
+                                          updateCartItem(
+                                            index,
+                                            product.id,
+                                            quantities[index],
+                                            sizeController[index].text,
+                                            product.price,
+                                            colorsController[index].text,
+                                            customizeController[index].text,
+                                            product.customizationCost,
+                                          );
+                                        },
+                                        icon: Icon(Icons.cancel_rounded)),
+                                    validator: (p0) {},
+                                    controller: customizeController[index],
+                                    label: 'Description(Optional)',
+                                    onChanged: (val) {
+                                      updateCartItem(
+                                        index,
+                                        product.id,
+                                        quantities[index],
+                                        sizeController[index].text,
+                                        product.price,
+                                        colorsController[index].text,
+                                        customizeController[index].text,
+                                        product.customizationCost,
+                                      );
+                                    },
+                                  ),
+                                  Text(
+                                      'Customization cost : ${product.customizationCost}'),
                                   SizedBox(height: 10),
                                 ],
                                 if (colorsController[index].text != '') ...[
@@ -254,15 +290,16 @@ class _CartScreenState extends State<CartScreen> {
                                               setState(() {
                                                 quantities[index]--;
                                                 updateCartItem(
-                                                    index,
-                                                    product.id,
-                                                    quantities[index],
-                                                    sizeController[index].text,
-                                                    product.price,
-                                                    colorsController[index]
-                                                        .text,
-                                                    customizeController[index]
-                                                        .text);
+                                                  index,
+                                                  product.id,
+                                                  quantities[index],
+                                                  sizeController[index].text,
+                                                  product.price,
+                                                  colorsController[index].text,
+                                                  customizeController[index]
+                                                      .text,
+                                                  product.customizationCost,
+                                                );
                                               });
                                             }
                                           : () async {
@@ -277,13 +314,15 @@ class _CartScreenState extends State<CartScreen> {
                                         setState(() {
                                           quantities[index]++;
                                           updateCartItem(
-                                              index,
-                                              product.id,
-                                              quantities[index],
-                                              sizeController[index].text,
-                                              product.price,
-                                              colorsController[index].text,
-                                              customizeController[index].text);
+                                            index,
+                                            product.id,
+                                            quantities[index],
+                                            sizeController[index].text,
+                                            product.price,
+                                            colorsController[index].text,
+                                            customizeController[index].text,
+                                            product.customizationCost,
+                                          );
                                         });
                                       },
                                       icon: Icon(Icons.add),

@@ -130,6 +130,13 @@ class ViewProductScreen extends StatelessWidget {
                 ],
               ),
               SizedBox(height: 10),
+              if (userController.user == null ||
+                  userController.user!.role == 'EXTERNAL USER') ...[
+                Text(product.customizable == 'true'
+                    ? 'This product is customizable with a cost of ${product.customizationCost}'
+                    : ''),
+                SizedBox(height: 10),
+              ],
               Text(
                 product.description,
                 style: TextStyle(fontWeight: FontWeight.w600, fontSize: 18),

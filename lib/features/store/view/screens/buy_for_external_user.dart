@@ -24,11 +24,11 @@ class BuyForExternalUser extends StatefulWidget {
 
 class _BuyForExternalUserState extends State<BuyForExternalUser> {
   int quantity = 1;
-  num price = 0;
   @override
   void initState() {
     super.initState();
     calculateTotalPrice();
+    calculateCustomizationCost();
   }
 
 //   setPrice() {
@@ -45,7 +45,22 @@ class _BuyForExternalUserState extends State<BuyForExternalUser> {
     setState(() {});
   }
 
+  calculateCustomizationCost() {
+    Logger().w(widget.product);
+    num totalCustomization = 0.0;
+    for (var item in widget.product) {
+      if (item['customization'].trim() != '') {
+        Logger().w(item['customization']);
+
+        totalCustomization += item['customizationCost'];
+      }
+    }
+    totalCustomizationCost = totalCustomization;
+    setState(() {});
+  }
+
   num total = 0;
+  num totalCustomizationCost = 0;
   final address = TextEditingController();
   final productsViewmodel = Get.find<ProductsViewmodel>();
   final formkey = GlobalKey<FormState>();
@@ -72,7 +87,7 @@ class _BuyForExternalUserState extends State<BuyForExternalUser> {
                 } else {
                   await productsViewmodel.orderProductForExternalUser(
                     product: widget.product,
-                    price: price,
+                    price: total + totalCustomizationCost,
                     deliveryAddress: address.text,
                   );
                 }
@@ -97,11 +112,39 @@ class _BuyForExternalUserState extends State<BuyForExternalUser> {
                   label: 'Enter Your address',
                   maxLines: 3,
                 ),
-                Text(
-                  'Total price',
-                  style: TextStyle(fontSize: 18, fontWeight: FontWeight.w800),
+                Row(
+                  children: [
+                    Text(
+                      'Price',
+                      style:
+                          TextStyle(fontSize: 18, fontWeight: FontWeight.w800),
+                    ),
+                    Spacer(),
+                    Text(total.toString() + " SAR"),
+                  ],
                 ),
-                Text(total.toString() + " SAR"),
+                Row(
+                  children: [
+                    Text(
+                      'Customization Cost',
+                      style:
+                          TextStyle(fontSize: 18, fontWeight: FontWeight.w800),
+                    ),
+                    Spacer(),
+                    Text(totalCustomizationCost.toString() + " SAR"),
+                  ],
+                ),
+                Row(
+                  children: [
+                    Text(
+                      'Final total',
+                      style:
+                          TextStyle(fontSize: 18, fontWeight: FontWeight.w800),
+                    ),
+                    Spacer(),
+                    Text((total + totalCustomizationCost).toString() + " SAR"),
+                  ],
+                ),
               ],
             ),
           ),
