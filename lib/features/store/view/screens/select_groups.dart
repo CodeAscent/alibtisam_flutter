@@ -95,7 +95,7 @@ class _PlayersByStageState extends State<PlayersByStage> {
                   onTap: () {
                     productsViewmodel.orderProducts(playerIds: selectedPlayers);
                   },
-                  label: 'Submit',
+                  label: 'submit'.tr,
                 ),
               )),
         ),
@@ -117,8 +117,8 @@ class _PlayersByStageState extends State<PlayersByStage> {
                 setState(() {});
               },
               child: Text(players.length == selectedPlayers.length
-                  ? 'Clear All'
-                  : 'Select All'),
+                  ? 'Clear All'.tr
+                  : 'Select All'.tr),
             )
           ],
         ),

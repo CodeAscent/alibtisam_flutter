@@ -36,14 +36,14 @@ class _ProductsTabBarState extends State<ProductsTabBar>
   Widget build(BuildContext context) {
     return Scaffold(
         appBar: AppBar(
-          title: Text('Alibtisam Store'),
+          title: Text('Alibtisam Store'.tr),
           actions: [
             IconButton(
                 onPressed: () async {
                   final token = await getToken();
                   if (token == null) {
                     customSnackbar(
-                         'Please login to fetch your order history', ContentType.warning);
+                         'Please login to fetch your order history'.tr, ContentType.warning);
                   } else {
                     Get.to(() => OrderHistoryPage());
                   }
