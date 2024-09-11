@@ -515,6 +515,24 @@ class AppLocalization extends Translations {
           "stock": "stock:",
           "This product is customizable with a cost of":
               "This product is customizable with a cost of",
+          //------------------
+          "Training Plan": "Training Plan",
+          "Please schedule days for the training":
+              "Please schedule days for the training",
+          "Create Training Plan": "Create Training Plan",
+          "Plan Name": "Plan Name",
+          "Select Stage": "Select Stage",
+          "Select Group": "Select Group",
+          "Schedule": "Schedule",
+          "Training time": "Training time",
+          "Duration of each session": "Duration of each session",
+          "Additional notes (Optional)": "Additional notes (Optional)",
+          "No Training plan found for this group":
+              "No Training plan found for this group",
+          "Training Time": "Training Time",
+          "Training Duration": "Training Duration",
+          "Stage": "Stage",
+          "Additional Notes": "Additional Notes",
         },
         'ar_DZ': {
           "enterUsername": "أدخل اسم المستخدم",
@@ -1014,6 +1032,24 @@ class AppLocalization extends Translations {
           "Add to Cart": "أضف إلى السلة",
           "View Cart": "عرض السلة",
           "Stock": "المخزون:",
+          "This product is customizable with a cost of":
+              "هذا المنتج قابل للتخصيص بتكلفة قدرها",
+          "Training Plan": "خطة التدريب",
+          "Please schedule days for the training": "يرجى تحديد الأيام للتدريب",
+          "Create Training Plan": "إنشاء خطة تدريب",
+          "Plan Name": "اسم الخطة",
+          "Select Stage": "اختر المرحلة",
+          "Select Group": "اختر المجموعة",
+          "Schedule": "الجدول الزمني",
+          "Training time": "وقت التدريب",
+          "Duration of each session": "مدة كل جلسة",
+          "Additional notes (Optional)": "ملاحظات إضافية (اختياري)",
+          "No Training plan found for this group":
+              "لم يتم العثور على خطة تدريب لهذه المجموعة",
+          "Training Time": "وقت التدريب",
+          "Training Duration": "مدة التدريب",
+          "Stage": "المرحلة",
+          "Additional Notes": "ملاحظات إضافية"
         },
       };
 }
