@@ -298,7 +298,7 @@ class _CreateTournamentRequestScreenState
                                               borderRadius:
                                                   BorderRadius.circular(20)));
                                     },
-                                    child: Text('Select Coaches')),
+                                    child: Text('Select Coaches'.tr)),
                               ],
                             ),
                             CustomTextField(

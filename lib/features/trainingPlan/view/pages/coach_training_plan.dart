@@ -61,7 +61,7 @@ class _CoachTrainingPlanState extends State<CoachTrainingPlan>
         builder: (GroupsController gcController) {
           return Scaffold(
               appBar: AppBar(
-                title: Text('Training Plan'),
+                title: Text('Training Plan'.tr),
               ),
               body: CustomTabBar(tabController: _tabController, customTabs: [
                 ...user.stage.map(
@@ -108,13 +108,13 @@ class _CoachTrainingPlanState extends State<CoachTrainingPlan>
                                     () => CustomGradientButton(
                                       loading:
                                           trainingPlanController.loading.value,
-                                      label: 'Submit',
+                                      label: 'submit'.tr,
                                       onTap: () async {
                                         if (formKey.currentState!.validate()) {
                                           if (scheduledDays.length == 0) {
                                             customSnackbar(
-                                             
-                                                    'Please schedule days for the training', ContentType.warning);
+                                                'Please schedule days for the training'.tr,
+                                                ContentType.warning);
                                           } else {
                                             await trainingPlanController
                                                 .addTrainingPlan(
@@ -150,7 +150,7 @@ class _CoachTrainingPlanState extends State<CoachTrainingPlan>
                                   ),
                                 ),
                               ],
-                              title: Text('Create Training Plan'),
+                              title: Text('Create Training Plan'.tr),
                               message: Container(
                                 height: 500,
                                 child: SingleChildScrollView(
@@ -160,11 +160,11 @@ class _CoachTrainingPlanState extends State<CoachTrainingPlan>
                                       children: [
                                         CustomTextField(
                                           controller: planNameController,
-                                          label: 'Plan Name',
+                                          label: 'Plan Name'.tr,
                                         ),
                                         CustomTextField(
                                             controller: stageController,
-                                            label: 'Select Stage',
+                                            label: 'Select Stage'.tr,
                                             suffix: DropdownButton(
                                                 iconSize: 40,
                                                 underline: SizedBox(),
@@ -199,7 +199,7 @@ class _CoachTrainingPlanState extends State<CoachTrainingPlan>
                                           visible: stageController.text != '',
                                           child: CustomTextField(
                                             controller: groupNameController,
-                                            label: 'Select Group',
+                                            label: 'Select Group'.tr,
                                             suffix: DropdownButton(
                                                 underline: SizedBox(),
                                                 iconSize: 40,
@@ -221,7 +221,7 @@ class _CoachTrainingPlanState extends State<CoachTrainingPlan>
                                           ),
                                         ),
                                         Divider(),
-                                        Text('Schedule'),
+                                        Text('Schedule'.tr),
                                         SizedBox(height: 10),
                                         SelectWeekDays(
                                           fontSize: 14,
@@ -262,18 +262,18 @@ class _CoachTrainingPlanState extends State<CoachTrainingPlan>
                                                 },
                                                 icon:
                                                     Icon(CupertinoIcons.time)),
-                                            label: 'Training time'),
+                                            label: 'Training time'.tr),
                                         CustomTextField(
                                             controller:
                                                 trainingDurationController,
-                                            label: 'Duration of each session'),
+                                            label: 'Duration of each session'.tr),
                                         Divider(),
                                         CustomTextField(
                                             controller:
                                                 additionalNotesController,
                                             maxLines: 4,
                                             label:
-                                                'Additional notes (Optional)'),
+                                                'Additional notes (Optional)'.tr),
                                       ]),
                                 ),
                               ),

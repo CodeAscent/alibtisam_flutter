@@ -30,7 +30,7 @@ class _ViewTrainingPlanState extends State<ViewTrainingPlan> {
     final trainingPlanController = Get.find<TrainingPlanViewmodel>();
     return Scaffold(
       appBar: AppBar(
-        title: Text('Training Plan '),
+        title: Text('Training Plan'.tr),
       ),
       body: GetBuilder<TrainingPlanViewmodel>(
         init: TrainingPlanViewmodel(),
@@ -90,7 +90,7 @@ class _ViewTrainingPlanState extends State<ViewTrainingPlan> {
                 )
               : controller.trainingPlan == null
                   ? Center(
-                      child: Text('No Training plan found for this group'),
+                      child: Text('No Training plan found for this group'.tr),
                     )
                   : SingleChildScrollView(
                       child: Padding(
@@ -99,29 +99,29 @@ class _ViewTrainingPlanState extends State<ViewTrainingPlan> {
                           crossAxisAlignment: CrossAxisAlignment.start,
                           children: [
                             CustomGradientListTile(
-                              label: 'Plan Name',
+                              label: 'Plan Name'.tr,
                               subtitle: controller.trainingPlan!.planName!,
                             ),
                             CustomGradientListTile(
-                              label: 'Training Time',
+                              label: 'Training Time'.tr,
                               subtitle: controller.trainingPlan!.trainingTime!,
                             ),
                             CustomGradientListTile(
-                              label: 'Training Duration',
+                              label: 'Training Duration'.tr,
                               subtitle:
                                   controller.trainingPlan!.trainingDuration!,
                             ),
                             CustomGradientListTile(
-                              label: 'Stage',
+                              label: 'Stage'.tr,
                               subtitle: controller.trainingPlan!.stage!,
                             ),
                             CustomGradientListTile(
-                              label: 'Additional Notes',
+                              label: 'Additional Notes'.tr,
                               subtitle:
                                   controller.trainingPlan!.additionalNotes!,
                             ),
                             Text(
-                              'Schedule',
+                              'Schedule'.tr,
                               style: TextStyle(
                                   fontWeight: FontWeight.w800, fontSize: 18),
                             ),

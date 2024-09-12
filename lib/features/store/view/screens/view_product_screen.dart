@@ -25,7 +25,7 @@ class ViewProductScreen extends StatelessWidget {
 
     return Scaffold(
       appBar: AppBar(
-        title: Text('Order now'),
+        title: Text('Order now'.tr),
       ),
       bottomNavigationBar: Padding(
         padding: const EdgeInsets.all(8.0),
@@ -37,7 +37,7 @@ class ViewProductScreen extends StatelessWidget {
               child: CustomContainerButton(
                   onTap: () async {
                     await dbHelper.insertOrUpdateProduct(product);
-                    customSnackbar('Product added successfully in your cart',
+                    customSnackbar('Product added successfully in your cart'.tr,
                         ContentType.success);
 
                     //
@@ -53,7 +53,7 @@ class ViewProductScreen extends StatelessWidget {
                     // }
                   },
                   flexibleHeight: 60,
-                  label: 'Add to Cart'),
+                  label: 'Add to Cart'.tr),
             ),
             SizedBox(width: 10),
             SizedBox(
@@ -63,7 +63,7 @@ class ViewProductScreen extends StatelessWidget {
                     Get.to(() => CartScreen());
                   },
                   flexibleHeight: 60,
-                  label: 'View Cart'),
+                  label: 'View Cart'.tr),
             ),
           ],
         ),
@@ -91,12 +91,12 @@ class ViewProductScreen extends StatelessWidget {
               ),
               SizedBox(height: 10),
               Text(
-                'stock: ' + product.availableStock.toString(),
+                'stock'.tr +' '+ product.availableStock.toString(),
                 style: TextStyle(fontSize: 18),
               ),
               SizedBox(height: 10),
               Text(
-                product.price.toString() + " SAR",
+                product.price.toString() + " "+"sar".tr,
                 style: TextStyle(fontWeight: FontWeight.w600, fontSize: 18),
               ),
               SizedBox(height: 10),
@@ -133,7 +133,7 @@ class ViewProductScreen extends StatelessWidget {
               if (userController.user == null ||
                   userController.user!.role == 'EXTERNAL USER') ...[
                 Text(product.customizable == 'true'
-                    ? 'This product is customizable with a cost of ${product.customizationCost}'
+                    ? 'This product is customizable with a cost of'.tr+' ${product.customizationCost}'
                     : ''),
                 SizedBox(height: 10),
               ],

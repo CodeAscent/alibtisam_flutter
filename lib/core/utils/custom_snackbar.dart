@@ -10,7 +10,7 @@ customSnackbar(String message, ContentType type) {
     // margin: EdgeInsets.only(bottom: Get.height * 0.68),
     backgroundColor: Colors.transparent,
     content: AwesomeSnackbarContent(
-      title: 'Message',
+      title: 'message'.tr,
       message: message,
       contentType: type,
     ),

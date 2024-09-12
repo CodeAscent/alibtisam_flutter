@@ -113,10 +113,10 @@ class _CartScreenState extends State<CartScreen> {
       key: formKey,
       child: Scaffold(
         appBar: AppBar(
-          title: Text('Cart'),
+          title: Text('cart'.tr),
         ),
         body: cartItems.length == 0
-            ? Center(child: Text('Cart is Empty'))
+            ? Center(child: Text('Cart is Empty'.tr))
             : FutureBuilder<List<ProductModel>>(
                 future: databaseHelper.getProducts(),
                 builder: (context, snapshot) {
@@ -156,14 +156,14 @@ class _CartScreenState extends State<CartScreen> {
                                       'EXTERNAL USER') ...[
                                 SizedBox(height: 10),
                                 Text(
-                                  'Preferred Size',
+                                  'Preferred Size'.tr,
                                   style: TextStyle(
                                       fontSize: 18,
                                       fontWeight: FontWeight.w800),
                                 ),
                                 CustomTextField(
                                   controller: sizeController[index],
-                                  label: 'Size',
+                                  label: 'size'.tr,
                                   readOnly: true,
                                   suffix: DropdownButton(
                                     underline: SizedBox(),
@@ -218,7 +218,7 @@ class _CartScreenState extends State<CartScreen> {
                                 SizedBox(height: 10),
                                 if (product.customizable == 'true') ...[
                                   Text(
-                                    'Customize? ',
+                                    'Customize?'.tr,
                                     style: TextStyle(
                                         fontSize: 18,
                                         fontWeight: FontWeight.w800),
@@ -243,7 +243,7 @@ class _CartScreenState extends State<CartScreen> {
                                         icon: Icon(Icons.cancel_rounded)),
                                     validator: (p0) {},
                                     controller: customizeController[index],
-                                    label: 'Description(Optional)',
+                                    label: 'Description(Optional)'.tr,
                                     onChanged: (val) {
                                       updateCartItem(
                                         index,
@@ -257,13 +257,13 @@ class _CartScreenState extends State<CartScreen> {
                                       );
                                     },
                                   ),
-                                  Text(
-                                      'Customization cost : ${product.customizationCost}'),
+                                  Text('Customization cost'.tr +
+                                      ' : ' ' ${product.customizationCost}'),
                                   SizedBox(height: 10),
                                 ],
                                 if (colorsController[index].text != '') ...[
                                   Text(
-                                    'Color',
+                                    'color'.tr,
                                     style: TextStyle(
                                         fontSize: 18,
                                         fontWeight: FontWeight.w800),
@@ -277,7 +277,7 @@ class _CartScreenState extends State<CartScreen> {
                                 ],
                                 SizedBox(height: 10),
                                 Text(
-                                  'Quantity',
+                                  'quantity'.tr,
                                   style: TextStyle(
                                       fontSize: 18,
                                       fontWeight: FontWeight.w800),
@@ -331,7 +331,11 @@ class _CartScreenState extends State<CartScreen> {
                                 ),
                                 SizedBox(height: 10),
                                 Text(
-                                  'Price: \SAR ${calculatePrice(product, quantities[index]).toStringAsFixed(2)}',
+                                  'price'.tr +
+                                      ' ' +
+                                      'sar'.tr +
+                                      ' ' +
+                                      '${calculatePrice(product, quantities[index]).toStringAsFixed(2)}',
                                   style: TextStyle(
                                       fontSize: 18,
                                       fontWeight: FontWeight.w800),
@@ -341,7 +345,7 @@ class _CartScreenState extends State<CartScreen> {
                                   children: [
                                     SizedBox(width: 20),
                                     Text(
-                                      'Remove from cart',
+                                      'Remove from cart'.tr,
                                       style: TextStyle(
                                           fontWeight: FontWeight.w800),
                                     ),
@@ -384,7 +388,7 @@ class _CartScreenState extends State<CartScreen> {
                   }
                 },
                 flexibleHeight: 60,
-                label: token == null ? 'Login To Continue' : 'Continue',
+                label: token == null ? 'Login To Continue'.tr : 'continue'.tr,
               ),
       ),
     );

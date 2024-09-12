@@ -121,7 +121,7 @@ class _ViewGroupMembersState extends State<ViewGroupMembers> {
                                           selectedMembers.clear();
                                           setState(() {});
                                         },
-                                        label: 'submit')
+                                        label: 'submit'.tr)
                                   ],
                                 ),
                               ),
@@ -177,7 +177,7 @@ class _ViewGroupMembersState extends State<ViewGroupMembers> {
                           setState(() {});
                         },
                         child: PlayerCard(
-                          extraWidget: Text('Age ' +
+                          extraWidget: Text('age'.tr +
                               AgeCalculator.age(
                                       DateTime.parse(player.dateOfBirth!))
                                   .years

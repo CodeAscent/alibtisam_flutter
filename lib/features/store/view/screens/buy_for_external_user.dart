@@ -70,7 +70,7 @@ class _BuyForExternalUserState extends State<BuyForExternalUser> {
       key: formkey,
       child: Scaffold(
         appBar: AppBar(
-          title: Text("Place Order"),
+          title: Text("Place Order".tr),
         ),
         bottomNavigationBar: Obx(
           () => CustomContainerButton(
@@ -82,7 +82,7 @@ class _BuyForExternalUserState extends State<BuyForExternalUser> {
                 String? token = await getToken();
                 if (token == null) {
                   Get.to(() => LoginScreen());
-                  customSnackbar('Please login to order this product.',
+                  customSnackbar('Please login to order this product.'.tr,
                       ContentType.warning);
                 } else {
                   await productsViewmodel.orderProductForExternalUser(
@@ -94,7 +94,7 @@ class _BuyForExternalUserState extends State<BuyForExternalUser> {
               }
             },
             flexibleHeight: 60,
-            label: 'Confirm',
+            label: 'Confirm'.tr,
           ),
         ),
         body: SingleChildScrollView(
@@ -104,45 +104,45 @@ class _BuyForExternalUserState extends State<BuyForExternalUser> {
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
                 Text(
-                  'Address',
+                  'address'.tr,
                   style: TextStyle(fontSize: 18, fontWeight: FontWeight.w800),
                 ),
                 CustomTextField(
                   controller: address,
-                  label: 'Enter Your address',
+                  label: 'Enter Your address'.tr,
                   maxLines: 3,
                 ),
                 Row(
                   children: [
                     Text(
-                      'Price',
+                      'Price'.tr,
                       style:
                           TextStyle(fontSize: 18, fontWeight: FontWeight.w800),
                     ),
                     Spacer(),
-                    Text(total.toString() + " SAR"),
+                    Text(total.toString() +" "+ "sar".tr),
                   ],
                 ),
                 Row(
                   children: [
                     Text(
-                      'Customization Cost',
+                      'Customization Cost'.tr,
                       style:
                           TextStyle(fontSize: 18, fontWeight: FontWeight.w800),
                     ),
                     Spacer(),
-                    Text(totalCustomizationCost.toString() + " SAR"),
+                    Text(totalCustomizationCost.toString() +" "+ "sar".tr),
                   ],
                 ),
                 Row(
                   children: [
                     Text(
-                      'Final total',
+                      'Final total'.tr,
                       style:
                           TextStyle(fontSize: 18, fontWeight: FontWeight.w800),
                     ),
                     Spacer(),
-                    Text((total + totalCustomizationCost).toString() + " SAR"),
+                    Text((total + totalCustomizationCost).toString() +""+ "sar".tr),
                   ],
                 ),
               ],
