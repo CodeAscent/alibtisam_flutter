@@ -33,8 +33,8 @@ class ApiRequests {
   Future<List<Events>> allEvents(String filter) async {
     try {
       List<Events> events = [];
-      final res =
-          await HttpWrapper.getRequest(all_events + "?category=$filter");
+      final res = await HttpWrapper.getRequest(
+          all_events + "?category=$filter&active=true");
       print(all_events + "?category=$filter");
       final data = jsonDecode(res.body);
       Logger().f(data);
@@ -56,7 +56,7 @@ class ApiRequests {
     try {
       List<Events> events = [];
       final res = await HttpWrapper.getRequest(all_events +
-          "?category=$filter&startDate=$startDate&endDate=$endDate");
+          "?category=$filter&startDate=$startDate&endDate=$endDate&active=true");
       final data = jsonDecode(res.body);
       if (res.statusCode == 200) {
         for (var item in data['events']) {

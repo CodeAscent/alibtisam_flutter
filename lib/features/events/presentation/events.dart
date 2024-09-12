@@ -1,5 +1,7 @@
 import 'package:alibtisam/core/common/widgets/custom_empty_icon.dart';
 import 'package:alibtisam/core/common/widgets/custom_loading.dart';
+import 'package:alibtisam/core/theme/app_colors.dart';
+import 'package:alibtisam/features/events/presentation/live_streams_screen.dart';
 import 'package:alibtisam/features/events/widgets/custom_events_call_by_category.dart';
 import 'package:alibtisam/features/dummySplash/dummy_splash.dart';
 import 'package:alibtisam/features/events/controller/event_navigation.dart';
@@ -35,61 +37,70 @@ class _AllEventsState extends State<AllEvents> with TickerProviderStateMixin {
         return true;
       },
       shouldAddCallback: true,
-      child:  Scaffold(
-          appBar: AppBar(
-            // toolbarHeight: 120,
-            automaticallyImplyLeading: false,
-            title: Text("events".tr),
-            leading: IconButton(
-                onPressed: () {
-                  eventNavigationController.navigatingFromSplashScreen.isTrue
-                      ? Get.offAll(() => DummySplash())
-                      : Get.back();
-                },
-                icon: Icon(
-                  Icons.navigate_before,
-                  size: 45,
-                )),
+      child: Scaffold(
+        floatingActionButton: GestureDetector(
+          onTap: () {
+            Get.to(() => LiveStreamsScreen());
+          },
+          child: CircleAvatar(
+            radius: 32,
+            backgroundColor: primaryColor(),
+            child: Image.asset('assets/images/live.gif'),
           ),
-          body: FutureBuilder(
-              future: Future.wait([
-                ApiRequests().allEvents("ANNOUNCEMENT EVENT"),
-                ApiRequests().allEvents("SPORT EVENT"),
-                ApiRequests().allEvents("GENERAL EVENT")
-              ]),
-              builder: (context, snapshot) {
-                if (snapshot.hasData) {
-                  return snapshot.data![0].length == 0 &&
-                          snapshot.data![1].length == 0 &&
-                          snapshot.data![2].length == 0
-                      ? CustomEmptyWidget()
-                      : SingleChildScrollView(
-                          child: Column(
-                            mainAxisAlignment: MainAxisAlignment.start,
-                            children: [
-                              if (snapshot.data![0].length != 0)
-                                CustomEventsCallByCategory(
-                                  label: 'announcementEvent'.tr,
-                                  snapshot: snapshot.data![0],
-                                ),
-                              if (snapshot.data![1].length != 0)
-                                CustomEventsCallByCategory(
-                                  label: 'sportEvent'.tr,
-                                  snapshot: snapshot.data![1],
-                                ),
-                              if (snapshot.data![2].length != 0)
-                                CustomEventsCallByCategory(
-                                  label: 'globalEvents'.tr,
-                                  snapshot: snapshot.data![2],
-                                ),
-                            ],
-                          ),
-                        );
-                }
-                return SizedBox();
-              }),
         ),
-      
+        appBar: AppBar(
+          // toolbarHeight: 120,
+          automaticallyImplyLeading: false,
+          title: Text("events".tr),
+          leading: IconButton(
+              onPressed: () {
+                eventNavigationController.navigatingFromSplashScreen.isTrue
+                    ? Get.offAll(() => DummySplash())
+                    : Get.back();
+              },
+              icon: Icon(
+                Icons.navigate_before,
+                size: 45,
+              )),
+        ),
+        body: FutureBuilder(
+            future: Future.wait([
+              ApiRequests().allEvents("ANNOUNCEMENT EVENT"),
+              ApiRequests().allEvents("SPORT EVENT"),
+              ApiRequests().allEvents("GENERAL EVENT")
+            ]),
+            builder: (context, snapshot) {
+              if (snapshot.hasData) {
+                return snapshot.data![0].length == 0 &&
+                        snapshot.data![1].length == 0 &&
+                        snapshot.data![2].length == 0
+                    ? CustomEmptyWidget()
+                    : SingleChildScrollView(
+                        child: Column(
+                          mainAxisAlignment: MainAxisAlignment.start,
+                          children: [
+                            if (snapshot.data![0].length != 0)
+                              CustomEventsCallByCategory(
+                                label: 'announcementEvent'.tr,
+                                snapshot: snapshot.data![0],
+                              ),
+                            if (snapshot.data![1].length != 0)
+                              CustomEventsCallByCategory(
+                                label: 'sportEvent'.tr,
+                                snapshot: snapshot.data![1],
+                              ),
+                            if (snapshot.data![2].length != 0)
+                              CustomEventsCallByCategory(
+                                label: 'globalEvents'.tr,
+                                snapshot: snapshot.data![2],
+                              ),
+                          ],
+                        ),
+                      );
+              }
+              return SizedBox();
+            }),
+      ),
     );
   }
 }

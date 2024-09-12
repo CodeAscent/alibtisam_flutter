@@ -108,7 +108,7 @@ class _ViewLiveStreamState extends State<ViewLiveStream> {
                       player,
                       Container(
                         height: 250,
-                        color: Colors.black,
+                        color: Colors.white,
                         child: Center(
                           child: CircularProgressIndicator(),
                         ),

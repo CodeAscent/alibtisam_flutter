@@ -1,3 +1,4 @@
+import 'package:alibtisam/core/theme/app_colors.dart';
 import 'package:alibtisam/features/events/presentation/live_streams_screen.dart';
 import 'package:alibtisam/features/events/widgets/feedPlayer/feed_player.dart';
 import 'package:alibtisam/features/auth/view/widgets/check_login.dart';
@@ -49,7 +50,7 @@ class _DummySplashState extends State<DummySplash> {
           },
           child: CircleAvatar(
             radius: 32,
-            backgroundColor: Colors.white,
+            backgroundColor: primaryColor(),
             child: Image.asset('assets/images/live.gif'),
           ),
         ),

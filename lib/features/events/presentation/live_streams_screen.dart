@@ -14,9 +14,7 @@ class LiveStreamsScreen extends StatefulWidget {
 class _LiveStreamsScreenState extends State<LiveStreamsScreen> {
   @override
   Widget build(BuildContext context) {
-    return 
-    
-    Scaffold(
+    return Scaffold(
       appBar: AppBar(
         title: Text('Live'),
       ),
@@ -24,7 +22,7 @@ class _LiveStreamsScreenState extends State<LiveStreamsScreen> {
         future: ApiRequests().allEvents('LIVE STREAM'),
         builder: (context, snapshot) {
           if (snapshot.connectionState == ConnectionState.waiting) {
-            return CircularProgressIndicator();
+            return Center(child: CircularProgressIndicator());
           }
           if (snapshot.hasData) {
             return ListView.builder(
@@ -33,9 +31,11 @@ class _LiveStreamsScreenState extends State<LiveStreamsScreen> {
               itemBuilder: (context, index) {
                 final event = snapshot.data![index];
                 return GestureDetector(
-                    onTap: () {
-                      Get.to(()=> ViewLiveStream(event: event,));
-                    },
+                  onTap: () {
+                    Get.to(() => ViewLiveStream(
+                          event: event,
+                        ));
+                  },
                   child: Card(
                     elevation: 2, // Adjust elevation as needed
                     margin: EdgeInsets.symmetric(horizontal: 10, vertical: 5),
