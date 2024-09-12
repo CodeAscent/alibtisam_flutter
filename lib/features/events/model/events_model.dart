@@ -12,16 +12,18 @@ class Events {
   final String description;
   final bool isNew;
   final List<Media> media;
-
-  Events(
-      {required this.id,
-      required this.name,
-      required this.category,
-      required this.dateTime,
-      required this.location,
-      required this.description,
-      required this.isNew,
-      required this.media});
+  final dynamic streamUrl;
+  Events({
+    required this.id,
+    required this.name,
+    required this.category,
+    required this.dateTime,
+    required this.location,
+    required this.description,
+    required this.isNew,
+    required this.media,
+    required this.streamUrl,
+  });
 
   Map<String, dynamic> toMap() {
     return <String, dynamic>{
@@ -33,6 +35,7 @@ class Events {
       'description': description,
       'isNew': isNew,
       'media': media.map((x) => x.toMap()).toList(),
+      'streamUrl': streamUrl,
     };
   }
 
@@ -50,6 +53,7 @@ class Events {
           (x) => Media.fromMap(x),
         ),
       ),
+      streamUrl: map['streamUrl'] as dynamic,
     );
   }
 
@@ -77,6 +81,7 @@ class Events {
       description: description ?? this.description,
       isNew: isNew ?? this.isNew,
       media: media ?? this.media,
+      streamUrl: streamUrl ?? this.streamUrl,
     );
   }
 }

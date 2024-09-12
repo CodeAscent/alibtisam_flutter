@@ -37,6 +37,7 @@ class ApiRequests {
           await HttpWrapper.getRequest(all_events + "?category=$filter");
       print(all_events + "?category=$filter");
       final data = jsonDecode(res.body);
+      Logger().f(data);
       if (res.statusCode == 200) {
         for (var item in data['events']) {
           events.add(Events.fromMap(item));
