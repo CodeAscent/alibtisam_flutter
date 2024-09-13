@@ -62,7 +62,7 @@ class ProductsRepo {
           base_url + 'request/buy-product-for-player', {
         "playerIds": playerIds,
         "productIds": productsViewmodel.selectedProducts,
-        "coachId": userController.user!.id
+        "coachId": userController.user!.id,
       });
       productsViewmodel.clearSelectedProducts();
       Logger().w(productsViewmodel.selectedProducts);
@@ -109,8 +109,8 @@ class ProductsRepo {
   orderHistory() async {
     try {
       String endpoint = userController.user!.role == 'COACH'
-          ? "request/by-status/all?kind=buyPlayerProductRequest"
-          : "request/by-status/all?kind=externalUserOrderRequest";
+          ? "request/by-user/all?kind=buyPlayerProductRequest"
+          : "request/by-user/all?kind=externalUserOrderRequest";
       final res = await HttpWrapper.getRequest(base_url + endpoint);
       final data = jsonDecode(res.body);
       Logger().f(data);

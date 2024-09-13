@@ -91,12 +91,12 @@ class ViewProductScreen extends StatelessWidget {
               ),
               SizedBox(height: 10),
               Text(
-                'stock'.tr +' '+ product.availableStock.toString(),
+                'stock'.tr + ' ' + product.availableStock.toString(),
                 style: TextStyle(fontSize: 18),
               ),
               SizedBox(height: 10),
               Text(
-                product.price.toString() + " "+"sar".tr,
+                product.price.toString() + " " + "sar".tr,
                 style: TextStyle(fontWeight: FontWeight.w600, fontSize: 18),
               ),
               SizedBox(height: 10),
@@ -131,9 +131,10 @@ class ViewProductScreen extends StatelessWidget {
               ),
               SizedBox(height: 10),
               if (userController.user == null ||
-                  userController.user!.role == 'EXTERNAL USER') ...[
+                  userController.user!.role != 'COACH') ...[
                 Text(product.customizable == 'true'
-                    ? 'This product is customizable with a cost of'.tr+' ${product.customizationCost}'
+                    ? 'This product is customizable with a cost of'.tr +
+                        ' ${product.customizationCost}'
                     : ''),
                 SizedBox(height: 10),
               ],

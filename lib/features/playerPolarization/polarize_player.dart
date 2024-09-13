@@ -54,36 +54,40 @@ class _PolarizePlayerState extends State<PolarizePlayer> {
           ? SizedBox()
           : Padding(
               padding: const EdgeInsets.all(16.0),
-              child: CustomContainerButton(
-                onTap: () {
-                  if (groupsManagement.selectedGroupId == '' &&
-                      widget.player.stage == 'ACADEMY') {
-                    customSnackbar( 'Please Select a group'.tr, ContentType.warning);
-                  } else {
-                    Get.defaultDialog(
-                        titleStyle: TextStyle(fontSize: 12),
-                        title:
-                            "${'Are you sure you want update'.tr} \n${widget.player.name}'s ${'stage'.tr}?",
-                        content: Column(
-                          children: [
-                            Text('Update Stage From'.tr),
-                            Text(
-                              '${widget.player.stage} --> ${widget.player.stage == 'ACADEMY' ? 'SCHOOL' : 'PROFESSIONAL'}',
-                              style: TextStyle(
-                                  fontWeight: FontWeight.w800, fontSize: 18),
-                            ),
-                            SizedBox(height: 20),
-                          ],
-                        ),
-                        confirm: TextButton(
-                            onPressed: () async {
-                              updatePlayer();
-                            },
-                            child: Text('Confirm'.tr)));
-                  }
-                },
-                flexibleHeight: 60,
-                label: 'Update Stage'.tr,
+              child: Container(
+                // height: 180,
+                child: CustomContainerButton(
+                  onTap: () {
+                    if (groupsManagement.selectedGroupId == '' &&
+                        widget.player.stage == 'ACADEMY') {
+                      customSnackbar(
+                          'Please Select a group'.tr, ContentType.warning);
+                    } else {
+                      Get.defaultDialog(
+                          titleStyle: TextStyle(fontSize: 12),
+                          title:
+                              "${'Are you sure you want update'.tr} \n${widget.player.name}'s ${'stage'.tr}?",
+                          content: Column(
+                            children: [
+                              Text('Update Stage From'.tr),
+                              Text(
+                                '${widget.player.stage} --> ${widget.player.stage == 'ACADEMY' ? 'SCHOOL' : 'PROFESSIONAL'}',
+                                style: TextStyle(
+                                    fontWeight: FontWeight.w800, fontSize: 18),
+                              ),
+                              SizedBox(height: 20),
+                            ],
+                          ),
+                          confirm: TextButton(
+                              onPressed: () async {
+                                updatePlayer();
+                              },
+                              child: Text('Confirm'.tr)));
+                    }
+                  },
+                  flexibleHeight: 60,
+                  label: 'Update Stage'.tr,
+                ),
               ),
             ),
       body: loading

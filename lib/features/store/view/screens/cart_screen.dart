@@ -71,8 +71,19 @@ class _CartScreenState extends State<CartScreen> {
                 "customizationCost": products[index].customizationCost,
               });
       for (var items in cartItems) {
-        productsViewmodel.selectedProducts.add(items['productId']);
+        // Check if the product is already in the selectedProducts list
+        bool productExists = productsViewmodel.selectedProducts
+            .any((product) => product['productId'] == items['productId']);
+
+        if (!productExists) {
+          productsViewmodel.selectedProducts.add({
+            "productId": items['productId'],
+            "customization": '',
+          });
+        }
       }
+
+      Logger().w(productsViewmodel.selectedProducts);
     });
   }
 
@@ -98,11 +109,18 @@ class _CartScreenState extends State<CartScreen> {
   Future removeItemFromCart(int index, String productId) async {
     // Remove the product from the database
     await databaseHelper.deleteProduct(productId);
-    productsViewmodel.selectedProducts.remove(productId);
+    productsViewmodel.selectedProducts
+        .removeWhere((item) => item['productId'] == productId);
     // Remove the item from the cart list
     setState(() {
       cartItems.removeAt(index);
     });
+  }
+
+  Future updateCoachCustomization(int index, String customization) async {
+    Logger().w(productsViewmodel.selectedProducts);
+    productsViewmodel.selectedProducts[index]['customization'] = customization;
+    Logger().w(productsViewmodel.selectedProducts);
   }
 
   final formKey = GlobalKey<FormState>();
@@ -151,9 +169,57 @@ class _CartScreenState extends State<CartScreen> {
                             crossAxisAlignment: CrossAxisAlignment.start,
                             children: [
                               ProductCard(product: product),
+                              SizedBox(height: 10),
+                              if (product.customizable == 'true') ...[
+                                Text(
+                                  'Customize?'.tr,
+                                  style: TextStyle(
+                                      fontSize: 18,
+                                      fontWeight: FontWeight.w800),
+                                ),
+                                CustomTextField(
+                                  suffix: IconButton(
+                                      onPressed: () {
+                                        setState(() {
+                                          customizeController[index].clear();
+                                        });
+                                        updateCartItem(
+                                          index,
+                                          product.id,
+                                          quantities[index],
+                                          sizeController[index].text,
+                                          product.price,
+                                          colorsController[index].text,
+                                          customizeController[index].text,
+                                          product.customizationCost,
+                                        );
+                                      },
+                                      icon: Icon(Icons.cancel_rounded)),
+                                  validator: (p0) {},
+                                  controller: customizeController[index],
+                                  label: 'Description(Optional)'.tr,
+                                  maxLines: 3,
+                                  onChanged: (val) {
+                                    updateCartItem(
+                                      index,
+                                      product.id,
+                                      quantities[index],
+                                      sizeController[index].text,
+                                      product.price,
+                                      colorsController[index].text,
+                                      customizeController[index].text,
+                                      product.customizationCost,
+                                    );
+                                    updateCoachCustomization(
+                                        index, customizeController[index].text);
+                                  },
+                                ),
+                              ],
                               if (token == null ||
-                                  userController.user!.role ==
-                                      'EXTERNAL USER') ...[
+                                  userController.user!.role != 'COACH') ...[
+                                SizedBox(height: 10),
+                                Text('Customization cost'.tr +
+                                    ' : ' ' ${product.customizationCost}'),
                                 SizedBox(height: 10),
                                 Text(
                                   'Preferred Size'.tr,
@@ -215,52 +281,6 @@ class _CartScreenState extends State<CartScreen> {
                                     },
                                   ),
                                 ),
-                                SizedBox(height: 10),
-                                if (product.customizable == 'true') ...[
-                                  Text(
-                                    'Customize?'.tr,
-                                    style: TextStyle(
-                                        fontSize: 18,
-                                        fontWeight: FontWeight.w800),
-                                  ),
-                                  CustomTextField(
-                                    suffix: IconButton(
-                                        onPressed: () {
-                                          setState(() {
-                                            customizeController[index].clear();
-                                          });
-                                          updateCartItem(
-                                            index,
-                                            product.id,
-                                            quantities[index],
-                                            sizeController[index].text,
-                                            product.price,
-                                            colorsController[index].text,
-                                            customizeController[index].text,
-                                            product.customizationCost,
-                                          );
-                                        },
-                                        icon: Icon(Icons.cancel_rounded)),
-                                    validator: (p0) {},
-                                    controller: customizeController[index],
-                                    label: 'Description(Optional)'.tr,
-                                    onChanged: (val) {
-                                      updateCartItem(
-                                        index,
-                                        product.id,
-                                        quantities[index],
-                                        sizeController[index].text,
-                                        product.price,
-                                        colorsController[index].text,
-                                        customizeController[index].text,
-                                        product.customizationCost,
-                                      );
-                                    },
-                                  ),
-                                  Text('Customization cost'.tr +
-                                      ' : ' ' ${product.customizationCost}'),
-                                  SizedBox(height: 10),
-                                ],
                                 if (colorsController[index].text != '') ...[
                                   Text(
                                     'color'.tr,
@@ -377,7 +397,7 @@ class _CartScreenState extends State<CartScreen> {
                     Get.to(() => LoginScreen());
                   } else {
                     if (formKey.currentState!.validate()) {
-                      if (userController.user!.role == 'EXTERNAL USER') {
+                      if (userController.user!.role != 'COACH') {
                         Get.to(() => BuyForExternalUser(
                               product: cartItems,
                             ));

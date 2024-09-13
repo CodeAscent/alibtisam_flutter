@@ -112,6 +112,19 @@ class _BuyForExternalUserState extends State<BuyForExternalUser> {
                   label: 'Enter Your address'.tr,
                   maxLines: 3,
                 ),
+                Divider(),
+                Row(
+                  children: [
+                    Text(
+                      'Payment Method'.tr,
+                      style:
+                          TextStyle(fontSize: 18, fontWeight: FontWeight.w800),
+                    ),
+                    Spacer(),
+                    Text('Cash on delivery'),
+                  ],
+                ),
+                Divider(),
                 Row(
                   children: [
                     Text(
@@ -120,7 +133,7 @@ class _BuyForExternalUserState extends State<BuyForExternalUser> {
                           TextStyle(fontSize: 18, fontWeight: FontWeight.w800),
                     ),
                     Spacer(),
-                    Text(total.toString() +" "+ "sar".tr),
+                    Text(total.toString() + " " + "sar".tr),
                   ],
                 ),
                 Row(
@@ -131,7 +144,7 @@ class _BuyForExternalUserState extends State<BuyForExternalUser> {
                           TextStyle(fontSize: 18, fontWeight: FontWeight.w800),
                     ),
                     Spacer(),
-                    Text(totalCustomizationCost.toString() +" "+ "sar".tr),
+                    Text(totalCustomizationCost.toString() + " " + "sar".tr),
                   ],
                 ),
                 Row(
@@ -142,9 +155,12 @@ class _BuyForExternalUserState extends State<BuyForExternalUser> {
                           TextStyle(fontSize: 18, fontWeight: FontWeight.w800),
                     ),
                     Spacer(),
-                    Text((total + totalCustomizationCost).toString() +""+ "sar".tr),
+                    Text((total + totalCustomizationCost).toString() +
+                        "" +
+                        "sar".tr),
                   ],
                 ),
+                Divider(),
               ],
             ),
           ),

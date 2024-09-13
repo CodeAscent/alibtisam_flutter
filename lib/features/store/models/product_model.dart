@@ -56,7 +56,9 @@ class ProductModel {
               : json['sizes'],
       json['availableStock'] ?? '',
       json['price'] ?? '0',
-      json['category'] ?? '',
+      json['category'] is Map<String, dynamic>
+          ? json['category']['name']
+          : json['category'] ?? '',
       json['description'] ?? '',
       colors,
       json['customizable'].toString() == "null"

@@ -14,7 +14,7 @@ class ProductsViewmodel extends GetxController {
   List<ProductModel> products = [];
   List<dynamic> orderRequests = [];
   RxString selectedProductId = ''.obs;
-  List selectedProducts = [];
+  List<dynamic> selectedProducts = [];
   Future fetchProducts(String categoryId) async {
     try {
       loading.value = true;
@@ -102,7 +102,7 @@ class ProductsViewmodel extends GetxController {
       final res = await productsRepo.orderProductForExternal(
           productIds: product, price: price, deliveryAddress: deliveryAddress);
 
-      customSnackbar(res['message'], ContentType.failure);
+      customSnackbar(res['message'], ContentType.success);
       return products;
     } on ServerException catch (e) {
       customSnackbar(e.message, ContentType.failure);

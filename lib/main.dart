@@ -98,7 +98,7 @@ class _MyAppState extends State<MyApp> {
       builder: (controller) {
         return GetMaterialApp(
           defaultTransition: Transition.cupertino,
-          transitionDuration: Duration(milliseconds: 1000),
+          transitionDuration: Duration(milliseconds: 300),
 
           // navigatorKey: connectionKey, // add this key to material app
           debugShowCheckedModeBanner: false,
