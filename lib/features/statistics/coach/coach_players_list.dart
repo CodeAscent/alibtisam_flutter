@@ -1,4 +1,4 @@
-import 'package:alibtisam/features/bottomNav/controller/groups_controller.dart';
+import 'package:alibtisam/features/groupsManagement/data/viewModel/groups_controller.dart';
 import 'package:alibtisam/features/enrollment/models/user.dart';
 import 'package:alibtisam/features/statistics/controller/monitoring.dart';
 import 'package:alibtisam/features/statistics/player_statistics.dart';

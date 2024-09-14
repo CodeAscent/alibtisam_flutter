@@ -111,4 +111,21 @@ class EnrollmentViewmodel extends GetxController {
       loading.value = false;
     }
   }
+
+  Future updateGameByUser({
+    required String id,
+    required String gameId,
+    required String stage,
+  }) async {
+    try {
+      loading.value = true;
+      final res = await enrollmentRepo.changeGameAndStage(
+          id: id, gameId: gameId, stage: stage);
+      customSnackbar(res['message'].toString(), ContentType.success);
+    } catch (e) {
+      customSnackbar(e.toString(), ContentType.failure);
+    } finally {
+      loading.value = false;
+    }
+  }
 }

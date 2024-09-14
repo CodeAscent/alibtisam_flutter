@@ -1,5 +1,6 @@
 import 'package:alibtisam/core/common/widgets/custom_loading.dart';
 import 'package:alibtisam/core/services/api_requests.dart';
+import 'package:alibtisam/core/utils/custom_date_formatter.dart';
 import 'package:alibtisam/features/events/presentation/view_live_stream.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
@@ -56,7 +57,7 @@ class _LiveStreamsScreenState extends State<LiveStreamsScreen> {
                           ),
                           SizedBox(height: 4),
                           Text(
-                            'Date & Time: ${event.dateTime}',
+                            'Date & Time: ${customDateTimeFormat(event.dateTime)}',
                             style: TextStyle(fontSize: 16),
                           ),
                           SizedBox(height: 4),

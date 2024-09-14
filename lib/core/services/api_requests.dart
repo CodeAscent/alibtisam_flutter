@@ -37,7 +37,6 @@ class ApiRequests {
           all_events + "?category=$filter&active=true");
       print(all_events + "?category=$filter");
       final data = jsonDecode(res.body);
-      Logger().f(data);
       if (res.statusCode == 200) {
         for (var item in data['events']) {
           events.add(Events.fromMap(item));
@@ -327,7 +326,12 @@ class ApiRequests {
   Future<List<GameModel>?> getGames({required String stage}) async {
     try {
       List<GameModel> games = [];
-      final res = await HttpWrapper.getRequest(get_all_games + "?stage=$stage");
+      final res;
+      if (stage == '') {
+        res = await HttpWrapper.getRequest(get_all_games);
+      } else {
+        res = await HttpWrapper.getRequest(get_all_games + "?stage=$stage");
+      }
       final data = jsonDecode(res.body);
       for (var game in data['dropdown']) {
         games.add(GameModel.fromMap(game));

@@ -1,4 +1,4 @@
-import 'package:alibtisam/features/bottomNav/controller/groups_controller.dart';
+import 'package:alibtisam/features/groupsManagement/data/viewModel/groups_controller.dart';
 import 'package:alibtisam/features/bottomNav/controller/user.dart';
 import 'package:alibtisam/features/trainingPlan/view/pages/coach_training_plan.dart';
 import 'package:alibtisam/features/trainingPlan/view/pages/internal_training_plan.dart';

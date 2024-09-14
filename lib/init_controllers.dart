@@ -3,10 +3,12 @@ import 'package:alibtisam/features/bottomNav/controller/attendance.dart';
 import 'package:alibtisam/features/bottomNav/controller/chat_messages.dart';
 import 'package:alibtisam/features/bottomNav/controller/chats_list.dart';
 import 'package:alibtisam/features/enrollment/viewmodel/enrollment_viewmodel.dart';
+import 'package:alibtisam/features/groupsManagement/data/repository/groups_members_repo_impl.dart';
+import 'package:alibtisam/features/groupsManagement/data/viewModel/group_members_view_model.dart';
 import 'package:alibtisam/features/userDashboard/viewmodel/dashboard.dart';
 import 'package:alibtisam/features/bottomNav/controller/date_range.dart';
 import 'package:alibtisam/features/bottomNav/controller/games.dart';
-import 'package:alibtisam/features/bottomNav/controller/groups_controller.dart';
+import 'package:alibtisam/features/groupsManagement/data/viewModel/groups_controller.dart';
 import 'package:alibtisam/features/bottomNav/controller/measurement_req.dart';
 import 'package:alibtisam/features/bottomNav/controller/selected_player.dart';
 import 'package:alibtisam/features/bottomNav/controller/teams.dart';
@@ -52,4 +54,5 @@ initControllers() {
   Get.put(CategoryViewmodel());
   Get.put(ProductsViewmodel());
   Get.put(TrainingPlanViewmodel());
+  Get.put(GroupMembersViewModel(GroupsMembersRepoImplementation()));
 }

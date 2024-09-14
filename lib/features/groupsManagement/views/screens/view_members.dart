@@ -1,7 +1,8 @@
 import 'package:age_calculator/age_calculator.dart';
 import 'package:alibtisam/core/common/widgets/custom_container_button.dart';
 import 'package:alibtisam/core/common/widgets/custom_text_field.dart';
-import 'package:alibtisam/features/bottomNav/controller/groups_controller.dart';
+import 'package:alibtisam/features/groupsManagement/data/viewModel/group_members_view_model.dart';
+import 'package:alibtisam/features/groupsManagement/data/viewModel/groups_controller.dart';
 import 'package:alibtisam/features/bottomNav/controller/user.dart';
 import 'package:alibtisam/features/enrollment/models/user.dart';
 import 'package:alibtisam/features/enrollment/views/pages/view_addmision_form.dart';
@@ -29,14 +30,23 @@ class _ViewGroupMembersState extends State<ViewGroupMembers> {
   void initState() {
     super.initState();
     fetchData();
+    fetchAnathPlayers();
   }
 
   fetchData() async {
-    players = (await groupsController.fetchGroupMembers())!;
+    players = (await groupsController.fetchGroupMembers()) ?? [];
+
     setState(() {});
   }
 
+  fetchAnathPlayers() {
+    groupMembersViewModel.fetchNonGroupMembers(
+        stage: groupsController.selectedGroup.stage!,
+        gameId: userController.user!.gameId!.id!);
+  }
+
   final userController = Get.find<UserController>();
+  final groupMembersViewModel = Get.find<GroupMembersViewModel>();
   bool isSelecting = false;
   List<String> selectedMembers = [];
   @override
@@ -137,6 +147,107 @@ class _ViewGroupMembersState extends State<ViewGroupMembers> {
           ),
         ),
         appBar: AppBar(
+          actions: [
+            TextButton(
+                onPressed: () {
+                  List selectedPlayers = [];
+
+                  showCupertinoDialog(
+                    barrierDismissible: true,
+                    context: context,
+                    builder: (context) {
+                      return StatefulBuilder(builder: (context, setState) {
+                        return Material(
+                          color: Colors.transparent,
+                          child: CupertinoActionSheet(
+                            title: Text('Players'),
+                            message: Container(
+                              height: Get.height * 0.7,
+                              child: groupMembersViewModel.loading.value
+                                  ? Center(child: CircularProgressIndicator())
+                                  : SingleChildScrollView(
+                                      child: Column(
+                                        children: [
+                                          SizedBox(height: 10),
+                                          ListView.builder(
+                                            shrinkWrap: true,
+                                            physics:
+                                                NeverScrollableScrollPhysics(),
+                                            itemCount: groupMembersViewModel
+                                                .users.length,
+                                            itemBuilder: (context, index) {
+                                              UserModel user =
+                                                  groupMembersViewModel
+                                                      .users[index];
+                                              return GestureDetector(
+                                                onTap: () {
+                                                  if (selectedPlayers
+                                                      .contains(user.id)) {
+                                                    selectedPlayers
+                                                        .remove(user.id);
+                                                  } else {
+                                                    selectedPlayers
+                                                        .add(user.id);
+                                                  }
+                                                  setState(() {});
+                                                },
+                                                child: PlayerCard(
+                                                    extraWidget: Text('age'.tr +
+                                                        AgeCalculator.age(DateTime
+                                                                .parse(user
+                                                                    .dateOfBirth!))
+                                                            .years
+                                                            .toString()),
+                                                    showArrow: false,
+                                                    selected: selectedPlayers
+                                                        .contains(user.id),
+                                                    name: user.name ?? '',
+                                                    image: user.pic ?? '',
+                                                    playerId:
+                                                        user.pId.toString()),
+                                              );
+                                            },
+                                          ),
+                                          SizedBox(height: 10),
+                                        ],
+                                      ),
+                                    ),
+                            ),
+                            actions: [
+                              Center(
+                                child: CustomContainerButton(
+                                  label: 'Cancel',
+                                  color: Colors.grey,
+                                  onTap: () {
+                                    Get.back();
+                                  },
+                                ),
+                              ),
+                              CustomContainerButton(
+                                label: 'Confirm',
+                                onTap: () async {
+                                  if (selectedPlayers.isNotEmpty) {
+                                    await groupMembersViewModel
+                                        .addMembersToGroup(
+                                            groupId: groupsController
+                                                .selectedGroupId,
+                                            memberIds: selectedPlayers);
+                                  }
+
+                                  fetchData();
+
+                                  Get.back();
+                                },
+                              ),
+                            ],
+                          ),
+                        );
+                      });
+                    },
+                  );
+                },
+                child: Text('Add Members'.tr))
+          ],
           title: Text(groupsController.selectedGroup.name!.capitalize!),
         ),
         body: groupsController.isLoading
@@ -162,7 +273,11 @@ class _ViewGroupMembersState extends State<ViewGroupMembers> {
                         },
                         onTap: () {
                           if (!isSelecting) {
-                            Get.to(() => ViewPlayerByUserModel(player: player));
+                            Get.to(() => ViewPlayerByUserModel(
+                                      player: player,
+                                      changeGame: true,
+                                    ))!
+                                .then((val) => fetchData());
                           } else {
                             if (selectedMembers.contains(player.id)) {
                               selectedMembers.remove(player.id!);

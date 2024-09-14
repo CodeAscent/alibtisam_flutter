@@ -10,11 +10,13 @@ class CustomContainerButton extends StatelessWidget {
     this.onTap,
     this.flexibleHeight,
     this.loading = false,
+    this.color,
   });
   final String label;
   final void Function()? onTap;
   final double? flexibleHeight;
   final bool? loading;
+  final Color? color;
   @override
   Widget build(BuildContext context) {
     return SafeArea(
@@ -26,7 +28,7 @@ class CustomContainerButton extends StatelessWidget {
           padding: const EdgeInsets.all(8.0),
           decoration: BoxDecoration(
               boxShadow: isAppThemeDark() ? [] : kBoxShadow(),
-              color: primaryColor(),
+              color: color == null ? primaryColor() : color,
               borderRadius: BorderRadius.circular(20)),
           child: Center(
             child: loading!

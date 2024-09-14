@@ -1,6 +1,6 @@
 import 'package:alibtisam/core/common/constants/custom_listtile_card.dart';
 import 'package:alibtisam/core/common/widgets/custom_tab_bar.dart';
-import 'package:alibtisam/features/bottomNav/controller/groups_controller.dart';
+import 'package:alibtisam/features/groupsManagement/data/viewModel/groups_controller.dart';
 import 'package:alibtisam/features/bottomNav/controller/user.dart';
 import 'package:alibtisam/features/bottomNav/model/group_model.dart';
 import 'package:alibtisam/features/enrollment/models/user.dart';

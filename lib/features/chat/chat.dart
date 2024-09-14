@@ -1,5 +1,5 @@
 import 'package:alibtisam/features/bottomNav/controller/chat_messages.dart';
-import 'package:alibtisam/features/bottomNav/controller/groups_controller.dart';
+import 'package:alibtisam/features/groupsManagement/data/viewModel/groups_controller.dart';
 import 'package:alibtisam/features/bottomNav/controller/user.dart';
 import 'package:alibtisam/features/bottomNav/model/chat_message.dart';
 import 'package:alibtisam/features/bottomNav/model/chats_list.dart';
@@ -9,7 +9,7 @@ import 'package:alibtisam/core/theme/app_colors.dart';
 import 'package:alibtisam/core/theme/controller/theme_controller.dart';
 import 'package:alibtisam/core/utils/custom_date_formatter.dart';
 import 'package:alibtisam/client/socket_io.dart';
-import 'package:alibtisam/features/groupsManagement/view_members.dart';
+import 'package:alibtisam/features/groupsManagement/views/screens/view_members.dart';
 import 'package:chat_bubbles/bubbles/bubble_special_three.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';

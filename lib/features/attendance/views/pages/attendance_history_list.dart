@@ -1,5 +1,5 @@
 import 'package:alibtisam/features/bottomNav/controller/attendance.dart';
-import 'package:alibtisam/features/bottomNav/controller/groups_controller.dart';
+import 'package:alibtisam/features/groupsManagement/data/viewModel/groups_controller.dart';
 import 'package:alibtisam/features/bottomNav/controller/user.dart';
 import 'package:alibtisam/features/bottomNav/model/age_category.dart';
 import 'package:alibtisam/features/attendance/views/pages/attendance_single_history.dart';

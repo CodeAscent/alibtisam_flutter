@@ -1,6 +1,7 @@
 // ignore_for_file: deprecated_member_use
 
 import 'package:alibtisam/core/theme/app_colors.dart';
+import 'package:alibtisam/core/utils/custom_date_formatter.dart';
 import 'package:alibtisam/features/events/model/events_model.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
@@ -136,7 +137,7 @@ class _ViewLiveStreamState extends State<ViewLiveStream> {
                         ),
                         SizedBox(height: 4),
                         Text(
-                          'Date & Time: ${widget.event.dateTime}',
+                          'Date & Time: ${customDateTimeFormat(widget.event.dateTime)}',
                           style: TextStyle(fontSize: 16),
                         ),
                         SizedBox(height: 4),

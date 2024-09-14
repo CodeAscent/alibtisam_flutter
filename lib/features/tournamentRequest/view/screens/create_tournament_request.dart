@@ -6,7 +6,7 @@ import 'package:alibtisam/core/utils/custom_date_formatter.dart';
 import 'package:alibtisam/core/utils/custom_snackbar.dart';
 import 'package:alibtisam/features/enrollment/models/user.dart';
 import 'package:alibtisam/features/enrollment/views/pages/view_addmision_form.dart';
-import 'package:alibtisam/features/groupsManagement/view_members.dart';
+import 'package:alibtisam/features/groupsManagement/views/screens/view_members.dart';
 import 'package:alibtisam/features/tournamentRequest/viewmodel/tournament_request_viewmodel.dart';
 import 'package:alibtisam/core/common/widgets/player_card.dart';
 import 'package:alibtisam/core/services/api_urls.dart';

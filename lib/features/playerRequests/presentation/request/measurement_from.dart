@@ -1,6 +1,6 @@
 import 'package:alibtisam/core/common/widgets/custom_gradient_button.dart';
 import 'package:alibtisam/core/utils/custom_snackbar.dart';
-import 'package:alibtisam/features/bottomNav/controller/groups_controller.dart';
+import 'package:alibtisam/features/groupsManagement/data/viewModel/groups_controller.dart';
 import 'package:alibtisam/features/bottomNav/model/group_model.dart';
 import 'package:alibtisam/features/enrollment/models/user.dart';
 import 'package:alibtisam/core/common/widgets/custom_container_button.dart';

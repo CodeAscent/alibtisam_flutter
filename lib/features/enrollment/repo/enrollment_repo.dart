@@ -1,7 +1,10 @@
+import 'dart:convert';
+
 import 'package:alibtisam/core/services/api_urls.dart';
 import 'package:alibtisam/core/services/http_wrapper.dart';
 import 'package:image_picker/image_picker.dart';
 import 'package:http/http.dart' as http;
+import 'package:logger/web.dart';
 
 class EnrollmentRepo {
   Future submitEnrollmentForm({
@@ -76,6 +79,29 @@ class EnrollmentRepo {
       return res;
     } catch (e) {
       throw e.toString();
+    }
+  }
+
+  Future changeGameAndStage({
+    required String id,
+    required String gameId,
+    required String stage,
+  }) async {
+    try {
+      final res = await HttpWrapper.postRequest(
+          base_url + 'user/update-user-game/$id', {
+        "gameId": gameId,
+        "stage": stage,
+      });
+      Logger().f(res.body);
+      final data = jsonDecode(res.body);
+      if (res.statusCode == 200) {
+        return data;
+      } else {
+        throw data['message'];
+      }
+    } catch (e) {
+      rethrow;
     }
   }
 }

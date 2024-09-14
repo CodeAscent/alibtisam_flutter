@@ -3,7 +3,7 @@ import 'package:alibtisam/features/enrollment/enrollment_navigation.dart';
 import 'package:alibtisam/features/events/presentation/events.dart';
 import 'package:alibtisam/features/attendance/attendance_navigation.dart';
 import 'package:alibtisam/features/collection/collection.dart';
-import 'package:alibtisam/features/groupsManagement/groups_management.dart';
+import 'package:alibtisam/features/groupsManagement/views/screens/groups_management.dart';
 import 'package:alibtisam/features/loanApplication/loan_application.dart';
 import 'package:alibtisam/features/playerRequests/request_tab_bar.dart';
 import 'package:alibtisam/features/playerPolarization/player_polarization.dart';
