@@ -20,10 +20,10 @@ class GameModel {
 
   factory GameModel.fromMap(Map<String, dynamic> map) {
     return GameModel(
-      map['name'] != null ? map['name'] as String : null,
-      map['_id'] != null ? map['_id'] as String : null,
+      map['name'] != null ? map['name'] as String : '',
+      map['_id'] != null ? map['_id'] as String : '',
       map['stage'] != null ? map['stage'] : null,
-      map['icon'] != null ? map['icon'] : null,
+      map['icon'] != null ? map['icon'] : '',
     );
   }
 

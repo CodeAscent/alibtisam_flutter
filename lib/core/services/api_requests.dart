@@ -391,7 +391,10 @@ class ApiRequests {
       final res =
           await HttpWrapper.getRequest(get_marked_attendance + attendanceId);
       final data = jsonDecode(res.body);
+
       for (var player in data['attendance']['players']) {
+        Logger().f(player);
+
         attendance.add(AttendanceModel.fromMap(player));
       }
       return {"attendanceId": attendanceId, "attendance": attendance};

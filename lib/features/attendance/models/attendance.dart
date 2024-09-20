@@ -31,9 +31,11 @@ class AttendanceModel {
   factory AttendanceModel.fromMap(Map<String, dynamic> map) {
     return AttendanceModel(
       map['_id'],
-      UserModel.fromMap(map['playerId'] as Map<String, dynamic>),
-      map['remark'] as String,
-      map['inTime'] as String,
+      map['playerId'] == null
+          ? UserModel.fromMap({})
+          : UserModel.fromMap(map['playerId'] as Map<String, dynamic>),
+      map['remark'] ?? '',
+      map['inTime'] ?? '',
       map['outTime'] ?? '',
     );
   }

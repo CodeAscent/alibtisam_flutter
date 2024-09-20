@@ -134,27 +134,27 @@ class UserModel {
 
   factory UserModel.fromMap(Map<String, dynamic> map) {
     return UserModel(
-      map['_id'] != null ? map['_id'] as String : null,
+      map['_id'] != null ? map['_id'] : '',
       map['pId'] != null ? map['pId'] as num : null,
-      map['name'] != null ? map['name'] as String : null,
-      map['email'] != null ? map['email'] as String : null,
-      map['role'] != null ? map['role'] as String : null,
-      map['pic'] != null ? map['pic'] as String : null,
-      map['gender'] != null ? map['gender'] as String : null,
-      map['userName'] != null ? map['userName'] as String : null,
-      map['mobile'] != null ? map['mobile'] as String : null,
-      map['dateOfBirth'] != null ? map['dateOfBirth'] as String : null,
-      map['bloodGroup'] != null ? map['bloodGroup'] as String : null,
-      map['fatherName'] != null ? map['fatherName'] as String : null,
-      map['motherName'] != null ? map['motherName'] as String : null,
-      map['city'] != null ? map['city'] as String : null,
-      map['state'] != null ? map['state'] as String : null,
+      map['name'] != null ? map['name'] : '',
+      map['email'] != null ? map['email'] : '',
+      map['role'] != null ? map['role'] : '',
+      map['pic'] != null ? map['pic'] : '',
+      map['gender'] != null ? map['gender'] : '',
+      map['userName'] != null ? map['userName'] : '',
+      map['mobile'] != null ? map['mobile'] : '',
+      map['dateOfBirth'] != null ? map['dateOfBirth'] : '',
+      map['bloodGroup'] != null ? map['bloodGroup'] : '',
+      map['fatherName'] != null ? map['fatherName'] : '',
+      map['motherName'] != null ? map['motherName'] : '',
+      map['city'] != null ? map['city'] : '',
+      map['state'] != null ? map['state'] : '',
       map['guardianId'] == null || map['guardianId'].runtimeType != String
           ? null
           : map['guardianId'],
-      map['idFrontImage'] != null ? map['idFrontImage'] as String : null,
-      map['idBackImage'] != null ? map['idBackImage'] as String : null,
-      map['certificateLink'] != null ? map['certificateLink'] as String : null,
+      map['idFrontImage'] != null ? map['idFrontImage'] : '',
+      map['idBackImage'] != null ? map['idBackImage'] : '',
+      map['certificateLink'] != null ? map['certificateLink'] : '',
       map['height'] != null ? map['height'] as num : null,
       map['weight'] != null ? map['weight'] as num : null,
       map['chestSize'] != null ? map['chestSize'] as num : null,
@@ -164,23 +164,17 @@ class UserModel {
       map['normalChestSize'] != null ? map['normalChestSize'] as num : null,
       map['pulseRate'] != null ? map['pulseRate'] as num : null,
       map['shoeSize'] != null ? map['shoeSize'] as num : null,
-      map['tshirtSize'] != null ? map['tshirtSize'] as String : null,
+      map['tshirtSize'] != null ? map['tshirtSize'] : '',
       map['waistSize'] != null ? map['waistSize'] as num : null,
-      map['address'] != null ? map['address'] as String : null,
+      map['address'] != null ? map['address'] : '',
       map['isActive'] != null ? map['isActive'] as bool : null,
       map['request'] as dynamic,
       map['stage'] as dynamic,
-      map['guardianGovId'] != null ? map['guardianGovId'] as String : null,
-      map['guardianGovIdExpiry'] != null
-          ? map['guardianGovIdExpiry'] as String
-          : null,
-      map['relationWithPlayer'] != null
-          ? map['relationWithPlayer'] as String
-          : null,
-      map['playerGovId'] != null ? map['playerGovId'] as String : null,
-      map['playerGovIdExpiry'] != null
-          ? map['playerGovIdExpiry'] as String
-          : null,
+      map['guardianGovId'] ?? '',
+      map['guardianGovIdExpiry'] ?? '',
+      map['relationWithPlayer'] ?? '',
+      map['playerGovId'] ?? '',
+      map['playerGovIdExpiry'] ?? '',
       map['gameId'] != null && map['gameId'].runtimeType != String
           ? GameModel.fromMap(map['gameId'])
           : GameModel.fromMap({}),

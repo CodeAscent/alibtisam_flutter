@@ -1,5 +1,5 @@
 String BASEURL = "https://alibtisam.club/api/v1/";
-// String BASEURL = "http://192.168.1.10:8000/api/v1/";
+// String BASEURL = "http://192.168.1.16:8000/api/v1/";
 
 String SOCKETBASEURL = "http://52.66.197.219:8000";
 // String SOCKETBASEURL = "http://192.168.1.10:8000/";
@@ -18,7 +18,7 @@ String playerApproval = "player-approval/";
 String collection = "collection/";
 String game = "game/";
 String team = "team/";
-String attendance = "attendance/";
+String attendance = "player-attendance/";
 
 //
 String all_events = base_url + event + "all";
