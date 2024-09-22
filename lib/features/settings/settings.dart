@@ -95,7 +95,8 @@ class _SettingScreenState extends State<SettingScreen> {
                     GestureDetector(
                         onTap: () {
                           if (user.role == 'EXTERNAL USER' ||
-                              user.role == 'GUARDIAN') {
+                              user.role == 'GUARDIAN' ||
+                              user.role == 'ALRWAAD USER') {
                             Get.to(() => ProfileScreen(
                                   user: user,
                                 ));

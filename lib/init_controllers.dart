@@ -1,3 +1,5 @@
+import 'package:alibtisam/features/alRwaadClub/repo/alrwaad_repo.dart';
+import 'package:alibtisam/features/alRwaadClub/viewModel/alrwaad_viewmodel.dart';
 import 'package:alibtisam/features/auth/viewmodel/auth_viewmodel.dart';
 import 'package:alibtisam/features/bottomNav/controller/attendance.dart';
 import 'package:alibtisam/features/bottomNav/controller/chat_messages.dart';
@@ -55,4 +57,5 @@ initControllers() {
   Get.put(ProductsViewmodel());
   Get.put(TrainingPlanViewmodel());
   Get.put(GroupMembersViewModel(GroupsMembersRepoImplementation()));
+  Get.put(AlrwaadViewmodel(AlrwaadRepo()));
 }

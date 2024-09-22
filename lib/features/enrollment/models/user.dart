@@ -44,48 +44,63 @@ class UserModel {
   final String? playerGovId;
   final String? playerGovIdExpiry;
   final GameModel? gameId;
+  final bool? isSubscribed;
+  final String? govIdNumber;
+  final String? govIdExpiration;
+  final bool? isSubscriptionActive;
+  final String? plan;
+  final String? subscriptionStart;
+  final String? subscriptionEnds;
 
   UserModel(
-      this.id,
-      this.pId,
-      this.name,
-      this.email,
-      this.role,
-      this.pic,
-      this.gender,
-      this.userName,
-      this.mobile,
-      this.dateOfBirth,
-      this.bloodGroup,
-      this.fatherName,
-      this.motherName,
-      this.city,
-      this.state,
-      this.guardianId,
-      this.idFrontImage,
-      this.idBackImage,
-      this.certificateLink,
-      this.height,
-      this.weight,
-      this.chestSize,
-      this.heartBeatingRate,
-      this.highJump,
-      this.lowJump,
-      this.normalChestSize,
-      this.pulseRate,
-      this.shoeSize,
-      this.tshirtSize,
-      this.waistSize,
-      this.address,
-      this.isActive,
-      this.request,
-      this.stage,
-      this.guardianGovId,
-      this.guardianGovIdExpiry,
-      this.relationWithPlayer,
-      this.playerGovId,
-      this.playerGovIdExpiry,
-      this.gameId);
+    this.id,
+    this.pId,
+    this.name,
+    this.email,
+    this.role,
+    this.pic,
+    this.gender,
+    this.userName,
+    this.mobile,
+    this.dateOfBirth,
+    this.bloodGroup,
+    this.fatherName,
+    this.motherName,
+    this.city,
+    this.state,
+    this.guardianId,
+    this.idFrontImage,
+    this.idBackImage,
+    this.certificateLink,
+    this.height,
+    this.weight,
+    this.chestSize,
+    this.heartBeatingRate,
+    this.highJump,
+    this.lowJump,
+    this.normalChestSize,
+    this.pulseRate,
+    this.shoeSize,
+    this.tshirtSize,
+    this.waistSize,
+    this.address,
+    this.isActive,
+    this.request,
+    this.stage,
+    this.guardianGovId,
+    this.guardianGovIdExpiry,
+    this.relationWithPlayer,
+    this.playerGovId,
+    this.playerGovIdExpiry,
+    this.gameId,
+    this.isSubscribed,
+    this.govIdNumber,
+    this.govIdExpiration,
+    this.isSubscriptionActive,
+    this.plan,
+    this.subscriptionStart,
+    this.subscriptionEnds,
+  );
 
   Map<String, dynamic> toMap() {
     return <String, dynamic>{
@@ -129,6 +144,13 @@ class UserModel {
       'playerGovId': playerGovId,
       'playerGovIdExpiry': playerGovIdExpiry,
       'gameId': gameId?.toMap(),
+      'isSubscribed': isSubscribed,
+      'govIdNumber': govIdNumber,
+      'govIdExpiration': govIdExpiration,
+      'isSubscriptionActive': isSubscriptionActive,
+      'plan': plan,
+      'subscriptionStart': subscriptionStart,
+      'subscriptionEnds': subscriptionEnds,
     };
   }
 
@@ -178,6 +200,13 @@ class UserModel {
       map['gameId'] != null && map['gameId'].runtimeType != String
           ? GameModel.fromMap(map['gameId'])
           : GameModel.fromMap({}),
+      map['isSubscribed'] ??false,
+      map['govIdNumber'] ??'',
+      map['govIdExpiration']??'',
+      map['isSubscriptionActive']?? false,
+      map['plan'] ?? '',
+      map['subscriptionStart']??'',
+      map['subscriptionEnds']??'',
     );
   }
 

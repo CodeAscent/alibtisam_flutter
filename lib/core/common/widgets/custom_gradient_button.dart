@@ -25,8 +25,8 @@ class CustomGradientButton extends StatelessWidget {
             }
           : onTap,
       child: Container(
-        margin: EdgeInsets.symmetric(vertical: 8),
-        height: 100,
+        margin: EdgeInsets.symmetric(vertical: 8, horizontal: 10),
+        height: 60,
         decoration: BoxDecoration(
             boxShadow: isAppThemeDark() ? [] : kBoxShadow(),
             color: disabled! ? kAppGreyColor() : null,

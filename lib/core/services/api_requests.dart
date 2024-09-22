@@ -1,8 +1,6 @@
 import 'dart:async';
 import 'dart:convert';
-import 'package:alibtisam/core/localStorage/fcm_token.dart';
-import 'package:alibtisam/features/auth/view/screens/login.dart';
-import 'package:alibtisam/features/bottomNav/bottom_nav.dart';
+
 import 'package:alibtisam/features/bottomNav/controller/selected_player.dart';
 import 'package:alibtisam/features/bottomNav/controller/user.dart';
 import 'package:alibtisam/features/attendance/models/attendance.dart';
@@ -10,7 +8,6 @@ import 'package:alibtisam/features/attendance/models/attendance_history.dart';
 import 'package:alibtisam/features/attendance/models/attendance_statistics.dart';
 import 'package:alibtisam/features/bottomNav/model/chat_message.dart';
 import 'package:alibtisam/features/bottomNav/model/chats_list.dart';
-import 'package:alibtisam/features/userDashboard/models/dashboard.dart';
 import 'package:alibtisam/features/bottomNav/model/game.dart';
 import 'package:alibtisam/features/bottomNav/model/group_model.dart';
 import 'package:alibtisam/features/bottomNav/model/team.dart';
@@ -25,8 +22,6 @@ import 'package:alibtisam/core/services/api_urls.dart';
 import 'package:alibtisam/core/services/http_wrapper.dart';
 import 'package:awesome_snackbar_content/awesome_snackbar_content.dart';
 import 'package:get/get.dart';
-import 'package:http/http.dart' as http;
-import 'package:image_picker/image_picker.dart';
 import 'package:logger/logger.dart';
 
 class ApiRequests {
@@ -75,8 +70,11 @@ class ApiRequests {
       final res = await HttpWrapper.getRequest(get_user);
 
       final data = jsonDecode(res.body);
+      Logger().w(data);
+
       if (res.statusCode == 200) {
         final user = UserModel.fromMap(data["user"]);
+
         saveToken(data["token"], user.id!);
         return user;
       } else {

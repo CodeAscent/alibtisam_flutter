@@ -6,10 +6,12 @@ import 'package:get/get.dart';
 
 class UserController extends GetxController {
   UserModel? user;
-
+RxBool loading  = false.obs;
   Future fetchUser() async {
     try {
+        loading.value = true;
       user = await ApiRequests().getUser();
+        loading.value = false;
 
       update();
     } catch (e) {

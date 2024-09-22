@@ -1,3 +1,5 @@
+import 'package:alibtisam/features/alRwaadClub/view/screens/alrwaad_registration.dart';
+import 'package:alibtisam/features/alRwaadClub/view/screens/alrwaad_services.dart';
 import 'package:alibtisam/features/chat/chat_navigation.dart';
 import 'package:alibtisam/features/enrollment/enrollment_navigation.dart';
 import 'package:alibtisam/features/events/presentation/events.dart';
@@ -33,4 +35,5 @@ List<GetPage<dynamic>>? pages = [
   GetPage(name: '/tournamentRequest', page: () => TournamentsScreen()),
   GetPage(name: '/coachMonitering', page: () => CoachPlayerMonitering()),
   GetPage(name: '/chat', page: () => ChatNavigation()),
+  GetPage(name: '/alRwaad', page: () => AlrwaadServices()),
 ];
