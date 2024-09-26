@@ -28,8 +28,18 @@ class _ViewAlrwaadPlanState extends State<ViewAlrwaadPlan> {
 
     return Scaffold(
       appBar: AppBar(
+        leading: IconButton(
+            onPressed: () {
+              Get.back();
+            },
+            icon: Icon(
+              Icons.navigate_before,
+              size: 35,
+              color: Colors.white,
+            )),
         title: const Text(
           'My Subscription',
+          style: TextStyle(color: Colors.white),
         ),
         backgroundColor: primaryColor(),
       ),
@@ -149,12 +159,6 @@ class _ViewAlrwaadPlanState extends State<ViewAlrwaadPlan> {
                       ),
                     ),
                     const SizedBox(height: 10),
-                    Text(
-                      'Gov ID Expiration: ${customDateFormat(user.govIdExpiration!)}',
-                      style: const TextStyle(
-                        fontSize: 16,
-                      ),
-                    ),
                   ],
                 ),
               ),

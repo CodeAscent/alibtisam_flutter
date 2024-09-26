@@ -46,11 +46,12 @@ class UserModel {
   final GameModel? gameId;
   final bool? isSubscribed;
   final String? govIdNumber;
-  final String? govIdExpiration;
   final bool? isSubscriptionActive;
   final String? plan;
   final String? subscriptionStart;
   final String? subscriptionEnds;
+  String? status;
+  List<SubscribedServices>? subscribedServices;
 
   UserModel(
     this.id,
@@ -95,11 +96,12 @@ class UserModel {
     this.gameId,
     this.isSubscribed,
     this.govIdNumber,
-    this.govIdExpiration,
     this.isSubscriptionActive,
     this.plan,
     this.subscriptionStart,
     this.subscriptionEnds,
+    this.status,
+    this.subscribedServices,
   );
 
   Map<String, dynamic> toMap() {
@@ -146,11 +148,12 @@ class UserModel {
       'gameId': gameId?.toMap(),
       'isSubscribed': isSubscribed,
       'govIdNumber': govIdNumber,
-      'govIdExpiration': govIdExpiration,
       'isSubscriptionActive': isSubscriptionActive,
       'plan': plan,
       'subscriptionStart': subscriptionStart,
       'subscriptionEnds': subscriptionEnds,
+      'status': status,
+      'subscribedServices': subscribedServices,
     };
   }
 
@@ -200,13 +203,17 @@ class UserModel {
       map['gameId'] != null && map['gameId'].runtimeType != String
           ? GameModel.fromMap(map['gameId'])
           : GameModel.fromMap({}),
-      map['isSubscribed'] ??false,
-      map['govIdNumber'] ??'',
-      map['govIdExpiration']??'',
-      map['isSubscriptionActive']?? false,
+      map['isSubscribed'] ?? false,
+      map['govIdNumber'] ?? '',
+      map['isSubscriptionActive'] ?? false,
       map['plan'] ?? '',
-      map['subscriptionStart']??'',
-      map['subscriptionEnds']??'',
+      map['subscriptionStart'] ?? '',
+      map['subscriptionEnds'] ?? '',
+      map['status'] ?? '',
+      map['subscribedServices'] != null
+          ? List<SubscribedServices>.from(map['subscribedServices']
+              .map((e) => SubscribedServices.fromMap(e)))
+          : [],
     );
   }
 
@@ -214,4 +221,51 @@ class UserModel {
 
   factory UserModel.fromJson(String source) =>
       UserModel.fromMap(json.decode(source) as Map<String, dynamic>);
+}
+
+class SubscribedServices {
+  String? serviceId;
+  String? plan;
+  num? price;
+  String? subscriptionEnds;
+  String? subscribedAt;
+  String? id;
+  SubscribedServices({
+    this.serviceId,
+    this.plan,
+    this.price,
+    this.subscriptionEnds,
+    this.subscribedAt,
+    this.id,
+  });
+
+  Map<String, dynamic> toMap() {
+    return <String, dynamic>{
+      'serviceId': serviceId,
+      'plan': plan,
+      'price': price,
+      'subscriptionEnds': subscriptionEnds,
+      'subscribedAt': subscribedAt,
+      'id': id,
+    };
+  }
+
+  factory SubscribedServices.fromMap(Map<String, dynamic> map) {
+    return SubscribedServices(
+      serviceId: map['serviceId'] != null ? map['serviceId'] as String : null,
+      plan: map['plan'] != null ? map['plan'] as String : null,
+      price: map['price'] != null ? map['price'] as num : null,
+      subscriptionEnds: map['subscriptionEnds'] != null
+          ? map['subscriptionEnds'] as String
+          : null,
+      subscribedAt:
+          map['subscribedAt'] != null ? map['subscribedAt'] as String : null,
+      id: map['_id'] != null ? map['_id'] as String : null,
+    );
+  }
+
+  String toJson() => json.encode(toMap());
+
+  factory SubscribedServices.fromJson(String source) =>
+      SubscribedServices.fromMap(json.decode(source) as Map<String, dynamic>);
 }

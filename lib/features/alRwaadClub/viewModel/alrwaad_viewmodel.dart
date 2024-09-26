@@ -17,20 +17,20 @@ class AlrwaadViewmodel extends GetxController {
   final userController = Get.find<UserController>();
 
   Future joinAlRwaadClub({
-    required String govIdExpiration,
     required String govIdNumber,
     required String dateOfBirth,
   }) async {
     try {
+      loading.value = true;
       final res = await alrwaadRepo.joinAlRwaadClub(
-          govIdExpiration: govIdExpiration,
-          govIdNumber: govIdNumber,
-          dateOfBirth: dateOfBirth);
+          govIdNumber: govIdNumber, dateOfBirth: dateOfBirth);
 
       customSnackbar(res['message'].toString(), ContentType.success);
       saveToken(res['token'], res['alRwaadUser']['_id']);
 
       await userController.fetchUser();
+      loading.value = false;
+
       Get.back();
       await userController.fetchUser();
     } catch (e) {
@@ -64,8 +64,28 @@ class AlrwaadViewmodel extends GetxController {
 
   Future subscribe({required String plan}) async {
     try {
+      loading.value = true;
+
       final res = await alrwaadRepo.subscribe(plan: plan);
       await userController.fetchUser();
+      loading.value = false;
+
+      customSnackbar(res['message'], ContentType.success);
+    } catch (e) {
+      customSnackbar(e.toString(), ContentType.failure);
+    }
+  }
+
+  Future subscribeToService(
+      {required String serviceId, required String selectedPlan}) async {
+    try {
+      loading.value = true;
+
+      final res = await alrwaadRepo.subscribeToService(
+          plan: selectedPlan, serviceId: serviceId);
+      await userController.fetchUser();
+      loading.value = false;
+
       Get.back();
 
       customSnackbar(res['message'], ContentType.success);
