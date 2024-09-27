@@ -1,3 +1,4 @@
+import 'package:alibtisam/core/services/api_urls.dart';
 import 'package:alibtisam/core/utils/custom_snackbar.dart';
 import 'package:alibtisam/features/enrollment/models/user.dart';
 import 'package:alibtisam/features/groupsManagement/data/repository/groups_members_repo_impl.dart';
@@ -23,6 +24,7 @@ class GroupMembersViewModel extends GetxController {
       users = (res['users'] as List)
           .map((e) => UserModel.fromMap(e as Map<String, dynamic>))
           .toList();
+
       update();
     } catch (e) {
       customSnackbar(e.toString(), ContentType.failure);

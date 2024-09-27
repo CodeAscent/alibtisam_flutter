@@ -7,6 +7,7 @@ import 'package:alibtisam/core/theme/app_colors.dart';
 import 'package:alibtisam/core/utils/custom_date_formatter.dart';
 import 'package:alibtisam/features/alRwaadClub/viewModel/alrwaad_viewmodel.dart';
 import 'package:alibtisam/features/bottomNav/controller/user.dart';
+import 'package:custom_will_pop_scope/custom_will_pop_scope.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
@@ -29,65 +30,75 @@ class _AlrwaadRegistrationState extends State<AlrwaadRegistration> {
 
   @override
   Widget build(BuildContext context) {
-    return Obx(
-      () => Form(
-        key: formKey,
-        child: Scaffold(
-          appBar: AppBar(
-            title: Text('Al-Rwaad Club'),
-          ),
-          body: alrwaadViewmodel.loading.value
-              ? CustomLoader()
-              : SingleChildScrollView(
-                  child: Padding(
-                    padding: const EdgeInsets.all(16.0),
-                    child: Column(
-                      children: [
-                        kCustomListTile(
-                            key: 'Name', value: userController.user!.name),
-                        kCustomListTile(
-                            key: 'Email', value: userController.user!.email),
-                        kCustomListTile(
-                            key: 'Mobile', value: userController.user!.mobile),
-                        CustomTextField(
-                          hintText: "YYYY-MM-DD",
-                          label: dobController.text == ''
-                              ? "dateOfBirth".tr
-                              : "DOB* (Age : ${AgeCalculator.age(DateTime.parse(dobController.text)).years})",
-                          readOnly: true,
-                          suffix: IconButton(
-                              color: primaryColor(),
-                              onPressed: () async {
-                                await showDatePicker(
-                                        context: context,
-                                        initialDate: DateTime.now(),
-                                        firstDate: DateTime(1800),
-                                        lastDate: DateTime.now())
-                                    .then((value) => dobController.text =
-                                        customDateFormat(value.toString()));
-                                setState(() {});
-                              },
-                              icon: Icon(Icons.date_range)),
-                          controller: dobController,
-                        ),
-                        CustomTextField(
-                          label: 'Government Id Number',
-                          controller: govtIdNumberController,
-                        ),
-                      ],
+    return CustomWillPopScope(
+      onWillPop: () async {
+        if (userController.user!.status == 'REJECTED') {
+          Get.back();
+          Get.back();
+        }
+        return true;
+      },
+      child: Obx(
+        () => Form(
+          key: formKey,
+          child: Scaffold(
+            appBar: AppBar(
+              title: Text('Al-Rwaad Club'),
+            ),
+            body: alrwaadViewmodel.loading.value
+                ? CustomLoader()
+                : SingleChildScrollView(
+                    child: Padding(
+                      padding: const EdgeInsets.all(16.0),
+                      child: Column(
+                        children: [
+                          kCustomListTile(
+                              key: 'Name', value: userController.user!.name),
+                          kCustomListTile(
+                              key: 'Email', value: userController.user!.email),
+                          kCustomListTile(
+                              key: 'Mobile',
+                              value: userController.user!.mobile),
+                          CustomTextField(
+                            hintText: "YYYY-MM-DD",
+                            label: dobController.text == ''
+                                ? "dateOfBirth".tr
+                                : "DOB* (Age : ${AgeCalculator.age(DateTime.parse(dobController.text)).years})",
+                            readOnly: true,
+                            suffix: IconButton(
+                                color: primaryColor(),
+                                onPressed: () async {
+                                  await showDatePicker(
+                                          context: context,
+                                          initialDate: DateTime.now(),
+                                          firstDate: DateTime(1800),
+                                          lastDate: DateTime.now())
+                                      .then((value) => dobController.text =
+                                          customDateFormat(value.toString()));
+                                  setState(() {});
+                                },
+                                icon: Icon(Icons.date_range)),
+                            controller: dobController,
+                          ),
+                          CustomTextField(
+                            label: 'Government Id Number',
+                            controller: govtIdNumberController,
+                          ),
+                        ],
+                      ),
                     ),
                   ),
-                ),
-          bottomNavigationBar: CustomContainerButton(
-            flexibleHeight: 60,
-            label: 'Submit',
-            onTap: () {
-              if (formKey.currentState!.validate()) {
-                alrwaadViewmodel.joinAlRwaadClub(
-                    govIdNumber: govtIdNumberController.text,
-                    dateOfBirth: dobController.text);
-              }
-            },
+            bottomNavigationBar: CustomContainerButton(
+              flexibleHeight: 60,
+              label: 'Submit',
+              onTap: () {
+                if (formKey.currentState!.validate()) {
+                  alrwaadViewmodel.joinAlRwaadClub(
+                      govIdNumber: govtIdNumberController.text,
+                      dateOfBirth: dobController.text);
+                }
+              },
+            ),
           ),
         ),
       ),

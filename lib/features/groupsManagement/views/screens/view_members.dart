@@ -79,7 +79,7 @@ class _ViewGroupMembersState extends State<ViewGroupMembers> {
                         context: context,
                         builder: (context) => Material(
                             color: Colors.transparent,
-                            child: CupertinoActionSheet(
+                            child: CupertinoAlertDialog(
                               title: Row(
                                 children: [
                                   Text("selectGroup".tr),
@@ -91,7 +91,7 @@ class _ViewGroupMembersState extends State<ViewGroupMembers> {
                                       child: Text("cancel".tr)),
                                 ],
                               ),
-                              message: Container(
+                              content: Container(
                                 child: Column(
                                   children: [
                                     StatefulBuilder(
@@ -152,20 +152,21 @@ class _ViewGroupMembersState extends State<ViewGroupMembers> {
                 onPressed: () {
                   List selectedPlayers = [];
 
-                  showCupertinoDialog(
-                    barrierDismissible: true,
-                    context: context,
+                  showDialog(
+                    context: Get.context ?? context,
                     builder: (context) {
                       return StatefulBuilder(builder: (context, setState) {
                         return Material(
                           color: Colors.transparent,
-                          child: CupertinoActionSheet(
-                            title: Text('Players'),
-                            message: Container(
-                              height: Get.height * 0.7,
-                              child: groupMembersViewModel.loading.value
-                                  ? Center(child: CircularProgressIndicator())
-                                  : SingleChildScrollView(
+                          child: AlertDialog(
+                            title: Text('Players'.tr),
+                            content: groupMembersViewModel.loading.value
+                                ? Center(child: CircularProgressIndicator())
+                                : Container(
+                                    height: Get.height *
+                                        0.55, // Use height instead of width
+                                    width: Get.width,
+                                    child: SingleChildScrollView(
                                       child: Column(
                                         children: [
                                           SizedBox(height: 10),
@@ -192,19 +193,19 @@ class _ViewGroupMembersState extends State<ViewGroupMembers> {
                                                   setState(() {});
                                                 },
                                                 child: PlayerCard(
-                                                    extraWidget: Text('age'.tr +
-                                                        AgeCalculator.age(DateTime
-                                                                .parse(user
-                                                                    .dateOfBirth!))
-                                                            .years
-                                                            .toString()),
-                                                    showArrow: false,
-                                                    selected: selectedPlayers
-                                                        .contains(user.id),
-                                                    name: user.name ?? '',
-                                                    image: user.pic ?? '',
-                                                    playerId:
-                                                        user.pId.toString()),
+                                                  extraWidget: Text('age'.tr +
+                                                      AgeCalculator.age(DateTime
+                                                              .parse(user
+                                                                  .dateOfBirth!))
+                                                          .years
+                                                          .toString()),
+                                                  showArrow: false,
+                                                  selected: selectedPlayers
+                                                      .contains(user.id),
+                                                  name: user.name ?? '',
+                                                  image: user.pic ?? '',
+                                                  playerId: user.pId.toString(),
+                                                ),
                                               );
                                             },
                                           ),
@@ -212,20 +213,19 @@ class _ViewGroupMembersState extends State<ViewGroupMembers> {
                                         ],
                                       ),
                                     ),
-                            ),
+                                  ),
                             actions: [
-                              Center(
-                                child: CustomContainerButton(
-                                  label: 'Cancel',
-                                  color: Colors.grey,
-                                  onTap: () {
-                                    Get.back();
-                                  },
-                                ),
+                              TextButton(
+                                child: Text('Cancel',
+                                    style: TextStyle(color: Colors.red)),
+                                onPressed: () {
+                                  Get.back();
+                                },
                               ),
-                              CustomContainerButton(
-                                label: 'Confirm',
-                                onTap: () async {
+                              TextButton(
+                                child: Text('Confirm',
+                                    style: TextStyle(color: Colors.blue)),
+                                onPressed: () async {
                                   if (selectedPlayers.isNotEmpty) {
                                     await groupMembersViewModel
                                         .addMembersToGroup(
@@ -233,9 +233,7 @@ class _ViewGroupMembersState extends State<ViewGroupMembers> {
                                                 .selectedGroupId,
                                             memberIds: selectedPlayers);
                                   }
-
                                   fetchData();
-
                                   Get.back();
                                 },
                               ),
@@ -254,59 +252,62 @@ class _ViewGroupMembersState extends State<ViewGroupMembers> {
             ? Center(
                 child: CircularProgressIndicator(),
               )
-            : Column(
-                children: [
-                  ListView.builder(
-                    shrinkWrap: true,
-                    itemCount: players.length,
-                    itemBuilder: (context, index) {
-                      final UserModel player = players[index];
-                      return GestureDetector(
-                        onLongPress: () {
-                          if (widget.canUpdate) {
-                            setState(() {
-                              isSelecting = true;
-                              selectedMembers.clear();
-                              selectedMembers.add(player.id!);
-                            });
-                          }
-                        },
-                        onTap: () {
-                          if (!isSelecting) {
-                            Get.to(() => ViewPlayerByUserModel(
-                                      player: player,
-                                      changeGame: true,
-                                    ))!
-                                .then((val) => fetchData());
-                          } else {
-                            if (selectedMembers.contains(player.id)) {
-                              selectedMembers.remove(player.id!);
-                              if (selectedMembers.isEmpty) {
-                                isSelecting = false;
+            : SingleChildScrollView(
+                child: Column(
+                  children: [
+                    ListView.builder(
+                      physics: NeverScrollableScrollPhysics(),
+                      shrinkWrap: true,
+                      itemCount: players.length,
+                      itemBuilder: (context, index) {
+                        final UserModel player = players[index];
+                        return GestureDetector(
+                          onLongPress: () {
+                            if (widget.canUpdate) {
+                              setState(() {
+                                isSelecting = true;
                                 selectedMembers.clear();
-                              }
-                            } else {
-                              selectedMembers.add(player.id!);
+                                selectedMembers.add(player.id!);
+                              });
                             }
-                          }
-                          setState(() {});
-                        },
-                        child: PlayerCard(
-                          extraWidget: Text('age'.tr +
-                              AgeCalculator.age(
-                                      DateTime.parse(player.dateOfBirth!))
-                                  .years
-                                  .toString()),
-                          selected: selectedMembers.contains(player.id),
-                          name: player.name!,
-                          image: player.pic!,
-                          playerId: player.pId.toString(),
-                          showArrow: false,
-                        ),
-                      );
-                    },
-                  )
-                ],
+                          },
+                          onTap: () {
+                            if (!isSelecting) {
+                              Get.to(() => ViewPlayerByUserModel(
+                                        player: player,
+                                        changeGame: true,
+                                      ))!
+                                  .then((val) => fetchData());
+                            } else {
+                              if (selectedMembers.contains(player.id)) {
+                                selectedMembers.remove(player.id!);
+                                if (selectedMembers.isEmpty) {
+                                  isSelecting = false;
+                                  selectedMembers.clear();
+                                }
+                              } else {
+                                selectedMembers.add(player.id!);
+                              }
+                            }
+                            setState(() {});
+                          },
+                          child: PlayerCard(
+                            extraWidget: Text('age'.tr +
+                                AgeCalculator.age(
+                                        DateTime.parse(player.dateOfBirth!))
+                                    .years
+                                    .toString()),
+                            selected: selectedMembers.contains(player.id),
+                            name: player.name!,
+                            image: player.pic!,
+                            playerId: player.pId.toString(),
+                            showArrow: false,
+                          ),
+                        );
+                      },
+                    )
+                  ],
+                ),
               ));
   }
 }

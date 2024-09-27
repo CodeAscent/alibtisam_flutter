@@ -2,6 +2,7 @@ import 'package:alibtisam/core/Localization/localization.dart';
 import 'package:alibtisam/client/socket_io.dart';
 import 'package:alibtisam/core/localStorage/fcm_token.dart';
 import 'package:alibtisam/core/localStorage/init_shared_pref.dart';
+import 'package:alibtisam/core/theme/app_colors.dart';
 import 'package:alibtisam/features/dummySplash/dummy_splash.dart';
 import 'package:alibtisam/firebase_options.dart';
 import 'package:alibtisam/core/localStorage/token_id.dart';
@@ -18,6 +19,7 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:get_storage/get_storage.dart';
 import 'package:logger/logger.dart';
+import 'package:overlay_support/overlay_support.dart';
 
 String? locale;
 
@@ -59,8 +61,14 @@ class _MyAppState extends State<MyApp> {
       badge: true,
       sound: true,
     );
-    installationId =
-        await FirebaseInstallations.id ?? 'Unknown installation id';
+    FirebaseMessaging.onMessage.listen((RemoteMessage message) {
+      Logger().f(message.data);
+
+      _showInAppNotification(message);
+    });
+    FirebaseMessaging.onMessageOpenedApp.listen((RemoteMessage message) {
+      _navigateToRoute(message.data['route']);
+    });
     String? token = await messaging.getToken();
     String? uid = await getUid();
 
@@ -74,6 +82,21 @@ class _MyAppState extends State<MyApp> {
     print("INSTALLATION ID -------> $installationId");
     print("UID -------> $uid");
     print("TOKEN -------> $authToken");
+  }
+
+  void _showInAppNotification(RemoteMessage message) {
+    showSimpleNotification(
+      Text(message.notification?.title ?? 'New Notification'),
+      subtitle: Text(message.notification?.body ?? 'You have a new message'),
+      background: primaryColor(),
+      duration: Duration(seconds: 3),
+    );
+  }
+
+  void _navigateToRoute(String? route) {
+    if (route != null) {
+      Get.toNamed(route);
+    }
   }
 
   @override
@@ -96,22 +119,31 @@ class _MyAppState extends State<MyApp> {
         GetBuilder(
       init: ThemeController(),
       builder: (controller) {
-        return GetMaterialApp(
-          defaultTransition: Transition.cupertino,
-          transitionDuration: Duration(milliseconds: 300),
+        return OverlaySupport.global(
+          child: GetMaterialApp(
+            defaultTransition: Transition.cupertino,
+            transitionDuration: Duration(milliseconds: 300),
 
-          // navigatorKey: connectionKey, // add this key to material app
-          debugShowCheckedModeBanner: false,
-          translations: AppLocalization(),
-          locale: locale!.substring(0, 2) == 'ar'
-              ? Locale(locale!.substring(0, 2))
-              : Locale(locale!.substring(0, 2)),
+            // navigatorKey: connectionKey, // add this key to material app
+            debugShowCheckedModeBanner: false,
+            translations: AppLocalization(),
+            locale: locale!.substring(0, 2) == 'ar'
+                ? Locale(locale!.substring(0, 2))
+                : Locale(locale!.substring(0, 2)),
 
-          //   Locale(savedLocale.split('_')[0], savedLocale.split('_')[1]),
-          fallbackLocale: Locale('ar', 'DZ'),
-          getPages: pages,
-          theme: controller.appTheme(),
-          home: DummySplash(),
+            //   Locale(savedLocale.split('_')[0], savedLocale.split('_')[1]),
+            fallbackLocale: Locale('ar', 'DZ'),
+            getPages: pages,
+            theme: controller.appTheme(),
+            builder: (context, child) {
+              return MediaQuery(
+                data: MediaQuery.of(context)
+                    .copyWith(textScaler: TextScaler.linear(1.0)),
+                child: child!,
+              );
+            },
+            home: DummySplash(),
+          ),
         );
       },
     );

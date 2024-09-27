@@ -92,7 +92,7 @@ class _CoachTrainingPlanState extends State<CoachTrainingPlan>
                   ];
                   final formKey = GlobalKey<FormState>();
 
-                  showCupertinoDialog(
+                  showCupertinoModalPopup(
                     context: context,
                     builder: (context) => StatefulBuilder(
                       builder: (context, setState) {
@@ -100,7 +100,7 @@ class _CoachTrainingPlanState extends State<CoachTrainingPlan>
                           key: formKey,
                           child: Material(
                             color: Colors.transparent,
-                            child: CupertinoActionSheet(
+                            child: AlertDialog(
                               actions: [
                                 SizedBox(
                                   height: 70,
@@ -113,7 +113,8 @@ class _CoachTrainingPlanState extends State<CoachTrainingPlan>
                                         if (formKey.currentState!.validate()) {
                                           if (scheduledDays.length == 0) {
                                             customSnackbar(
-                                                'Please schedule days for the training'.tr,
+                                                'Please schedule days for the training'
+                                                    .tr,
                                                 ContentType.warning);
                                           } else {
                                             await trainingPlanController
@@ -150,8 +151,21 @@ class _CoachTrainingPlanState extends State<CoachTrainingPlan>
                                   ),
                                 ),
                               ],
-                              title: Text('Create Training Plan'.tr),
-                              message: Container(
+                              title: Row(
+                                children: [
+                                  Text(
+                                    'Training Plan'.tr,
+                                    style: TextStyle(fontSize: 12),
+                                  ),
+                                  Spacer(),
+                                  IconButton(
+                                      onPressed: () {
+                                        Get.back();
+                                      },
+                                      icon: Icon(CupertinoIcons.xmark)),
+                                ],
+                              ),
+                              content: Container(
                                 height: 500,
                                 child: SingleChildScrollView(
                                   child: Column(
@@ -224,7 +238,8 @@ class _CoachTrainingPlanState extends State<CoachTrainingPlan>
                                         Text('Schedule'.tr),
                                         SizedBox(height: 10),
                                         SelectWeekDays(
-                                          fontSize: 14,
+                                          padding: 0,
+                                          fontSize: 8,
                                           fontWeight: FontWeight.w500,
                                           days: _days,
                                           border: false,
@@ -266,22 +281,18 @@ class _CoachTrainingPlanState extends State<CoachTrainingPlan>
                                         CustomTextField(
                                             controller:
                                                 trainingDurationController,
-                                            label: 'Duration of each session'.tr),
+                                            label:
+                                                'Duration of each session'.tr),
                                         Divider(),
                                         CustomTextField(
                                             controller:
                                                 additionalNotesController,
                                             maxLines: 4,
-                                            label:
-                                                'Additional notes (Optional)'.tr),
+                                            label: 'Additional notes (Optional)'
+                                                .tr),
                                       ]),
                                 ),
                               ),
-                              cancelButton: IconButton(
-                                  onPressed: () {
-                                    Get.back();
-                                  },
-                                  icon: Icon(CupertinoIcons.xmark)),
                             ),
                           ),
                         );

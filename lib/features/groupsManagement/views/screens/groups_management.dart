@@ -43,7 +43,7 @@ class _GroupsManagementState extends State<GroupsManagement>
             context: context,
             builder: (context) => Material(
                 color: Colors.transparent,
-                child: CupertinoActionSheet(
+                child: CupertinoAlertDialog(
                   title: Row(
                     children: [
                       Text("createGroup".tr),
@@ -55,7 +55,7 @@ class _GroupsManagementState extends State<GroupsManagement>
                           child: Text("cancel".tr)),
                     ],
                   ),
-                  message: Container(
+                  content: Container(
                     child: Column(
                       children: [
                         CustomTextField(
@@ -132,8 +132,7 @@ class _GroupsManagementState extends State<GroupsManagement>
       appBar: AppBar(
         title: Text('selectstage'.tr),
       ),
-      body: 
-      CustomTabBar(tabController: _tabController, customTabs: [
+      body: CustomTabBar(tabController: _tabController, customTabs: [
         ...user.stage.map(
           (e) => Text(e),
         )

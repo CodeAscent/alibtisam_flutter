@@ -130,7 +130,7 @@ class _AlrwaadServicesState extends State<AlrwaadServices> {
                 child: CustomContainerButton(
                   onTap: () {
                     if (controller.user!.role! == 'ALRWAAD USER') {
-                      showCupertinoDialog(
+                      showDialog(
                         context: context,
                         builder: (context) {
                           return StatefulBuilder(builder: (context, setState) {

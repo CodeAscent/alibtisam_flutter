@@ -38,7 +38,7 @@ class TrainingPlanViewmodel extends GetxController {
 
       update();
       if (res != null) {
-        customSnackbar( res['message'], ContentType.success);
+        customSnackbar(res['message'], ContentType.success);
       }
     } on ServerException catch (e) {
       customSnackbar(e.message, ContentType.failure);
@@ -61,7 +61,7 @@ class TrainingPlanViewmodel extends GetxController {
         return trainingPlan;
       }
     } on ServerException catch (e) {
-      customSnackbar(e.message, ContentType.failure);
+      //   customSnackbar(e.message, ContentType.failure);
     } finally {
       loading.value = false;
       update();

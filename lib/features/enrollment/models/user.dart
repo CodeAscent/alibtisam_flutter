@@ -179,7 +179,7 @@ class UserModel {
           : map['guardianId'],
       map['idFrontImage'] != null ? map['idFrontImage'] : '',
       map['idBackImage'] != null ? map['idBackImage'] : '',
-      map['certificateLink'] != null ? map['certificateLink'] : '',
+      map['certificateLink'] != null ? map['certificateLink'] : null,
       map['height'] != null ? map['height'] as num : null,
       map['weight'] != null ? map['weight'] as num : null,
       map['chestSize'] != null ? map['chestSize'] as num : null,

@@ -90,107 +90,127 @@ class _ViewPlayerByUserModelState extends State<ViewPlayerByUserModel> {
                   onTap: () {
                     String selectedGameId = '';
                     String selectedStage = 'ACADEMY';
-                    showCupertinoDialog(
-                      context: context,
+                    showDialog(
+                      context: Get.context ?? context,
                       builder: (context) {
                         return StatefulBuilder(builder: (context, setState) {
                           return Material(
-                            color: Colors.transparent,
-                            child: CupertinoActionSheet(
-                              title: Text('Change Game'),
-                              message: Container(
-                                  height: Get.height * 0.55,
-                                  child: SingleChildScrollView(
-                                      child: Column(
-                                    children: [
-                                      Row(
-                                        children: [
-                                          CupertinoCheckbox(
-                                              value: selectedStage == 'ACADEMY',
-                                              onChanged: (val) {
-                                                setState(() {
-                                                  selectedStage = 'ACADEMY';
-                                                  fetchGames(selectedStage);
-                                                });
-                                              }),
-                                          Text('ACADEMY'),
-                                          CupertinoCheckbox(
-                                              value: selectedStage == 'SCHOOL',
-                                              onChanged: (val) {
-                                                setState(() {
-                                                  selectedStage = 'SCHOOL';
-                                                  fetchGames(selectedStage);
-                                                });
-                                              }),
-                                          Text('SCHOOL'),
-                                        ],
-                                      ),
-                                      FutureBuilder(
-                                        future: fetchGames(selectedStage),
-                                        builder: (context, snapshot) {
-                                          if (snapshot.hasData) {
-                                            return GridView.builder(
-                                              shrinkWrap: true,
-                                              physics:
-                                                  NeverScrollableScrollPhysics(),
-                                              itemCount: snapshot.data!.length,
-                                              itemBuilder: (context, index) {
-                                                return GestureDetector(
-                                                  onTap: () {
-                                                    setState(() {
-                                                      selectedGameId = snapshot
-                                                              .data![index]
-                                                              .id ??
-                                                          '';
-                                                    });
-                                                  },
-                                                  child: Container(
-                                                    decoration: BoxDecoration(
-                                                        color: selectedGameId ==
-                                                                snapshot
+                            // color: Colors.white30,
+                            child: Column(
+                              children: [
+                                Text('Change Game'),
+                                Container(
+                                    height: Get.height * 0.55,
+                                    child: SingleChildScrollView(
+                                        child: Column(
+                                      children: [
+                                        Row(
+                                          children: [
+                                            CupertinoCheckbox(
+                                                value:
+                                                    selectedStage == 'ACADEMY',
+                                                onChanged: (val) {
+                                                  setState(() {
+                                                    selectedStage = 'ACADEMY';
+                                                    fetchGames(selectedStage);
+                                                  });
+                                                }),
+                                            Text('ACADEMY'),
+                                            CupertinoCheckbox(
+                                                value:
+                                                    selectedStage == 'SCHOOL',
+                                                onChanged: (val) {
+                                                  setState(() {
+                                                    selectedStage = 'SCHOOL';
+                                                    fetchGames(selectedStage);
+                                                  });
+                                                }),
+                                            Text('SCHOOL'),
+                                          ],
+                                        ),
+                                        FutureBuilder(
+                                          future: fetchGames(selectedStage),
+                                          builder: (context, snapshot) {
+                                            if (snapshot.hasData) {
+                                              return GridView.builder(
+                                                shrinkWrap: true,
+                                                physics:
+                                                    NeverScrollableScrollPhysics(),
+                                                itemCount:
+                                                    snapshot.data!.length,
+                                                itemBuilder: (context, index) {
+                                                  return GestureDetector(
+                                                    onTap: () {
+                                                      setState(() {
+                                                        selectedGameId =
+                                                            snapshot
                                                                     .data![
                                                                         index]
-                                                                    .id
-                                                            ? primaryColor()
-                                                            : null,
-                                                        borderRadius:
-                                                            BorderRadius
-                                                                .circular(10)),
-                                                    child: Column(
-                                                        mainAxisAlignment:
-                                                            MainAxisAlignment
-                                                                .center,
-                                                        children: [
-                                                          Image.network(
-                                                            snapshot
-                                                                .data![index]
-                                                                .icon,
-                                                            height: 70,
-                                                            width: 80,
-                                                            fit: BoxFit.cover,
-                                                          ),
-                                                          SizedBox(height: 10),
-                                                          Text(snapshot
-                                                              .data![index]
-                                                              .name!),
-                                                          SizedBox(height: 5),
-                                                        ]),
-                                                  ),
-                                                );
-                                              },
-                                              gridDelegate:
-                                                  SliverGridDelegateWithMaxCrossAxisExtent(
-                                                      maxCrossAxisExtent: 160),
+                                                                    .id ??
+                                                                '';
+                                                      });
+                                                    },
+                                                    child: Container(
+                                                      decoration: BoxDecoration(
+                                                          color: selectedGameId ==
+                                                                  snapshot
+                                                                      .data![
+                                                                          index]
+                                                                      .id
+                                                              ? primaryColor()
+                                                              : null,
+                                                          borderRadius:
+                                                              BorderRadius
+                                                                  .circular(
+                                                                      10)),
+                                                      child: Column(
+                                                          mainAxisAlignment:
+                                                              MainAxisAlignment
+                                                                  .center,
+                                                          children: [
+                                                            Image.network(
+                                                              snapshot
+                                                                  .data![index]
+                                                                  .icon,
+                                                              height: 70,
+                                                              width: 80,
+                                                              fit: BoxFit.cover,
+                                                            ),
+                                                            SizedBox(
+                                                                height: 10),
+                                                            Text(
+                                                              snapshot
+                                                                  .data![index]
+                                                                  .name!,
+                                                              style: TextStyle(
+                                                                  color: selectedGameId ==
+                                                                          snapshot
+                                                                              .data![
+                                                                                  index]
+                                                                              .id
+                                                                      ? Colors
+                                                                          .white
+                                                                      : null),
+                                                            ),
+                                                            SizedBox(height: 5),
+                                                          ]),
+                                                    ),
+                                                  );
+                                                },
+                                                gridDelegate:
+                                                    SliverGridDelegateWithMaxCrossAxisExtent(
+                                                        maxCrossAxisExtent:
+                                                            160),
+                                              );
+                                            }
+                                            return Center(
+                                              child:
+                                                  CircularProgressIndicator(),
                                             );
-                                          }
-                                          return Center(
-                                            child: CircularProgressIndicator(),
-                                          );
-                                        },
-                                      )
-                                    ],
-                                  ))),
-                              actions: [
+                                          },
+                                        )
+                                      ],
+                                    ))),
                                 CustomContainerButton(
                                     onTap: () {
                                       Get.back();
