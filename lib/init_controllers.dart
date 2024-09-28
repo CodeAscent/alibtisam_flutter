@@ -1,3 +1,4 @@
+import 'package:alibtisam/client/socket_io.dart';
 import 'package:alibtisam/features/alRwaadClub/repo/alrwaad_repo.dart';
 import 'package:alibtisam/features/alRwaadClub/viewModel/alrwaad_viewmodel.dart';
 import 'package:alibtisam/features/auth/viewmodel/auth_viewmodel.dart';
@@ -58,4 +59,5 @@ initControllers() {
   Get.put(TrainingPlanViewmodel());
   Get.put(GroupMembersViewModel(GroupsMembersRepoImplementation()));
   Get.put(AlrwaadViewmodel(AlrwaadRepo()));
+  Get.put(SocketConnection());
 }

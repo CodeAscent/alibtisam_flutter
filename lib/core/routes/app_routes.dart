@@ -1,6 +1,7 @@
 import 'package:alibtisam/features/alRwaadClub/view/screens/alrwaad_registration.dart';
 import 'package:alibtisam/features/alRwaadClub/view/screens/alrwaad_services.dart';
 import 'package:alibtisam/features/bottomNav/bottom_nav.dart';
+import 'package:alibtisam/features/chat/chat.dart';
 import 'package:alibtisam/features/chat/chat_navigation.dart';
 import 'package:alibtisam/features/enrollment/enrollment_navigation.dart';
 import 'package:alibtisam/features/events/presentation/events.dart';

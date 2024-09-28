@@ -11,20 +11,28 @@ import 'package:alibtisam/core/theme/app_colors.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
-class PlayerRequests extends StatelessWidget {
+class PlayerRequests extends StatefulWidget {
   const PlayerRequests({super.key});
 
   @override
-  Widget build(BuildContext context) {
-    final measurementReqController = Get.find<MeasurementReqController>();
+  State<PlayerRequests> createState() => _PlayerRequestsState();
+}
+
+class _PlayerRequestsState extends State<PlayerRequests> {
+  final measurementReqController = Get.find<MeasurementReqController>();
+  @override
+  void initState() {
+    super.initState();
     measurementReqController.fetchMeasurementRequests();
+  }
+
+  @override
+  Widget build(BuildContext context) {
     return Scaffold(
       body: SafeArea(child: GetBuilder(
         builder: (MeasurementReqController controller) {
-          print('-------------->' +
-              '${measurementReqController.measurementRequests!}');
           return measurementReqController.measurementRequests == null ||
-                  measurementReqController.measurementRequests!.length == 0
+                  measurementReqController.measurementRequests.length == 0
               ? CustomEmptyWidget()
               : Padding(
                   padding: const EdgeInsets.all(8.0),

@@ -101,10 +101,8 @@ class ApiRequests {
       final res = await HttpWrapper.getRequest(
           get_players_requests + "?status=COACH-REQUESTED");
       final data = jsonDecode(res.body);
-      Logger().w(data);
       if (res.statusCode == 200) {
-        customSnackbar(data['message'], ContentType.success);
-
+        // customSnackbar(data['message'], ContentType.success);
         return data['requests'];
       } else {
         customSnackbar(data['message'], ContentType.failure);

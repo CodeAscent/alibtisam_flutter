@@ -5,10 +5,12 @@ import 'package:alibtisam/features/bottomNav/model/chat_message.dart';
 import 'package:alibtisam/core/localStorage/token_id.dart';
 import 'package:alibtisam/core/services/api_urls.dart';
 import 'package:get/get.dart';
+import 'package:logger/web.dart';
 import 'package:socket_io_client/socket_io_client.dart' as IO;
 
-class SocketConnection {
+class SocketConnection extends GetxController {
   static final userController = Get.find<UserController>();
+  static final chatController = Get.find<ChatMessagesController>();
   static IO.Socket socket = IO.io(socket_base_url, <String, dynamic>{
     'transports': ['websocket'],
     'autoconnect': true,
@@ -47,11 +49,16 @@ class SocketConnection {
     required String uid,
     required String message,
     required String groupId,
+    required dynamic file,
+    required String type,
   }) {
+    chatController.updateMessageSendingLoading(true);
     socket.emit("message", {
       "senderId": uid,
       "content": message,
       "groupId": groupId,
+      "type": type,
+      if (file != null) "file": file,
     });
   }
 
@@ -65,6 +72,8 @@ class SocketConnection {
     socket.on('messageUpdate', (res) {
       print('---------------> $res');
       chatMessagesController.addMessages(ChatMessages.fromMap(res));
+      chatController.updateMessageSendingLoading(false);
+
       scroll();
     });
   }
