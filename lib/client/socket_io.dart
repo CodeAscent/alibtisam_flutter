@@ -1,4 +1,4 @@
-import 'package:alibtisam/features/bottomNav/controller/chat_messages.dart';
+import 'package:alibtisam/features/chat/controller/chat_messages.dart';
 import 'package:alibtisam/features/bottomNav/controller/chats_list.dart';
 import 'package:alibtisam/features/bottomNav/controller/user.dart';
 import 'package:alibtisam/features/bottomNav/model/chat_message.dart';
@@ -37,6 +37,7 @@ class SocketConnection extends GetxController {
     chatMessagesController.messages.clear();
     socket.emit("joinChat", {"groupId": groupId});
     socket.on("allMessages", (res) {
+      Logger().w(res);
       chatMessagesController.messages.clear();
       for (var message in res) {
         chatMessagesController.addMessages(ChatMessages.fromMap(message));
@@ -52,7 +53,9 @@ class SocketConnection extends GetxController {
     required dynamic file,
     required String type,
   }) {
-    chatController.updateMessageSendingLoading(true);
+    if (type == 'video' || type == 'image') {
+      chatController.updateMessageSendingLoading(true);
+    }
     socket.emit("message", {
       "senderId": uid,
       "content": message,

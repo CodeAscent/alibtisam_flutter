@@ -8,6 +8,7 @@ class ChatMessages {
   String? message;
   String? mediaUrl;
   String? type;
+  String? senderName;
   ChatMessages({
     this.senderId,
     this.content,
@@ -15,6 +16,7 @@ class ChatMessages {
     this.message,
     this.mediaUrl,
     this.type,
+    this.senderName,
   });
 
   Map<String, dynamic> toMap() {
@@ -25,6 +27,7 @@ class ChatMessages {
       'message': message,
       'mediaUrl': mediaUrl,
       'type': type,
+      'senderName': senderName,
     };
   }
 
@@ -36,6 +39,7 @@ class ChatMessages {
       message: map['message'] != null ? map['message'] as String : '',
       mediaUrl: map['mediaUrl'] != null ? map['mediaUrl'] as String : '',
       type: map['type'] != null ? map['type'] as String : 'text',
+      senderName: map['senderName'] != null ? map['senderName'] as String : '',
     );
   }
 

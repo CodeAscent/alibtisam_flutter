@@ -5,7 +5,7 @@ import 'package:alibtisam/core/theme/app_colors.dart';
 import 'package:alibtisam/features/groupsManagement/data/viewModel/groups_controller.dart';
 import 'package:alibtisam/features/bottomNav/controller/user.dart';
 import 'package:alibtisam/features/enrollment/models/user.dart';
-import 'package:alibtisam/features/chat/chat.dart';
+import 'package:alibtisam/features/chat/presentation/chat.dart';
 import 'package:alibtisam/features/groupsManagement/views/screens/view_members.dart';
 import 'package:alibtisam/features/statistics/coach/stages_tab_bar.dart';
 import 'package:flutter/material.dart';
