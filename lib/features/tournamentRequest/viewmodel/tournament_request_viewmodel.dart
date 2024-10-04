@@ -8,6 +8,8 @@ import 'package:alibtisam/features/tournamentRequest/repo/tournament_request_rep
 import 'package:alibtisam/core/services/api_requests.dart';
 import 'package:awesome_snackbar_content/awesome_snackbar_content.dart';
 import 'package:get/get.dart';
+import 'package:image_picker/image_picker.dart';
+import 'package:logger/logger.dart';
 
 class TournamentRequestViewmodel extends GetxController {
   RxBool loading = false.obs;
@@ -96,14 +98,12 @@ class TournamentRequestViewmodel extends GetxController {
 
       if (res.statusCode == 200) {
         requestedTournaments = data['requests'];
-          customSnackbar(data['message'], ContentType.success);
 
         return requestedTournaments;
+      } else {
+        customSnackbar(data['message'], ContentType.failure);
       }
-else{
-          customSnackbar(data['message'], ContentType.failure);
-
-}    } on ServerException catch (e) {
+    } on ServerException catch (e) {
       loading.value = false;
       customSnackbar(e.message, ContentType.failure);
     }
@@ -127,6 +127,34 @@ else{
     } on ServerException catch (e) {
       customSnackbar(e.message, ContentType.failure);
       loading.value = false;
+    }
+  }
+
+  Future addReceipt({
+    required String id,
+    required String title,
+    required String amount,
+    required String description,
+    required XFile invoiceImage,
+  }) async {
+    try {
+      final response = await tournamentRequestRepo.addReceipt(
+          id: id,
+          title: title,
+          amount: amount,
+          description: description,
+          invoiceImage: invoiceImage);
+      final res = await response.stream.bytesToString();
+      final data = jsonDecode(res);
+      Logger().w(data);
+
+      if (data["success"] == false) {
+        customSnackbar(data["message"], ContentType.failure);
+      } else {
+        customSnackbar(data["message"], ContentType.success);
+      }
+    } on ServerException catch (e) {
+      customSnackbar(e.message, ContentType.failure);
     }
   }
 }

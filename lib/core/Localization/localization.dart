@@ -458,7 +458,7 @@ class AppLocalization extends Translations {
           "createGroup": "Create Group",
           "groupName": "GroupName",
           "move": "Move",
-          "requestedBy": " Requested By: ",
+          "requestedBy": "Requested By: ",
           "Please select players for the tournament":
               "Please select players for the tournament",
           "playerRequests": "Player Requests",

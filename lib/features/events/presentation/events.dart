@@ -38,16 +38,7 @@ class _AllEventsState extends State<AllEvents> with TickerProviderStateMixin {
       },
       shouldAddCallback: true,
       child: Scaffold(
-        floatingActionButton: GestureDetector(
-          onTap: () {
-            Get.to(() => LiveStreamsScreen());
-          },
-          child: CircleAvatar(
-            radius: 32,
-            backgroundColor: primaryColor(),
-            child: Image.asset('assets/images/live.gif'),
-          ),
-        ),
+        floatingActionButton: LiveStreamButton(),
         appBar: AppBar(
           // toolbarHeight: 120,
           automaticallyImplyLeading: false,

@@ -44,16 +44,7 @@ class _DummySplashState extends State<DummySplash> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-        floatingActionButton: GestureDetector(
-          onTap: () {
-            Get.to(() => LiveStreamsScreen());
-          },
-          child: CircleAvatar(
-            radius: 32,
-            backgroundColor: primaryColor(),
-            child: Image.asset('assets/images/live.gif'),
-          ),
-        ),
+        floatingActionButton: LiveStreamButton(),
         body: FutureBuilder<List<Events>>(
           future: ApiRequests().allEvents(''),
           builder: (context, snapshot) {
@@ -241,3 +232,4 @@ class _DummySplashState extends State<DummySplash> {
         ));
   }
 }
+

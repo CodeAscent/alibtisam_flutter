@@ -35,7 +35,7 @@ class _PolarizePlayerState extends State<PolarizePlayer> {
       await ApiRequests().updatePlayerStage(
           playerId: widget.player.id!,
           stage: widget.player.stage == 'ACADEMY' ? 'SCHOOL' : 'PROFESSIONAL',
-          groupId: groupsManagement.selectedGroupId);
+        );
     } catch (e) {
     } finally {
       setState(() {
@@ -58,32 +58,26 @@ class _PolarizePlayerState extends State<PolarizePlayer> {
                 // height: 180,
                 child: CustomContainerButton(
                   onTap: () {
-                    if (groupsManagement.selectedGroupId == '' &&
-                        widget.player.stage == 'ACADEMY') {
-                      customSnackbar(
-                          'Please Select a group'.tr, ContentType.warning);
-                    } else {
-                      Get.defaultDialog(
-                          titleStyle: TextStyle(fontSize: 12),
-                          title:
-                              "${'Are you sure you want update'.tr} \n${widget.player.name}'s ${'stage'.tr}?",
-                          content: Column(
-                            children: [
-                              Text('Update Stage From'.tr),
-                              Text(
-                                '${widget.player.stage} --> ${widget.player.stage == 'ACADEMY' ? 'SCHOOL' : 'PROFESSIONAL'}',
-                                style: TextStyle(
-                                    fontWeight: FontWeight.w800, fontSize: 18),
-                              ),
-                              SizedBox(height: 20),
-                            ],
-                          ),
-                          confirm: TextButton(
-                              onPressed: () async {
-                                updatePlayer();
-                              },
-                              child: Text('Confirm'.tr)));
-                    }
+                    Get.defaultDialog(
+                        titleStyle: TextStyle(fontSize: 12),
+                        title:
+                            "${'Are you sure you want update'.tr} \n${widget.player.name}'s ${'stage'.tr}?",
+                        content: Column(
+                          children: [
+                            Text('Update Stage From'.tr),
+                            Text(
+                              '${widget.player.stage} --> ${widget.player.stage == 'ACADEMY' ? 'SCHOOL' : 'PROFESSIONAL'}',
+                              style: TextStyle(
+                                  fontWeight: FontWeight.w800, fontSize: 18),
+                            ),
+                            SizedBox(height: 20),
+                          ],
+                        ),
+                        confirm: TextButton(
+                            onPressed: () async {
+                              updatePlayer();
+                            },
+                            child: Text('Confirm'.tr)));
                   },
                   flexibleHeight: 60,
                   label: 'Update Stage'.tr,
@@ -127,23 +121,6 @@ class _PolarizePlayerState extends State<PolarizePlayer> {
                                 DateTime.parse(widget.player.dateOfBirth!))
                             .years
                             .toString()),
-                    Visibility(
-                      visible: widget.player.stage == 'ACADEMY',
-                      child: Column(
-                        children: [
-                          TextButton(
-                              onPressed: () {
-                                Get.to(() => GroupsManagement());
-                              },
-                              child: Text('Manage Groups'.tr)),
-                          GroupsByStage(
-                            showSelected: true,
-                            stage: 'SCHOOL',
-                            externalOnTap: true,
-                          ),
-                        ],
-                      ),
-                    ),
                   ],
                 ),
               ),

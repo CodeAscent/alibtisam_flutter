@@ -23,27 +23,36 @@ class TournamentDataModel {
   final int? requestedAmount;
   final String? createdAt;
   final String? teamName;
+  num? approvedAmount;
+  num? remainingAmount;
+  num? exceededAmount;
+  dynamic receipts;
 
   TournamentDataModel(
-      this.id,
-      this.name,
-      this.startDate,
-      this.endDate,
-      this.status,
-      this.type,
-      this.location,
-      this.description,
-      this.travelDate,
-      this.transportMedium,
-      this.expectedDeparture,
-      this.expectedArrival,
-      this.from,
-      this.to,
-      this.playerIds,
-      this.coachIds,
-      this.requestedAmount,
-      this.createdAt,
-      this.teamName);
+    this.id,
+    this.name,
+    this.startDate,
+    this.endDate,
+    this.status,
+    this.type,
+    this.location,
+    this.description,
+    this.travelDate,
+    this.transportMedium,
+    this.expectedDeparture,
+    this.expectedArrival,
+    this.from,
+    this.to,
+    this.playerIds,
+    this.coachIds,
+    this.requestedAmount,
+    this.createdAt,
+    this.teamName,
+    this.approvedAmount,
+    this.remainingAmount,
+    this.exceededAmount,
+    this.receipts,
+  );
 
   Map<String, dynamic> toMap() {
     return <String, dynamic>{
@@ -66,6 +75,10 @@ class TournamentDataModel {
       'requestedAmount': requestedAmount,
       'createdAt': createdAt,
       'teamName': teamName,
+      'approvedAmount': approvedAmount,
+      'remainingAmount': remainingAmount,
+      'exceededAmount': exceededAmount,
+      'receipts': receipts,
     };
   }
 
@@ -102,6 +115,10 @@ class TournamentDataModel {
       map['requestedAmount'] != null ? map['requestedAmount'] : null,
       map['createdAt'] != null ? map['createdAt'] : null,
       map['teamName'] != null ? map['teamName'] : null,
+      map['approvedAmount'] != null ? map['approvedAmount'] : 0,
+      map['remainingAmount'] != null ? map['remainingAmount'] : 0,
+      map['exceededAmount'] != null ? map['exceededAmount'] : 0,
+      map['receipts'] != null ? map['receipts'] : [],
     );
   }
 

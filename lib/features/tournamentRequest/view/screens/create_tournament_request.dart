@@ -67,10 +67,12 @@ class _CreateTournamentRequestScreenState
                 onTap: () async {
                   if (selectedPlayerIds.isEmpty) {
                     return customSnackbar(
-                         'Please select players for the tournament'.tr, ContentType.warning);
+                        'Please select players for the tournament'.tr,
+                        ContentType.warning);
                   } else if (selectedCoachIds.isEmpty) {
                     return customSnackbar(
-                         'Please select coaches for the tournament'.tr, ContentType.warning);
+                        'Please select coaches for the tournament'.tr,
+                        ContentType.warning);
                   } else if (formKey.currentState!.validate()) {
                     await tournamentRequestViewmodel.createTournamentRequest(
                         name: name.text,
@@ -122,7 +124,10 @@ class _CreateTournamentRequestScreenState
                                             type.text = val;
                                           });
                                         }),
-                                    Text('internalTournament'.tr),
+                                    Text(
+                                      'internalTournament'.tr,
+                                      style: TextStyle(fontSize: 16),
+                                    ),
                                   ],
                                 ),
                                 Row(
@@ -135,7 +140,10 @@ class _CreateTournamentRequestScreenState
                                             type.text = val;
                                           });
                                         }),
-                                    Text('externalTournament'.tr),
+                                    Text(
+                                      'externalTournament'.tr,
+                                      style: TextStyle(fontSize: 16),
+                                    ),
                                   ],
                                 )
                               ],
@@ -163,140 +171,157 @@ class _CreateTournamentRequestScreenState
                               children: [
                                 TextButton(
                                     onPressed: () {
-                                      Get.bottomSheet(
-                                          StatefulBuilder(
-                                            builder: (context, setState) =>
-                                                Container(
-                                              color: Colors.white,
-                                              child: SingleChildScrollView(
-                                                child: SafeArea(
-                                                  child: Column(
-                                                    crossAxisAlignment:
-                                                        CrossAxisAlignment.end,
-                                                    children: [
-                                                      SizedBox(height: 30),
-                                                      ElevatedButton(
-                                                          onPressed: () {
-                                                            Get.back();
-                                                          },
-                                                          child:
-                                                              Text('Done'.tr)),
-                                                      SizedBox(height: 10),
-                                                      ...List.generate(
-                                                          controller
-                                                              .players.length,
-                                                          (int index) {
-                                                        UserModel player =
+                                      Get.defaultDialog(
+                                        title: 'Select Players'.tr,
+                                        actions: [
+                                          TextButton(
+                                              onPressed: () {
+                                                Get.back();
+                                              },
+                                              child: Text('Done'.tr))
+                                        ],
+                                        content: StatefulBuilder(
+                                          builder: (context, setState) =>
+                                              Container(
+                                            width: double.infinity,
+                                            color: Colors.white,
+                                            child: SingleChildScrollView(
+                                              child: SafeArea(
+                                                child: SizedBox(
+                                                  height: 450,
+                                                  child: SingleChildScrollView(
+                                                    child: Column(
+                                                      crossAxisAlignment:
+                                                          CrossAxisAlignment
+                                                              .end,
+                                                      children: [
+                                                        SizedBox(height: 30),
+                                                        ...List.generate(
                                                             controller
-                                                                .players[index];
-                                                        return GestureDetector(
-                                                          onTap: () {
-                                                            setState(() {
-                                                              if (!selectedPlayerIds
-                                                                  .contains(
-                                                                      player
-                                                                          .id)) {
-                                                                selectedPlayerIds
-                                                                    .add(player
-                                                                        .id!);
-                                                              } else {
-                                                                selectedPlayerIds
-                                                                    .remove(player
-                                                                        .id!);
-                                                              }
-                                                            });
-                                                          },
-                                                          child: PlayerCard(
-                                                            selected:
-                                                                selectedPlayerIds
+                                                                .players.length,
+                                                            (int index) {
+                                                          UserModel player =
+                                                              controller
+                                                                      .players[
+                                                                  index];
+                                                          return GestureDetector(
+                                                            onTap: () {
+                                                              setState(() {
+                                                                if (!selectedPlayerIds
                                                                     .contains(
                                                                         player
-                                                                            .id),
-                                                            name: player.name!,
-                                                            image: player.pic!,
-                                                            playerId: player.pId
-                                                                .toString(),
-                                                          ),
-                                                        );
-                                                      }),
-                                                    ],
+                                                                            .id)) {
+                                                                  selectedPlayerIds
+                                                                      .add(player
+                                                                          .id!);
+                                                                } else {
+                                                                  selectedPlayerIds
+                                                                      .remove(player
+                                                                          .id!);
+                                                                }
+                                                              });
+                                                            },
+                                                            child: PlayerCard(
+                                                              selected:
+                                                                  selectedPlayerIds
+                                                                      .contains(
+                                                                          player
+                                                                              .id),
+                                                              name:
+                                                                  player.name!,
+                                                              image:
+                                                                  player.pic!,
+                                                              playerId: player
+                                                                  .pId
+                                                                  .toString(),
+                                                            ),
+                                                          );
+                                                        }),
+                                                      ],
+                                                    ),
                                                   ),
                                                 ),
                                               ),
                                             ),
                                           ),
-                                          shape: RoundedRectangleBorder(
-                                              borderRadius:
-                                                  BorderRadius.circular(20)));
+                                        ),
+                                      );
                                     },
                                     child: Text('Select Players'.tr)),
                                 TextButton(
                                     onPressed: () {
-                                      Get.bottomSheet(
-                                          StatefulBuilder(
-                                            builder: (context, setState) =>
-                                                Container(
-                                              color: Colors.white,
-                                              child: SingleChildScrollView(
-                                                child: SafeArea(
-                                                  child: Column(
-                                                    crossAxisAlignment:
-                                                        CrossAxisAlignment.end,
-                                                    children: [
-                                                      SizedBox(height: 30),
-                                                      ElevatedButton(
-                                                          onPressed: () {
-                                                            Get.back();
-                                                          },
-                                                          child:
-                                                              Text('Done'.tr)),
-                                                      SizedBox(height: 10),
-                                                      ...List.generate(
-                                                          controller
-                                                              .coaches.length,
-                                                          (int index) {
-                                                        UserModel coach =
+                                      Get.defaultDialog(
+                                        title: 'Select Coaches'.tr,
+                                        actions: [
+                                          TextButton(
+                                              onPressed: () {
+                                                Get.back();
+                                              },
+                                              child: Text('Done'.tr)),
+                                        ],
+                                        content: StatefulBuilder(
+                                          builder: (context, setState) =>
+                                              Container(
+                                            color: Colors.white,
+                                            child: SingleChildScrollView(
+                                              child: SafeArea(
+                                                child: SizedBox(
+                                                  height: 450,
+                                                  child: SingleChildScrollView(
+                                                    child: Column(
+                                                      crossAxisAlignment:
+                                                          CrossAxisAlignment
+                                                              .end,
+                                                      children: [
+                                                        SizedBox(height: 30),
+                                                        SizedBox(height: 10),
+                                                        ...List.generate(
                                                             controller
-                                                                .coaches[index];
-                                                        return GestureDetector(
-                                                          onTap: () {
-                                                            setState(() {
-                                                              if (!selectedCoachIds
-                                                                  .contains(coach
-                                                                      .id)) {
-                                                                selectedCoachIds
-                                                                    .add(coach
-                                                                        .id!);
-                                                              } else {
-                                                                selectedCoachIds
-                                                                    .remove(coach
-                                                                        .id!);
-                                                              }
-                                                            });
-                                                          },
-                                                          child: PlayerCard(
-                                                            isCoach: true,
-                                                            selected:
-                                                                selectedCoachIds
-                                                                    .contains(
-                                                                        coach
-                                                                            .id),
-                                                            name: coach.name!,
-                                                            image: coach.pic!,
-                                                            playerId:
-                                                                ''.toString(),
-                                                          ),
-                                                        );
-                                                      }),
-                                                    ],
+                                                                .coaches.length,
+                                                            (int index) {
+                                                          UserModel coach =
+                                                              controller
+                                                                      .coaches[
+                                                                  index];
+                                                          return GestureDetector(
+                                                            onTap: () {
+                                                              setState(() {
+                                                                if (!selectedCoachIds
+                                                                    .contains(coach
+                                                                        .id)) {
+                                                                  selectedCoachIds
+                                                                      .add(coach
+                                                                          .id!);
+                                                                } else {
+                                                                  selectedCoachIds
+                                                                      .remove(coach
+                                                                          .id!);
+                                                                }
+                                                              });
+                                                            },
+                                                            child: PlayerCard(
+                                                              isCoach: true,
+                                                              selected:
+                                                                  selectedCoachIds
+                                                                      .contains(
+                                                                          coach
+                                                                              .id),
+                                                              name: coach.name!,
+                                                              image: coach.pic!,
+                                                              playerId:
+                                                                  ''.toString(),
+                                                            ),
+                                                          );
+                                                        }),
+                                                      ],
+                                                    ),
                                                   ),
                                                 ),
                                               ),
                                             ),
                                           ),
-                                          shape: RoundedRectangleBorder(
-                                              borderRadius:
-                                                  BorderRadius.circular(20)));
+                                        ),
+                                      );
                                     },
                                     child: Text('Select Coaches'.tr)),
                               ],

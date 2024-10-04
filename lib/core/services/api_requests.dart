@@ -625,17 +625,13 @@ class ApiRequests {
   Future updatePlayerStage({
     required String playerId,
     required String stage,
-    required String groupId,
   }) async {
     try {
-      final res = await HttpWrapper.postRequest(
-          base_url + "coach/polarize-player",
-          stage == 'SCHOOL'
-              ? {"playerId": playerId, "stage": stage, "groupId": groupId}
-              : {
-                  "playerId": playerId,
-                  "stage": stage,
-                });
+      final res =
+          await HttpWrapper.postRequest(base_url + "coach/polarize-player", {
+        "playerId": playerId,
+        "stage": stage,
+      });
 
       final data = jsonDecode(res.body);
 
