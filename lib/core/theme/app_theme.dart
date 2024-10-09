@@ -69,6 +69,7 @@ ThemeData kAppThemeLight() {
         borderRadius: BorderRadius.circular(10),
       ),
     ),
+    chipTheme: ChipThemeData(backgroundColor: Colors.white),
     cardTheme: CardTheme(
       color: kAppGreyColor(),
       surfaceTintColor: Colors.white,
@@ -91,6 +92,9 @@ ThemeData kAppThemeDark() {
       bodyColor: Colors.white,
       displayColor: Colors.white,
     ),
+    chipTheme: ChipThemeData(
+        backgroundColor: kAppGreyColor(),
+        labelStyle: TextStyle(color: Colors.white)),
     bottomSheetTheme: BottomSheetThemeData(backgroundColor: Colors.black),
     dropdownMenuTheme: DropdownMenuThemeData(
         inputDecorationTheme: InputDecorationTheme(),

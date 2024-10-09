@@ -99,7 +99,7 @@ class _DummySplashState extends State<DummySplash> {
                                       ),
                                     ),
                                     Positioned(
-                                      bottom: 100,
+                                      bottom: 40,
                                       child: Container(
                                         decoration: BoxDecoration(boxShadow: [
                                           BoxShadow(
@@ -118,14 +118,14 @@ class _DummySplashState extends State<DummySplash> {
                                           children: [
                                             Row(
                                               children: [
-                                                CircleAvatar(
-                                                  child: Image.asset(
-                                                    'assets/images/announcement.png',
-                                                    height: 40,
-                                                    width: 40,
-                                                  ),
-                                                ),
-                                                SizedBox(width: 20),
+                                                // CircleAvatar(
+                                                //   child: Image.asset(
+                                                //     'assets/images/announcement.png',
+                                                //     height: 40,
+                                                //     width: 40,
+                                                //   ),
+                                                // ),
+                                                // SizedBox(width: 20),
                                                 Text(
                                                   event.category.toUpperCase(),
                                                   style: TextStyle(
@@ -232,4 +232,3 @@ class _DummySplashState extends State<DummySplash> {
         ));
   }
 }
-

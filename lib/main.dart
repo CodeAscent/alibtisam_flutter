@@ -87,11 +87,11 @@ class _MyAppState extends State<MyApp> {
   void _showInAppNotification(RemoteMessage message) {
     if (Get.currentRoute != '/ChatScreen') {
       showSimpleNotification(
-        Text(message.notification?.title ?? 'New Notification'),
-        subtitle: Text(message.notification?.body ?? 'You have a new message'),
-        background: primaryColor(),
-        duration: Duration(seconds: 3),
-      );
+          Text(message.notification?.title ?? 'New Notification'),
+          subtitle:
+              Text(message.notification?.body ?? 'You have a new message'),
+          background: primaryColor(),
+          duration: Duration(seconds: 3));
     }
   }
 
