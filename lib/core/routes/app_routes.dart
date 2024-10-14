@@ -11,8 +11,9 @@ import 'package:alibtisam/features/groupsManagement/views/screens/groups_managem
 import 'package:alibtisam/features/loanApplication/loan_application.dart';
 import 'package:alibtisam/features/playerRequests/request_tab_bar.dart';
 import 'package:alibtisam/features/playerPolarization/player_polarization.dart';
+import 'package:alibtisam/features/sessionAppointment/session_appointment_navigation.dart';
 import 'package:alibtisam/features/trainingPlan/training_plan_navigation.dart';
-import 'package:alibtisam/features/sessionAppointment/session_appointment.dart';
+import 'package:alibtisam/features/sessionAppointment/view/screens/create_session_appointment.dart';
 import 'package:alibtisam/features/sports/sports_navigation.dart';
 import 'package:alibtisam/features/statistics/coach/presentation/monitoring/coach_player_monitoring.dart';
 import 'package:alibtisam/features/statistics/statistics_navigation.dart';
@@ -28,7 +29,8 @@ List<GetPage<dynamic>>? pages = [
   GetPage(name: '/practice', page: () => TrainingPlanNavigation()),
   GetPage(name: '/store', page: () => StoreNavigation()),
   GetPage(name: '/requestPortal', page: () => PlayerRequestsTabBar()),
-  GetPage(name: '/sessionAppointment', page: () => SessionAppointment()),
+  GetPage(
+      name: '/sessionAppointment', page: () => SessionAppointmentNavigation()),
   GetPage(name: '/loan', page: () => LoanApplication()),
   GetPage(name: '/enroll', page: () => EnrollmentNavigation()),
   GetPage(name: '/collection', page: () => CollectionScreen()),

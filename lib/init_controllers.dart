@@ -8,6 +8,8 @@ import 'package:alibtisam/features/bottomNav/controller/chats_list.dart';
 import 'package:alibtisam/features/enrollment/viewmodel/enrollment_viewmodel.dart';
 import 'package:alibtisam/features/groupsManagement/data/repository/groups_members_repo_impl.dart';
 import 'package:alibtisam/features/groupsManagement/data/viewModel/group_members_view_model.dart';
+import 'package:alibtisam/features/sessionAppointment/repo/session_appointment.dart';
+import 'package:alibtisam/features/sessionAppointment/viewmodel/session_appointment_viewmodel.dart';
 import 'package:alibtisam/features/sports/repo/sports_repo.dart';
 import 'package:alibtisam/features/sports/viewmodel/sports_viewmodel.dart';
 import 'package:alibtisam/features/userDashboard/viewmodel/dashboard.dart';
@@ -63,4 +65,5 @@ initControllers() {
   Get.put(AlrwaadViewmodel(AlrwaadRepo()));
   Get.put(SocketConnection());
   Get.put(SportsViewmodel(SportsRepo()));
+  Get.put(SessionAppointmentViewmodel(SessionAppointmentRepo()));
 }

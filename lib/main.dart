@@ -11,15 +11,14 @@ import 'package:alibtisam/init_controllers.dart';
 import 'package:alibtisam/core/routes/app_routes.dart';
 import 'package:alibtisam/service_locator.dart';
 import 'package:devicelocale/devicelocale.dart';
-
 import 'package:firebase_core/firebase_core.dart';
-import 'package:firebase_installations/firebase_installations.dart';
 import 'package:firebase_messaging/firebase_messaging.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:get_storage/get_storage.dart';
 import 'package:logger/logger.dart';
 import 'package:overlay_support/overlay_support.dart';
+
 
 String? locale;
 
@@ -37,7 +36,6 @@ void main() async {
     options: DefaultFirebaseOptions.currentPlatform,
   );
   await GetStorage.init();
-
   // FlutterNativeSplash.preserve(widgetsBindin g: widgetsBinding);
   runApp(MyApp());
 }
@@ -52,6 +50,7 @@ class _MyAppState extends State<MyApp> {
   String? _fcmToken;
   String? installationId;
   final savedLocale = GetStorage().read('locale') ?? 'en_US';
+
   Future<void> initConditions() async {
     Logger().w("----------->" + locale!.substring(0, 2));
     setState(() {});
@@ -63,7 +62,6 @@ class _MyAppState extends State<MyApp> {
     );
     FirebaseMessaging.onMessage.listen((RemoteMessage message) {
       Logger().f(message.data);
-
       _showInAppNotification(message);
     });
     FirebaseMessaging.onMessageOpenedApp.listen((RemoteMessage message) {
@@ -117,7 +115,6 @@ class _MyAppState extends State<MyApp> {
         //   ),
         //   connectivityStyle: NoConnectivityStyle.CUSTOM,
         //   builder: (context, connectionKey) =>
-
         GetBuilder(
       init: ThemeController(),
       builder: (controller) {
@@ -125,14 +122,12 @@ class _MyAppState extends State<MyApp> {
           child: GetMaterialApp(
             defaultTransition: Transition.cupertino,
             transitionDuration: Duration(milliseconds: 300),
-
             // navigatorKey: connectionKey, // add this key to material app
             debugShowCheckedModeBanner: false,
             translations: AppLocalization(),
             locale: locale!.substring(0, 2) == 'ar'
                 ? Locale(locale!.substring(0, 2))
                 : Locale(locale!.substring(0, 2)),
-
             //   Locale(savedLocale.split('_')[0], savedLocale.split('_')[1]),
             fallbackLocale: Locale('ar', 'DZ'),
             getPages: pages,

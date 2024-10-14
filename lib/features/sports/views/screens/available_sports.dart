@@ -113,6 +113,9 @@ class _AvailableSportsState extends State<AvailableSports> {
                               stages.sort();
                               return Chip(
                                 label: Text(stages[i]),
+                                labelPadding: EdgeInsets.all(2),
+                                labelStyle: TextStyle(fontSize: 12),
+                                padding: EdgeInsets.all(0),
                               );
                             })
                           ],
