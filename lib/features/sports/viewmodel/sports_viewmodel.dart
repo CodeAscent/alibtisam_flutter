@@ -2,7 +2,6 @@ import 'package:alibtisam/core/utils/custom_snackbar.dart';
 import 'package:alibtisam/features/sports/views/screens/available_sports.dart';
 import 'package:alibtisam/features/sports/models/club_sport.dart';
 import 'package:alibtisam/features/sports/repo/sports_repo.dart';
-import 'package:awesome_snackbar_content/awesome_snackbar_content.dart';
 import 'package:get/get.dart';
 
 class SportsViewmodel extends GetxController {

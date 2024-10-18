@@ -16,7 +16,6 @@ import 'package:alibtisam/core/theme/app_colors.dart';
 import 'package:alibtisam/core/utils/custom_date_formatter.dart';
 import 'package:alibtisam/core/utils/custom_snackbar.dart';
 import 'package:alibtisam/core/services/api_requests.dart';
-import 'package:awesome_snackbar_content/awesome_snackbar_content.dart';
 import 'package:flutter/material.dart';
 import 'package:gender_picker/source/enums.dart';
 import 'package:gender_picker/source/gender_picker.dart';
@@ -477,57 +476,50 @@ class _ExternalEnrollmentFormState extends State<ExternalEnrollmentForm> {
                                   idProofBack == null) {
                                 customSnackbar(
                                     "pleasePickAllMendatoryImages".tr,
-                                    ContentType.warning);
+                                    ContentType.failure);
                               } else {
- await enrollmentViewmodel
-                                    .submitEnrollmentForm(
-                                        name: nameController.text.trim(),
-                                        fatherName: fatherNameController.text
+                                await enrollmentViewmodel.submitEnrollmentForm(
+                                    name: nameController.text.trim(),
+                                    fatherName:
+                                        fatherNameController.text.trim(),
+                                    motherName:
+                                        motherNameController.text.trim(),
+                                    gender: genderController.text.trim(),
+                                    dateOfBirth: dobController.text.trim(),
+                                    bloodGroup:
+                                        bloodGroupController.text.trim(),
+                                    height: heightController.text.trim(),
+                                    weight: weightController.text.trim(),
+                                    phoneNumber: phoneController.text.trim(),
+                                    email: emailController.text.trim(),
+                                    address: addressController.text.trim(),
+                                    correspondenceAddress:
+                                        correspondenceAddressController.text
                                             .trim(),
-                                        motherName: motherNameController.text
-                                            .trim(),
-                                        gender: genderController.text.trim(),
-                                        dateOfBirth: dobController.text.trim(),
-                                        bloodGroup: bloodGroupController.text
-                                            .trim(),
-                                        height: heightController.text.trim(),
-                                        weight: weightController.text.trim(),
-                                        phoneNumber: phoneController.text
-                                            .trim(),
-                                        email: emailController.text.trim(),
-                                        address: addressController.text.trim(),
-                                        correspondenceAddress:
-                                            correspondenceAddressController
-                                                .text
-                                                .trim(),
-                                        city: cityController.text.trim(),
-                                        state: stateController.text.trim(),
-                                        relationWithApplicant:
-                                            relationWithApplicantController
-                                                        .text ==
-                                                    "SELF"
-                                                ? "me"
-                                                : relationWithApplicantController
-                                                    .text,
-                                        idProofFrontPath: idProofFront,
-                                        idProofBackPath: idProofBack,
-                                        pic: pic,
-                                        certificate: certificate,
-                                        batch: batchController.text.trim(),
-                                        gameId: gameId,
-                                        stage: stageController.text.trim(),
-                                        relationWithPlayer:
-                                            relationshipController.text,
-                                        playerGovId:
-                                            playerGovtIdController.text,
-                                        guardianGovId:
-                                            guardianGovtIdController.text,
-                                        guardianGovIdExpiry:
-                                            guardianGovtIdExpirationController
+                                    city: cityController.text.trim(),
+                                    state: stateController.text.trim(),
+                                    relationWithApplicant:
+                                        relationWithApplicantController.text ==
+                                                "SELF"
+                                            ? "me"
+                                            : relationWithApplicantController
                                                 .text,
-                                        playerGovIdExpiry:
-                                            playerGovtIdExpirationController.text);
-                               
+                                    idProofFrontPath: idProofFront,
+                                    idProofBackPath: idProofBack,
+                                    pic: pic,
+                                    certificate: certificate,
+                                    batch: batchController.text.trim(),
+                                    gameId: gameId,
+                                    stage: stageController.text.trim(),
+                                    relationWithPlayer:
+                                        relationshipController.text,
+                                    playerGovId: playerGovtIdController.text,
+                                    guardianGovId:
+                                        guardianGovtIdController.text,
+                                    guardianGovIdExpiry:
+                                        guardianGovtIdExpirationController.text,
+                                    playerGovIdExpiry:
+                                        playerGovtIdExpirationController.text);
                               }
                             }
                           },

@@ -9,7 +9,6 @@ import 'package:alibtisam/features/enrollment/models/user.dart';
 import 'package:alibtisam/core/utils/custom_date_formatter.dart';
 import 'package:alibtisam/features/enrollment/viewmodel/enrollment_viewmodel.dart';
 import 'package:alibtisam/features/playerRequests/presentation/request/measurement_from.dart';
-import 'package:awesome_snackbar_content/awesome_snackbar_content.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
@@ -222,7 +221,7 @@ class _ViewPlayerByUserModelState extends State<ViewPlayerByUserModel> {
                                     onTap: () async {
                                       if (selectedGameId == '') {
                                         customSnackbar('Please select a game',
-                                            ContentType.help);
+                                            ContentType.failure);
                                       } else {
                                         await enrollmentViewmodel
                                             .updateGameByUser(

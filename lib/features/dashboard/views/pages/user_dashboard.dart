@@ -1,8 +1,8 @@
-import 'package:alibtisam/features/userDashboard/viewmodel/dashboard.dart';
+import 'package:alibtisam/features/dashboard/viewmodel/dashboard.dart';
 import 'package:alibtisam/features/bottomNav/controller/user.dart';
-import 'package:alibtisam/features/userDashboard/models/dashboard.dart';
+import 'package:alibtisam/features/dashboard/models/dashboard.dart';
 import 'package:alibtisam/features/events/controller/event_navigation.dart';
-import 'package:alibtisam/features/userDashboard/views/widgets/custom_dashboard_card.dart';
+import 'package:alibtisam/features/dashboard/views/widgets/custom_dashboard_card.dart';
 import 'package:alibtisam/core/common/widgets/custom_loading.dart';
 import 'package:alibtisam/core/theme/app_colors.dart';
 import 'package:alibtisam/service_locator.dart';

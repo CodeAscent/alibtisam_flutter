@@ -9,7 +9,6 @@ import 'package:alibtisam/features/groupsManagement/views/screens/groups_managem
 import 'package:alibtisam/features/statistics/coach/stages_tab_bar.dart';
 import 'package:alibtisam/core/services/api_requests.dart';
 import 'package:alibtisam/core/services/http_wrapper.dart';
-import 'package:awesome_snackbar_content/awesome_snackbar_content.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
@@ -33,9 +32,9 @@ class _PolarizePlayerState extends State<PolarizePlayer> {
         loading = true;
       });
       await ApiRequests().updatePlayerStage(
-          playerId: widget.player.id!,
-          stage: widget.player.stage == 'ACADEMY' ? 'SCHOOL' : 'PROFESSIONAL',
-        );
+        playerId: widget.player.id!,
+        stage: widget.player.stage == 'ACADEMY' ? 'SCHOOL' : 'PROFESSIONAL',
+      );
     } catch (e) {
     } finally {
       setState(() {

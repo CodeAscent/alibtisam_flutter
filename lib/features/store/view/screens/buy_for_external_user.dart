@@ -6,7 +6,6 @@ import 'package:alibtisam/core/utils/custom_snackbar.dart';
 import 'package:alibtisam/features/auth/view/screens/login.dart';
 import 'package:alibtisam/features/store/models/product_model.dart';
 import 'package:alibtisam/features/store/viewmodel/products_viewmodel.dart';
-import 'package:awesome_snackbar_content/awesome_snackbar_content.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:logger/logger.dart';
@@ -83,7 +82,7 @@ class _BuyForExternalUserState extends State<BuyForExternalUser> {
                 if (token == null) {
                   Get.to(() => LoginScreen());
                   customSnackbar('Please login to order this product.'.tr,
-                      ContentType.warning);
+                      ContentType.failure);
                 } else {
                   await productsViewmodel.orderProductForExternalUser(
                     product: widget.product,

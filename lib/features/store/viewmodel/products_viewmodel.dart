@@ -3,7 +3,6 @@ import 'package:alibtisam/core/utils/custom_snackbar.dart';
 import 'package:alibtisam/features/store/local/database_helper.dart';
 import 'package:alibtisam/features/store/models/product_model.dart';
 import 'package:alibtisam/features/store/repo/products_repo.dart';
-import 'package:awesome_snackbar_content/awesome_snackbar_content.dart';
 import 'package:get/get.dart';
 import 'package:get/get_rx/get_rx.dart';
 import 'package:logger/web.dart';

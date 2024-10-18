@@ -6,7 +6,6 @@ import 'package:alibtisam/features/enrollment/models/user.dart';
 import 'package:alibtisam/features/tournamentRequest/models/tournament_model.dart';
 import 'package:alibtisam/features/tournamentRequest/repo/tournament_request_repo.dart';
 import 'package:alibtisam/core/services/api_requests.dart';
-import 'package:awesome_snackbar_content/awesome_snackbar_content.dart';
 import 'package:get/get.dart';
 import 'package:image_picker/image_picker.dart';
 import 'package:logger/logger.dart';

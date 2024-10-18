@@ -3,7 +3,6 @@ import 'package:alibtisam/core/utils/custom_snackbar.dart';
 import 'package:http/http.dart' as http;
 import 'package:path_provider/path_provider.dart';
 import 'package:permission_handler/permission_handler.dart';
-import 'package:awesome_snackbar_content/awesome_snackbar_content.dart' as aw;
 
 class MediaDownloader {
   // Function to download the media (image/video) from a URL
@@ -41,7 +40,7 @@ class MediaDownloader {
 
         // Show a success message
         customSnackbar(
-            'File saved successfully: $fileName', aw.ContentType.success);
+            'File saved successfully: $fileName', ContentType.success);
 
         print('File saved successfully to $filePath');
       } else {

@@ -1,6 +1,5 @@
 import 'package:alibtisam/core/theme/app_colors.dart';
 import 'package:alibtisam/core/utils/custom_snackbar.dart';
-import 'package:awesome_snackbar_content/awesome_snackbar_content.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
@@ -81,7 +80,7 @@ class HelpSupportPage extends StatelessWidget {
                               Get.back();
                               customSnackbar(
                                   "Account deletion request has been made successfully, your account will be deleted within 48 hours",
-                                  ContentType.warning);
+                                  ContentType.failure);
                             },
                             child: Text('Yes',
                                 style: TextStyle(color: Colors.red))),

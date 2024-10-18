@@ -84,7 +84,7 @@ dependencies:
   devicelocale: ^0.8.1
   day_picker: ^2.2.0
   simple_gradient_text: ^1.3.0
-  awesome_snackbar_content: ^0.1.3
+  # awesome_snackbar_content: ^0.1.3
   hexcolor: ^3.0.1
   #   youtube_player_flutter: ^8.1.2
   carousel_slider: ^5.0.0
@@ -99,6 +99,11 @@ dependencies:
   pod_player: ^0.2.2
   flutter_animate: ^4.5.0
   omni_datetime_picker: ^2.0.5
+  body_part_selector: ^0.2.0
+  toastification: ^2.3.0
+  path_provider: ^2.1.4
+  flutter_image_cropper: ^0.0.2
+
 #   youtube_player_iframe: ^5.2.0
 #   flutter_inappwebview: ^6.1.5
 

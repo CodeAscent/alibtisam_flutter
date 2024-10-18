@@ -2,7 +2,6 @@ import 'package:alibtisam/core/error/server_exception.dart';
 import 'package:alibtisam/core/utils/custom_snackbar.dart';
 import 'package:alibtisam/features/store/models/category_model.dart';
 import 'package:alibtisam/features/store/repo/category_repo.dart';
-import 'package:awesome_snackbar_content/awesome_snackbar_content.dart';
 import 'package:get/get.dart';
 
 class CategoryViewmodel extends GetxController {
@@ -25,7 +24,7 @@ class CategoryViewmodel extends GetxController {
       update();
       return categories;
     } on ServerException catch (e) {
-      customSnackbar( e.message, ContentType.failure);
+      customSnackbar(e.message, ContentType.failure);
     }
   }
 }

@@ -57,14 +57,6 @@ packages:
       url: "https://pub.dev"
     source: hosted
     version: "3.2.0"
-  awesome_snackbar_content:
-    dependency: "direct main"
-    description:
-      name: awesome_snackbar_content
-      sha256: a99f229d5e9404c69d172d9a6256961743eb9bc68b0a7905185eacd206b27984
-      url: "https://pub.dev"
-    source: hosted
-    version: "0.1.4"
   bloc:
     dependency: transitive
     description:
@@ -81,6 +73,14 @@ packages:
       url: "https://pub.dev"
     source: hosted
     version: "1.1.1"
+  body_part_selector:
+    dependency: "direct main"
+    description:
+      name: body_part_selector
+      sha256: "9fdac97959cd710352a2781458e8824ba8752988f730493b06a53fff12fb078c"
+      url: "https://pub.dev"
+    source: hosted
+    version: "0.2.0"
   boolean_selector:
     dependency: transitive
     description:
@@ -558,6 +558,14 @@ packages:
       url: "https://pub.dev"
     source: hosted
     version: "2.0.2"
+  flutter_image_cropper:
+    dependency: "direct main"
+    description:
+      name: flutter_image_cropper
+      sha256: "5175fa4f717efe97522d5cb0f0c22ca803e115e5962cc3afc0b610485da20725"
+      url: "https://pub.dev"
+    source: hosted
+    version: "0.0.2"
   flutter_launcher_icons:
     dependency: "direct main"
     description:
@@ -574,11 +582,6 @@ packages:
       url: "https://pub.dev"
     source: hosted
     version: "5.0.0"
-  flutter_localizations:
-    dependency: transitive
-    description: flutter
-    source: sdk
-    version: "0.0.0"
   flutter_native_splash:
     dependency: "direct main"
     description:
@@ -615,10 +618,10 @@ packages:
     dependency: transitive
     description:
       name: flutter_svg
-      sha256: "7b4ca6cf3304575fe9c8ec64813c8d02ee41d2afe60bcfe0678bcb5375d596a2"
+      sha256: "6ff9fa12892ae074092de2fa6a9938fb21dbabfdaa2ff57dc697ff912fc8d4b2"
       url: "https://pub.dev"
     source: hosted
-    version: "2.0.10+1"
+    version: "1.1.6"
   flutter_test:
     dependency: "direct dev"
     description: flutter
@@ -717,6 +720,14 @@ packages:
       url: "https://pub.dev"
     source: hosted
     version: "4.0.2"
+  iconsax_flutter:
+    dependency: transitive
+    description:
+      name: iconsax_flutter
+      sha256: "95b65699da8ea98f87c5d232f06b0debaaf1ec1332b697e4d90969ec9a93037d"
+      url: "https://pub.dev"
+    source: hosted
+    version: "1.0.0"
   image:
     dependency: transitive
     description:
@@ -997,6 +1008,14 @@ packages:
       url: "https://pub.dev"
     source: hosted
     version: "1.9.0"
+  path_drawing:
+    dependency: transitive
+    description:
+      name: path_drawing
+      sha256: bbb1934c0cbb03091af082a6389ca2080345291ef07a5fa6d6e078ba8682f977
+      url: "https://pub.dev"
+    source: hosted
+    version: "1.0.1"
   path_parsing:
     dependency: transitive
     description:
@@ -1006,7 +1025,7 @@ packages:
     source: hosted
     version: "1.0.1"
   path_provider:
-    dependency: transitive
+    dependency: "direct main"
     description:
       name: path_provider
       sha256: fec0d61223fba3154d87759e3cc27fe2c8dc498f6386c6d6fc80d1afdd1bf378
@@ -1053,6 +1072,14 @@ packages:
       url: "https://pub.dev"
     source: hosted
     version: "2.3.0"
+  pausable_timer:
+    dependency: transitive
+    description:
+      name: pausable_timer
+      sha256: "6ef1a95441ec3439de6fb63f39a011b67e693198e7dae14e20675c3c00e86074"
+      url: "https://pub.dev"
+    source: hosted
+    version: "3.1.0+3"
   permission_handler:
     dependency: "direct main"
     description:
@@ -1173,6 +1200,14 @@ packages:
       url: "https://pub.dev"
     source: hosted
     version: "3.0.2"
+  rotation_stage:
+    dependency: transitive
+    description:
+      name: rotation_stage
+      sha256: "0e94f2b48d0d52bb6783afed022d3d26e431c0c8ff81216f6996a57b89c7194f"
+      url: "https://pub.dev"
+    source: hosted
+    version: "0.3.0"
   rxdart:
     dependency: transitive
     description:
@@ -1346,6 +1381,22 @@ packages:
       url: "https://pub.dev"
     source: hosted
     version: "0.7.2"
+  toastification:
+    dependency: "direct main"
+    description:
+      name: toastification
+      sha256: "4d97fbfa463dfe83691044cba9f37cb185a79bb9205cfecb655fa1f6be126a13"
+      url: "https://pub.dev"
+    source: hosted
+    version: "2.3.0"
+  touchable:
+    dependency: transitive
+    description:
+      name: touchable
+      sha256: "50040b39778bb1adc8a480625de8681253bd2134785395cf16abd66bb13d3ed0"
+      url: "https://pub.dev"
+    source: hosted
+    version: "1.0.2"
   typed_data:
     dependency: transitive
     description:
@@ -1450,30 +1501,6 @@ packages:
       url: "https://pub.dev"
     source: hosted
     version: "4.5.1"
-  vector_graphics:
-    dependency: transitive
-    description:
-      name: vector_graphics
-      sha256: "32c3c684e02f9bc0afb0ae0aa653337a2fe022e8ab064bcd7ffda27a74e288e3"
-      url: "https://pub.dev"
-    source: hosted
-    version: "1.1.11+1"
-  vector_graphics_codec:
-    dependency: transitive
-    description:
-      name: vector_graphics_codec
-      sha256: c86987475f162fadff579e7320c7ddda04cd2fdeffbe1129227a85d9ac9e03da
-      url: "https://pub.dev"
-    source: hosted
-    version: "1.1.11+1"
-  vector_graphics_compiler:
-    dependency: transitive
-    description:
-      name: vector_graphics_compiler
-      sha256: "12faff3f73b1741a36ca7e31b292ddeb629af819ca9efe9953b70bd63fc8cd81"
-      url: "https://pub.dev"
-    source: hosted
-    version: "1.1.11+1"
   vector_math:
     dependency: transitive
     description:

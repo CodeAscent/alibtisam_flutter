@@ -1,7 +1,6 @@
 import 'package:alibtisam/core/utils/custom_snackbar.dart';
 import 'package:alibtisam/features/bottomNav/model/age_category.dart';
 import 'package:alibtisam/features/bottomNav/repositories/age_category_repo.dart';
-import 'package:awesome_snackbar_content/awesome_snackbar_content.dart';
 import 'package:fpdart/src/either.dart';
 
 class AgeCategoryViewModel {

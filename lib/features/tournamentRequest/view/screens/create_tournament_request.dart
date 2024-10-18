@@ -10,7 +10,6 @@ import 'package:alibtisam/features/groupsManagement/views/screens/view_members.d
 import 'package:alibtisam/features/tournamentRequest/viewmodel/tournament_request_viewmodel.dart';
 import 'package:alibtisam/core/common/widgets/player_card.dart';
 import 'package:alibtisam/core/services/api_urls.dart';
-import 'package:awesome_snackbar_content/awesome_snackbar_content.dart';
 import 'package:calendar_date_picker2/calendar_date_picker2.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
@@ -68,11 +67,11 @@ class _CreateTournamentRequestScreenState
                   if (selectedPlayerIds.isEmpty) {
                     return customSnackbar(
                         'Please select players for the tournament'.tr,
-                        ContentType.warning);
+                        ContentType.failure);
                   } else if (selectedCoachIds.isEmpty) {
                     return customSnackbar(
                         'Please select coaches for the tournament'.tr,
-                        ContentType.warning);
+                        ContentType.failure);
                   } else if (formKey.currentState!.validate()) {
                     await tournamentRequestViewmodel.createTournamentRequest(
                         name: name.text,

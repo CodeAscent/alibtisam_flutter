@@ -1,17 +1,16 @@
 import 'package:alibtisam/features/enrollment/models/user.dart';
 import 'package:alibtisam/core/utils/custom_snackbar.dart';
 import 'package:alibtisam/core/services/api_requests.dart';
-import 'package:awesome_snackbar_content/awesome_snackbar_content.dart';
 import 'package:get/get.dart';
 
 class UserController extends GetxController {
   UserModel? user;
-RxBool loading  = false.obs;
+  RxBool loading = false.obs;
   Future fetchUser() async {
     try {
-        loading.value = true;
+      loading.value = true;
       user = await ApiRequests().getUser();
-        loading.value = false;
+      loading.value = false;
 
       update();
     } catch (e) {

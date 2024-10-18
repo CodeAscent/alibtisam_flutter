@@ -5,6 +5,8 @@ import 'package:alibtisam/features/auth/viewmodel/auth_viewmodel.dart';
 import 'package:alibtisam/features/bottomNav/controller/attendance.dart';
 import 'package:alibtisam/features/chat/controller/chat_messages.dart';
 import 'package:alibtisam/features/bottomNav/controller/chats_list.dart';
+import 'package:alibtisam/features/clinic/repo/clinic_appointment_repo.dart';
+import 'package:alibtisam/features/clinic/viewmodel/clinic_appointment_viewmodel.dart';
 import 'package:alibtisam/features/enrollment/viewmodel/enrollment_viewmodel.dart';
 import 'package:alibtisam/features/groupsManagement/data/repository/groups_members_repo_impl.dart';
 import 'package:alibtisam/features/groupsManagement/data/viewModel/group_members_view_model.dart';
@@ -12,7 +14,7 @@ import 'package:alibtisam/features/sessionAppointment/repo/session_appointment.d
 import 'package:alibtisam/features/sessionAppointment/viewmodel/session_appointment_viewmodel.dart';
 import 'package:alibtisam/features/sports/repo/sports_repo.dart';
 import 'package:alibtisam/features/sports/viewmodel/sports_viewmodel.dart';
-import 'package:alibtisam/features/userDashboard/viewmodel/dashboard.dart';
+import 'package:alibtisam/features/dashboard/viewmodel/dashboard.dart';
 import 'package:alibtisam/features/bottomNav/controller/date_range.dart';
 import 'package:alibtisam/features/bottomNav/controller/games.dart';
 import 'package:alibtisam/features/groupsManagement/data/viewModel/groups_controller.dart';
@@ -66,4 +68,6 @@ initControllers() {
   Get.put(SocketConnection());
   Get.put(SportsViewmodel(SportsRepo()));
   Get.put(SessionAppointmentViewmodel(SessionAppointmentRepo()));
+  Get.put(ClinicAppointmentViewmodel(
+      clinicAppointmentRepo: ClinicAppointmentRepo()));
 }

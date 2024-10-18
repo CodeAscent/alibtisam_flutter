@@ -3,7 +3,6 @@ import 'package:alibtisam/core/utils/custom_snackbar.dart';
 import 'package:alibtisam/features/groupsManagement/data/viewModel/groups_controller.dart';
 import 'package:alibtisam/features/trainingPlan/models/training_plan.dart';
 import 'package:alibtisam/features/trainingPlan/repo/training_plan_repo.dart';
-import 'package:awesome_snackbar_content/awesome_snackbar_content.dart';
 import 'package:get/get.dart';
 import 'package:logger/logger.dart';
 

@@ -5,7 +5,6 @@ import 'package:alibtisam/features/alRwaadClub/models/alRwaad_plans.dart';
 import 'package:alibtisam/features/alRwaadClub/models/alRwaad_service.dart';
 import 'package:alibtisam/features/alRwaadClub/repo/alrwaad_repo.dart';
 import 'package:alibtisam/features/bottomNav/controller/user.dart';
-import 'package:awesome_snackbar_content/awesome_snackbar_content.dart';
 import 'package:get/get.dart';
 
 import '../../enrollment/models/user.dart';

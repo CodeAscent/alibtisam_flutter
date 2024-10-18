@@ -1,7 +1,6 @@
 import 'package:alibtisam/core/utils/custom_snackbar.dart';
 import 'package:alibtisam/features/enrollment/models/user.dart';
 import 'package:alibtisam/features/bottomNav/repositories/player_by_age_and_stage.dart';
-import 'package:awesome_snackbar_content/awesome_snackbar_content.dart';
 import 'package:fpdart/fpdart.dart';
 
 class PlayersByAgeAndStageViewmodel {
@@ -12,7 +11,7 @@ class PlayersByAgeAndStageViewmodel {
         stage: stage, ageCategoryId: ageCategoryId);
     final val = switch (res) {
       Right(value: final r) => r,
-      Left(value: final l) => customSnackbar( l.message, ContentType.failure)
+      Left(value: final l) => customSnackbar(l.message, ContentType.failure)
     };
     return val;
   }

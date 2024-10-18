@@ -10,7 +10,9 @@ Color kAppGreyColor() {
   final themeController = Get.find<ThemeController>();
   return themeController.liveGreyColor.value;
 }
-
+Color reversePrimaryColor() =>
+//fa3d9b
+    !isAppThemeDark() ? kAlibtisamPrimary() : kAlibtisamSecondary();
 List<Color> kColorsArray() => [
       kAlibtisamPrimary(),
       kAlibtisamSecondary(),

@@ -3,7 +3,7 @@ import 'dart:convert';
 import 'package:alibtisam/core/error/server_exception.dart';
 import 'package:alibtisam/core/services/api_urls.dart';
 import 'package:alibtisam/core/services/http_wrapper.dart';
-import 'package:alibtisam/features/userDashboard/models/dashboard.dart';
+import 'package:alibtisam/features/dashboard/models/dashboard.dart';
 
 class DashboardRepo {
     Future<List<DashboardModel>> getDashboardItems() async {

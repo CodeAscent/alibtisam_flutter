@@ -11,8 +11,9 @@ isAppThemeDark() {
 
 ThemeData kAppThemeLight() {
   return ThemeData(
-    colorScheme: ColorScheme.fromSeed(
-      seedColor: primaryColor(),
+    primaryColor: primaryColor(),
+    colorScheme: ColorScheme.light(
+      primary: primaryColor(),
     ),
     textTheme: GoogleFonts.poppinsTextTheme(),
     textButtonTheme: TextButtonThemeData(
@@ -85,8 +86,9 @@ ThemeData kAppThemeLight() {
 
 ThemeData kAppThemeDark() {
   return ThemeData.dark().copyWith(
-    colorScheme: ColorScheme.fromSeed(
-      seedColor: primaryColor(),
+    primaryColor: primaryColor(),
+    colorScheme: ColorScheme.dark(
+      primary: primaryColor(),
     ),
     textTheme: GoogleFonts.poppinsTextTheme().apply(
       bodyColor: Colors.white,

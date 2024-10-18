@@ -2,7 +2,6 @@ import 'package:alibtisam/core/services/api_urls.dart';
 import 'package:alibtisam/core/utils/custom_snackbar.dart';
 import 'package:alibtisam/features/enrollment/models/user.dart';
 import 'package:alibtisam/features/groupsManagement/data/repository/groups_members_repo_impl.dart';
-import 'package:awesome_snackbar_content/awesome_snackbar_content.dart';
 import 'package:get/get.dart';
 import 'package:logger/logger.dart';
 

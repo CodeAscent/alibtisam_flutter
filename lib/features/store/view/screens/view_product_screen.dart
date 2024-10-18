@@ -8,7 +8,6 @@ import 'package:alibtisam/features/store/models/product_model.dart';
 import 'package:alibtisam/features/store/view/screens/buy_for_external_user.dart';
 import 'package:alibtisam/features/store/view/screens/cart_screen.dart';
 import 'package:alibtisam/features/store/view/screens/select_groups.dart';
-import 'package:awesome_snackbar_content/awesome_snackbar_content.dart';
 import 'package:carousel_slider/carousel_slider.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';

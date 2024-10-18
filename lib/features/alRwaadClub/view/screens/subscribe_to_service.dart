@@ -7,7 +7,6 @@ import 'package:alibtisam/features/alRwaadClub/models/alRwaad_service.dart';
 import 'package:alibtisam/features/alRwaadClub/viewModel/alrwaad_viewmodel.dart';
 import 'package:alibtisam/features/bottomNav/controller/user.dart';
 import 'package:alibtisam/features/enrollment/models/user.dart';
-import 'package:awesome_snackbar_content/awesome_snackbar_content.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
@@ -54,7 +53,7 @@ class _SubscribeToServiceState extends State<SubscribeToService> {
         child: CustomContainerButton(
             onTap: () async {
               if (selectedServicePlan == '') {
-                customSnackbar('Select a plan first', ContentType.help);
+                customSnackbar('Select a plan first', ContentType.failure);
               } else {
                 showCupertinoDialog(
                   context: context,

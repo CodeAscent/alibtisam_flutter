@@ -3,6 +3,7 @@ import 'package:alibtisam/features/alRwaadClub/view/screens/alrwaad_services.dar
 import 'package:alibtisam/features/bottomNav/bottom_nav.dart';
 import 'package:alibtisam/features/chat/presentation/chat.dart';
 import 'package:alibtisam/features/chat/presentation/chat_navigation.dart';
+import 'package:alibtisam/features/clinic/clinic_navigation.dart';
 import 'package:alibtisam/features/enrollment/enrollment_navigation.dart';
 import 'package:alibtisam/features/events/presentation/events.dart';
 import 'package:alibtisam/features/attendance/attendance_navigation.dart';
@@ -41,4 +42,5 @@ List<GetPage<dynamic>>? pages = [
   GetPage(name: '/chat', page: () => ChatNavigation()),
   GetPage(name: '/alRwaad', page: () => AlrwaadServices()),
   GetPage(name: '/bottomNav', page: () => BottomNav()),
+  GetPage(name: '/clinic', page: () => ClinicNavigation()),
 ];

@@ -10,7 +10,6 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:image_picker/image_picker.dart';
 import 'package:image_picker_widget/image_picker_widget.dart';
-import 'package:awesome_snackbar_content/awesome_snackbar_content.dart';
 
 class ViewTorunamentWallet extends StatefulWidget {
   final TournamentModel tournament;
@@ -147,7 +146,7 @@ class _ViewTorunamentWalletState extends State<ViewTorunamentWallet> {
                                           if (invoiceImage == null) {
                                             customSnackbar(
                                                 'Pick an Invoice Image',
-                                                ContentType.warning);
+                                                ContentType.failure);
                                           } else if (globalKey.currentState!
                                               .validate()) {
                                             await tournamentRequestViewmodel
@@ -167,7 +166,7 @@ class _ViewTorunamentWalletState extends State<ViewTorunamentWallet> {
                                           } else {
                                             customSnackbar(
                                                 'Please fill in all required fields',
-                                                ContentType.warning);
+                                                ContentType.failure);
                                           }
                                         },
                                         child: Text('Confirm'))

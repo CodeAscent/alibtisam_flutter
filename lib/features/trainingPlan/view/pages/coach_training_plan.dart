@@ -11,7 +11,6 @@ import 'package:alibtisam/features/groupsManagement/views/screens/view_members.d
 import 'package:alibtisam/features/statistics/coach/stages_tab_bar.dart';
 import 'package:alibtisam/features/trainingPlan/view/pages/view_training_plan.dart';
 import 'package:alibtisam/features/trainingPlan/viewModel/training_plan_viewmodel.dart';
-import 'package:awesome_snackbar_content/awesome_snackbar_content.dart';
 import 'package:day_picker/day_picker.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
@@ -115,7 +114,7 @@ class _CoachTrainingPlanState extends State<CoachTrainingPlan>
                                             customSnackbar(
                                                 'Please schedule days for the training'
                                                     .tr,
-                                                ContentType.warning);
+                                                ContentType.failure);
                                           } else {
                                             await trainingPlanController
                                                 .addTrainingPlan(

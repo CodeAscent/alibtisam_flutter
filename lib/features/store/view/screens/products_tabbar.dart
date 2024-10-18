@@ -9,7 +9,6 @@ import 'package:alibtisam/features/store/view/screens/view_product_screen.dart';
 import 'package:alibtisam/features/store/view/widgets/product_card.dart';
 import 'package:alibtisam/features/store/viewmodel/category_viewmodel.dart';
 import 'package:alibtisam/features/store/viewmodel/products_viewmodel.dart';
-import 'package:awesome_snackbar_content/awesome_snackbar_content.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
@@ -43,7 +42,8 @@ class _ProductsTabBarState extends State<ProductsTabBar>
                   final token = await getToken();
                   if (token == null) {
                     customSnackbar(
-                         'Please login to fetch your order history'.tr, ContentType.warning);
+                        'Please login to fetch your order history'.tr,
+                        ContentType.failure);
                   } else {
                     Get.to(() => OrderHistoryPage());
                   }

@@ -13,7 +13,6 @@ import 'package:alibtisam/features/alRwaadClub/view/screens/subscribe_to_service
 import 'package:alibtisam/features/alRwaadClub/view/screens/view_alrwaad_plan.dart';
 import 'package:alibtisam/features/alRwaadClub/viewModel/alrwaad_viewmodel.dart';
 import 'package:alibtisam/features/bottomNav/controller/user.dart';
-import 'package:awesome_snackbar_content/awesome_snackbar_content.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
@@ -199,7 +198,7 @@ class _AlrwaadServicesState extends State<AlrwaadServices> {
                                           plan: selectedPlan);
                                     } else {
                                       customSnackbar('Select a plan first',
-                                          ContentType.help);
+                                          ContentType.failure);
                                     }
                                   },
                                   child: Text(

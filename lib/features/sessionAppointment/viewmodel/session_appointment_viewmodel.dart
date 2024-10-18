@@ -2,7 +2,6 @@ import 'package:alibtisam/core/utils/custom_snackbar.dart';
 import 'package:alibtisam/features/sessionAppointment/model/session_appointment.dart';
 import 'package:alibtisam/features/sessionAppointment/model/session_coach.dart';
 import 'package:alibtisam/features/sessionAppointment/repo/session_appointment.dart';
-import 'package:awesome_snackbar_content/awesome_snackbar_content.dart';
 import 'package:get/get.dart';
 import 'package:logger/logger.dart';
 

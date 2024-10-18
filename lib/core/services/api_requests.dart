@@ -20,7 +20,6 @@ import 'package:alibtisam/core/localStorage/token_id.dart';
 import 'package:alibtisam/core/utils/custom_snackbar.dart';
 import 'package:alibtisam/core/services/api_urls.dart';
 import 'package:alibtisam/core/services/http_wrapper.dart';
-import 'package:awesome_snackbar_content/awesome_snackbar_content.dart';
 import 'package:get/get.dart';
 import 'package:logger/logger.dart';
 
@@ -298,7 +297,7 @@ class ApiRequests {
       final res = await HttpWrapper.postRequest(
           update_monitoring_by_playerId + playerId, body);
       final data = jsonDecode(res.body);
-      if (res.statusCode == 200) {
+      if (res.statusCode == 200 || res.statusCode == 201) {
         customSnackbar(data['message'], ContentType.success);
       } else {
         customSnackbar(data['message'], ContentType.failure);
